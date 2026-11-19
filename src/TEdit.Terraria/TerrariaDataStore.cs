@@ -681,7 +681,7 @@ public class TerrariaDataStore
     /// falling back to the original (English) name when unmatched.
     /// </summary>
     public string GetLocalizedSpriteStyle(string name) =>
-        Localization is { } loc ? ResolveStyleName(loc, name) : name;
+        Localization is { } loc ? ResolveStyleName(loc, name) : ResolveFrameText(name) ?? name;
 
     private string ResolveStyleName(LocalizationData loc, string name)
     {
@@ -734,19 +734,13 @@ public class TerrariaDataStore
     {
         if (Localization is not { } loc)
         {
-            // English UI loads no localization data. An unnamed frame still shows its tile's name
-            // instead of the "Default" placeholder, mirroring the fallback in the localized path below.
-            if (IsPlaceholderFrameName(frame.Name)
-                && !string.IsNullOrWhiteSpace(tile.Name) && tile.Name != "Default")
-            {
-                string englishName = tile.Name;
-                if (!string.IsNullOrWhiteSpace(frame.Variety) && frame.Variety != "None")
-                    englishName += ": " + frame.Variety;
-                if (frame.Anchor != FrameAnchor.None)
-                    englishName += " [" + frame.Anchor + "]";
-                return englishName;
-            }
-            return frame.ToString();
+            // English also uses display resources so abbreviated directions are expanded.
+            bool useTileName = IsPlaceholderFrameName(frame.Name)
+                && !string.IsNullOrWhiteSpace(tile.Name) && tile.Name != "Default";
+            string englishName = useTileName ? tile.Name : ResolveFrameText(frame.Name) ?? frame.Name;
+            if (!string.IsNullOrWhiteSpace(frame.Variety) && (!useTileName || frame.Variety != "None"))
+                englishName += ": " + (ResolveFrameText(frame.Variety) ?? frame.Variety);
+            return WithAnchor(englishName, frame);
         }
 
         // 1. Base name from the style lookup, falling back to the tile's own name for default frames.

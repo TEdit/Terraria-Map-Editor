@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -137,6 +137,9 @@
   </data>
   <data name="about_patreon" xml:space="preserve">
     <value>Patreon 지원</value>
+  </data>
+  <data name="about_system" xml:space="preserve">
+    <value>시스템</value>
   </data>
   <data name="about_terraria_not_found" xml:space="preserve">
     <value>찾지 못했습니다</value>
@@ -228,6 +231,96 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>업데이트</value>
   </data>
+  <data name="bg_cave_blue" xml:space="preserve">
+    <value>파란색</value>
+  </data>
+  <data name="bg_cave_blue_alt" xml:space="preserve">
+    <value>파란색 대체 색</value>
+  </data>
+  <data name="bg_cave_brown" xml:space="preserve">
+    <value>갈색</value>
+  </data>
+  <data name="bg_cave_gray" xml:space="preserve">
+    <value>회색</value>
+  </data>
+  <data name="bg_cave_green" xml:space="preserve">
+    <value>그린</value>
+  </data>
+  <data name="bg_cave_green_alt" xml:space="preserve">
+    <value>녹색 대체 색</value>
+  </data>
+  <data name="bg_cave_purple" xml:space="preserve">
+    <value>보라색</value>
+  </data>
+  <data name="bg_cave_stone" xml:space="preserve">
+    <value>돌</value>
+  </data>
+  <data name="bg_default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="bg_mnt_default_trees" xml:space="preserve">
+    <value>Mnt {0} + 기본 나무</value>
+  </data>
+  <data name="bg_mnt_trees" xml:space="preserve">
+    <value>산맥 {0} + 나무</value>
+  </data>
+  <data name="bg_mountains_alt" xml:space="preserve">
+    <value>산악 지형 대체 Alt</value>
+  </data>
+  <data name="bg_mountains_only" xml:space="preserve">
+    <value>산만 표시</value>
+  </data>
+  <data name="bg_mountains_only_a" xml:space="preserve">
+    <value>산만 생성 A</value>
+  </data>
+  <data name="bg_mountains_only_b" xml:space="preserve">
+    <value>산악 지형만 B</value>
+  </data>
+  <data name="bg_mountains_only_c" xml:space="preserve">
+    <value>산맥만 C</value>
+  </data>
+  <data name="bg_mountains_tree" xml:space="preserve">
+    <value>산맥 + 나무</value>
+  </data>
+  <data name="bg_multibiome_format" xml:space="preserve">
+    <value>다중 생물 군계 {0}</value>
+  </data>
+  <data name="bg_remix_format" xml:space="preserve">
+    <value>리믹스 {0}</value>
+  </data>
+  <data name="bg_trees_only_a" xml:space="preserve">
+    <value>나무만 A</value>
+  </data>
+  <data name="bg_trees_only_b" xml:space="preserve">
+    <value>나무만 B</value>
+  </data>
+  <data name="bg_tree_boreal" xml:space="preserve">
+    <value>한대 침엽수림</value>
+  </data>
+  <data name="bg_tree_jungle" xml:space="preserve">
+    <value>정글 같은</value>
+  </data>
+  <data name="bg_tree_oak" xml:space="preserve">
+    <value>참나무</value>
+  </data>
+  <data name="bg_tree_palm" xml:space="preserve">
+    <value>야자수 같은</value>
+  </data>
+  <data name="bg_tree_sakura" xml:space="preserve">
+    <value>벚꽃</value>
+  </data>
+  <data name="bg_tree_willow" xml:space="preserve">
+    <value>버드나무</value>
+  </data>
+  <data name="bg_variant_alt" xml:space="preserve">
+    <value>변형 {0} 대체</value>
+  </data>
+  <data name="bg_variant_alt_letter" xml:space="preserve">
+    <value>변형 {0} 대체 {1}</value>
+  </data>
+  <data name="bg_variant_format" xml:space="preserve">
+    <value>변형 {0}</value>
+  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>풀 브릭</value>
   </data>
@@ -280,6 +373,9 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>맥스</value>
   </data>
+  <data name="common_air" xml:space="preserve">
+    <value>공기</value>
+  </data>
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
@@ -304,11 +400,17 @@
   <data name="common_close" xml:space="preserve">
     <value>닫습니다</value>
   </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
   <data name="common_edit" xml:space="preserve">
     <value>수정</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>활성화됨</value>
+  </data>
+  <data name="common_error" xml:space="preserve">
+    <value>오류</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>생성</value>
@@ -316,8 +418,14 @@
   <data name="common_left" xml:space="preserve">
     <value>왼쪽</value>
   </data>
+  <data name="common_no" xml:space="preserve">
+    <value>아니요</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>전혀 없습니다</value>
+  </data>
+  <data name="common_not_determined" xml:space="preserve">
+    <value>미정</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>알겠어</value>
@@ -342,6 +450,9 @@
   </data>
   <data name="common_search" xml:space="preserve">
     <value>검색</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>예</value>
   </data>
   <data name="depth_center" xml:space="preserve">
     <value>중앙</value>
@@ -373,12 +484,350 @@
   <data name="depth_west" xml:space="preserve">
     <value>{0}도 서쪽</value>
   </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>{0:N0}개 파일을 삭제하지 못했습니다. 자세한 내용은 로그를 확인하세요.</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>파일 {0:N0}개를 삭제하고 {1}의 공간을 확보했습니다.</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>캐시가 삭제되었습니다</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>캐시 지우기</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>캐시된 파일 {0:N0}개({1})를 삭제할까요?
+
+TEdit 백업, 자동 저장 파일 및 모든 실행 취소/다시 실행 기록이 삭제됩니다. Terraria 월드 파일과 .bak 파일은 영향을 받지 않습니다.</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>TEdit 캐시 지우기</value>
+  </data>
+  <data name="dialog_complete_bestiary_error" xml:space="preserve">
+    <value>베스티어리 데이터를 완성하는 중 오류가 발생했습니다. 현재 베스티어리가 복원되었습니다.
+{0}</value>
+  </data>
+  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
+    <value>현재 불러온 월드의 도감과 처치 기록이 완성된 도감으로 완전히 대체됩니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_complete_bestiary_title" xml:space="preserve">
+    <value>도감 완성?</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>삭제 확인</value>
+  </data>
+  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
+    <value>'세계의 끝' 경계를 추가할까요?</value>
+  </data>
+  <data name="dialog_crop_world_borders_title" xml:space="preserve">
+    <value>월드 자르기:</value>
+  </data>
+  <data name="dialog_crop_world_prompt" xml:space="preserve">
+    <value>선택한 영역 내에 새 월드가 생성됩니다.
+잘라낸 영역 밖의 모든 진행 상황이 사라집니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_crop_world_title" xml:space="preserve">
+    <value>월드를 자를까요?</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>모든 상자를 삭제하시겠습니까?</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>잠금 해제된 모든 상자를 삭제하시겠습니까?</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>백업을 삭제하시겠습니까?
+{0}</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>상자 삭제</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>저장 안 함</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>디렉토리에는 테라리아 콘텐츠가 포함되어 있지 않은 것으로 보입니다.
 새 폴더를 선택하려면 재시도 버튼을 누르거나, 테라리아 경로로 {0} 사용하려면 취소하세요.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>테라리아 콘텐츠 찾을 수 없습니다</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>설계도 파일 내보내기</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>텍스처를 아직 불러오지 않았습니다. 텍스처 로딩이 완료될 때까지 기다려 주세요.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>텍스처 내보내기</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>월드 파일에서 깃발 가져오기</value>
+  </data>
+  <data name="dialog_import_banners_error" xml:space="preserve">
+    <value>{0}에서 배너 데이터를 가져오는 중 오류가 발생했습니다. 현재 배너가 복원되었습니다.
+{1}</value>
+  </data>
+  <data name="dialog_import_banners_prompt" xml:space="preserve">
+    <value>현재 배너 개수를 선택한 월드 파일의 데이터로 대체합니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_import_banners_title" xml:space="preserve">
+    <value>현수막을 가져오시겠습니까?</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>월드 파일에서 도감 및 처치 기록 가져오기</value>
+  </data>
+  <data name="dialog_import_bestiary_error" xml:space="preserve">
+    <value>{0}에서 도감 데이터를 가져오는 중 오류가 발생했습니다. 현재 도감이 복원되었습니다.
+{1}</value>
+  </data>
+  <data name="dialog_import_error_title" xml:space="preserve">
+    <value>가져오기 오류</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>TEdit 하우스 생성 설계도 파일 가져오기</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>TEdit 설계도 파일 가져오기</value>
+  </data>
+  <data name="dialog_invalid_world_prompt" xml:space="preserve">
+    <value>월드 파일을 읽는 중 오류가 발생했습니다.
+일반적으로 저장 파일이 손상되었거나 지원되는 것보다 최신 버전의 월드일 때 발생합니다.
+
+TEdit v{0}
+TEdit 최대 월드: {1}
+현재 월드: {2}
+
+그래도 강제로 불러오시겠습니까?
+
+경고: 월드 파일 손상이나 프로그램 충돌 등 예상치 못한 결과가 발생할 수 있습니다.
+
+오류 내용:
+{3}</value>
+  </data>
+  <data name="dialog_invalid_world_title" xml:space="preserve">
+    <value>잘못된 월드를 불러올까요?</value>
+  </data>
+  <data name="dialog_language_restart_prompt" xml:space="preserve">
+    <value>언어가 {0}(으)로 변경되었습니다. 지금 다시 시작하시겠습니까?</value>
+  </data>
+  <data name="dialog_language_restart_title" xml:space="preserve">
+    <value>언어를 변경하려면 다시 시작하세요</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>구버전 tModLoader 월드를 불러오고 있습니다: {0}.
+1. 구버전 파일 편집은 베타 기능입니다.
+2. 모드가 적용된 월드 편집은 지원되지 않습니다.
+월드 파일이 손상될 수 있으니 백업해 주세요.
+계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>이전 버전의 tModLoader 월드를 불러오시겠습니까?</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>이전 버전의 월드를 불러오고 있습니다: {0}.
+이전 버전의 파일을 편집하면 예상치 못한 결과가 발생할 수 있습니다.
+월드 파일이 손상될 수 있으니 백업해 주세요.
+계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>이전 버전 월드를 불러올까요?</value>
+  </data>
+  <data name="dialog_link_error_message" xml:space="preserve">
+    <value>외부 브라우저를 열 수 없습니다. 클립보드에 복사하시겠습니까?</value>
+  </data>
+  <data name="dialog_link_error_title" xml:space="preserve">
+    <value>링크 오류</value>
+  </data>
+  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
+    <value>현재 불러온 월드의 도감과 처치 기록이 선택한 파일의 내용으로 완전히 대체됩니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_load_bestiary_title" xml:space="preserve">
+    <value>몬스터 도감 데이터를 불러올까요?</value>
+  </data>
+  <data name="dialog_locate_terraria_folder" xml:space="preserve">
+    <value>Terraria 폴더 찾기</value>
+  </data>
+  <data name="dialog_max_banners_prompt" xml:space="preserve">
+    <value>모든 배너 수량을 최댓값(9999)으로 설정할까요?</value>
+  </data>
+  <data name="dialog_max_banners_title" xml:space="preserve">
+    <value>깃발 최대 수량으로 설정할까요?</value>
+  </data>
+  <data name="dialog_mod_world_prompt" xml:space="preserve">
+    <value>TModLoader 월드를 불러오고 있습니다. 모드가 적용된 월드 편집은 지원되지 않습니다.
+월드 파일이 손상될 수 있으므로 백업을 만들어 주세요.
+계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_mod_world_title" xml:space="preserve">
+    <value>모드 월드를 불러올까요?</value>
+  </data>
+  <data name="dialog_newer_version_prompt" xml:space="preserve">
+    <value>이 월드 버전은 TEdit에서 지원하는 버전보다 최신입니다.
+
+월드 버전: {0}
+최대 지원 버전: {1}
+
+TEdit은 설정 버전 {1}로 대체하여 로드합니다. (최신 타일/벽 등이 누락되어 문제가 발생할 수 있습니다.)
+
+그래도 로드를 시도하시겠습니까?</value>
+  </data>
+  <data name="dialog_newer_version_title" xml:space="preserve">
+    <value>최신 월드 버전</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>월드 파일 열기</value>
+  </data>
+  <data name="dialog_player_modified_prompt" xml:space="preserve">
+    <value>{0} 파일이 불러오거나 마지막으로 저장한 후 외부에서 수정되었습니다.
+덮어쓰시겠습니까?</value>
+  </data>
+  <data name="dialog_player_modified_title" xml:space="preserve">
+    <value>플레이어 수정됨</value>
+  </data>
+  <data name="dialog_reload_no_world" xml:space="preserve">
+    <value>다시 불러올 열린 월드가 없습니다.</value>
+  </data>
+  <data name="dialog_reload_world_prompt" xml:space="preserve">
+    <value>저장하지 않은 작업은 사라집니다!</value>
+  </data>
+  <data name="dialog_reload_world_title" xml:space="preserve">
+    <value>현재 월드를 다시 불러오시겠습니까?</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>월드에서 발견된 모든 타일이 완전히 제거됩니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>타일 {0:N0}개를 찾아 제거했습니다.</value>
+  </data>
+  <data name="dialog_replace_mask_warning" xml:space="preserve">
+    <value>바꾸려면 마스크를 하나 이상 활성화해야 합니다. 마스크는 일치시킬 타일을 지정합니다.</value>
+  </data>
+  <data name="dialog_replace_title" xml:space="preserve">
+    <value>교체</value>
+  </data>
+  <data name="dialog_reset_banners_prompt" xml:space="preserve">
+    <value>모든 배너 수를 0으로 초기화할까요?</value>
+  </data>
+  <data name="dialog_reset_banners_title" xml:space="preserve">
+    <value>배너를 초기화하시겠습니까?</value>
+  </data>
+  <data name="dialog_reset_bestiary_error" xml:space="preserve">
+    <value>베스티어리 데이터를 초기화하는 중 오류가 발생했습니다. 현재 베스티어리가 복원되었습니다.
+{0}</value>
+  </data>
+  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
+    <value>현재 불러온 월드의 도감과 처치 기록이 초기화된 도감으로 완전히 대체됩니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="dialog_reset_bestiary_title" xml:space="preserve">
+    <value>동물 도감을 초기화하시겠습니까?</value>
+  </data>
+  <data name="dialog_save_banners_error" xml:space="preserve">
+    <value>배너 데이터를 저장하는 중 오류가 발생했습니다. 변경 사항이 복원되었습니다.
+{0}</value>
+  </data>
+  <data name="dialog_save_banners_prompt" xml:space="preserve">
+    <value>배너 변경 사항을 월드에 저장할까요?</value>
+  </data>
+  <data name="dialog_save_banners_title" xml:space="preserve">
+    <value>배너를 저장할까요?</value>
+  </data>
+  <data name="dialog_save_bestiary_error" xml:space="preserve">
+    <value>도감 데이터를 저장하는 중 오류가 발생했습니다. 현재 도감이 복원되었습니다.
+{0}</value>
+  </data>
+  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
+    <value>도감 변경 사항을 저장하시겠습니까?</value>
+  </data>
+  <data name="dialog_save_bestiary_title" xml:space="preserve">
+    <value>동물 도감을 저장할까요?</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>생성된 픽셀 아트 저장</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>월드 분석 저장하기.</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>월드 다른 이름으로 저장</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>맵 타일을 저장할 폴더 선택</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>플레이어 파일 선택</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>TEdit를 닫기 전에 변경 사항을 저장하시겠습니까?</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>저장되지 않은 변경 사항</value>
+  </data>
+  <data name="dialog_world_corrupt_empty" xml:space="preserve">
+    <value>월드 파일이 비어 있거나 손상된 것 같습니다(모든 바이트가 0입니다).
+데이터가 없으므로 이 파일을 복구할 수 없습니다.
+
+어떻게 해야 하나요?
+1. 이전에 만든 백업(.bak, .bak2)을 복원합니다.
+2. 이전에 수동으로 만든 백업을 복원합니다.
+3. 이전에 생성한 TEdit 체크포인트(.TEdit)를 복원합니다.
+4. Windows 파일 기록을 통해 백업을 복원합니다(이전에 사용 설정한 경우).</value>
+  </data>
+  <data name="dialog_world_modified_prompt" xml:space="preserve">
+    <value>마지막으로 저장한 이후 {0}이(가) 외부에서 수정되었습니다.
+덮어쓰시겠습니까?</value>
+  </data>
+  <data name="dialog_world_modified_title" xml:space="preserve">
+    <value>월드 수정됨</value>
+  </data>
+  <data name="dialog_world_read_error" xml:space="preserve">
+    <value>월드 파일을 읽는 중 오류가 발생했습니다.
+일반적으로 저장 파일이 손상되었거나 지원되는 버전보다 최신 버전의 월드일 때 발생합니다.
+
+TEdit v{0}
+TEdit 최대 월드: {1}
+현재 월드: {2}
+
+오류 내용:
+{3}</value>
+  </data>
+  <data name="dialog_world_save_failed" xml:space="preserve">
+    <value>월드 저장에 실패했습니다. 열려 있던 월드가 복원되었으며 변경 사항은 저장되지 않았습니다.
+{0}</value>
+  </data>
+  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
+    <value>점프ing</value>
+  </data>
+  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
+    <value>앉기</value>
+  </data>
+  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
+    <value>세워짐</value>
+  </data>
+  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
+    <value>1 사용</value>
+  </data>
+  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
+    <value>2 사용</value>
+  </data>
+  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
+    <value>3 사용하기</value>
+  </data>
+  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
+    <value>4 사용</value>
+  </data>
+  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
+    <value>5 사용</value>
+  </data>
+  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
+    <value>걷기</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>버스</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>와이어</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
     <value>Wire 45°</value>
@@ -418,6 +867,127 @@
   </data>
   <data name="editor_utilities_label" xml:space="preserve">
     <value>유틸리티</value>
+  </data>
+  <data name="enum_FilterMode_Darken" xml:space="preserve">
+    <value>다크엔</value>
+  </data>
+  <data name="enum_FilterMode_Hide" xml:space="preserve">
+    <value>숨어</value>
+  </data>
+  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
+    <value>자동(시스템 설정 따름)</value>
+  </data>
+  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="enum_LanguageSelection_English" xml:space="preserve">
+    <value>영어</value>
+  </data>
+  <data name="enum_LanguageSelection_French" xml:space="preserve">
+    <value>프랑스</value>
+  </data>
+  <data name="enum_LanguageSelection_German" xml:space="preserve">
+    <value>독일어</value>
+  </data>
+  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
+    <value>이탈리아노</value>
+  </data>
+  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
+    <value>폴스키</value>
+  </data>
+  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
+    <value>포르투게스</value>
+  </data>
+  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
+    <value>에스파뇰</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
+    <value>미니맵</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
+    <value>현실적인</value>
+  </data>
+  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
+    <value>알파</value>
+  </data>
+  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
+    <value>베타</value>
+  </data>
+  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
+    <value>안정 버전</value>
+  </data>
+  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
+    <value>자동 다운로드</value>
+  </data>
+  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
+    <value>자동 설치</value>
+  </data>
+  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
+    <value>비활성화됨</value>
+  </data>
+  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
+    <value>알림만 표시</value>
+  </data>
+  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
+    <value>화면 중앙으로 이동</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
+    <value>최대화됨</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>로그 폴더를 만들 수 없습니다. 애플리케이션을 종료합니다.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>로그 폴더를 만들 수 없습니다.</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>로그 파일을 여는 데 실패했습니다: {0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>{0}에서 텍스처를 불러오는 중 오류가 발생했습니다.
+이 폴더가 존재하고 TEdit에 읽기 권한이 있는지 확인하세요.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>텍스처를 불러오는 중 오류가 발생했습니다</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>실행 취소용 임시 폴더를 만들 수 없습니다. 애플리케이션을 종료합니다.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>실행 취소 폴더를 만들 수 없습니다.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>처리되지 않은 예외가 발생했습니다. TEdit을 계속 사용할 수 있지만, 애플리케이션을 다시 시작하기 전까지 작업이 불안정할 수 있습니다.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>처리되지 않은 예외</value>
   </data>
   <data name="expand_description" xml:space="preserve">
     <value>세상은 이 새로운 차원들을 중심으로 이루어질 것입니다.</value>
@@ -530,6 +1100,219 @@
   <data name="find_tab_chests" xml:space="preserve">
     <value>상자 안의 아이템</value>
   </data>
+  <data name="frame_anchor_bottom" xml:space="preserve">
+    <value>아래쪽</value>
+  </data>
+  <data name="frame_anchor_center" xml:space="preserve">
+    <value>중앙</value>
+  </data>
+  <data name="frame_anchor_left" xml:space="preserve">
+    <value>왼쪽</value>
+  </data>
+  <data name="frame_anchor_none" xml:space="preserve">
+    <value>전혀 없습니다</value>
+  </data>
+  <data name="frame_anchor_right" xml:space="preserve">
+    <value>오른쪽</value>
+  </data>
+  <data name="frame_anchor_top" xml:space="preserve">
+    <value>위쪽</value>
+  </data>
+  <data name="frame_text_amber_tree" xml:space="preserve">
+    <value>호박나무</value>
+  </data>
+  <data name="frame_text_amethyst_tree" xml:space="preserve">
+    <value>자수정 나무</value>
+  </data>
+  <data name="frame_text_ash_tree" xml:space="preserve">
+    <value>물푸레나무</value>
+  </data>
+  <data name="frame_text_attach_left" xml:space="preserve">
+    <value>왼쪽에 고정</value>
+  </data>
+  <data name="frame_text_attach_left_endcap" xml:space="preserve">
+    <value>왼쪽 끝 장식 부착</value>
+  </data>
+  <data name="frame_text_attach_right" xml:space="preserve">
+    <value>오른쪽에 붙이기</value>
+  </data>
+  <data name="frame_text_attach_right_endcap" xml:space="preserve">
+    <value>오른쪽 끝부분 연결하기</value>
+  </data>
+  <data name="frame_text_boss_trophy" xml:space="preserve">
+    <value>보스 트로피</value>
+  </data>
+  <data name="frame_text_corruption_short_plants" xml:space="preserve">
+    <value>타락 짧은 식물</value>
+  </data>
+  <data name="frame_text_crimson_short_plants" xml:space="preserve">
+    <value>진홍색 낮은 식물들</value>
+  </data>
+  <data name="frame_text_critter_anchor" xml:space="preserve">
+    <value>동물 고정 지점</value>
+  </data>
+  <data name="frame_text_decos_3x2" xml:space="preserve">
+    <value>장식 (3x2)</value>
+  </data>
+  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
+    <value>장식 (3x2) (그룹 2)</value>
+  </data>
+  <data name="frame_text_diamond_tree" xml:space="preserve">
+    <value>다이아몬드 나무</value>
+  </data>
+  <data name="frame_text_emerald_tree" xml:space="preserve">
+    <value>에메랄드 나무</value>
+  </data>
+  <data name="frame_text_endcap_left" xml:space="preserve">
+    <value>왼쪽 끝부분</value>
+  </data>
+  <data name="frame_text_endcap_right" xml:space="preserve">
+    <value>오른쪽 끝부분</value>
+  </data>
+  <data name="frame_text_flat" xml:space="preserve">
+    <value>평면 aatsaat</value>
+  </data>
+  <data name="frame_text_forest_pot" xml:space="preserve">
+    <value>숲 화분</value>
+  </data>
+  <data name="frame_text_forest_short_plants" xml:space="preserve">
+    <value>숲의 낮은 식물들</value>
+  </data>
+  <data name="frame_text_forest_tall_plants" xml:space="preserve">
+    <value>숲 키 큰 식물들</value>
+  </data>
+  <data name="frame_text_forest_tree" xml:space="preserve">
+    <value>숲 나무</value>
+  </data>
+  <data name="frame_text_hallow_short_plants" xml:space="preserve">
+    <value>신성지의 작은 식물들</value>
+  </data>
+  <data name="frame_text_jungle_large_plants" xml:space="preserve">
+    <value>정글 대형 식물들</value>
+  </data>
+  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
+    <value>정글 식물 에코</value>
+  </data>
+  <data name="frame_text_jungle_short_plants" xml:space="preserve">
+    <value>정글 낮은 식물류</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
+    <value>큰 잔해 (3x2)</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
+    <value>큰 잔해 (3x2) (그룹 2)</value>
+  </data>
+  <data name="frame_text_left" xml:space="preserve">
+    <value>왼쪽</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>잠김</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
+    <value>중간 크기 잔해(2x1)</value>
+  </data>
+  <data name="frame_text_monster_banner" xml:space="preserve">
+    <value>몬스터 배너</value>
+  </data>
+  <data name="frame_text_off" xml:space="preserve">
+    <value>꺼</value>
+  </data>
+  <data name="frame_text_on" xml:space="preserve">
+    <value>켜짐</value>
+  </data>
+  <data name="frame_text_ore_bars" xml:space="preserve">
+    <value>광석 주괴</value>
+  </data>
+  <data name="frame_text_pumpkin_plant" xml:space="preserve">
+    <value>호박 식물</value>
+  </data>
+  <data name="frame_text_right" xml:space="preserve">
+    <value>오른쪽</value>
+  </data>
+  <data name="frame_text_ruby_tree" xml:space="preserve">
+    <value>루비 나무</value>
+  </data>
+  <data name="frame_text_sapphire_tree" xml:space="preserve">
+    <value>사파이어 나무</value>
+  </data>
+  <data name="frame_text_single" xml:space="preserve">
+    <value>싱글</value>
+  </data>
+  <data name="frame_text_small_decos" xml:space="preserve">
+    <value>작은 장식품</value>
+  </data>
+  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
+    <value>작은 잔해 (1x1)</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
+    <value>계단 하단 왼쪽참</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
+    <value>계단 하단참 오른쪽</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
+    <value>계단 안쪽 왼쪽 위 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
+    <value>계단 안쪽 위-왼쪽 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
+    <value>계단 안쪽 왼쪽 위 3</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
+    <value>계단 안쪽 우측 위 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
+    <value>계단 안쪽 오른쪽 위 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
+    <value>계단 안쪽 오른쪽 위 3</value>
+  </data>
+  <data name="frame_text_stair_inverted_left" xml:space="preserve">
+    <value>왼쪽 역방향 계단</value>
+  </data>
+  <data name="frame_text_stair_inverted_right" xml:space="preserve">
+    <value>계단 뒤집기(오른쪽)</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
+    <value>계단 상단 왼쪽 참</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
+    <value>계단 상단 참의 왼쪽 끝마개</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
+    <value>계단 상단 참 왼쪽–오른쪽</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
+    <value>계단 상단참 오른쪽</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
+    <value>계단 상단 참 오른쪽 끝마감</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
+    <value>왼쪽 위 계단 디딤판</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
+    <value>계단 왼쪽 위 스트링거</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
+    <value>오른쪽 위 계단 받침</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
+    <value>오른쪽 위 계단 측면판</value>
+  </data>
+  <data name="frame_text_text_statue" xml:space="preserve">
+    <value>문자 조각상</value>
+  </data>
+  <data name="frame_text_topaz_tree" xml:space="preserve">
+    <value>토파즈 나무</value>
+  </data>
+  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
+    <value>장식용 사쿠라 나무</value>
+  </data>
+  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
+    <value>장식용 나무: 노란 버드나무</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>TEdit을 즐기시나요? 우리를 응원해 주세요!</value>
   </data>
@@ -547,6 +1330,312 @@
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>셋 고단히</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="input_category_editing" xml:space="preserve">
+    <value>편집 중</value>
+  </data>
+  <data name="input_category_file" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="input_category_help" xml:space="preserve">
+    <value>도와주세요</value>
+  </data>
+  <data name="input_category_navigation" xml:space="preserve">
+    <value>탐색</value>
+  </data>
+  <data name="input_category_selection" xml:space="preserve">
+    <value>선택 영역</value>
+  </data>
+  <data name="input_category_toggles" xml:space="preserve">
+    <value>전환</value>
+  </data>
+  <data name="input_category_tooldrawing" xml:space="preserve">
+    <value>도구 그리기</value>
+  </data>
+  <data name="input_category_tools" xml:space="preserve">
+    <value>도구</value>
+  </data>
+  <data name="input_category_view" xml:space="preserve">
+    <value>보기</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>그리기 / 기본 동작</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>제한된 각도로 그리기(수평/수직/45°)</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>그리기를 수평선, 수직선 또는 45° 대각선으로 제한합니다.</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>도구의 기본 그리기 동작</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>점과 점을 잇는 선 그리기</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>클릭한 지점들을 직선으로 연결합니다</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>뷰포트 이동</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>드래그하여 뷰포트 이동</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>보조 동작</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>도구의 보조 동작(검사, 선택 해제, 마스크 선택 등)</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>빨간색 전선 표시/숨기기</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>빨간 전선 활성화 전환</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>파란색 전선 표시 전환</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>파란색 전선 활성화 전환</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>초록색 전선 표시 전환</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>초록색 전선 활성화 전환</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>노란색 전선 표시 전환</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>노란색 전선 활성화 전환</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>전선 그리기 모드 전환</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>전선 그리기 모드 전환: 끄기 → 90도 전선 → 45도 전선 → 끄기</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>전선 가로/세로 방향 전환</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>수평 우선, 수직 우선, 자동 감지 전선 배치 모드 전환</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>전선 경로 강조 표시</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>Alt 키를 누른 채 타일을 클릭하면 해당 타일에 연결된 모든 전선이 강조 표시됩니다.</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>알겠습니다</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>크롭 월드</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>잘라내기</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>세계 확장</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>페이스트</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>다시 한 번</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>되돌리기</value>
+  </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>신세계</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>오픈</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>월드 다시 불러오기</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>다른 이름으로 저장</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>버전 저장</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>위키 / 도움말</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>화면 이동 모드</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>도구 초기화 / 선택 해제</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>아래로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>빠르게 아래로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>왼쪽으로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>빠르게 왼쪽으로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>오른쪽으로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>빠르게 오른쪽으로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>위로 스크롤</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>빠르게 위로 스크롤</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>확대 인(zoom In)</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>줌아웃</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>붙여넣기 승인</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>붙여넣기 가로로 뒤집기</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>붙여넣기 세로로 뒤집기</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>붙여넣기 반시계 방향 회전</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>붙여넣기 시계 방향으로 회전</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>선택 영역 끝점 이동</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>Shift+클릭/드래그하여 선택 영역의 오른쪽 아래 모서리 이동</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>선택 영역 시작 지점 이동</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>Ctrl+클릭/드래그하여 선택 영역의 왼쪽 위 모서리 이동</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>모두 선택</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>선택 삭제</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>선택 항목 아래로 이동</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>선택 항목 빠르게 아래로 이동</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>선택 영역 왼쪽으로 이동</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>선택 영역 왼쪽으로 이동(빠르게)</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>선택 영역 오른쪽으로 이동</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>선택 영역 오른쪽으로 이동(빠르게)</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>선택 항목 위로 이동</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>선택 영역 빠르게 위로 이동</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>선택 영역 높이 늘리기</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>선택 영역 높이 늘리기(빠르게)</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>선택 영역 너비 줄이기</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>선택 영역 너비 축소(빠르게)</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>선택 영역 너비 늘리기</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>선택 영역 너비 늘리기(빠르게)</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>선택 영역 높이 줄이기</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>선택 영역 높이 줄이기(빠르게)</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>지우개 전환</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>색상 바꾸기</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>타일 스타일 전환</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>벽 스타일 전환</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>화살표 도구</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>브러시 도구</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>채우기 도구</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>망치 도구</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>지형 변형 도구</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>연필 도구</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>선택 도구</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>점 도구</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>선택 도구</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>스프라이트 도구</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>좌측 방향</value>
@@ -607,6 +1696,18 @@
   </data>
   <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
     <value>0%</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
+    <value>같음</value>
+  </data>
+  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
+    <value>초과</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
+    <value>무시하기</value>
+  </data>
+  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
+    <value>미만</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>여보</value>
@@ -1077,6 +2178,12 @@
   <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
     <value>지형을 변경하고 장식을 제거할 수 있습니다. 실행 취소를 사용해 원래 타일을 복원하세요.</value>
   </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>숲</value>
+  </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>발광 버섯</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>할로우</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1097,6 +2204,48 @@
   </data>
   <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
     <value>일치하는 바이옴 타일을 변환하고 지원되지 않는 타일은 그대로 둡니다.</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>눈</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>아르곤</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>파란색</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>잔디</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>그린</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>헬륨</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>크립톤</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>용암</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>네온</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>없음 (제거)</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>보라색</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>빨간색</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>제논</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>노란색</value>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT 익스플로러</value>
@@ -1139,6 +2288,15 @@
   </data>
   <data name="newworld_cave_preset" xml:space="preserve">
     <value>동굴 프리셋</value>
+  </data>
+  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
+    <value>미궁</value>
+  </data>
+  <data name="newworld_cave_preset_large" xml:space="preserve">
+    <value>크게</value>
+  </data>
+  <data name="newworld_cave_preset_normal" xml:space="preserve">
+    <value>정상</value>
   </data>
   <data name="newworld_create" xml:space="preserve">
     <value>세계 창조</value>
@@ -1214,6 +2372,9 @@
   </data>
   <data name="npc_search_placeholder" xml:space="preserve">
     <value>수색...</value>
+  </data>
+  <data name="overflow_more_panels" xml:space="preserve">
+    <value>패널 더 보기...</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>액체</value>
@@ -1356,6 +2517,14 @@
   <data name="player_editor_equipment" xml:space="preserve">
     <value>장비</value>
   </data>
+  <data name="player_editor_error_load" xml:space="preserve">
+    <value>플레이어 파일을 불러오지 못했습니다:
+{0}</value>
+  </data>
+  <data name="player_editor_error_save" xml:space="preserve">
+    <value>플레이어 파일을 저장하지 못했습니다:
+{0}</value>
+  </data>
   <data name="player_editor_eye_color" xml:space="preserve">
     <value>눈 색깔</value>
   </data>
@@ -1389,6 +2558,9 @@
   <data name="player_editor_save_as" xml:space="preserve">
     <value>플레이어 저장 목록은...</value>
   </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>저장 취소됨: 플레이어 파일이 외부에서 수정되었습니다.</value>
+  </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
     <value>셔츠 색상</value>
   </data>
@@ -1403,6 +2575,12 @@
   </data>
   <data name="player_editor_stats" xml:space="preserve">
     <value>통계</value>
+  </data>
+  <data name="player_editor_status_loaded" xml:space="preserve">
+    <value>불러옴: {0}</value>
+  </data>
+  <data name="player_editor_status_saved" xml:space="preserve">
+    <value>저장됨: {0}</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
     <value>플레이어 에디터</value>
@@ -1506,6 +2684,9 @@
   <data name="player_stats_team_red" xml:space="preserve">
     <value>빨간색</value>
   </data>
+  <data name="player_stats_team_white" xml:space="preserve">
+    <value>흰색</value>
+  </data>
   <data name="player_stats_team_yellow" xml:space="preserve">
     <value>노란색</value>
   </data>
@@ -1545,6 +2726,12 @@
   <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
     <value>실행 취소 사용(느림)</value>
   </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>일부 특수 타일 엔티티(상자나 표지판 등)는 여전히 보호되어 있어 섞을 수 없습니다.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>정보 포함</value>
+  </data>
   <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
     <value>타일 엔티티 포함</value>
   </data>
@@ -1566,11 +2753,23 @@
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>블록 위치 섞기</value>
   </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>세계 정화하기</value>
+  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>추가</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>[...]을 클릭하여 템플릿 설계도를 가져오세요.</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} JSON 데이터의 'Count' 값이 연결된 설계도와 일치하는지 확인하세요.</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>{0}의 {1} JSON 데이터 확인</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>절차적 집 생성기</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>미리보기</value>
@@ -1637,6 +2836,9 @@
   </data>
   <data name="plugin_ore_mythril" xml:space="preserve">
     <value>미스릴</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>해당 없음</value>
   </data>
   <data name="plugin_ore_obsidian" xml:space="preserve">
     <value>흑요석</value>
@@ -1725,6 +2927,15 @@
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>안전하게 건설하기</value>
   </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>계산 중...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>계산 중...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>변환 취소</value>
+  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>A= 변경.</value>
   </data>
@@ -1740,6 +2951,9 @@
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>색상 필터 도구:</value>
   </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>픽셀 아트로 변환</value>
+  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>현재 이미지를 픽셀 아트로 변환합니다.</value>
   </data>
@@ -1752,11 +2966,47 @@
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>현재 이미지:</value>
   </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>Null 색상 삭제</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>렌더링된 픽셀 아트에 없는 색상을 필터에서 제거합니다.</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>오류: 색상 필터 형식이 잘못되었습니다! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>색상 필터 값이 0입니다. 설정을 조정하세요.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>오류: 먼저 픽셀 아트를 생성해야 합니다!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>오류가 발생했습니다: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>이미지 로드 오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>'클립보드에 복사' 기능을 사용하려면 월드를 불러와야 합니다!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>먼저 스키매틱을 저장해야 합니다!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>이미지 저장 오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>도식 저장 오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>도식 데이터가 비어 있습니다! 먼저 픽셀 아트를 생성하세요!</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>필터링된 색상:</value>
@@ -1800,14 +3050,23 @@
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>에르미트</value>
   </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>이미지 완료.</value>
+  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>란초스</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>이미지를 픽셀 아트로 변환하는 편집기</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>최근접 이웃</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>새 비율 % 레벨:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>전혀 없습니다</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>회전 없음</value>
@@ -1832,6 +3091,9 @@
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>픽셀 아트 진행 상황 표시(속도에 약간 영향을 줌)</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>렌더링이 취소되었습니다.</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>색상 초기화</value>
@@ -1863,8 +3125,17 @@
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>크기 조정 모드:</value>
   </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>설계도를 클립보드에 복사했습니다.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>도식이 덮어쓰여졌습니다.</value>
+  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>도면 회전:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>설계도를 저장했습니다.</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>새 비율 설정</value>
@@ -1917,6 +3188,18 @@
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>Y축</value>
   </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>맵이 생성되었습니다!</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>플레이어 .map 파일 렌더링</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>선택된 플레이어 파일이 없습니다.</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>플레이어 지도</value>
+  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>배경 벽 무작위 설정</value>
   </data>
@@ -1925,6 +3208,9 @@
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>중력의 영향을 받는 블록 지원(모래 등)</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>월드의 모든 블록 무작위 배치</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>즉시 사라지는 블록으로 무작위화하지 않기</value>
@@ -1941,17 +3227,34 @@
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>월드 무작위화</value>
   </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>모든 상자 제거</value>
+  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>제거할 블록 또는 스프라이트의 이름을 입력하세요.</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>제거하려는 벽의 이름을 입력하세요.</value>
   </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>스프라이트, 블록 또는 벽 제거</value>
+  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>타일 제거</value>
   </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>잠금 해제된 상자 모두 제거</value>
+  </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>지연</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>먼저 월드를 여세요.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>리플레이 파일을 여는 데 실패했습니다.
+
+{0}</value>
   </data>
   <data name="plugin_replay_player_title" xml:space="preserve">
     <value>리플레이 플레이어</value>
@@ -1965,8 +3268,14 @@
   <data name="plugin_replay_title" xml:space="preserve">
     <value>다시 재생</value>
   </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>모래 정착시키기</value>
+  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>시드: (무작위로 설정하려면 비워 두세요)</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>디버그 스프라이트 생성</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>클립보드에 추가</value>
@@ -1980,47 +3289,182 @@
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>최대 선 길이</value>
   </data>
-  <data name="plugin_textstatue_title" xml:space="preserve">
-    <value>문자 조각상 생성기</value>
-  </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>세계 정화하기</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>절차적 집 생성기</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>이미지를 픽셀 아트로 변환하는 편집기</value>
-  </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>플레이어 .map 파일 렌더링</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>월드의 모든 블록 무작위 배치</value>
-  </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>모든 상자 제거</value>
-  </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>스프라이트, 블록 또는 벽 제거</value>
-  </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>잠금 해제된 상자 모두 제거</value>
-  </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>모래 정착시키기</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>디버그 스프라이트 생성</value>
-  </data>
   <data name="plugin_textstatue_menu" xml:space="preserve">
     <value>문자 조각상 생성</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>문자 조각상 생성기</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>텍스처 내보내기(디버그)</value>
   </data>
   <data name="plugin_unlockallchests_menu" xml:space="preserve">
     <value>모든 상자 잠금 해제</value>
+  </data>
+  <data name="progress_calculating_colors" xml:space="preserve">
+    <value>색상 계산 중...</value>
+  </data>
+  <data name="progress_cloning_world" xml:space="preserve">
+    <value>월드 복제 중...</value>
+  </data>
+  <data name="progress_converting_to_windows_phone" xml:space="preserve">
+    <value>월드를 Windows Phone용으로 변환하는 중...</value>
+  </data>
+  <data name="progress_generating_caves" xml:space="preserve">
+    <value>동굴 생성 중...</value>
+  </data>
+  <data name="progress_generating_cave_noise" xml:space="preserve">
+    <value>동굴 노이즈 생성 중...</value>
+  </data>
+  <data name="progress_generating_hills" xml:space="preserve">
+    <value>언덕 생성 중...</value>
+  </data>
+  <data name="progress_generating_underworld" xml:space="preserve">
+    <value>지하 세계 생성 중...</value>
+  </data>
+  <data name="progress_generating_world" xml:space="preserve">
+    <value>월드 생성 중...</value>
+  </data>
+  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
+    <value>Windows Phone 월드 헤더를 불러왔습니다.</value>
+  </data>
+  <data name="progress_loading_chests" xml:space="preserve">
+    <value>상자 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_file_header" xml:space="preserve">
+    <value>파일 헤더를 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
+    <value>레거시 Windows Phone 타일을 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_npcs" xml:space="preserve">
+    <value>NPC 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_npc_data" xml:space="preserve">
+    <value>NPC 데이터 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_npc_names" xml:space="preserve">
+    <value>NPC 이름 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_signs" xml:space="preserve">
+    <value>표지판 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_tiles" xml:space="preserve">
+    <value>타일 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_tile_entities_section" xml:space="preserve">
+    <value>타일 엔티티 섹션 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_tmodloader_data" xml:space="preserve">
+    <value>tModLoader 데이터를 불러오는 중...</value>
+  </data>
+  <data name="progress_loading_winphone_tiles" xml:space="preserve">
+    <value>Windows Phone 타일을 불러오는 중...</value>
+  </data>
+  <data name="progress_load_complete" xml:space="preserve">
+    <value>불러오기가 완료되었습니다.</value>
+  </data>
+  <data name="progress_placing_caves" xml:space="preserve">
+    <value>동굴 배치 중...</value>
+  </data>
+  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
+    <value>tModLoader 데이터 준비 중...</value>
+  </data>
+  <data name="progress_refining_caves" xml:space="preserve">
+    <value>동굴 정제 중...</value>
+  </data>
+  <data name="progress_removing_future_tiles" xml:space="preserve">
+    <value>미래 타일 제거 중...</value>
+  </data>
+  <data name="progress_render_complete" xml:space="preserve">
+    <value>렌더링 완료</value>
+  </data>
+  <data name="progress_resetting_time" xml:space="preserve">
+    <value>시간 재설정 중...</value>
+  </data>
+  <data name="progress_save_bestiary" xml:space="preserve">
+    <value>도감 저장...</value>
+  </data>
+  <data name="progress_save_chests" xml:space="preserve">
+    <value>상자 저장...</value>
+  </data>
+  <data name="progress_save_complete" xml:space="preserve">
+    <value>저장이 완료되었습니다.</value>
+  </data>
+  <data name="progress_save_creative_powers" xml:space="preserve">
+    <value>창작 모드 능력 저장...</value>
+  </data>
+  <data name="progress_save_footers" xml:space="preserve">
+    <value>푸터 저장...</value>
+  </data>
+  <data name="progress_save_headers" xml:space="preserve">
+    <value>헤더 저장...</value>
+  </data>
+  <data name="progress_save_npcs" xml:space="preserve">
+    <value>NPC 저장...</value>
+  </data>
+  <data name="progress_save_signs" xml:space="preserve">
+    <value>표지판 저장...</value>
+  </data>
+  <data name="progress_save_tiles" xml:space="preserve">
+    <value>타일 저장...</value>
+  </data>
+  <data name="progress_save_tile_entities_section" xml:space="preserve">
+    <value>타일 엔티티 섹션 저장...</value>
+  </data>
+  <data name="progress_save_town_manager" xml:space="preserve">
+    <value>마을 관리자 저장...</value>
+  </data>
+  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
+    <value>가중 압력판 저장...</value>
+  </data>
+  <data name="progress_saving_chests" xml:space="preserve">
+    <value>상자 저장 중...</value>
+  </data>
+  <data name="progress_saving_npc_data" xml:space="preserve">
+    <value>NPC 데이터 저장 중...</value>
+  </data>
+  <data name="progress_saving_npc_names" xml:space="preserve">
+    <value>NPC 이름 저장 중...</value>
+  </data>
+  <data name="progress_saving_signs" xml:space="preserve">
+    <value>표지판 저장 중...</value>
+  </data>
+  <data name="progress_saving_tiles" xml:space="preserve">
+    <value>타일 저장 중...</value>
+  </data>
+  <data name="progress_saving_tmodloader_data" xml:space="preserve">
+    <value>tModLoader 데이터 저장 중...</value>
+  </data>
+  <data name="progress_saving_validation_data" xml:space="preserve">
+    <value>유효성 검사 데이터 저장 중...</value>
+  </data>
+  <data name="progress_saving_world" xml:space="preserve">
+    <value>월드 저장 중...</value>
+  </data>
+  <data name="progress_settling_sand" xml:space="preserve">
+    <value>모래 정착 중...</value>
+  </data>
+  <data name="progress_validating_complete" xml:space="preserve">
+    <value>유효성 검사 완료 중...</value>
+  </data>
+  <data name="progress_validating_file" xml:space="preserve">
+    <value>파일 유효성 검사 중...</value>
+  </data>
+  <data name="progress_validating_world" xml:space="preserve">
+    <value>월드 유효성 검사 중...</value>
+  </data>
+  <data name="progress_verifying_file" xml:space="preserve">
+    <value>파일 확인 중...</value>
+  </data>
+  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
+    <value>월드 로드 완료: {0}초 소요됨.</value>
+  </data>
+  <data name="progress_world_load_complete" xml:space="preserve">
+    <value>월드 불러오기가 완료되었습니다.</value>
+  </data>
+  <data name="progress_world_save_complete" xml:space="preserve">
+    <value>월드 저장 완료.</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>저장할 버전을 선택하세요:</value>
@@ -2073,6 +3517,12 @@
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>주기적으로 자동으로 세상을 구하세요</value>
   </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>고품질 브러시 미리 보기</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>Shift+선을 미리 볼 때 브러시 전체 모양 표시. 단일 픽셀 선으로 간단히 미리 보려면 비활성화하세요.</value>
+  </data>
   <data name="settings_cancel" xml:space="preserve">
     <value>취소</value>
   </data>
@@ -2080,8 +3530,14 @@
     <value>실험적 특징</value>
     <comment>Settings category for experimental/preview features</comment>
   </data>
+  <data name="settings_category_filter" xml:space="preserve">
+    <value>필터 및 검색</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>일반</value>
+  </data>
+  <data name="settings_category_keybindings_format" xml:space="preserve">
+    <value>키 설정 - {0}</value>
   </data>
   <data name="settings_category_layers" xml:space="preserve">
     <value>층</value>
@@ -2104,6 +3560,12 @@
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>픽셀 맵 색상 팔레트: 기본값, 사실적(텍스처 샘플링), 또는 미니맵(게임 내 맵 색상). 재시작이 필요합니다.</value>
   </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>어둡게 할 정도</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>선택되지 않은 타일을 어둡게 표시하는 오버레이의 불투명도(0~100%)</value>
+  </data>
   <data name="settings_enable_mica" xml:space="preserve">
     <value>Enable Mica backdrop</value>
   </data>
@@ -2121,6 +3583,12 @@
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>익명 오류 보고서를 보내 안정성 향상에 도움을 주세요</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>필터 모드</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>타일/벽/액체/전선 필터 적용 시 기본 필터 모드</value>
   </data>
   <data name="settings_keybind_add_tooltip" xml:space="preserve">
     <value>새로운 키 입력 추가</value>
@@ -2233,12 +3701,6 @@
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>뉴스와 공지를 편집기에서 보여주세요</value>
   </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>인트로 스플래시 화면 표시</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>애플리케이션이 시작되는 동안 TEdit 로고 표시</value>
-  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>쇼 포인트</value>
   </data>
@@ -2250,6 +3712,12 @@
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>빨간 와이어 가시성 토글</value>
+  </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>인트로 스플래시 화면 표시</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>애플리케이션이 시작되는 동안 TEdit 로고 표시</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>텍스처 쇼</value>
@@ -2564,6 +4032,21 @@
   <data name="spriteeditor_size_w" xml:space="preserve">
     <value>Size W:</value>
   </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>텍스처가 로드되지 않았습니다</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>불러온 텍스처가 없어 자동 감지할 수 없습니다</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>사용자 재정의에서 불러옴</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>준비 완료</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>타일 데이터를 기본값으로 재설정</value>
+  </data>
   <data name="spriteeditor_test" xml:space="preserve">
     <value>Test Value</value>
   </data>
@@ -2596,6 +4079,9 @@
   </data>
   <data name="sprite_clear_selection_tooltip" xml:space="preserve">
     <value>명확한 선발</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>픽셀: ({0}, {1})  타일: [{2}, {3}]</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>필터</value>
@@ -2636,11 +4122,20 @@
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>GPS</value>
   </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>비어 있음</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>특별</value>
   </data>
   <data name="statusbar_frame_label" xml:space="preserve">
     <value>프레임</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>잘못된 타일({0})</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>잘못된 벽({0})</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
     <value>페인트</value>
@@ -2653,6 +4148,9 @@
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
     <value>타일</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>알 수 없는 페인트({0})</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>벽</value>
@@ -2683,6 +4181,9 @@
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>옐로우 팀 스폰</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>전체 개인정보 보호정책 읽기</value>
   </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit은 안정성 향상을 돕기 위해 익명 오류 보고서를 보낼 수 있습니다.
@@ -2905,11 +4406,17 @@
   <data name="tool_fill_title" xml:space="preserve">
     <value>채우기</value>
   </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>망치</value>
+  </data>
   <data name="tool_morph_base_tiles" xml:space="preserve">
     <value>베이스 타일</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>훈장</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>제단/구슬</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>악</value>
@@ -3055,8 +4562,20 @@
   <data name="tool_picker_title" xml:space="preserve">
     <value>픽커 - 타일 색상 선택</value>
   </data>
+  <data name="tool_point_dungeon" xml:space="preserve">
+    <value>던전</value>
+  </data>
+  <data name="tool_point_spawn" xml:space="preserve">
+    <value>스폰</value>
+  </data>
+  <data name="tool_point_team_format" xml:space="preserve">
+    <value>팀 {0}</value>
+  </data>
   <data name="tool_point_title" xml:space="preserve">
     <value>특별 관심 점수</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>선택 영역</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>스프라이트 플레이서</value>
@@ -3132,6 +4651,9 @@
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>언더월드 BG</value>
+  </data>
+  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
+    <value>크툴루의 뇌</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>사슴 꼬리</value>
@@ -3718,6 +5240,18 @@
     <value>TEdit은 최신 상태입니다.</value>
     <comment>Toast message when no updates are available</comment>
   </data>
+  <data name="wall_natural_format" xml:space="preserve">
+    <value>{0} (자연)</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>하늘</value>
+  </data>
+  <data name="wall_unbreakable" xml:space="preserve">
+    <value>파괴 불가 벽</value>
+  </data>
+  <data name="wall_unused_format" xml:space="preserve">
+    <value>{0} (사용되지 않음)</value>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>파란색</value>
   </data>
@@ -3772,6 +5306,21 @@
   <data name="world_explorer_loading_preview" xml:space="preserve">
     <value>로딩 미리보기...</value>
   </data>
+  <data name="world_explorer_modified_days_ago" xml:space="preserve">
+    <value>{0}일 전</value>
+  </data>
+  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
+    <value>{0}시간 전</value>
+  </data>
+  <data name="world_explorer_modified_just_now" xml:space="preserve">
+    <value>방금 전</value>
+  </data>
+  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
+    <value>{0}분 전</value>
+  </data>
+  <data name="world_explorer_modified_missing" xml:space="preserve">
+    <value>누락됨</value>
+  </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>백업 없음 — .bak 만들고 TEdit 백업을 하려면 클릭하세요</value>
   </data>
@@ -3814,79 +5363,55 @@
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>핀 해제</value>
   </data>
+  <data name="world_gamemode_expert" xml:space="preserve">
+    <value>전문가</value>
+  </data>
+  <data name="world_gamemode_master" xml:space="preserve">
+    <value>마스터</value>
+  </data>
+  <data name="world_invasion_goblin" xml:space="preserve">
+    <value>고블린 침공</value>
+  </data>
+  <data name="world_moon_blue_marble" xml:space="preserve">
+    <value>블루 마블</value>
+  </data>
+  <data name="world_moon_brown" xml:space="preserve">
+    <value>갈색</value>
+  </data>
+  <data name="world_moon_green_gas" xml:space="preserve">
+    <value>초록색 가스</value>
+  </data>
+  <data name="world_moon_grey" xml:space="preserve">
+    <value>회색</value>
+  </data>
+  <data name="world_moon_orange_venus" xml:space="preserve">
+    <value>주황색 금성</value>
+  </data>
+  <data name="world_moon_pink" xml:space="preserve">
+    <value>핑크</value>
+  </data>
+  <data name="world_moon_ringed" xml:space="preserve">
+    <value>테두리가 있는</value>
+  </data>
+  <data name="world_moon_triple_purple" xml:space="preserve">
+    <value>삼중 보라색</value>
+  </data>
+  <data name="world_moon_white_ice" xml:space="preserve">
+    <value>백빙:VEVENT</value>
+  </data>
+  <data name="world_size_custom" xml:space="preserve">
+    <value>관습</value>
+  </data>
+  <data name="world_size_large" xml:space="preserve">
+    <value>대형</value>
+  </data>
+  <data name="world_size_medium" xml:space="preserve">
+    <value>중간</value>
+  </data>
+  <data name="world_size_small" xml:space="preserve">
+    <value>작게</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>배경 갭 수정</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>제단/구슬</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>전체 개인정보 보호정책 읽기</value>
-  </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>계산 중...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>계산 중...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>변환 취소</value>
-  </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>픽셀 아트로 변환</value>
-  </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>기본값</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>오류: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>오류: 색상 필터 형식이 잘못되었습니다! {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>색상 필터 값이 0입니다. 설정을 조정하세요.</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>오류: 먼저 픽셀 아트를 생성해야 합니다!</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>오류가 발생했습니다: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>이미지 로드 오류: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>'클립보드에 복사' 기능을 사용하려면 월드를 불러와야 합니다!</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>먼저 스키매틱을 저장해야 합니다!</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>이미지 저장 오류: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>도식 저장 오류: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>도식 데이터가 비어 있습니다! 먼저 픽셀 아트를 생성하세요!</value>
-  </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>이미지 완료.</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>전혀 없습니다</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>렌더링이 취소되었습니다.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>설계도를 클립보드에 복사했습니다.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>도식이 덮어쓰여졌습니다.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>설계도를 저장했습니다.</value>
   </data>
 </root>

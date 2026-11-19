@@ -67,6 +67,24 @@ public class FrameNameLocalizationTests : IDisposable
     }
 
     [Fact]
+    public void EnglishFrameDisplay_ExpandsDirectionsWithoutChangingIdentity()
+    {
+        LocalizationUiLabels.Resolver = key => key switch
+        {
+            "FrameText.Stair Top Landing L-R" => "Stair Top Landing Left–Right",
+            _ => null
+        };
+        var store = TerrariaDataStore.Initialize();
+        var (tile, frame) = FindFrame(store, f => f.Variety == "Stair Top Landing L-R");
+        var identity = frame.ToString();
+
+        store.GetLocalizedFrameName(tile, frame).ShouldContain("Stair Top Landing Left–Right");
+        frame.Variety.ShouldBe("Stair Top Landing L-R");
+        frame.ToString().ShouldBe(identity);
+        store.GetLocalizedSpriteStyle("Stair Top Landing L-R").ShouldBe("Stair Top Landing Left–Right");
+    }
+
+    [Fact]
     public void FrameText_TranslatesDescriptorsAndLetteredStates()
     {
         var store = InitJapanese(key => key switch

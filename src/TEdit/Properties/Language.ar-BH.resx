@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -137,6 +137,9 @@
   </data>
   <data name="about_patreon" xml:space="preserve">
     <value>الدعم على باتريون</value>
+  </data>
+  <data name="about_system" xml:space="preserve">
+    <value>النظام</value>
   </data>
   <data name="about_terraria_not_found" xml:space="preserve">
     <value>لم يعثر عليه</value>
@@ -228,6 +231,96 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>تحديث</value>
   </data>
+  <data name="bg_cave_blue" xml:space="preserve">
+    <value>أزرق</value>
+  </data>
+  <data name="bg_cave_blue_alt" xml:space="preserve">
+    <value>أزرق بديل</value>
+  </data>
+  <data name="bg_cave_brown" xml:space="preserve">
+    <value>بني</value>
+  </data>
+  <data name="bg_cave_gray" xml:space="preserve">
+    <value>رمادي</value>
+  </data>
+  <data name="bg_cave_green" xml:space="preserve">
+    <value>أخضر</value>
+  </data>
+  <data name="bg_cave_green_alt" xml:space="preserve">
+    <value>أخضر بديل</value>
+  </data>
+  <data name="bg_cave_purple" xml:space="preserve">
+    <value>بنفسجي</value>
+  </data>
+  <data name="bg_cave_stone" xml:space="preserve">
+    <value>حجر</value>
+  </data>
+  <data name="bg_default" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
+  <data name="bg_mnt_default_trees" xml:space="preserve">
+    <value>جبل {0} + أشجار افتراضية</value>
+  </data>
+  <data name="bg_mnt_trees" xml:space="preserve">
+    <value>جبال {0} + أشجار</value>
+  </data>
+  <data name="bg_mountains_alt" xml:space="preserve">
+    <value>ارتفاع الجبال البديل</value>
+  </data>
+  <data name="bg_mountains_only" xml:space="preserve">
+    <value>الجبال فقط</value>
+  </data>
+  <data name="bg_mountains_only_a" xml:space="preserve">
+    <value>الجبال فقط أ</value>
+  </data>
+  <data name="bg_mountains_only_b" xml:space="preserve">
+    <value>الجبال فقط B</value>
+  </data>
+  <data name="bg_mountains_only_c" xml:space="preserve">
+    <value>الجبال فقط C</value>
+  </data>
+  <data name="bg_mountains_tree" xml:space="preserve">
+    <value>جبال + شجرة</value>
+  </data>
+  <data name="bg_multibiome_format" xml:space="preserve">
+    <value>متعدد المناطق الحيوية {0}</value>
+  </data>
+  <data name="bg_remix_format" xml:space="preserve">
+    <value>إعادة مزج {0}</value>
+  </data>
+  <data name="bg_trees_only_a" xml:space="preserve">
+    <value>الأشجار فقط أ</value>
+  </data>
+  <data name="bg_trees_only_b" xml:space="preserve">
+    <value>الأشجار فقط B</value>
+  </data>
+  <data name="bg_tree_boreal" xml:space="preserve">
+    <value>شماليّ بارد</value>
+  </data>
+  <data name="bg_tree_jungle" xml:space="preserve">
+    <value>شبيه بالغابة الاستوائية</value>
+  </data>
+  <data name="bg_tree_oak" xml:space="preserve">
+    <value>بلوط</value>
+  </data>
+  <data name="bg_tree_palm" xml:space="preserve">
+    <value>يشبه النخيل</value>
+  </data>
+  <data name="bg_tree_sakura" xml:space="preserve">
+    <value>ساكورا</value>
+  </data>
+  <data name="bg_tree_willow" xml:space="preserve">
+    <value>صفصاف</value>
+  </data>
+  <data name="bg_variant_alt" xml:space="preserve">
+    <value>البديل {0} (ثانوي)</value>
+  </data>
+  <data name="bg_variant_alt_letter" xml:space="preserve">
+    <value>النسخة {0} البديل {1}</value>
+  </data>
+  <data name="bg_variant_format" xml:space="preserve">
+    <value>النسخة {0}</value>
+  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>الطوب الكامل</value>
   </data>
@@ -280,6 +373,9 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
   </data>
+  <data name="common_air" xml:space="preserve">
+    <value>الهواء</value>
+  </data>
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
@@ -304,11 +400,17 @@
   <data name="common_close" xml:space="preserve">
     <value>إغلاق</value>
   </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
   <data name="common_edit" xml:space="preserve">
     <value>حرر</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>مفعل</value>
+  </data>
+  <data name="common_error" xml:space="preserve">
+    <value>خطأ</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>إنشاء</value>
@@ -316,8 +418,14 @@
   <data name="common_left" xml:space="preserve">
     <value>يسار</value>
   </data>
+  <data name="common_no" xml:space="preserve">
+    <value>لا</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>لا أحد</value>
+  </data>
+  <data name="common_not_determined" xml:space="preserve">
+    <value>غير محدد</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>نعم</value>
@@ -342,6 +450,9 @@
   </data>
   <data name="common_search" xml:space="preserve">
     <value>بحث</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>نعم</value>
   </data>
   <data name="depth_center" xml:space="preserve">
     <value>المركز</value>
@@ -373,12 +484,349 @@
   <data name="depth_west" xml:space="preserve">
     <value>{0}' غرب</value>
   </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>تعذّر حذف {0:N0} من الملفات؛ راجع السجل للاطّلاع على التفاصيل.</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>تم حذف {0:N0} من الملفات وتحرير {1}.</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>تم مسح ذاكرة التخزين المؤقت</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>مسح الذاكرة المؤقتة</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>هل تريد حذف {0:N0} من الملفات المخزّنة مؤقتًا ({1})؟
+
+سيؤدي هذا إلى حذف النسخ الاحتياطية والحفظ التلقائي وسجل التراجع والإعادة في TEdit. لن تتأثر ملفات عوالم Terraria ولا ملفات ‎.bak.</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>مسح ذاكرة TEdit المؤقتة</value>
+  </data>
+  <data name="dialog_complete_bestiary_error" xml:space="preserve">
+    <value>حدث خطأ أثناء إكمال بيانات دليل المخلوقات. تمت استعادة دليل المخلوقات الحالي.
+{0}</value>
+  </data>
+  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
+    <value>سيستبدل هذا بالكامل سجل الوحوش وسجل القتلى في عالمك المحمّل حاليًا بسجل مكتمل. هل تريد المتابعة؟</value>
+  </data>
+  <data name="dialog_complete_bestiary_title" xml:space="preserve">
+    <value>هل تريد إكمال سجل الوحوش؟</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>تأكيد الحذف</value>
+  </data>
+  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
+    <value>إضافة حدود «حافة العالم»؟</value>
+  </data>
+  <data name="dialog_crop_world_borders_title" xml:space="preserve">
+    <value>قصّ العالم:</value>
+  </data>
+  <data name="dialog_crop_world_prompt" xml:space="preserve">
+    <value>سيتم إنشاء عالم جديد داخل المنطقة المحددة. ستفقد كل التغييرات خارج المنطقة المقصوصة. هل تبي تواصل؟</value>
+  </data>
+  <data name="dialog_crop_world_title" xml:space="preserve">
+    <value>اقتُصّ العالم؟</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>هل أنت متأكد من رغبتك في حذف جميع الصناديق؟</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>هل أنت متأكد من رغبتك في حذف جميع الصناديق غير المقفلة؟</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>حذف النسخة الاحتياطية؟
+{0}</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>حذف الصناديق</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>عدم الحفظ</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>لا يبدو أن الدليل يحتوي على محتوى Terraria.
 اضغط على إعادة المحاولة لاختيار مجلد جديد أو إلغاء لاستخدام {0} كمسار terraria الخاص بك.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>محتوى Terraria لم يتم العثور عليه</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>تصدير ملف التخطيط</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>لم يتم تحميل الخامات بعد. يرجى الانتظار حتى يكتمل تحميلها.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>تصدير الخامات</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>استيراد الرايات من ملف العالم</value>
+  </data>
+  <data name="dialog_import_banners_error" xml:space="preserve">
+    <value>حدث خطأ أثناء استيراد بيانات الرايات من {0}. تمت استعادة الرايات الحالية.
+{1}</value>
+  </data>
+  <data name="dialog_import_banners_prompt" xml:space="preserve">
+    <value>سيستبدل هذا أعداد الرايات الحالية بالبيانات من ملف العالم المحدد. هل تريد المتابعة؟</value>
+  </data>
+  <data name="dialog_import_banners_title" xml:space="preserve">
+    <value>استيراد الرايات؟</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>استيراد دليل المخلوقات وعمليات القتل من ملف العالم</value>
+  </data>
+  <data name="dialog_import_bestiary_error" xml:space="preserve">
+    <value>حدث خطأ أثناء استيراد بيانات سجل المخلوقات من {0}. تم استرجاع سجل المخلوقات الحالي.
+{1}</value>
+  </data>
+  <data name="dialog_import_error_title" xml:space="preserve">
+    <value>خطأ في الاستيراد</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>استيراد ملف مخطط منزل من TEdit</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>استيراد ملف مخطط TEdit</value>
+  </data>
+  <data name="dialog_invalid_world_prompt" xml:space="preserve">
+    <value>حدث خطأ أثناء قراءة ملف العالم.
+يحدث هذا عادةً بسبب تلف ملف الحفظ أو لأن إصدار العالم أحدث من الإصدار المدعوم.
+
+TEdit الإصدار {0}
+الحد الأقصى للعالم في TEdit: {1}
+العالم الحالي: {2}
+
+هل تبي تفرض تحميله على أي حال؟
+
+تحذير: قد يؤدي هذا إلى نتائج غير متوقعة، منها تلف ملفات العالم وتعطّل البرنامج.
+
+الخطأ هو:
+{3}</value>
+  </data>
+  <data name="dialog_invalid_world_title" xml:space="preserve">
+    <value>تحميل عالم غير صالح؟</value>
+  </data>
+  <data name="dialog_language_restart_prompt" xml:space="preserve">
+    <value>تم تغيير اللغة إلى {0}. هل تبي تعيد التشغيل الحين؟</value>
+  </data>
+  <data name="dialog_language_restart_title" xml:space="preserve">
+    <value>أعد التشغيل لتغيير اللغة</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>أنت تحمّل عالماً بإصدار قديم من tModLoader: {0}.
+1. تعديل الملفات القديمة ميزة تجريبية.
+2. تعديل العوالم المعدّلة غير مدعوم.
+يرجى إنشاء نسخة احتياطية، فقد يتعرض ملف العالم للتلف.
+هل ترغب في المتابعة؟</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>هل تريد تحميل عالم tModLoader قديم؟</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>أنت تحمّل عالماً بإصدار قديم: {0}.
+قد يؤدي تعديل الملفات القديمة إلى نتائج غير متوقعة.
+يُرجى إنشاء نسخة احتياطية، فقد يتعرّض ملف العالم للتلف.
+هل ترغب في المتابعة؟</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>هل تبي تحمّل عالم من إصدار قديم؟</value>
+  </data>
+  <data name="dialog_link_error_message" xml:space="preserve">
+    <value>تعذّر فتح المتصفح الخارجي. تبي تنسخ إلى الحافظة؟</value>
+  </data>
+  <data name="dialog_link_error_title" xml:space="preserve">
+    <value>خطأ في الرابط</value>
+  </data>
+  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
+    <value>سيستبدل هذا بالكامل سجل الوحوش وعدّاد القتلى للعالم المحمّل حاليًا بسجل الوحوش الموجود في الملف المحدد. هل تبي تواصل؟</value>
+  </data>
+  <data name="dialog_load_bestiary_title" xml:space="preserve">
+    <value>تحميل سجلّ الوحوش؟</value>
+  </data>
+  <data name="dialog_locate_terraria_folder" xml:space="preserve">
+    <value>تحديد مجلد تيراريا</value>
+  </data>
+  <data name="dialog_max_banners_prompt" xml:space="preserve">
+    <value>هل تريد تعيين عدد كل اللافتات إلى الحد الأقصى (9999)؟</value>
+  </data>
+  <data name="dialog_max_banners_title" xml:space="preserve">
+    <value>هل تريد الحصول على كل الرايات؟</value>
+  </data>
+  <data name="dialog_mod_world_prompt" xml:space="preserve">
+    <value>أنت تحمّل عالماً من TModLoader. تعديل العوالم المعدّلة غير مدعوم.
+يُرجى إنشاء نسخة احتياطية، لأن ملف العالم قد يتلف.
+هل تبي تواصل؟</value>
+  </data>
+  <data name="dialog_mod_world_title" xml:space="preserve">
+    <value>هل تريد تحميل عالم التعديل؟</value>
+  </data>
+  <data name="dialog_newer_version_prompt" xml:space="preserve">
+    <value>إصدار هذا العالم أحدث من الإصدار الذي يدعمه ملف إعدادات TEdit.
+
+إصدار العالم: {0}
+أحدث إصدار مدعوم: {1}
+
+سيستخدم TEdit الإصدار {1} من ملف الإعدادات بدلًا منه. قد تتسبب البلاطات والجدران الأحدث غير المتوفرة وغيرها في حدوث مشاكل.
+
+هل تريد محاولة تحميل العالم على أي حال؟</value>
+  </data>
+  <data name="dialog_newer_version_title" xml:space="preserve">
+    <value>إصدار أحدث للعالم</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>فتح ملف العالم</value>
+  </data>
+  <data name="dialog_player_modified_prompt" xml:space="preserve">
+    <value>تم تعديل {0} من مصدر خارجي منذ تحميله أو آخر حفظ له.
+هل تبي تستبدله؟</value>
+  </data>
+  <data name="dialog_player_modified_title" xml:space="preserve">
+    <value>تم تعديل اللاعب</value>
+  </data>
+  <data name="dialog_reload_no_world" xml:space="preserve">
+    <value>ما في عالم مفتوح تم تحميله عشان تعيد تحميله.</value>
+  </data>
+  <data name="dialog_reload_world_prompt" xml:space="preserve">
+    <value>سيتم فقدان العمل غير المحفوظ!</value>
+  </data>
+  <data name="dialog_reload_world_title" xml:space="preserve">
+    <value>إعادة تحميل العالم الحالي؟</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>سيؤدي هذا إلى إزالة كل البلاطات التي تم العثور عليها من عالمك نهائيًا. هل تبي تواصل؟</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>تم العثور على {0:N0} من البلاطات وإزالتها.</value>
+  </data>
+  <data name="dialog_replace_mask_warning" xml:space="preserve">
+    <value>فعّل قناعًا واحدًا على الأقل لاستخدام الاستبدال. تحدد الأقنعة البلاطات التي يجب مطابقتها.</value>
+  </data>
+  <data name="dialog_replace_title" xml:space="preserve">
+    <value>استبدال</value>
+  </data>
+  <data name="dialog_reset_banners_prompt" xml:space="preserve">
+    <value>هل تريد تصفير أعداد جميع الرايات؟</value>
+  </data>
+  <data name="dialog_reset_banners_title" xml:space="preserve">
+    <value>إعادة تعيين الرايات؟</value>
+  </data>
+  <data name="dialog_reset_bestiary_error" xml:space="preserve">
+    <value>حدث خطأ أثناء إعادة تعيين بيانات دليل المخلوقات. تمت استعادة الدليل الحالي.
+{0}</value>
+  </data>
+  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
+    <value>سيؤدي هذا إلى استبدال سجل الكائنات وسجل القتلات في العالم المحمّل حاليًا بالكامل بسجل كائنات جديد. تبي تواصل؟</value>
+  </data>
+  <data name="dialog_reset_bestiary_title" xml:space="preserve">
+    <value>إعادة ضبط سجلّ الوحوش؟</value>
+  </data>
+  <data name="dialog_save_banners_error" xml:space="preserve">
+    <value>حدث خطأ أثناء حفظ بيانات اللافتة. تمت استعادة التغييرات.
+{0}</value>
+  </data>
+  <data name="dialog_save_banners_prompt" xml:space="preserve">
+    <value>هل تبي تحفظ تغييرات اللافتة في العالم؟</value>
+  </data>
+  <data name="dialog_save_banners_title" xml:space="preserve">
+    <value>هل تريد حفظ الرايات؟</value>
+  </data>
+  <data name="dialog_save_bestiary_error" xml:space="preserve">
+    <value>حدث خطأ أثناء حفظ بيانات سجل الكائنات. تمت استعادة سجل الكائنات الحالي لديك.
+{0}</value>
+  </data>
+  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
+    <value>هل أنت متأكد إنك تبي تحفظ التغييرات في سجلّ الوحوش؟</value>
+  </data>
+  <data name="dialog_save_bestiary_title" xml:space="preserve">
+    <value>هل تريد حفظ دليل المخلوقات؟</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>حفظ فن البكسل المُنشأ</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>حفظ تحليل العالم.</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>حفظ العالم باسم</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>اختر مجلد إخراج لمربعات الخريطة</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>اختر ملف اللاعب</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>هل تبي تحفظ التغييرات قبل لا تسكر TEdit؟</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>تغييرات غير محفوظة</value>
+  </data>
+  <data name="dialog_world_corrupt_empty" xml:space="preserve">
+    <value>يبدو إن ملف العالم فاضي أو تالف (كل البايتات قيمتها صفر).
+ما نقدر نستعيد الملف، لأن ما فيه أي بيانات.
+
+شنو أقدر أسوي؟
+1. استعادة نسخة احتياطية سابقة (.bak, .bak2).
+2. استعادة نسخة احتياطية يدوية سابقة.
+3. استعادة نقطة حفظ سابقة أنشأها TEdit (.TEdit).
+4. استعادة نسخة احتياطية من سجل ملفات Windows (إذا كان مفعّل من قبل).</value>
+  </data>
+  <data name="dialog_world_modified_prompt" xml:space="preserve">
+    <value>تم تعديل {0} خارجياً منذ آخر حفظ لك.
+هل ترغب في استبداله؟</value>
+  </data>
+  <data name="dialog_world_modified_title" xml:space="preserve">
+    <value>تم تعديل العالم</value>
+  </data>
+  <data name="dialog_world_read_error" xml:space="preserve">
+    <value>حدث خطأ أثناء قراءة ملف العالم.
+عادةً ما يكون السبب ملف حفظ تالف أو إصدار عالم أحدث من الإصدارات المدعومة.
+
+TEdit الإصدار {0}
+أقصى حجم للعالم في TEdit: {1}
+العالم الحالي: {2}
+
+الخطأ هو:
+{3}</value>
+  </data>
+  <data name="dialog_world_save_failed" xml:space="preserve">
+    <value>تعذّر حفظ العالم. تمت استعادة العالم المفتوح، ولم تُحفظ تعديلاتك.
+{0}</value>
+  </data>
+  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
+    <value>القفز</value>
+  </data>
+  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
+    <value>جالس</value>
+  </data>
+  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
+    <value>واقف</value>
+  </data>
+  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
+    <value>استخدم 1</value>
+  </data>
+  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
+    <value>استخدم 2</value>
+  </data>
+  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
+    <value>استخدم 3</value>
+  </data>
+  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
+    <value>استخدم 4</value>
+  </data>
+  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
+    <value>استخدم 5</value>
+  </data>
+  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
+    <value>المشي</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>حافلة</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>سلك</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
     <value>Wire 45°</value>
@@ -418,6 +866,127 @@
   </data>
   <data name="editor_utilities_label" xml:space="preserve">
     <value>المرافق</value>
+  </data>
+  <data name="enum_FilterMode_Darken" xml:space="preserve">
+    <value>ظلام</value>
+  </data>
+  <data name="enum_FilterMode_Hide" xml:space="preserve">
+    <value>يخفي</value>
+  </data>
+  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
+    <value>تلقائي (حسب إعدادات النظام)</value>
+  </data>
+  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="enum_LanguageSelection_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="enum_LanguageSelection_French" xml:space="preserve">
+    <value>فرانسيس</value>
+  </data>
+  <data name="enum_LanguageSelection_German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
+    <value>إيطاليانو</value>
+  </data>
+  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
+    <value>الخريطة المصغّرة</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
+    <value>واقعي</value>
+  </data>
+  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
+    <value>ألفا</value>
+  </data>
+  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
+    <value>تجريبي</value>
+  </data>
+  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
+    <value>مستقر</value>
+  </data>
+  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
+    <value>تنزيل تلقائي</value>
+  </data>
+  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
+    <value>التثبيت التلقائي</value>
+  </data>
+  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
+    <value>معطّل</value>
+  </data>
+  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
+    <value>إخطار فقط</value>
+  </data>
+  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
+    <value>توسيط الشاشة</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
+    <value>مكبّر إلى الحد الأقصى</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>تعذّر إنشاء مجلد السجل. سيُغلق التطبيق.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>تعذّر إنشاء مجلد السجل.</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>تعذّر فتح ملف السجل: {0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>حدث خطأ أثناء تحميل الخامات من {0}.
+يرجى التأكد من وجود هذا المجلد وأن لدى TEdit صلاحية القراءة منه.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>خطأ في تحميل الخامات</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>تعذّر إنشاء مجلد مؤقت للتراجع. بيتم إغلاق التطبيق.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>تعذّر إنشاء مجلد التراجع.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>حدث خطأ استثنائي غير معالَج. تقدر تواصل استخدام TEdit، لكن ممكن يصير البرنامج غير مستقر لين تعيد تشغيله.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>استثناء غير مُعالَج</value>
   </data>
   <data name="expand_description" xml:space="preserve">
     <value>سيكون العالم مركزًا حول هذه الأبعاد الجديدة.</value>
@@ -530,6 +1099,219 @@
   <data name="find_tab_chests" xml:space="preserve">
     <value>العناصر في الصناديق</value>
   </data>
+  <data name="frame_anchor_bottom" xml:space="preserve">
+    <value>الأسفل</value>
+  </data>
+  <data name="frame_anchor_center" xml:space="preserve">
+    <value>المركز</value>
+  </data>
+  <data name="frame_anchor_left" xml:space="preserve">
+    <value>يسار</value>
+  </data>
+  <data name="frame_anchor_none" xml:space="preserve">
+    <value>لا أحد</value>
+  </data>
+  <data name="frame_anchor_right" xml:space="preserve">
+    <value>يمين</value>
+  </data>
+  <data name="frame_anchor_top" xml:space="preserve">
+    <value>الأعلى</value>
+  </data>
+  <data name="frame_text_amber_tree" xml:space="preserve">
+    <value>شجرة الكهرمان</value>
+  </data>
+  <data name="frame_text_amethyst_tree" xml:space="preserve">
+    <value>شجرة الجمشت</value>
+  </data>
+  <data name="frame_text_ash_tree" xml:space="preserve">
+    <value>شجرة الرماد</value>
+  </data>
+  <data name="frame_text_attach_left" xml:space="preserve">
+    <value>إرفاق إلى اليسار</value>
+  </data>
+  <data name="frame_text_attach_left_endcap" xml:space="preserve">
+    <value>إرفاق غطاء الطرف الأيسر</value>
+  </data>
+  <data name="frame_text_attach_right" xml:space="preserve">
+    <value>إرفاق إلى اليمين</value>
+  </data>
+  <data name="frame_text_attach_right_endcap" xml:space="preserve">
+    <value>إرفاق الغطاء الطرفي الأيمن</value>
+  </data>
+  <data name="frame_text_boss_trophy" xml:space="preserve">
+    <value>كأس الزعيم</value>
+  </data>
+  <data name="frame_text_corruption_short_plants" xml:space="preserve">
+    <value>نباتات الفساد القصيرة</value>
+  </data>
+  <data name="frame_text_crimson_short_plants" xml:space="preserve">
+    <value>نباتات قرمزية قصيرة</value>
+  </data>
+  <data name="frame_text_critter_anchor" xml:space="preserve">
+    <value>نقطة تثبيت المخلوق</value>
+  </data>
+  <data name="frame_text_decos_3x2" xml:space="preserve">
+    <value>الزخارف (3×2)</value>
+  </data>
+  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
+    <value>الزخارف (3×2) (المجموعة 2)</value>
+  </data>
+  <data name="frame_text_diamond_tree" xml:space="preserve">
+    <value>شجرة الألماس</value>
+  </data>
+  <data name="frame_text_emerald_tree" xml:space="preserve">
+    <value>شجرة الزمرد</value>
+  </data>
+  <data name="frame_text_endcap_left" xml:space="preserve">
+    <value>الطرف الأيسر</value>
+  </data>
+  <data name="frame_text_endcap_right" xml:space="preserve">
+    <value>الغطاء الطرفي الأيمن</value>
+  </data>
+  <data name="frame_text_flat" xml:space="preserve">
+    <value>مسطّح</value>
+  </data>
+  <data name="frame_text_forest_pot" xml:space="preserve">
+    <value>وعاء الغابة</value>
+  </data>
+  <data name="frame_text_forest_short_plants" xml:space="preserve">
+    <value>نباتات غابية قصيرة</value>
+  </data>
+  <data name="frame_text_forest_tall_plants" xml:space="preserve">
+    <value>نباتات الغابة الطويلة</value>
+  </data>
+  <data name="frame_text_forest_tree" xml:space="preserve">
+    <value>شجرة غابة</value>
+  </data>
+  <data name="frame_text_hallow_short_plants" xml:space="preserve">
+    <value>نباتات القداسة القصيرة</value>
+  </data>
+  <data name="frame_text_jungle_large_plants" xml:space="preserve">
+    <value>نباتات كبيرة في الأدغال</value>
+  </data>
+  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
+    <value>صدى نباتات الأدغال</value>
+  </data>
+  <data name="frame_text_jungle_short_plants" xml:space="preserve">
+    <value>نباتات الغابة القصيرة</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
+    <value>أنقاض كبيرة (3×2)</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
+    <value>أنقاض كبيرة (٣×٢) (المجموعة ٢)</value>
+  </data>
+  <data name="frame_text_left" xml:space="preserve">
+    <value>يسار</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>مقفل</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
+    <value>أنقاض متوسطة (2×1)</value>
+  </data>
+  <data name="frame_text_monster_banner" xml:space="preserve">
+    <value>راية الوحش</value>
+  </data>
+  <data name="frame_text_off" xml:space="preserve">
+    <value>انطلق</value>
+  </data>
+  <data name="frame_text_on" xml:space="preserve">
+    <value>تشغيل</value>
+  </data>
+  <data name="frame_text_ore_bars" xml:space="preserve">
+    <value>سبائك الخامات</value>
+  </data>
+  <data name="frame_text_pumpkin_plant" xml:space="preserve">
+    <value>نبتة يقطين</value>
+  </data>
+  <data name="frame_text_right" xml:space="preserve">
+    <value>يمين</value>
+  </data>
+  <data name="frame_text_ruby_tree" xml:space="preserve">
+    <value>شجرة الياقوت</value>
+  </data>
+  <data name="frame_text_sapphire_tree" xml:space="preserve">
+    <value>شجرة الياقوت الأزرق</value>
+  </data>
+  <data name="frame_text_single" xml:space="preserve">
+    <value>مفرد</value>
+  </data>
+  <data name="frame_text_small_decos" xml:space="preserve">
+    <value>زينة صغيرة</value>
+  </data>
+  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
+    <value>أنقاض صغيرة (١×١)</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
+    <value>بسطة أسفل الدرج على اليسار</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
+    <value>بسطة الدرج السفلية يمينًا</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
+    <value>درجة سلم غائرة للأعلى واليسار 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
+    <value>تجويف الدرج للأعلى واليسار ٢</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
+    <value>درجة السلم الداخلية للأعلى واليسار 3</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
+    <value>درجة سلم غائرة للأعلى إلى اليمين 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
+    <value>تجويف الدرج للأعلى واليمين ٢</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
+    <value>تجويف الدرج إلى أعلى اليمين 3</value>
+  </data>
+  <data name="frame_text_stair_inverted_left" xml:space="preserve">
+    <value>درج مقلوب إلى اليسار</value>
+  </data>
+  <data name="frame_text_stair_inverted_right" xml:space="preserve">
+    <value>درج مقلوب لليمين</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
+    <value>بسطة أعلى الدرج على اليسار</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
+    <value>غطاء الطرف الأيسر لبسطة أعلى الدرج</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
+    <value>بسطة الدرج العلوية من اليسار إلى اليمين</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
+    <value>بسطة الدرج العلوية اليمنى</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
+    <value>غطاء نهاية بسطة الدرج العلوية اليمنى</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
+    <value>قائم الدرج الصاعد إلى اليسار الأعلى</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
+    <value>دعامة الدرج الصاعد لليسار</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
+    <value>قائم الدرج الصاعد إلى اليمين</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
+    <value>العارضة الجانبية للسلم الصاعد نحو اليمين</value>
+  </data>
+  <data name="frame_text_text_statue" xml:space="preserve">
+    <value>تمثال نصّي</value>
+  </data>
+  <data name="frame_text_topaz_tree" xml:space="preserve">
+    <value>شجرة التوباز</value>
+  </data>
+  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
+    <value>شجرة الساكورا للزينة</value>
+  </data>
+  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
+    <value>شجرة الزينة: الصفصاف الأصفر</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>هل تستمتع ب تيديت؟ دعم لنا!</value>
   </data>
@@ -547,6 +1329,312 @@
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>تعيين صلب</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="input_category_editing" xml:space="preserve">
+    <value>قيد التحرير</value>
+  </data>
+  <data name="input_category_file" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="input_category_help" xml:space="preserve">
+    <value>تعليمات</value>
+  </data>
+  <data name="input_category_navigation" xml:space="preserve">
+    <value>التنقّل</value>
+  </data>
+  <data name="input_category_selection" xml:space="preserve">
+    <value>التحديد</value>
+  </data>
+  <data name="input_category_toggles" xml:space="preserve">
+    <value>مفاتيح التبديل</value>
+  </data>
+  <data name="input_category_tooldrawing" xml:space="preserve">
+    <value>أداة الرسم</value>
+  </data>
+  <data name="input_category_tools" xml:space="preserve">
+    <value>الأدوات</value>
+  </data>
+  <data name="input_category_view" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>رسم / الإجراء الأساسي</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>رسم مقيّد (أفقي/عمودي/بزاوية ٤٥°)</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>حصر الرسم في خطوط أفقية أو عمودية أو مائلة بزاوية 45°</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>إجراء الرسم الأساسي في الأدوات</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>ارسم خطًا من نقطة إلى أخرى</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>ارسم خطوطًا مستقيمة بين نقاط النقر</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>تحريك نافذة العرض كالعادة</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>اسحب لتحريك مساحة العرض</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>إجراء ثانوي</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>إجراء ثانوي في الأدوات (فحص، إلغاء التحديد، اختيار القناع، إلخ)</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>تبديل السلك الأحمر تشغيلًا وإيقافًا</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>تبديل تفعيل السلك الأحمر</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>تبديل السلك الأزرق</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>تفعيل أو إيقاف السلك الأزرق</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>تبديل السلك الأخضر</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>تفعيل أو تعطيل السلك الأخضر</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>تبديل السلك الأصفر рахь</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>تفعيل أو تعطيل السلك الأصفر</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>تبديل وضع رسم الأسلاك</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>تبديل وضع رسم الأسلاك: إيقاف ← سلك بزاوية ٩٠° ← سلك بزاوية ٤٥° ← إيقاف</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>تبديل اتجاه الأسلاك أفقيًا/رأسيًا</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>التبديل بين توجيه الأسلاك أفقيًا أولًا أو عموديًا أولًا أو الكشف التلقائي</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>إبراز مسار الأسلاك</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>اضغط مع الاستمرار على Alt وانقر لتمييز جميع الأسلاك المتصلة بالبلاطة التي نقرت عليها</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>نسخ</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>عالم المحاصيل</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>قصّ</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>توسيع العالم</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>معجون</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>اعاده</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>تراجع</value>
+  </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>العالم الجديد</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>مفتوح</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>إعادة تحميل العالم</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>أنقذ</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>حفظ باسم</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>حفظ ك إصدار</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>الويكي / المساعدة</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>وضع التحريك</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>إعادة ضبط الأداة / إلغاء التحديد</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>مرّر للأسفل</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>مرّر للأسفل بسرعة</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>التمرير لليسار</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>التمرير يسارًا بسرعة</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>مرّر لليمين</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>مرّر بسرعة إلى اليمين</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>مرّر للأعلى</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>التمرير للأعلى بسرعة</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>تكبير</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>تصغير</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>قبول اللصق</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>اعكس اللصق أفقيًا</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>قلب اللصق عموديًا</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>تدوير النسخة الملصقة عكس اتجاه عقارب الساعة</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>تدوير اللصق باتجاه عقارب الساعة</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>تحريك نقطة نهاية التحديد</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>اضغط مع السحب مع الاستمرار على Shift لتحريك الزاوية السفلية اليمنى للتحديد</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>نقطة بداية تحريك التحديد</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>اضغط مع السحب مع Ctrl لتحريك الزاوية العلوية اليسرى للتحديد</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>تحديد الكل</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>حذف التحديد</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>نقل التحديد لأسفل</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>تحريك التحديد لأسفل (بسرعة)</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>نقل التحديد لليسار</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>تحريك التحديد إلى اليسار (بسرعة)</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>تحريك التحديد إلى اليمين</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>تحريك التحديد إلى اليمين (بسرعة)</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>نقل التحديد للأعلى</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>تحريك التحديد للأعلى (بسرعة)</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>زيادة ارتفاع التحديد</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>زيادة ارتفاع التحديد (سريع)</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>تقليص عرض التحديد</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>تقليص عرض التحديد (سريع)</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>زيادة عرض التحديد</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>زيادة عرض التحديد (سريع)</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>تقليص ارتفاع التحديد</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>تقليص ارتفاع التحديد (سريع)</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>تبديل الممحاة</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>تبديل الألوان</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>تبديل نمط البلاطة</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>تبديل نمط الجدار</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>أداة السهم</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>أداة الفرشاة</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>أداة التعبئة</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>أداة المطرقة</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>أداة التشكيل</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>أداة القلم</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>أداة الاختيار</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>أداة النقاط</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>أداة التحديد</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>أداة الرسومات	sprite</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>مواجهة اليسار</value>
@@ -607,6 +1695,18 @@
   </data>
   <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
     <value>0%</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
+    <value>متساوي</value>
+  </data>
+  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
+    <value>أكبر من</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
+    <value>تجاهل</value>
+  </data>
+  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
+    <value>أقل من</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>عسل</value>
@@ -1077,6 +2177,12 @@
   <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
     <value>يغير التضاريس ويمكنه إزالة الزخارف. استخدم التراجع لاستعادة البلاطات الأصلية.</value>
   </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>غابة</value>
+  </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>فطر متوهّج</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>هالو</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1097,6 +2203,48 @@
   </data>
   <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
     <value>يحوّل بلاطات البيئة المتطابقة ويترك البلاطات غير المدعومة دون تغيير.</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>ثلج</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>أرغون</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>أزرق</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>عشب</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>أخضر</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>هيليوم</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>كريبتون</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>الحمم</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>نيون</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>لا شيء (إزالة)</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>بنفسجي</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>أحمر</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>زينون</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>أصفر</value>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>مستكشف NBT</value>
@@ -1139,6 +2287,15 @@
   </data>
   <data name="newworld_cave_preset" xml:space="preserve">
     <value>إعداد الكهف</value>
+  </data>
+  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
+    <value>متاهة</value>
+  </data>
+  <data name="newworld_cave_preset_large" xml:space="preserve">
+    <value>كبير</value>
+  </data>
+  <data name="newworld_cave_preset_normal" xml:space="preserve">
+    <value>طبيعي</value>
   </data>
   <data name="newworld_create" xml:space="preserve">
     <value>اصنع العالم</value>
@@ -1214,6 +2371,9 @@
   </data>
   <data name="npc_search_placeholder" xml:space="preserve">
     <value>بحث...</value>
+  </data>
+  <data name="overflow_more_panels" xml:space="preserve">
+    <value>المزيد من اللوحات...</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>سائل</value>
@@ -1356,6 +2516,14 @@
   <data name="player_editor_equipment" xml:space="preserve">
     <value>المعدات</value>
   </data>
+  <data name="player_editor_error_load" xml:space="preserve">
+    <value>تعذّر تحميل ملف اللاعب:
+{0}</value>
+  </data>
+  <data name="player_editor_error_save" xml:space="preserve">
+    <value>تعذّر حفظ ملف اللاعب:
+{0}</value>
+  </data>
   <data name="player_editor_eye_color" xml:space="preserve">
     <value>لون العين</value>
   </data>
@@ -1389,6 +2557,9 @@
   <data name="player_editor_save_as" xml:space="preserve">
     <value>احفظ اللاعب كـ...</value>
   </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>تم إلغاء الحفظ: تم تعديل ملف اللاعب من جهة خارجية.</value>
+  </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
     <value>لون القميص</value>
   </data>
@@ -1403,6 +2574,12 @@
   </data>
   <data name="player_editor_stats" xml:space="preserve">
     <value>الإحصائيات</value>
+  </data>
+  <data name="player_editor_status_loaded" xml:space="preserve">
+    <value>تم التحميل: {0}</value>
+  </data>
+  <data name="player_editor_status_saved" xml:space="preserve">
+    <value>تم الحفظ: {0}</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
     <value>محرر اللاعب</value>
@@ -1506,6 +2683,9 @@
   <data name="player_stats_team_red" xml:space="preserve">
     <value>أحمر</value>
   </data>
+  <data name="player_stats_team_white" xml:space="preserve">
+    <value>أبيض</value>
+  </data>
   <data name="player_stats_team_yellow" xml:space="preserve">
     <value>أصفر</value>
   </data>
@@ -1545,6 +2725,12 @@
   <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
     <value>تفعيل التراجع (بطيء)</value>
   </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>بعض كيانات البلاطات الخاصة (مثل الصناديق أو اللافتات) تظل محمية وما تقدر تبدّل أماكنها.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>تضمين المعلومات</value>
+  </data>
   <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
     <value>تضمين الكيانات البلاطية</value>
   </data>
@@ -1566,11 +2752,23 @@
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>تبديل مواقع الكتل</value>
   </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>تطهير العالم</value>
+  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>إضافة</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>انقر على [...] لاستيراد مخطط القالب</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>تحقّق من بيانات JSON للقيمة 'Count' للتأكد من تطابقها مع المخطط المرتبط بها.</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>تحقّق من بيانات JSON لـ{0} لـ{1}</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>مولد المنازل الإجرائي</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>معاينة</value>
@@ -1637,6 +2835,9 @@
   </data>
   <data name="plugin_ore_mythril" xml:space="preserve">
     <value>ميثريل</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>غير متاح</value>
   </data>
   <data name="plugin_ore_obsidian" xml:space="preserve">
     <value>أوبسيديان</value>
@@ -1725,6 +2926,15 @@
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>بناء آمن</value>
   </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>حساب...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>جارٍ الحساب...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>إلغاء التحويل</value>
+  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>تغيير الـ أ=.</value>
   </data>
@@ -1740,6 +2950,9 @@
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>أدوات تصفية الألوان:</value>
   </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>تحويل إلى فن البكسل</value>
+  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>حوّل الصورة الحالية إلى فن البكسل.</value>
   </data>
@@ -1752,11 +2965,47 @@
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>الصورة الحالية:</value>
   </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>حذف الألوان الفارغة</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>إزالة الألوان من الفلتر غير الموجودة في فن البكسل المعروض.</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>خطأ: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>خطأ: تنسيق فلتر الألوان غير صالح! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>مرشح اللون هو صفر. قم بتعديل إعداداتك.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>خطأ: تحتاج إلى إنشاء فن بكسل أولاً!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>حدث خطأ: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>خطأ في تحميل الصورة: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>ميزة "نسخ إلى الحافظة" تتطلب تحميل عالم!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>يجب أن تكون قد حفظت مخططًا مسبقًا أولاً!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>خطأ في حفظ الصورة: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>خطأ في حفظ المخطط: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>البيانات التخطيطية فارغة! قم بإنشاء فن بكسل أولاً!</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>الألوان المصفاة:</value>
@@ -1800,14 +3049,23 @@
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>هيرميت</value>
   </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>اكتملت الصورة.</value>
+  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>لانكزوس</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>محرر تحويل الصورة إلى فن البكسل</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>أقرب جار</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>نسبة جديدة % المستوى:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>لا أحد</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>بدون دوران</value>
@@ -1832,6 +3090,9 @@
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>عرض تقدم فن البكسل (تأثير طفيف على السرعة).</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>تم إلغاء العرض.</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>إعادة تعيين الألوان</value>
@@ -1863,8 +3124,17 @@
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>وضع التحجيم:</value>
   </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>تم نسخ المخطط إلى الحافظة.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>تمت الكتابة فوق المخطط.</value>
+  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>دوران المخطط:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>تم حفظ المخطط.</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>تعيين نسبة جديدة</value>
@@ -1917,6 +3187,18 @@
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>المحور ص</value>
   </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>تم إنشاء الخريطة!</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>عرض ملف .map للاعب</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>لم يتم تحديد ملف لاعب.</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>خريطة اللاعب</value>
+  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>توليد جدران خلفية عشوائية</value>
   </data>
@@ -1925,6 +3207,9 @@
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>دعم الكتل المتأثرة بالجاذبية (مثل الرمل، إلخ)</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>توزيع عشوائي لجميع الكتل في العالم</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>لا تقم بالتوزيع العشوائي إلى كتل تختفي فورًا</value>
@@ -1941,17 +3226,34 @@
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>عشوائي العالم</value>
   </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>إزالة جميع الصناديق</value>
+  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>أدخل اسم الكتلة أو الصورة التي ترغب في إزالتها.</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>أدخل اسم الجدار الذي ترغب في إزالته.</value>
   </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>إزالة الكائن أو الكتلة أو الجدار</value>
+  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>إزالة البلاطة</value>
   </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>إزالة جميع الصناديق غير المقفلة</value>
+  </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>تأخير</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>افتح عالم أولاً.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>تعذّر فتح ملف إعادة التشغيل.
+
+{0}</value>
   </data>
   <data name="plugin_replay_player_title" xml:space="preserve">
     <value>مشغل الإعادة</value>
@@ -1965,8 +3267,14 @@
   <data name="plugin_replay_title" xml:space="preserve">
     <value>إعادة تشغيل</value>
   </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>تسوية الرمل</value>
+  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>البذرة: (اتركها فارغة للاختيار العشوائي)</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>توليد رموز تصحيح الأخطاء</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>إضافة إلى الحافظة</value>
@@ -1980,47 +3288,182 @@
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>الحد الأقصى لطول الخط</value>
   </data>
-  <data name="plugin_textstatue_title" xml:space="preserve">
-    <value>مولد تمثال النصوص</value>
-  </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>تطهير العالم</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>مولد المنازل الإجرائي</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>محرر تحويل الصورة إلى فن البكسل</value>
-  </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>عرض ملف .map للاعب</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>توزيع عشوائي لجميع الكتل في العالم</value>
-  </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>إزالة جميع الصناديق</value>
-  </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>إزالة الكائن أو الكتلة أو الجدار</value>
-  </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>إزالة جميع الصناديق غير المقفلة</value>
-  </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>تسوية الرمل</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>توليد رموز تصحيح الأخطاء</value>
-  </data>
   <data name="plugin_textstatue_menu" xml:space="preserve">
     <value>توليد تماثيل نصية</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>مولد تمثال النصوص</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>تصدير القوام (تصحيح الأخطاء)</value>
   </data>
   <data name="plugin_unlockallchests_menu" xml:space="preserve">
     <value>فتح جميع الصناديق</value>
+  </data>
+  <data name="progress_calculating_colors" xml:space="preserve">
+    <value>جارٍ حساب الألوان...</value>
+  </data>
+  <data name="progress_cloning_world" xml:space="preserve">
+    <value>جارٍ استنساخ العالم...</value>
+  </data>
+  <data name="progress_converting_to_windows_phone" xml:space="preserve">
+    <value>جارٍ تحويل العالم إلى Windows Phone...</value>
+  </data>
+  <data name="progress_generating_caves" xml:space="preserve">
+    <value>جارٍ إنشاء الكهوف...</value>
+  </data>
+  <data name="progress_generating_cave_noise" xml:space="preserve">
+    <value>جارٍ توليد ضوضاء الكهوف...</value>
+  </data>
+  <data name="progress_generating_hills" xml:space="preserve">
+    <value>جارٍ إنشاء التلال...</value>
+  </data>
+  <data name="progress_generating_underworld" xml:space="preserve">
+    <value>جارٍ إنشاء العالم السفلي...</value>
+  </data>
+  <data name="progress_generating_world" xml:space="preserve">
+    <value>جارٍ إنشاء العالم...</value>
+  </data>
+  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
+    <value>تم تحميل ترويسة عالم Windows Phone.</value>
+  </data>
+  <data name="progress_loading_chests" xml:space="preserve">
+    <value>جارٍ تحميل الصناديق...</value>
+  </data>
+  <data name="progress_loading_file_header" xml:space="preserve">
+    <value>جارٍ تحميل ترويسة الملف...</value>
+  </data>
+  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
+    <value>جارٍ تحميل مربعات Windows Phone القديمة...</value>
+  </data>
+  <data name="progress_loading_npcs" xml:space="preserve">
+    <value>جارٍ تحميل الشخصيات غير اللاعبة...</value>
+  </data>
+  <data name="progress_loading_npc_data" xml:space="preserve">
+    <value>جارٍ تحميل بيانات الشخصيات غير اللاعبة...</value>
+  </data>
+  <data name="progress_loading_npc_names" xml:space="preserve">
+    <value>جارٍ تحميل أسماء الشخصيات غير القابلة للعب...</value>
+  </data>
+  <data name="progress_loading_signs" xml:space="preserve">
+    <value>جارٍ تحميل اللافتات...</value>
+  </data>
+  <data name="progress_loading_tiles" xml:space="preserve">
+    <value>جارٍ تحميل البلاطات...</value>
+  </data>
+  <data name="progress_loading_tile_entities_section" xml:space="preserve">
+    <value>جارٍ تحميل قسم كيانات البلاطات...</value>
+  </data>
+  <data name="progress_loading_tmodloader_data" xml:space="preserve">
+    <value>جارٍ تحميل بيانات tModLoader...</value>
+  </data>
+  <data name="progress_loading_winphone_tiles" xml:space="preserve">
+    <value>جارٍ تحميل مربعات Windows Phone...</value>
+  </data>
+  <data name="progress_load_complete" xml:space="preserve">
+    <value>اكتمل التحميل.</value>
+  </data>
+  <data name="progress_placing_caves" xml:space="preserve">
+    <value>جارٍ وضع الكهوف...</value>
+  </data>
+  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
+    <value>جارٍ تجهيز بيانات tModLoader...</value>
+  </data>
+  <data name="progress_refining_caves" xml:space="preserve">
+    <value>جارٍ تنقيح الكهوف...</value>
+  </data>
+  <data name="progress_removing_future_tiles" xml:space="preserve">
+    <value>جارٍ إزالة البلاطات المستقبلية...</value>
+  </data>
+  <data name="progress_render_complete" xml:space="preserve">
+    <value>اكتمل العرض المرئي</value>
+  </data>
+  <data name="progress_resetting_time" xml:space="preserve">
+    <value>جارٍ إعادة ضبط الوقت...</value>
+  </data>
+  <data name="progress_save_bestiary" xml:space="preserve">
+    <value>حفظ سجلّ الكائنات...</value>
+  </data>
+  <data name="progress_save_chests" xml:space="preserve">
+    <value>حفظ الصناديق...</value>
+  </data>
+  <data name="progress_save_complete" xml:space="preserve">
+    <value>اكتمل الحفظ.</value>
+  </data>
+  <data name="progress_save_creative_powers" xml:space="preserve">
+    <value>حفظ القوى الإبداعية...</value>
+  </data>
+  <data name="progress_save_footers" xml:space="preserve">
+    <value>حفظ التذييلات...</value>
+  </data>
+  <data name="progress_save_headers" xml:space="preserve">
+    <value>حفظ الترويسات...</value>
+  </data>
+  <data name="progress_save_npcs" xml:space="preserve">
+    <value>حفظ الشخصيات غير اللاعبة...</value>
+  </data>
+  <data name="progress_save_signs" xml:space="preserve">
+    <value>حفظ اللافتات...</value>
+  </data>
+  <data name="progress_save_tiles" xml:space="preserve">
+    <value>حفظ البلاطات...</value>
+  </data>
+  <data name="progress_save_tile_entities_section" xml:space="preserve">
+    <value>حفظ قسم الكيانات في البلاطات...</value>
+  </data>
+  <data name="progress_save_town_manager" xml:space="preserve">
+    <value>حفظ مدير البلدة...</value>
+  </data>
+  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
+    <value>حفظ لوحات الضغط الموزونة...</value>
+  </data>
+  <data name="progress_saving_chests" xml:space="preserve">
+    <value>جارٍ حفظ الصناديق...</value>
+  </data>
+  <data name="progress_saving_npc_data" xml:space="preserve">
+    <value>جارٍ حفظ بيانات الشخصيات غير القابلة للعب...</value>
+  </data>
+  <data name="progress_saving_npc_names" xml:space="preserve">
+    <value>جارٍ حفظ أسماء الشخصيات غير القابلة للعب...</value>
+  </data>
+  <data name="progress_saving_signs" xml:space="preserve">
+    <value>جارٍ حفظ اللافتات...</value>
+  </data>
+  <data name="progress_saving_tiles" xml:space="preserve">
+    <value>جارٍ حفظ البلاطات...</value>
+  </data>
+  <data name="progress_saving_tmodloader_data" xml:space="preserve">
+    <value>جارٍ حفظ بيانات tModLoader...</value>
+  </data>
+  <data name="progress_saving_validation_data" xml:space="preserve">
+    <value>جارٍ حفظ بيانات التحقق...</value>
+  </data>
+  <data name="progress_saving_world" xml:space="preserve">
+    <value>جارٍ حفظ العالم...</value>
+  </data>
+  <data name="progress_settling_sand" xml:space="preserve">
+    <value>جاري ترسيب الرمل...</value>
+  </data>
+  <data name="progress_validating_complete" xml:space="preserve">
+    <value>جارٍ التحقق... اكتمل 大发快三计划</value>
+  </data>
+  <data name="progress_validating_file" xml:space="preserve">
+    <value>جارٍ التحقق من الملف...</value>
+  </data>
+  <data name="progress_validating_world" xml:space="preserve">
+    <value>جارٍ التحقّق من العالم...</value>
+  </data>
+  <data name="progress_verifying_file" xml:space="preserve">
+    <value>جارٍ التحقّق من الملف...</value>
+  </data>
+  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
+    <value>تم تحميل العالم في {0} ثانية.</value>
+  </data>
+  <data name="progress_world_load_complete" xml:space="preserve">
+    <value>اكتمل تحميل العالم.</value>
+  </data>
+  <data name="progress_world_save_complete" xml:space="preserve">
+    <value>اكتمل حفظ العالم.</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>اختر نسخة للحفظ بالتالي:</value>
@@ -2073,6 +3516,12 @@
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>احفظ العالم تلقائيًا بشكل دوري</value>
   </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>معاينة الفرشاة بجودة عالية</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>إظهار شكل الفرشاة كاملًا عند معاينة الخط مع الضغط على Shift. عطّل هذا الخيار لمعاينة خط أبسط بعرض بكسل واحد.</value>
+  </data>
   <data name="settings_cancel" xml:space="preserve">
     <value>إلغاء</value>
   </data>
@@ -2080,8 +3529,14 @@
     <value>ميزات تجريبية</value>
     <comment>Settings category for experimental/preview features</comment>
   </data>
+  <data name="settings_category_filter" xml:space="preserve">
+    <value>تصفية وبحث</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>عام</value>
+  </data>
+  <data name="settings_category_keybindings_format" xml:space="preserve">
+    <value>اختصارات لوحة المفاتيح - {0}</value>
   </data>
   <data name="settings_category_layers" xml:space="preserve">
     <value>الطبقات</value>
@@ -2104,6 +3559,12 @@
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>لوحة ألوان خريطة البكسل: افتراضية، واقعية (مأخوذة من عينات من النسيج)، أو Minimap (ألوان خرائط داخل اللعبة). يتطلب إعادة تشغيل.</value>
   </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>مقدار التغميق</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>عتامة طبقة التعتيم للبلاطات غير المحددة (٠–١٠٠٪)</value>
+  </data>
   <data name="settings_enable_mica" xml:space="preserve">
     <value>Enable Mica backdrop</value>
   </data>
@@ -2121,6 +3582,12 @@
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>إرسال تقارير الأخطاء بشكل مجهول للمساعدة في تحسين الاستقرار</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>وضع التصفية</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>وضع التصفية الافتراضي عند تطبيق فلاتر البلاط والجدران والسوائل والأسلاك</value>
   </data>
   <data name="settings_keybind_add_tooltip" xml:space="preserve">
     <value>إضافة ترابط مفاتيح جديد</value>
@@ -2233,12 +3700,6 @@
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>عرض الأخبار والإعلانات في المحرر</value>
   </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>عرض شاشة البداية</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>عرض شعار TEdit أثناء بدء التطبيق</value>
-  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>عرض النقاط</value>
   </data>
@@ -2250,6 +3711,12 @@
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>تبديل رؤية الأسلاك الحمراء</value>
+  </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>عرض شاشة البداية</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>عرض شعار TEdit أثناء بدء التطبيق</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>عرض القوام</value>
@@ -2564,6 +4031,21 @@
   <data name="spriteeditor_size_w" xml:space="preserve">
     <value>Size W:</value>
   </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>لم يتم تحميل أي نسيج</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>لم يتم تحميل أي نسيج — يتعذّر التعرّف عليه تلقائيًا</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>تم التحميل من إعدادات المستخدم المخصّصة</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>جاهز</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>إعادة ضبط بيانات البلاطة إلى الإعدادات الافتراضية</value>
+  </data>
   <data name="spriteeditor_test" xml:space="preserve">
     <value>Test Value</value>
   </data>
@@ -2596,6 +4078,9 @@
   </data>
   <data name="sprite_clear_selection_tooltip" xml:space="preserve">
     <value>اختيار واضح</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>البكسل: ({0}, {1})  المربع: [{2}, {3}]</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>راووق</value>
@@ -2636,11 +4121,20 @@
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>نظام تحديد المواقع العالمي</value>
   </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>فارغ</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>اضافيه</value>
   </data>
   <data name="statusbar_frame_label" xml:space="preserve">
     <value>إطار</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>قطعة غير صالحة ({0})</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>جدار غير صالح ({0})</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
     <value>لون</value>
@@ -2653,6 +4147,9 @@
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
     <value>بلاط</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>طلاء غير معروف ({0})</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>جدار</value>
@@ -2683,6 +4180,9 @@
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>نسل الفريق الأصفر</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>اقرأ سياسة الخصوصية الكاملة</value>
   </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>يمكن لـ TEdit إرسال تقارير أخطاء مجهولة الهوية للمساعدة في تحسين الاستقرار.
@@ -2905,11 +4405,17 @@
   <data name="tool_fill_title" xml:space="preserve">
     <value>ملء</value>
   </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>مطرقة</value>
+  </data>
   <data name="tool_morph_base_tiles" xml:space="preserve">
     <value>بلاط القاعدة</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>الأوسمة</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>المذابح/الكرات</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>الشر</value>
@@ -3055,8 +4561,20 @@
   <data name="tool_picker_title" xml:space="preserve">
     <value>منتقي - حدد لون البلاط</value>
   </data>
+  <data name="tool_point_dungeon" xml:space="preserve">
+    <value>الزنزانة</value>
+  </data>
+  <data name="tool_point_spawn" xml:space="preserve">
+    <value>نقطة الظهور</value>
+  </data>
+  <data name="tool_point_team_format" xml:space="preserve">
+    <value>الفريق {0}</value>
+  </data>
   <data name="tool_point_title" xml:space="preserve">
     <value>نقاط الاهتمام الخاصة</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>التحديد</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>سبرايت بلاسر</value>
@@ -3132,6 +4650,9 @@
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>عالم الجريمة BG</value>
+  </data>
+  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
+    <value>دماغ كثولو</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>العملاق الغزلان</value>
@@ -3718,6 +5239,18 @@
     <value>TEdit محدث.</value>
     <comment>Toast message when no updates are available</comment>
   </data>
+  <data name="wall_natural_format" xml:space="preserve">
+    <value>{0} (طبيعي)</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>السماء</value>
+  </data>
+  <data name="wall_unbreakable" xml:space="preserve">
+    <value>جدار لا يمكن تكسيره</value>
+  </data>
+  <data name="wall_unused_format" xml:space="preserve">
+    <value>{0} (غير مستخدم)</value>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>أزرق</value>
   </data>
@@ -3772,6 +5305,21 @@
   <data name="world_explorer_loading_preview" xml:space="preserve">
     <value>جاري التحميل...</value>
   </data>
+  <data name="world_explorer_modified_days_ago" xml:space="preserve">
+    <value>قبل {0} يومًا</value>
+  </data>
+  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
+    <value>قبل {0} ساعة</value>
+  </data>
+  <data name="world_explorer_modified_just_now" xml:space="preserve">
+    <value>قبل شوي</value>
+  </data>
+  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
+    <value>قبل {0} دقيقة 乐彩</value>
+  </data>
+  <data name="world_explorer_modified_missing" xml:space="preserve">
+    <value>[غير متوفر]</value>
+  </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>لا يوجد نسخة احتياطية — انقر لإنشاء .bak ونسخة احتياطية من TEdit</value>
   </data>
@@ -3814,79 +5362,55 @@
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>إلغاء التثبيت</value>
   </data>
+  <data name="world_gamemode_expert" xml:space="preserve">
+    <value>خبير</value>
+  </data>
+  <data name="world_gamemode_master" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="world_invasion_goblin" xml:space="preserve">
+    <value>غزو الغوبلن</value>
+  </data>
+  <data name="world_moon_blue_marble" xml:space="preserve">
+    <value>الرخام الأزرق</value>
+  </data>
+  <data name="world_moon_brown" xml:space="preserve">
+    <value>بني</value>
+  </data>
+  <data name="world_moon_green_gas" xml:space="preserve">
+    <value>غاز أخضر</value>
+  </data>
+  <data name="world_moon_grey" xml:space="preserve">
+    <value>رمادي</value>
+  </data>
+  <data name="world_moon_orange_venus" xml:space="preserve">
+    <value>الزهرة البرتقالية</value>
+  </data>
+  <data name="world_moon_pink" xml:space="preserve">
+    <value>وردي</value>
+  </data>
+  <data name="world_moon_ringed" xml:space="preserve">
+    <value>محاط بحلقة</value>
+  </data>
+  <data name="world_moon_triple_purple" xml:space="preserve">
+    <value>بنفسجي ثلاثي</value>
+  </data>
+  <data name="world_moon_white_ice" xml:space="preserve">
+    <value>الجليد الأبيض</value>
+  </data>
+  <data name="world_size_custom" xml:space="preserve">
+    <value>مخصص</value>
+  </data>
+  <data name="world_size_large" xml:space="preserve">
+    <value>كبير</value>
+  </data>
+  <data name="world_size_medium" xml:space="preserve">
+    <value>متوسط</value>
+  </data>
+  <data name="world_size_small" xml:space="preserve">
+    <value>صغير</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>المذابح/الكرات</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>اقرأ سياسة الخصوصية الكاملة</value>
-  </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>حساب...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>جارٍ الحساب...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>إلغاء التحويل</value>
-  </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>تحويل إلى فن البكسل</value>
-  </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>افتراضي</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>خطأ: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>خطأ: تنسيق فلتر الألوان غير صالح! {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>مرشح اللون هو صفر. قم بتعديل إعداداتك.</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>خطأ: تحتاج إلى إنشاء فن بكسل أولاً!</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>حدث خطأ: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>خطأ في تحميل الصورة: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>ميزة "نسخ إلى الحافظة" تتطلب تحميل عالم!</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>يجب أن تكون قد حفظت مخططًا مسبقًا أولاً!</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>خطأ في حفظ الصورة: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>خطأ في حفظ المخطط: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>البيانات التخطيطية فارغة! قم بإنشاء فن بكسل أولاً!</value>
-  </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>اكتملت الصورة.</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>لا أحد</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>تم إلغاء العرض.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>تم نسخ المخطط إلى الحافظة.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>تمت الكتابة فوق المخطط.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>تم حفظ المخطط.</value>
   </data>
 </root>

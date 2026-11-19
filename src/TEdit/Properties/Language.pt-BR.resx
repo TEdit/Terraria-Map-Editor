@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -137,6 +137,9 @@
   </data>
   <data name="about_patreon" xml:space="preserve">
     <value>Suporte no Patreon</value>
+  </data>
+  <data name="about_system" xml:space="preserve">
+    <value>Sistema</value>
   </data>
   <data name="about_terraria_not_found" xml:space="preserve">
     <value>Não Encontrado</value>
@@ -228,6 +231,96 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>Atualizar</value>
   </data>
+  <data name="bg_cave_blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="bg_cave_blue_alt" xml:space="preserve">
+    <value>Alt azul</value>
+  </data>
+  <data name="bg_cave_brown" xml:space="preserve">
+    <value>Marrom</value>
+  </data>
+  <data name="bg_cave_gray" xml:space="preserve">
+    <value>Cinza</value>
+  </data>
+  <data name="bg_cave_green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="bg_cave_green_alt" xml:space="preserve">
+    <value>Verde Alternativo</value>
+  </data>
+  <data name="bg_cave_purple" xml:space="preserve">
+    <value>Roxo</value>
+  </data>
+  <data name="bg_cave_stone" xml:space="preserve">
+    <value>Pedra</value>
+  </data>
+  <data name="bg_default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="bg_mnt_default_trees" xml:space="preserve">
+    <value>Mnt {0} + Árvores padrão</value>
+  </data>
+  <data name="bg_mnt_trees" xml:space="preserve">
+    <value>Montanhas {0} + árvores</value>
+  </data>
+  <data name="bg_mountains_alt" xml:space="preserve">
+    <value>Altitude das montanhas</value>
+  </data>
+  <data name="bg_mountains_only" xml:space="preserve">
+    <value>Somente montanhas</value>
+  </data>
+  <data name="bg_mountains_only_a" xml:space="preserve">
+    <value>Somente montanhas A</value>
+  </data>
+  <data name="bg_mountains_only_b" xml:space="preserve">
+    <value>Somente montanhas B</value>
+  </data>
+  <data name="bg_mountains_only_c" xml:space="preserve">
+    <value>Apenas montanhas C</value>
+  </data>
+  <data name="bg_mountains_tree" xml:space="preserve">
+    <value>Montanhas + árvore</value>
+  </data>
+  <data name="bg_multibiome_format" xml:space="preserve">
+    <value>Multibioma {0}</value>
+  </data>
+  <data name="bg_remix_format" xml:space="preserve">
+    <value>Remixar {0}</value>
+  </data>
+  <data name="bg_trees_only_a" xml:space="preserve">
+    <value>Somente árvores A</value>
+  </data>
+  <data name="bg_trees_only_b" xml:space="preserve">
+    <value>Apenas árvores B</value>
+  </data>
+  <data name="bg_tree_boreal" xml:space="preserve">
+    <value>Boreal</value>
+  </data>
+  <data name="bg_tree_jungle" xml:space="preserve">
+    <value>Semelhante à selva</value>
+  </data>
+  <data name="bg_tree_oak" xml:space="preserve">
+    <value>Carvalho</value>
+  </data>
+  <data name="bg_tree_palm" xml:space="preserve">
+    <value>Semelhante a uma palmeira</value>
+  </data>
+  <data name="bg_tree_sakura" xml:space="preserve">
+    <value>Sakura</value>
+  </data>
+  <data name="bg_tree_willow" xml:space="preserve">
+    <value>Salgueiro</value>
+  </data>
+  <data name="bg_variant_alt" xml:space="preserve">
+    <value>Variante {0} alternativa</value>
+  </data>
+  <data name="bg_variant_alt_letter" xml:space="preserve">
+    <value>Variante {0} Alt. {1}</value>
+  </data>
+  <data name="bg_variant_format" xml:space="preserve">
+    <value>Variante {0}</value>
+  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Tijolo inteiro</value>
   </data>
@@ -280,6 +373,9 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="common_air" xml:space="preserve">
+    <value>Ar</value>
+  </data>
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
@@ -304,11 +400,17 @@
   <data name="common_close" xml:space="preserve">
     <value>Fechar</value>
   </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
   <data name="common_edit" xml:space="preserve">
     <value>Editar</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>Ativado</value>
+  </data>
+  <data name="common_error" xml:space="preserve">
+    <value>Erro</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>Gerar</value>
@@ -316,8 +418,14 @@
   <data name="common_left" xml:space="preserve">
     <value>Esquerda</value>
   </data>
+  <data name="common_no" xml:space="preserve">
+    <value>Não</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>Nenhum</value>
+  </data>
+  <data name="common_not_determined" xml:space="preserve">
+    <value>Não determinado</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>OK</value>
@@ -342,6 +450,9 @@
   </data>
   <data name="common_search" xml:space="preserve">
     <value>Busca</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>Sim</value>
   </data>
   <data name="depth_center" xml:space="preserve">
     <value>Centro</value>
@@ -373,12 +484,350 @@
   <data name="depth_west" xml:space="preserve">
     <value>{0}' Oeste</value>
   </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>Não foi possível excluir {0:N0} arquivos; consulte o log para ver detalhes.</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>{0:N0} arquivos excluídos e {1} liberados.</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>Cache limpa</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>Limpar cache</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>Excluir {0:N0} arquivos em cache ({1})?
+
+Isso remove os backups, os salvamentos automáticos e todo o histórico de desfazer/refazer do TEdit. Os arquivos de mundo do Terraria e os arquivos .bak não são afetados.</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>Limpar cache do TEdit</value>
+  </data>
+  <data name="dialog_complete_bestiary_error" xml:space="preserve">
+    <value>Erro ao concluir os dados do Bestiário. Seu Bestiário atual foi restaurado.
+{0}</value>
+  </data>
+  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
+    <value>Isso substituirá completamente o Bestiário e a Contagem de Abates do mundo carregado por um bestiário completo. Deseja continuar?</value>
+  </data>
+  <data name="dialog_complete_bestiary_title" xml:space="preserve">
+    <value>Completar o bestiário?</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>Confirmar exclusão</value>
+  </data>
+  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
+    <value>Adicionar limites de “borda do mundo”?</value>
+  </data>
+  <data name="dialog_crop_world_borders_title" xml:space="preserve">
+    <value>Recortar mundo:</value>
+  </data>
+  <data name="dialog_crop_world_prompt" xml:space="preserve">
+    <value>Isso gerará um novo mundo dentro da região selecionada.
+Todo o progresso fora da área recortada será perdido. Continuar?</value>
+  </data>
+  <data name="dialog_crop_world_title" xml:space="preserve">
+    <value>Recortar o mundo?</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>Tem certeza de que deseja excluir todos os baús?</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>Tem certeza de que deseja excluir todos os baús desbloqueados?</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>Excluir o backup?
+{0}</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>Excluir baús</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>Não salvar</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>O diretório parece não possuir Conteúdo do Terraria.
 Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0} como seu caminho do Terraria.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Conteúdo do Terraria não encontrado</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>Exportar arquivo de esquema</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>As texturas ainda não foram carregadas. Aguarde até que o carregamento das texturas seja concluído.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>Exportar texturas</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>Importar bandeiras do arquivo do mundo</value>
+  </data>
+  <data name="dialog_import_banners_error" xml:space="preserve">
+    <value>Erro ao importar os dados dos estandartes de {0}. Seus estandartes atuais foram restaurados.
+{1}</value>
+  </data>
+  <data name="dialog_import_banners_prompt" xml:space="preserve">
+    <value>Isso substituirá as contagens atuais de estandartes pelos dados do arquivo de mundo selecionado. Deseja continuar?</value>
+  </data>
+  <data name="dialog_import_banners_title" xml:space="preserve">
+    <value>Importar estandartes?</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>Importar Bestiário e mortes do arquivo do mundo</value>
+  </data>
+  <data name="dialog_import_bestiary_error" xml:space="preserve">
+    <value>Erro ao importar os dados do Bestiário de {0}. Seu Bestiário atual foi restaurado.
+{1}</value>
+  </data>
+  <data name="dialog_import_error_title" xml:space="preserve">
+    <value>Erro de importação</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>Importar arquivo de esquema de geração de casas do TEdit</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>Importar arquivo de esquema do TEdit</value>
+  </data>
+  <data name="dialog_invalid_world_prompt" xml:space="preserve">
+    <value>Ocorreu um erro ao ler o arquivo do mundo.
+Isso geralmente é causado por um arquivo de salvamento corrompido ou por uma versão do mundo mais recente do que a suportada.
+
+TEdit v{0}
+Mundo máximo do TEdit: {1}
+Mundo atual: {2}
+
+Deseja forçar o carregamento mesmo assim?
+
+AVISO: Isso pode causar resultados inesperados, incluindo arquivos de mundo corrompidos e falhas no programa.
+
+O erro é:
+{3}</value>
+  </data>
+  <data name="dialog_invalid_world_title" xml:space="preserve">
+    <value>Carregar mundo inválido?</value>
+  </data>
+  <data name="dialog_language_restart_prompt" xml:space="preserve">
+    <value>Idioma alterado para {0}. Deseja reiniciar agora?</value>
+  </data>
+  <data name="dialog_language_restart_title" xml:space="preserve">
+    <value>Reinicie para alterar o idioma</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>Você está carregando um mundo do tModLoader de uma versão antiga: {0}.
+1. Editar arquivos de versões antigas é um recurso BETA.
+2. A edição de mundos com mods não é compatível.
+Faça uma cópia de segurança, pois o arquivo do mundo pode ser corrompido.
+Deseja continuar?</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>Carregar mundo de uma versão antiga do tModLoader?</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>Você está carregando um mundo de uma versão antiga: {0}.
+Editar arquivos antigos pode causar resultados inesperados.
+Faça um backup, pois o arquivo do mundo pode ser corrompido.
+Deseja continuar?</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>Carregar mundo de versão antiga?</value>
+  </data>
+  <data name="dialog_link_error_message" xml:space="preserve">
+    <value>Não foi possível abrir o navegador externo. Copiar para a área de transferência?</value>
+  </data>
+  <data name="dialog_link_error_title" xml:space="preserve">
+    <value>Erro de link</value>
+  </data>
+  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
+    <value>Isso substituirá completamente o Bestiário e a Contagem de Abates do mundo carregado no momento pelo Bestiário do arquivo selecionado. Deseja continuar?</value>
+  </data>
+  <data name="dialog_load_bestiary_title" xml:space="preserve">
+    <value>Carregar bestiário?</value>
+  </data>
+  <data name="dialog_locate_terraria_folder" xml:space="preserve">
+    <value>Localizar pasta do Terraria</value>
+  </data>
+  <data name="dialog_max_banners_prompt" xml:space="preserve">
+    <value>Definir a quantidade de todas as bandeiras como o máximo (9999)?</value>
+  </data>
+  <data name="dialog_max_banners_title" xml:space="preserve">
+    <value>Maximizar estandartes?</value>
+  </data>
+  <data name="dialog_mod_world_prompt" xml:space="preserve">
+    <value>Você está carregando um mundo do TModLoader. A edição de mundos com mods não é compatível.
+Faça um backup, pois o arquivo do mundo pode ser corrompido.
+Deseja continuar?</value>
+  </data>
+  <data name="dialog_mod_world_title" xml:space="preserve">
+    <value>Carregar mundo com mod?</value>
+  </data>
+  <data name="dialog_newer_version_prompt" xml:space="preserve">
+    <value>Esta versão do mundo é MAIS RECENTE do que a suportada pela configuração do TEdit.
+
+Versão do mundo: {0}
+Máxima suportada: {1}
+
+O TEdit usará a versão {1} da configuração (a ausência de novos blocos, paredes etc. pode causar problemas).
+
+Deseja tentar carregar mesmo assim?</value>
+  </data>
+  <data name="dialog_newer_version_title" xml:space="preserve">
+    <value>Versão mais recente do mundo</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>Abrir arquivo de mundo</value>
+  </data>
+  <data name="dialog_player_modified_prompt" xml:space="preserve">
+    <value>{0} foi modificado externamente desde que foi carregado ou salvo pela última vez.
+Deseja sobrescrevê-lo?</value>
+  </data>
+  <data name="dialog_player_modified_title" xml:space="preserve">
+    <value>Jogador Modificado</value>
+  </data>
+  <data name="dialog_reload_no_world" xml:space="preserve">
+    <value>Nenhum mundo aberto carregado para recarregar.</value>
+  </data>
+  <data name="dialog_reload_world_prompt" xml:space="preserve">
+    <value>O trabalho não salvo será perdido!</value>
+  </data>
+  <data name="dialog_reload_world_title" xml:space="preserve">
+    <value>Recarregar o mundo atual?</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>Isso removerá completamente do seu mundo todos os blocos encontrados. Continuar?</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>{0:N0} blocos foram encontrados e removidos.</value>
+  </data>
+  <data name="dialog_replace_mask_warning" xml:space="preserve">
+    <value>Ative pelo menos uma máscara para usar a substituição. As máscaras definem quais blocos devem corresponder.</value>
+  </data>
+  <data name="dialog_replace_title" xml:space="preserve">
+    <value>Substituir</value>
+  </data>
+  <data name="dialog_reset_banners_prompt" xml:space="preserve">
+    <value>Redefinir para zero a contagem de todos os estandartes?</value>
+  </data>
+  <data name="dialog_reset_banners_title" xml:space="preserve">
+    <value>Redefinir estandartes?</value>
+  </data>
+  <data name="dialog_reset_bestiary_error" xml:space="preserve">
+    <value>Erro ao redefinir os dados do Bestiário. Seu bestiário atual foi restaurado.
+{0}</value>
+  </data>
+  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
+    <value>Isso substituirá completamente o Bestiário e a Contagem de Abates do mundo carregado atualmente por um bestiário reiniciado. Continuar?</value>
+  </data>
+  <data name="dialog_reset_bestiary_title" xml:space="preserve">
+    <value>Redefinir o bestiário?</value>
+  </data>
+  <data name="dialog_save_banners_error" xml:space="preserve">
+    <value>Erro ao salvar os dados do estandarte. As alterações foram restauradas.
+{0}</value>
+  </data>
+  <data name="dialog_save_banners_prompt" xml:space="preserve">
+    <value>Salvar as alterações do banner no mundo?</value>
+  </data>
+  <data name="dialog_save_banners_title" xml:space="preserve">
+    <value>Salvar estandartes?</value>
+  </data>
+  <data name="dialog_save_bestiary_error" xml:space="preserve">
+    <value>Erro ao salvar os dados do Bestiário. Seu bestiário atual foi restaurado.
+{0}</value>
+  </data>
+  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
+    <value>Tem certeza de que deseja salvar as alterações do Bestiário?</value>
+  </data>
+  <data name="dialog_save_bestiary_title" xml:space="preserve">
+    <value>Salvar o bestiário?</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>Salvar pixel art gerada</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>Salvar a análise do mundo.</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>Salvar mundo como</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>Selecione a pasta de saída dos blocos do mapa</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>Selecione um arquivo de jogador</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>Salvar as alterações antes de fechar o TEdit?</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>Alterações não salvas</value>
+  </data>
+  <data name="dialog_world_corrupt_empty" xml:space="preserve">
+    <value>O arquivo do mundo parece estar vazio ou corrompido (todos os bytes são zero).
+Não é possível recuperar este arquivo, pois não há dados.
+
+O que posso fazer?
+1. Restaurar um backup anterior (.bak, .bak2).
+2. Restaurar um backup manual feito anteriormente.
+3. Restaurar um ponto de salvamento do TEdit criado anteriormente (.TEdit).
+4. Restaurar um backup pelo Histórico de Arquivos do Windows (se estiver ativado).</value>
+  </data>
+  <data name="dialog_world_modified_prompt" xml:space="preserve">
+    <value>{0} foi modificado externamente desde seu último salvamento.
+Deseja sobrescrevê-lo?</value>
+  </data>
+  <data name="dialog_world_modified_title" xml:space="preserve">
+    <value>Mundo modificado</value>
+  </data>
+  <data name="dialog_world_read_error" xml:space="preserve">
+    <value>Ocorreu um erro ao ler o arquivo do mundo.
+Isso geralmente é causado por um arquivo de salvamento corrompido ou por uma versão do mundo mais recente do que a suportada.
+
+TEdit v{0}
+Tamanho máximo do mundo no TEdit: {1}
+Mundo atual: {2}
+
+O erro é:
+{3}</value>
+  </data>
+  <data name="dialog_world_save_failed" xml:space="preserve">
+    <value>Falha ao salvar o mundo. O mundo aberto foi restaurado e suas alterações continuam sem ser salvas.
+{0}</value>
+  </data>
+  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
+    <value>Pular</value>
+  </data>
+  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
+    <value>Sentado</value>
+  </data>
+  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
+    <value>Em pé</value>
+  </data>
+  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
+    <value>Usar 1</value>
+  </data>
+  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
+    <value>Usar 2</value>
+  </data>
+  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
+    <value>Usar 3</value>
+  </data>
+  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
+    <value>Usar 4</value>
+  </data>
+  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
+    <value>Usar 5</value>
+  </data>
+  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
+    <value>Andando</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>Ônibus</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>Fio</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
     <value>Wire 45°</value>
@@ -418,6 +867,127 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="editor_utilities_label" xml:space="preserve">
     <value>Utilidades</value>
+  </data>
+  <data name="enum_FilterMode_Darken" xml:space="preserve">
+    <value>Escurecer</value>
+  </data>
+  <data name="enum_FilterMode_Hide" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
+    <value>Automático (seguir o sistema)</value>
+  </data>
+  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="enum_LanguageSelection_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="enum_LanguageSelection_French" xml:space="preserve">
+    <value>Francês</value>
+  </data>
+  <data name="enum_LanguageSelection_German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
+    <value>Minimapa</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
+    <value>Realista</value>
+  </data>
+  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
+    <value>Alfa</value>
+  </data>
+  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
+    <value>Beta</value>
+  </data>
+  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
+    <value>Estável</value>
+  </data>
+  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
+    <value>Download automático</value>
+  </data>
+  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
+    <value>Instalação automática</value>
+  </data>
+  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
+    <value>Desativado</value>
+  </data>
+  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
+    <value>Apenas notificar</value>
+  </data>
+  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
+    <value>Centralizar tela</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
+    <value>Maximizada</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>Não foi possível criar a pasta de logs. O aplicativo será encerrado.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>Não foi possível criar a pasta de registros.</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>Falha ao abrir o arquivo de log: {0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>Erro ao carregar as texturas de {0}.
+Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>Erro ao carregar as texturas</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>Não foi possível criar a pasta temporária de desfazer. O aplicativo será encerrado.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>Não foi possível criar a pasta de desfazer alterações.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>Ocorreu uma exceção não tratada. Você pode continuar usando o TEdit, mas o funcionamento pode ficar instável até que o aplicativo seja reiniciado.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>Exceção não tratada</value>
   </data>
   <data name="expand_description" xml:space="preserve">
     <value>O mundo será centrado nessas novas dimensões.</value>
@@ -530,6 +1100,219 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="find_tab_chests" xml:space="preserve">
     <value>Itens em Baús</value>
   </data>
+  <data name="frame_anchor_bottom" xml:space="preserve">
+    <value>Inferior</value>
+  </data>
+  <data name="frame_anchor_center" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="frame_anchor_left" xml:space="preserve">
+    <value>Esquerda</value>
+  </data>
+  <data name="frame_anchor_none" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="frame_anchor_right" xml:space="preserve">
+    <value>Direita</value>
+  </data>
+  <data name="frame_anchor_top" xml:space="preserve">
+    <value>Superior</value>
+  </data>
+  <data name="frame_text_amber_tree" xml:space="preserve">
+    <value>Árvore de Âmbar</value>
+  </data>
+  <data name="frame_text_amethyst_tree" xml:space="preserve">
+    <value>Árvore de ametista</value>
+  </data>
+  <data name="frame_text_ash_tree" xml:space="preserve">
+    <value>Freixo</value>
+  </data>
+  <data name="frame_text_attach_left" xml:space="preserve">
+    <value>Anexar à esquerda</value>
+  </data>
+  <data name="frame_text_attach_left_endcap" xml:space="preserve">
+    <value>Anexar extremidade esquerda</value>
+  </data>
+  <data name="frame_text_attach_right" xml:space="preserve">
+    <value>Anexar à direita</value>
+  </data>
+  <data name="frame_text_attach_right_endcap" xml:space="preserve">
+    <value>Anexar tampa da extremidade direita</value>
+  </data>
+  <data name="frame_text_boss_trophy" xml:space="preserve">
+    <value>Troféu de chefe</value>
+  </data>
+  <data name="frame_text_corruption_short_plants" xml:space="preserve">
+    <value>Plantas Baixas da Corrupção</value>
+  </data>
+  <data name="frame_text_crimson_short_plants" xml:space="preserve">
+    <value>Plantas Baixas Carmesim</value>
+  </data>
+  <data name="frame_text_critter_anchor" xml:space="preserve">
+    <value>Âncora de Criatura@endsection</value>
+  </data>
+  <data name="frame_text_decos_3x2" xml:space="preserve">
+    <value>Decorações (3x2)</value>
+  </data>
+  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
+    <value>Decorações (3x2) (Grupo 2)</value>
+  </data>
+  <data name="frame_text_diamond_tree" xml:space="preserve">
+    <value>Árvore de Diamante</value>
+  </data>
+  <data name="frame_text_emerald_tree" xml:space="preserve">
+    <value>Árvore de esmeralda</value>
+  </data>
+  <data name="frame_text_endcap_left" xml:space="preserve">
+    <value>Extremidade esquerda</value>
+  </data>
+  <data name="frame_text_endcap_right" xml:space="preserve">
+    <value>Extremidade direita</value>
+  </data>
+  <data name="frame_text_flat" xml:space="preserve">
+    <value>Plano</value>
+  </data>
+  <data name="frame_text_forest_pot" xml:space="preserve">
+    <value>Vaso da Floresta</value>
+  </data>
+  <data name="frame_text_forest_short_plants" xml:space="preserve">
+    <value>Plantas rasteiras da floresta</value>
+  </data>
+  <data name="frame_text_forest_tall_plants" xml:space="preserve">
+    <value>Plantas Altas da Floresta</value>
+  </data>
+  <data name="frame_text_forest_tree" xml:space="preserve">
+    <value>Árvore da floresta</value>
+  </data>
+  <data name="frame_text_hallow_short_plants" xml:space="preserve">
+    <value>Plantas baixas do Sagrado</value>
+  </data>
+  <data name="frame_text_jungle_large_plants" xml:space="preserve">
+    <value>Plantas grandes da Selva</value>
+  </data>
+  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
+    <value>Eco das Plantas da Selva</value>
+  </data>
+  <data name="frame_text_jungle_short_plants" xml:space="preserve">
+    <value>Plantas Baixas da Selva</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
+    <value>Escombros Grandes (3x2)</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
+    <value>Escombros Grandes (3x2) (Grupo 2)</value>
+  </data>
+  <data name="frame_text_left" xml:space="preserve">
+    <value>Esquerda</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>Bloqueado</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
+    <value>Escombros médios (2×1)</value>
+  </data>
+  <data name="frame_text_monster_banner" xml:space="preserve">
+    <value>Estandarte de Monstro</value>
+  </data>
+  <data name="frame_text_off" xml:space="preserve">
+    <value>Desliga</value>
+  </data>
+  <data name="frame_text_on" xml:space="preserve">
+    <value>Ativado</value>
+  </data>
+  <data name="frame_text_ore_bars" xml:space="preserve">
+    <value>Barras de minério</value>
+  </data>
+  <data name="frame_text_pumpkin_plant" xml:space="preserve">
+    <value>Planta de abóbora</value>
+  </data>
+  <data name="frame_text_right" xml:space="preserve">
+    <value>Direita</value>
+  </data>
+  <data name="frame_text_ruby_tree" xml:space="preserve">
+    <value>Árvore de Rubi</value>
+  </data>
+  <data name="frame_text_sapphire_tree" xml:space="preserve">
+    <value>Árvore de Safira</value>
+  </data>
+  <data name="frame_text_single" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="frame_text_small_decos" xml:space="preserve">
+    <value>Decorações pequenas</value>
+  </data>
+  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
+    <value>Entulho Pequeno (1x1)</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
+    <value>Patamar inferior da escada à esquerda</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
+    <value>Patamar inferior da escada à direita</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
+    <value>Recuo da escada para cima e à esquerda 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
+    <value>Encaixe da escada para cima e à esquerda 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
+    <value>Escada recuada para cima e à esquerda 3</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
+    <value>Encaixe da escada para cima e à direita 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
+    <value>Recuo da escada para cima e à direita 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
+    <value>Rebaixo de escada para cima e à direita 3</value>
+  </data>
+  <data name="frame_text_stair_inverted_left" xml:space="preserve">
+    <value>Escada invertida à esquerda</value>
+  </data>
+  <data name="frame_text_stair_inverted_right" xml:space="preserve">
+    <value>Escada invertida para a direita</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
+    <value>Patamar superior da escada à esquerda</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
+    <value>Acabamento esquerdo do patamar superior da escada</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
+    <value>Patamar superior da escada — esquerda–direita</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
+    <value>Patamar Superior da Escada à Direita</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
+    <value>Tampa da extremidade direita do patamar superior da escada</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
+    <value>Espelho da escada para cima à esquerda</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
+    <value>Longarina da escada para cima à esquerda</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
+    <value>Espelho de escada subindo à direita</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
+    <value>Longarina direita da escada ascendente</value>
+  </data>
+  <data name="frame_text_text_statue" xml:space="preserve">
+    <value>Estátua de texto</value>
+  </data>
+  <data name="frame_text_topaz_tree" xml:space="preserve">
+    <value>Árvore de Topázio</value>
+  </data>
+  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
+    <value>Árvore Sakura de Vaidade</value>
+  </data>
+  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
+    <value>Árvore ornamental Salgueiro-amarelo</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>Gosta do TEdit? Apoie-nos!</value>
   </data>
@@ -547,6 +1330,312 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>Definir sólido</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="input_category_editing" xml:space="preserve">
+    <value>Editando</value>
+  </data>
+  <data name="input_category_file" xml:space="preserve">
+    <value>Arquivo</value>
+  </data>
+  <data name="input_category_help" xml:space="preserve">
+    <value>Ajuda</value>
+  </data>
+  <data name="input_category_navigation" xml:space="preserve">
+    <value>Navegação</value>
+  </data>
+  <data name="input_category_selection" xml:space="preserve">
+    <value>Seleção</value>
+  </data>
+  <data name="input_category_toggles" xml:space="preserve">
+    <value>Alternâncias</value>
+  </data>
+  <data name="input_category_tooldrawing" xml:space="preserve">
+    <value>Ferramenta de desenho</value>
+  </data>
+  <data name="input_category_tools" xml:space="preserve">
+    <value>Ferramentas</value>
+  </data>
+  <data name="input_category_view" xml:space="preserve">
+    <value>Exibir</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>Desenhar / Ação primária</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>Desenhar com restrição (H/V/45°)</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>Restringir o desenho a linhas horizontais, verticais ou diagonais de 45°</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>Ação principal de desenho nas ferramentas</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>Desenhar linha de ponto a ponto</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>Desenhar linhas retas entre os pontos clicados</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>Mover a visualização do mapa</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>Arraste para mover a visualização</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>Ação secundária</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>Ação secundária nas ferramentas (inspecionar, desmarcar, selecionar máscara etc.)</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>Ativar/desativar fio vermelho</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>Ativar/desativar fio vermelho</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>Alternar fio azul</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>Ativar/desativar fio azul</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>Alternar fio verde</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>Alternar ativação do fio verde</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>Ativar/desativar fio amarelo</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>Ativar/desativar fio amarelo</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>Alternar modo de desenho de fios</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>Alternar modo de desenho de fios: Desativado → Fio 90° → Fio 45° → Desativado</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>Alternar direção dos fios H/V</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>Alternar entre roteamento de fios horizontal primeiro, vertical primeiro e detecção automática</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>Destacar rastreamento de fios</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>Alt+clique para destacar todos os fios conectados ao bloco clicado</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>Mundo da colheita</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>Recortar</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>Expandir o mundo</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>Colar</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>Refazer</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>Desfazer</value>
+  </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>Novo Mundo</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>Recarregar mundo</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>Salvar como</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>Salvar como versão</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>Wiki / Ajuda</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>Modo de navegação</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>Redefinir ferramenta / Desmarcar</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>Rolar para baixo</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>Rolar para baixo rapidamente</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>Rolar para a esquerda</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>Rolar rapidamente para a esquerda</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>Rolar para a direita</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>Rolar rapidamente para a direita</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>Rolar para cima</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>Rolar para cima rapidamente</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>Mais zoom</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>Menos zoom</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>Aceitar colagem</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>Inverter colagem horizontal</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>Inverter colagem vertical</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>Girar colagem no sentido anti-horário</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>Girar colagem no sentido horário</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>Mover ponto final da seleção</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>Shift+clique/arraste para mover o canto inferior direito da seleção</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>Mover ponto inicial da seleção</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>Ctrl+clique/arraste para mover o canto superior esquerdo da seleção</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>Selecionar tudo</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>Deletar Seleção</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>Mover seleção para baixo</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>Mover seleção para baixo (rápido)</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>Mover seleção para a esquerda</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>Mover seleção para a esquerda (rápido)</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>Mover seleção para a direita</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>Mover seleção para a direita (rápido)</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>Mover seleção para cima</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>Mover seleção para cima (rápido)</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>Aumentar a altura da seleção</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>Aumentar a altura da seleção (rápido)</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>Reduzir a largura da seleção</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>Diminuir a largura da seleção (rápido)</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>Aumentar a largura da seleção</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>Aumentar largura da seleção (rápido)</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>Reduzir a altura da seleção</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>Reduzir a altura da seleção (rápido)</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>Alternar borracha</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>Trocar cores</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>Alternar estilo do bloco</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>Alternar estilo da parede</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>Ferramenta de seta</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>Ferramenta de Pincel</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>Ferramenta de preenchimento</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>Ferramenta de martelo</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>Ferramenta de transformação</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>Ferramenta Lápis</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>Ferramenta de Seleção</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>Ferramenta de pontos</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>Ferramenta de seleção</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>Ferramenta de sprites</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Voltado para a esquerda</value>
@@ -607,6 +1696,18 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
     <value>0%</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
+    <value>Igual</value>
+  </data>
+  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
+    <value>Maior que</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
+  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
+    <value>Menor que</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Mel</value>
@@ -1077,6 +2178,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
     <value>Altera o terreno e pode remover decorações. Use Desfazer para restaurar os blocos originais.</value>
   </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>Floresta</value>
+  </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>Cogumelo Brilhante</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>Sagrado</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1097,6 +2204,48 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
     <value>Converte os tiles de bioma correspondentes e mantém inalterados os tiles não compatíveis.</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>Neve</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>Argônio</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>Grama</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>Hélio</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>Krypton</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>Lava</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>Neon</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>Nenhum (Remover)</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>Roxo</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>Vermelho</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>Xenônio</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>Amarelo</value>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT Explorer</value>
@@ -1139,6 +2288,15 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="newworld_cave_preset" xml:space="preserve">
     <value>Pré-ajuste da caverna</value>
+  </data>
+  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
+    <value>Labirinto</value>
+  </data>
+  <data name="newworld_cave_preset_large" xml:space="preserve">
+    <value>Grande</value>
+  </data>
+  <data name="newworld_cave_preset_normal" xml:space="preserve">
+    <value>Normal</value>
   </data>
   <data name="newworld_create" xml:space="preserve">
     <value>Criar Mundo</value>
@@ -1214,6 +2372,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="npc_search_placeholder" xml:space="preserve">
     <value>Procurar...</value>
+  </data>
+  <data name="overflow_more_panels" xml:space="preserve">
+    <value>Mais painéis...</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Líquido</value>
@@ -1356,6 +2517,14 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="player_editor_equipment" xml:space="preserve">
     <value>Equipamento</value>
   </data>
+  <data name="player_editor_error_load" xml:space="preserve">
+    <value>Falha ao carregar o arquivo do jogador:
+{0}</value>
+  </data>
+  <data name="player_editor_error_save" xml:space="preserve">
+    <value>Falha ao salvar o arquivo do jogador:
+{0}</value>
+  </data>
   <data name="player_editor_eye_color" xml:space="preserve">
     <value>Cor dos olhos</value>
   </data>
@@ -1389,6 +2558,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="player_editor_save_as" xml:space="preserve">
     <value>Salvar o jogador como...</value>
   </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>Salvamento cancelado: o arquivo do jogador foi modificado externamente.</value>
+  </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
     <value>Cor da camisa</value>
   </data>
@@ -1403,6 +2575,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="player_editor_stats" xml:space="preserve">
     <value>Estatísticas</value>
+  </data>
+  <data name="player_editor_status_loaded" xml:space="preserve">
+    <value>Carregado: {0}</value>
+  </data>
+  <data name="player_editor_status_saved" xml:space="preserve">
+    <value>Salvo: {0}</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
     <value>Editor de Jogadores</value>
@@ -1506,6 +2684,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="player_stats_team_red" xml:space="preserve">
     <value>Vermelho</value>
   </data>
+  <data name="player_stats_team_white" xml:space="preserve">
+    <value>Branco</value>
+  </data>
   <data name="player_stats_team_yellow" xml:space="preserve">
     <value>Amarelo</value>
   </data>
@@ -1545,6 +2726,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
     <value>Ativar desfazer (lento)</value>
   </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>Algumas entidades especiais de blocos (como baús ou placas) ainda estão protegidas e não podem ser embaralhadas.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>Incluir informações</value>
+  </data>
   <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
     <value>Incluir entidades de bloco</value>
   </data>
@@ -1566,11 +2753,23 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>Embaralhar posições dos blocos</value>
   </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>Purificar mundo</value>
+  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>Adicionar</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>Clique em [...] para importar o esquema do modelo.</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} Verifique o campo 'Count' nos dados JSON para garantir que corresponda ao esquema associado.</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>{0} Verificar dados JSON de {1}</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>Gerador procedural de casas</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>Visualização</value>
@@ -1637,6 +2836,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="plugin_ore_mythril" xml:space="preserve">
     <value>Mitril</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>N/D</value>
   </data>
   <data name="plugin_ore_obsidian" xml:space="preserve">
     <value>Obsidiana</value>
@@ -1725,6 +2927,15 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>Construir com segurança</value>
   </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>Calcular...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>Calculando...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>Cancelar conversão</value>
+  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>Alterar A=.</value>
   </data>
@@ -1740,6 +2951,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>Ferramentas de filtro de cores:</value>
   </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>Converter para arte pixelada</value>
+  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>Converter a imagem atual em pixel art.</value>
   </data>
@@ -1752,11 +2966,47 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>Imagem atual:</value>
   </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>Excluir cores nulas</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>Remover do filtro as cores que não aparecem na pixel art renderizada.</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>ERRO: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>ERRO: A formatação do filtro de cor é inválida! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>O filtro de cor está zerado. Ajuste suas configurações.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>ERRO: você precisa gerar uma pixel art primeiro!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>Ocorreu um erro: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>Erro ao carregar a imagem: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>O recurso “Copiar para a área de transferência” requer que um mundo esteja carregado!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>Você precisa primeiro ter salvado um esquema!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>Erro ao salvar a imagem: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>Erro ao salvar o esquema: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>Os dados do esquema estão vazios! Gere uma pixel art primeiro!</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>Cores filtradas:</value>
@@ -1800,14 +3050,23 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>Hermite</value>
   </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>Imagem concluída.</value>
+  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>Lanczos</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>Editor de conversão de imagem em pixel art</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>Vizinho mais próximo</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>Novo nível de proporção %:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>Nenhum</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>Sem rotação</value>
@@ -1832,6 +3091,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>Mostrar o progresso da pixel art (leve impacto na velocidade).</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>A renderização foi cancelada.</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>Redefinir cores</value>
@@ -1863,8 +3125,17 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>Modo de escala:</value>
   </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>Esquema copiado para a área de transferência.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>O esquema foi sobrescrito.</value>
+  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>Rotação do esquema:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>O esquema foi salvo.</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>Definir nova proporção</value>
@@ -1917,6 +3188,18 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>Eixo Y</value>
   </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>Mapa gerado!</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>Renderizar arquivo .map do jogador</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>Nenhum arquivo de jogador selecionado.</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>Mapa do jogador</value>
+  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>Aleatorizar paredes de fundo</value>
   </data>
@@ -1925,6 +3208,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>Suporte a blocos afetados pela gravidade (areia etc.)</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>Aleatorizar todos os blocos do mundo</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>Não randomizar em blocos que desaparecem instantaneamente</value>
@@ -1941,17 +3227,34 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>Aleatorizar mundo</value>
   </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>Remover todos os baús</value>
+  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>Digite o nome do bloco ou sprite que deseja remover.</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>Digite o nome da parede que deseja remover.</value>
   </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>Remover sprite, bloco ou parede</value>
+  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>Remover bloco</value>
   </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>Remover todos os baús desbloqueados</value>
+  </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>Atraso</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>Abra um mundo primeiro.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>Falha ao abrir o arquivo de replay.
+
+{0}</value>
   </data>
   <data name="plugin_replay_player_title" xml:space="preserve">
     <value>Reprodutor de replay</value>
@@ -1965,8 +3268,14 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_replay_title" xml:space="preserve">
     <value>Reproduzir</value>
   </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>Assentar areia</value>
+  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>Semente: (Deixe em branco para gerar uma aleatória)</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>Gerar sprites de depuração</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>Adicionar à área de transferência</value>
@@ -1980,47 +3289,182 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>Comprimento máximo da linha</value>
   </data>
-  <data name="plugin_textstatue_title" xml:space="preserve">
-    <value>Gerador de estátuas de texto</value>
-  </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>Purificar mundo</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>Gerador procedural de casas</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>Editor de conversão de imagem em pixel art</value>
-  </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>Renderizar arquivo .map do jogador</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>Aleatorizar todos os blocos do mundo</value>
-  </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>Remover todos os baús</value>
-  </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>Remover sprite, bloco ou parede</value>
-  </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>Remover todos os baús desbloqueados</value>
-  </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>Assentar areia</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>Gerar sprites de depuração</value>
-  </data>
   <data name="plugin_textstatue_menu" xml:space="preserve">
     <value>Gerar estátuas com texto</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>Gerador de estátuas de texto</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>Exportar texturas (DEPURAÇÃO)</value>
   </data>
   <data name="plugin_unlockallchests_menu" xml:space="preserve">
     <value>Desbloquear todos os baús</value>
+  </data>
+  <data name="progress_calculating_colors" xml:space="preserve">
+    <value>Calculando cores...</value>
+  </data>
+  <data name="progress_cloning_world" xml:space="preserve">
+    <value>Clonando mundo...</value>
+  </data>
+  <data name="progress_converting_to_windows_phone" xml:space="preserve">
+    <value>Convertendo o mundo para Windows Phone...</value>
+  </data>
+  <data name="progress_generating_caves" xml:space="preserve">
+    <value>Gerando cavernas...</value>
+  </data>
+  <data name="progress_generating_cave_noise" xml:space="preserve">
+    <value>Gerando ruído das cavernas...</value>
+  </data>
+  <data name="progress_generating_hills" xml:space="preserve">
+    <value>Gerando colinas...</value>
+  </data>
+  <data name="progress_generating_underworld" xml:space="preserve">
+    <value>Gerando o Submundo...</value>
+  </data>
+  <data name="progress_generating_world" xml:space="preserve">
+    <value>Gerando mundo...</value>
+  </data>
+  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
+    <value>Cabeçalho do mundo do Windows Phone carregado.</value>
+  </data>
+  <data name="progress_loading_chests" xml:space="preserve">
+    <value>Carregando baús...</value>
+  </data>
+  <data name="progress_loading_file_header" xml:space="preserve">
+    <value>Carregando cabeçalho do arquivo...</value>
+  </data>
+  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
+    <value>Carregando blocos antigos do Windows Phone...</value>
+  </data>
+  <data name="progress_loading_npcs" xml:space="preserve">
+    <value>Carregando NPCs...</value>
+  </data>
+  <data name="progress_loading_npc_data" xml:space="preserve">
+    <value>Carregando dados dos NPCs...</value>
+  </data>
+  <data name="progress_loading_npc_names" xml:space="preserve">
+    <value>Carregando nomes de NPCs...</value>
+  </data>
+  <data name="progress_loading_signs" xml:space="preserve">
+    <value>Carregando placas...</value>
+  </data>
+  <data name="progress_loading_tiles" xml:space="preserve">
+    <value>Carregando blocos...</value>
+  </data>
+  <data name="progress_loading_tile_entities_section" xml:space="preserve">
+    <value>Carregando seção de entidades de blocos...</value>
+  </data>
+  <data name="progress_loading_tmodloader_data" xml:space="preserve">
+    <value>Carregando dados do tModLoader...</value>
+  </data>
+  <data name="progress_loading_winphone_tiles" xml:space="preserve">
+    <value>Carregando blocos do Windows Phone...</value>
+  </data>
+  <data name="progress_load_complete" xml:space="preserve">
+    <value>Carregamento concluído.</value>
+  </data>
+  <data name="progress_placing_caves" xml:space="preserve">
+    <value>Colocando cavernas...</value>
+  </data>
+  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
+    <value>Preparando dados do tModLoader...</value>
+  </data>
+  <data name="progress_refining_caves" xml:space="preserve">
+    <value>Refinando cavernas...</value>
+  </data>
+  <data name="progress_removing_future_tiles" xml:space="preserve">
+    <value>Removendo blocos futuros...</value>
+  </data>
+  <data name="progress_render_complete" xml:space="preserve">
+    <value>Renderização concluída</value>
+  </data>
+  <data name="progress_resetting_time" xml:space="preserve">
+    <value>Redefinindo o horário...</value>
+  </data>
+  <data name="progress_save_bestiary" xml:space="preserve">
+    <value>Salvar bestiário...</value>
+  </data>
+  <data name="progress_save_chests" xml:space="preserve">
+    <value>Salvar baús...</value>
+  </data>
+  <data name="progress_save_complete" xml:space="preserve">
+    <value>Salvamento concluído.</value>
+  </data>
+  <data name="progress_save_creative_powers" xml:space="preserve">
+    <value>Salvar poderes criativos...</value>
+  </data>
+  <data name="progress_save_footers" xml:space="preserve">
+    <value>Salvar rodapés...</value>
+  </data>
+  <data name="progress_save_headers" xml:space="preserve">
+    <value>Salvar cabeçalhos...</value>
+  </data>
+  <data name="progress_save_npcs" xml:space="preserve">
+    <value>Salvar NPCs...</value>
+  </data>
+  <data name="progress_save_signs" xml:space="preserve">
+    <value>Salvar placas...</value>
+  </data>
+  <data name="progress_save_tiles" xml:space="preserve">
+    <value>Salvar blocos...</value>
+  </data>
+  <data name="progress_save_tile_entities_section" xml:space="preserve">
+    <value>Salvar seção de entidades de blocos...</value>
+  </data>
+  <data name="progress_save_town_manager" xml:space="preserve">
+    <value>Salvar gerenciador de cidades...</value>
+  </data>
+  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
+    <value>Salvar placas de pressão ponderadas...</value>
+  </data>
+  <data name="progress_saving_chests" xml:space="preserve">
+    <value>Salvando baús...</value>
+  </data>
+  <data name="progress_saving_npc_data" xml:space="preserve">
+    <value>Salvando dados dos NPCs...</value>
+  </data>
+  <data name="progress_saving_npc_names" xml:space="preserve">
+    <value>Salvando nomes dos NPCs...</value>
+  </data>
+  <data name="progress_saving_signs" xml:space="preserve">
+    <value>Salvando placas...</value>
+  </data>
+  <data name="progress_saving_tiles" xml:space="preserve">
+    <value>Salvando blocos...</value>
+  </data>
+  <data name="progress_saving_tmodloader_data" xml:space="preserve">
+    <value>Salvando dados do tModLoader...</value>
+  </data>
+  <data name="progress_saving_validation_data" xml:space="preserve">
+    <value>Salvando dados de validação...</value>
+  </data>
+  <data name="progress_saving_world" xml:space="preserve">
+    <value>Salvando o mundo...</value>
+  </data>
+  <data name="progress_settling_sand" xml:space="preserve">
+    <value>Assentando areia...</value>
+  </data>
+  <data name="progress_validating_complete" xml:space="preserve">
+    <value>Validação concluída...</value>
+  </data>
+  <data name="progress_validating_file" xml:space="preserve">
+    <value>Validando arquivo...</value>
+  </data>
+  <data name="progress_validating_world" xml:space="preserve">
+    <value>Validando o mundo...</value>
+  </data>
+  <data name="progress_verifying_file" xml:space="preserve">
+    <value>Verificando arquivo...</value>
+  </data>
+  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
+    <value>Mundo carregado em {0} segundos.</value>
+  </data>
+  <data name="progress_world_load_complete" xml:space="preserve">
+    <value>Carregamento do mundo concluído.</value>
+  </data>
+  <data name="progress_world_save_complete" xml:space="preserve">
+    <value>Salvamento do mundo concluído.</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Selecione uma versão para salvar como:</value>
@@ -2073,6 +3517,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>Salve o mundo periodicamente automaticamente</value>
   </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>Pré-visualização de pincel em alta qualidade</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>Mostrar o formato completo do pincel durante a prévia de linha com Shift. Desative para exibir uma prévia de linha mais simples, com um único pixel.</value>
+  </data>
   <data name="settings_cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -2080,8 +3530,14 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Características experimentais</value>
     <comment>Settings category for experimental/preview features</comment>
   </data>
+  <data name="settings_category_filter" xml:space="preserve">
+    <value>Filtrar e pesquisar</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Geral</value>
+  </data>
+  <data name="settings_category_keybindings_format" xml:space="preserve">
+    <value>Atalhos de teclado - {0}</value>
   </data>
   <data name="settings_category_layers" xml:space="preserve">
     <value>Camadas</value>
@@ -2104,6 +3560,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Paleta de cores do mapa de pixels: Padrão, Realista (amostrado por textura) ou Minimap (cores do mapa do jogo). Exige reiniciar.</value>
   </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>Intensidade do escurecimento</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>Opacidade da sobreposição de escurecimento dos blocos não selecionados (0–100%)</value>
+  </data>
   <data name="settings_enable_mica" xml:space="preserve">
     <value>Enable Mica backdrop</value>
   </data>
@@ -2121,6 +3583,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>Envie relatórios anônimos de erro para ajudar a melhorar a estabilidade</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>Modo de filtro</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>Modo de filtro padrão ao aplicar filtros de blocos, paredes, líquidos e fios</value>
   </data>
   <data name="settings_keybind_add_tooltip" xml:space="preserve">
     <value>Adicionar uma nova tecla</value>
@@ -2233,12 +3701,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Exiba notícias e anúncios no editor</value>
   </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>Mostrar Tela de Introdução</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>Mostrar o logo do TEdit enquanto o aplicativo inicia</value>
-  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Pontos do Espetáculo</value>
   </data>
@@ -2250,6 +3712,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Visibilidade do fio vermelho com toggle</value>
+  </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Mostrar Tela de Introdução</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Mostrar o logo do TEdit enquanto o aplicativo inicia</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>Mostrar Texturas</value>
@@ -2564,6 +4032,21 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="spriteeditor_size_w" xml:space="preserve">
     <value>Size W:</value>
   </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>Nenhuma textura carregada</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>Nenhuma textura carregada — não é possível detectar automaticamente</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>Carregado de uma substituição do usuário</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>Pronto</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>Redefinir para os dados padrão do bloco</value>
+  </data>
   <data name="spriteeditor_test" xml:space="preserve">
     <value>Test Value</value>
   </data>
@@ -2596,6 +4079,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="sprite_clear_selection_tooltip" xml:space="preserve">
     <value>Seleção clara</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>Pixel: ({0}, {1})  Bloco: [{2}, {3}]</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filtro</value>
@@ -2636,11 +4122,20 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>GPS</value>
   </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[em branco]</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
   </data>
   <data name="statusbar_frame_label" xml:space="preserve">
     <value>Quadro</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>Bloco inválido ({0})</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>Parede inválida ({0})</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
     <value>Tinta</value>
@@ -2653,6 +4148,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
     <value>Peça</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>Tinta desconhecida ({0})</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Parede</value>
@@ -2683,6 +4181,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Geração do Time Amarelo</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Leia a política de privacidade completa</value>
   </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>O TEdit pode enviar relatórios de erros anônimos para ajudar a melhorar a estabilidade.
@@ -2905,11 +4406,17 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Preencher</value>
   </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>Martelo</value>
+  </data>
   <data name="tool_morph_base_tiles" xml:space="preserve">
     <value>Peças Base</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>Condecorações</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Altares/Orbes</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>Mal</value>
@@ -3055,8 +4562,20 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Conta-gotas - escolha a cor da peça</value>
   </data>
+  <data name="tool_point_dungeon" xml:space="preserve">
+    <value>Masmorra</value>
+  </data>
+  <data name="tool_point_spawn" xml:space="preserve">
+    <value>Ponto de surgimento</value>
+  </data>
+  <data name="tool_point_team_format" xml:space="preserve">
+    <value>Equipe {0}</value>
+  </data>
   <data name="tool_point_title" xml:space="preserve">
     <value>Pontos de interesse especiais</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>Seleção</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>Posicionador de sprites</value>
@@ -3132,6 +4651,9 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>Cenário do submundo</value>
+  </data>
+  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
+    <value>Cérebro de Cthulhu</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Cervoclope</value>
@@ -3718,6 +5240,18 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>O TEdit está atualizado.</value>
     <comment>Toast message when no updates are available</comment>
   </data>
+  <data name="wall_natural_format" xml:space="preserve">
+    <value>{0} (natural)</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>Céu</value>
+  </data>
+  <data name="wall_unbreakable" xml:space="preserve">
+    <value>Parede inquebrável</value>
+  </data>
+  <data name="wall_unused_format" xml:space="preserve">
+    <value>{0} (não usado)</value>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Azul</value>
   </data>
@@ -3772,6 +5306,21 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="world_explorer_loading_preview" xml:space="preserve">
     <value>Prévia de carregamento...</value>
   </data>
+  <data name="world_explorer_modified_days_ago" xml:space="preserve">
+    <value>há {0} dias</value>
+  </data>
+  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
+    <value>há {0} h</value>
+  </data>
+  <data name="world_explorer_modified_just_now" xml:space="preserve">
+    <value>agora mesmo</value>
+  </data>
+  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
+    <value>há {0} min</value>
+  </data>
+  <data name="world_explorer_modified_missing" xml:space="preserve">
+    <value>Ausente</value>
+  </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>Sem backup — clique para criar backup de .bak e TEdit</value>
   </data>
@@ -3814,79 +5363,55 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Desimobilizar</value>
   </data>
+  <data name="world_gamemode_expert" xml:space="preserve">
+    <value>Especialista</value>
+  </data>
+  <data name="world_gamemode_master" xml:space="preserve">
+    <value>Mestre</value>
+  </data>
+  <data name="world_invasion_goblin" xml:space="preserve">
+    <value>Invasão dos Goblins</value>
+  </data>
+  <data name="world_moon_blue_marble" xml:space="preserve">
+    <value>Globo Azul</value>
+  </data>
+  <data name="world_moon_brown" xml:space="preserve">
+    <value>Marrom</value>
+  </data>
+  <data name="world_moon_green_gas" xml:space="preserve">
+    <value>Gás verde</value>
+  </data>
+  <data name="world_moon_grey" xml:space="preserve">
+    <value>Cinza escuro</value>
+  </data>
+  <data name="world_moon_orange_venus" xml:space="preserve">
+    <value>Vênus Laranja</value>
+  </data>
+  <data name="world_moon_pink" xml:space="preserve">
+    <value>Rosa</value>
+  </data>
+  <data name="world_moon_ringed" xml:space="preserve">
+    <value>Com anéis</value>
+  </data>
+  <data name="world_moon_triple_purple" xml:space="preserve">
+    <value>Roxo Triplo</value>
+  </data>
+  <data name="world_moon_white_ice" xml:space="preserve">
+    <value>Gelo branco</value>
+  </data>
+  <data name="world_size_custom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="world_size_large" xml:space="preserve">
+    <value>Grande</value>
+  </data>
+  <data name="world_size_medium" xml:space="preserve">
+    <value>Médio</value>
+  </data>
+  <data name="world_size_small" xml:space="preserve">
+    <value>Pequeno</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>Altares/Orbes</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>Leia a política de privacidade completa</value>
-  </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>Calcular...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>Calculando...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>Cancelar conversão</value>
-  </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>Converter para arte pixelada</value>
-  </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>Padrão</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>ERRO: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>ERRO: A formatação do filtro de cor é inválida! {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>O filtro de cor está zerado. Ajuste suas configurações.</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>ERRO: você precisa gerar uma pixel art primeiro!</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>Ocorreu um erro: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>Erro ao carregar a imagem: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>O recurso “Copiar para a área de transferência” requer que um mundo esteja carregado!</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>Você precisa primeiro ter salvado um esquema!</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>Erro ao salvar a imagem: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>Erro ao salvar o esquema: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>Os dados do esquema estão vazios! Gere uma pixel art primeiro!</value>
-  </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>Imagem concluída.</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>Nenhum</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>A renderização foi cancelada.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>Esquema copiado para a área de transferência.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>O esquema foi sobrescrito.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>O esquema foi salvo.</value>
   </data>
 </root>
