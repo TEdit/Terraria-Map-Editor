@@ -4087,7 +4087,7 @@ TEdit الإصدار {0}
     <value>راووق</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>راووق: </value>
+    <value>راووق:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>

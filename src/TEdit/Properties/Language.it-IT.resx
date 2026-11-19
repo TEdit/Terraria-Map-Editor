@@ -596,7 +596,7 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
 Di solito è causato da un file di salvataggio danneggiato o da una versione del mondo più recente di quelle supportate.
 
 TEdit v{0}
-Mondo massimo supportato da TEdit: {1}
+Versione massima del mondo supportata da TEdit: {1}
 Mondo attuale: {2}
 
 Vuoi forzarne comunque il caricamento?
@@ -786,7 +786,7 @@ Vuoi sovrascriverlo?</value>
 Di solito è causato da un file di salvataggio danneggiato o da una versione del mondo più recente di quelle supportate.
 
 TEdit v{0}
-Dimensioni massime del mondo TEdit: {1}
+Versione massima del mondo supportata da TEdit: {1}
 Mondo attuale: {2}
 
 L’errore è:

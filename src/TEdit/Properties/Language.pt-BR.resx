@@ -596,7 +596,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
 Isso geralmente é causado por um arquivo de salvamento corrompido ou por uma versão do mundo mais recente do que a suportada.
 
 TEdit v{0}
-Mundo máximo do TEdit: {1}
+Versão máxima do mundo compatível com o TEdit: {1}
 Mundo atual: {2}
 
 Deseja forçar o carregamento mesmo assim?
@@ -786,7 +786,7 @@ Deseja sobrescrevê-lo?</value>
 Isso geralmente é causado por um arquivo de salvamento corrompido ou por uma versão do mundo mais recente do que a suportada.
 
 TEdit v{0}
-Tamanho máximo do mundo no TEdit: {1}
+Versão máxima do mundo compatível com o TEdit: {1}
 Mundo atual: {2}
 
 O erro é:
@@ -3949,7 +3949,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Mostrar Todos os Itens</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
-    <value>Com a ferramenta de seta, clique em uma placa, baú, manequim, prateleira de armas, moldura do item ou árvore de natal.</value>
+    <value>Com a ferramenta de seta, clique com o botão direito em uma placa, baú, manequim, prateleira de armas, moldura do item ou árvore de natal.</value>
   </data>
   <data name="spriteeditor_add_frame" xml:space="preserve">
     <value>Add Frame</value>
@@ -4087,7 +4087,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Filtro</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filtro: </value>
+    <value>Filtro:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>

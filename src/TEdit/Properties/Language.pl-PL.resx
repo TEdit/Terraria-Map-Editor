@@ -4087,7 +4087,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Filtruj</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filtruj: </value>
+    <value>Filtruj:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>

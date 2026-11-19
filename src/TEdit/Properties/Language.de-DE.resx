@@ -596,7 +596,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
 Die Ursache ist meist eine beschädigte Speicherdatei oder eine Weltversion, die neuer ist als die unterstützte Version.
 
 TEdit v{0}
-Maximale Weltgröße in TEdit: {1}
+Höchste von TEdit unterstützte Weltversion: {1}
 Aktuelle Welt: {2}
 
 Möchtest du trotzdem versuchen, die Welt zu laden?
@@ -786,7 +786,7 @@ Möchtest du die Änderungen überschreiben?</value>
 Dies wird in der Regel durch eine beschädigte Speicherdatei oder eine nicht unterstützte, neuere Weltversion verursacht.
 
 TEdit v{0}
-Maximale Weltgröße in TEdit: {1}
+Höchste von TEdit unterstützte Weltversion: {1}
 Aktuelle Welt: {2}
 
 Der Fehler lautet:
@@ -3949,7 +3949,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Alle Gegenstände anzeigen</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
-    <value>Wähle das Pfeilwerkzeug aus und rechtsklicke auf einem Spruchschild, einer Schaufensterpuppe, einem Waffenregal, einem Item-Frame oder einem Weihnachtsbaum.</value>
+    <value>Wähle das Pfeilwerkzeug aus und rechtsklicke auf einem Schild, einer Truhe, einer Schaufensterpuppe, einem Waffenregal, einem Item-Frame oder einem Weihnachtsbaum.</value>
   </data>
   <data name="spriteeditor_add_frame" xml:space="preserve">
     <value>Add Frame</value>
@@ -4087,7 +4087,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Filter</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filter: </value>
+    <value>Filter:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>

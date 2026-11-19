@@ -4087,7 +4087,7 @@ TEdit v{0}
     <value>Фильтр</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Фильтр: </value>
+    <value>Фильтр:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>
@@ -4195,7 +4195,7 @@ TEdit v{0}
 Что НЕ собирается:
   • Никакая личная информация или пути к файлам
   • Никакого отслеживания использования или отпечатков
-  • Все пути шифруются перед отправкой
+  • Все пути скрываются перед отправкой
 
 Хотите включить отчет об ошибках?</value>
   </data>

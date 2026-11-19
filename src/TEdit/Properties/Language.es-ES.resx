@@ -596,7 +596,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
 Esto suele deberse a que el archivo guardado está dañado o a que la versión del mundo es más reciente que las compatibles.
 
 TEdit v{0}
-Tamaño máximo del mundo en TEdit: {1}
+Versión máxima del mundo compatible con TEdit: {1}
 Mundo actual: {2}
 
 ¿Quieres forzar la carga de todos modos?
@@ -786,7 +786,7 @@ No se puede recuperar este archivo porque no contiene datos.
 Esto suele deberse a que el archivo guardado está dañado o a que la versión del mundo es más reciente que las compatibles.
 
 TEdit v{0}
-Tamaño máximo del mundo de TEdit: {1}
+Versión máxima del mundo compatible con TEdit: {1}
 Mundo actual: {2}
 
 El error es:
@@ -4087,7 +4087,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Filtrar</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filtro: </value>
+    <value>Filtro:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>
