@@ -480,6 +480,12 @@ public static class ScriptApiMetadata
 
         new("draw", "Drawing tools: brush, pencil, fill, hammer with configurable tile picker",
         [
+            // Bounded drawing
+            new("line", "line(x, y, endX, endY, thickness, layer, material, selectionOnly, matchId)", "Draw a line with a square brush between inclusive endpoints."),
+            new("rectangle", "rectangle(x, y, endX, endY, filled, thickness, layer, material, selectionOnly, matchId)", "Draw a filled or outlined rectangle between inclusive corners."),
+            new("ellipse", "ellipse(x, y, endX, endY, filled, thickness, layer, material, selectionOnly, matchId)", "Draw a filled or outlined ellipse inside inclusive corners."),
+            new("fillRegion", "fillRegion(x, y, endX, endY, layer, material, selectionOnly, matchId)", "Fill an inclusive rectangular region, optionally replacing a matching material."),
+            new("placeSprite", "placeSprite(x, y, tileId, style, selectionOnly)", "Place a sprite style at its top-left tile. The entire footprint must be empty and within the requested bounds and selection."),
             // Picker configuration
             new("setTile",         "setTile(tileType)",                         "Set tile type to paint"),
             new("setWall",         "setWall(wallType)",                         "Set wall type to paint"),

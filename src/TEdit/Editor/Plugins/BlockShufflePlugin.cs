@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using TEdit.Terraria;
@@ -14,7 +14,7 @@ public sealed class BlockShufflePlugin : BasePlugin //Originally: HackedPlugin, 
         TitleKey = "plugin_blockshuffle_title";
     }
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         //Check if a world is loaded
         if (_wvm.CurrentWorld == null)
@@ -102,7 +102,7 @@ public sealed class BlockShufflePlugin : BasePlugin //Originally: HackedPlugin, 
 
         if (settingsView.EnableUndo)
             _wvm.UndoManager.SaveUndo();
-        _wvm.UpdateRenderRegion(selectionArea); // Re-render map
+        await _wvm.UpdateRenderRegionAsync(selectionArea); // Re-render map
         _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, showBackground: Configuration.UserSettingsService.Current.MinimapBackground); // Update Minimap
     }
 

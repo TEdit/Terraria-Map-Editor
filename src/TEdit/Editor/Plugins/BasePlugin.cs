@@ -21,5 +21,12 @@ public abstract class BasePlugin : ReactiveObject, IPlugin
 
     protected string TitleKey { get; set; }
 
-    public abstract void Execute();
+    public async System.Threading.Tasks.Task ExecuteAsync()
+    {
+        using var operation = _wvm.BeginWorldOperation("Plugin");
+        if (operation == null) return;
+        await ExecuteCoreAsync();
+    }
+
+    protected abstract System.Threading.Tasks.Task ExecuteCoreAsync();
 }

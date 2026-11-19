@@ -5414,4 +5414,162 @@ TEdit الإصدار {0}
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
   </data>
+  <data name="scripting_profile" xml:space="preserve">
+    <value>يتطلب تشغيل البرنامج النصي تحديد ملف تعريف وصول.</value>
+  </data>
+  <data name="scripting_inspect" xml:space="preserve">
+    <value>تشغيل البرامج النصية غير متاح في وضع الفحص فقط.</value>
+  </data>
+  <data name="scripting_mcp" xml:space="preserve">
+    <value>يتعطل تشغيل برامج MCP النصية حتى اكتمال فحوص سلامة المحرر.</value>
+  </data>
+  <data name="scripting_unknown" xml:space="preserve">
+    <value>ملف تعريف الوصول غير معروف.</value>
+  </data>
+  <data name="scripting_empty" xml:space="preserve">
+    <value>لا توجد تعليمات برمجية لتشغيلها.</value>
+  </data>
+  <data name="scripting_timeout_positive" xml:space="preserve">
+    <value>يجب أن تكون المهلة أكبر من صفر.</value>
+  </data>
+  <data name="scripting_start" xml:space="preserve">
+    <value>لم يبدأ تشغيل البرنامج النصي.</value>
+  </data>
+  <data name="scripting_busy" xml:space="preserve">
+    <value>العالم مشغول. حاول مجددًا بعد انتهاء العملية الحالية.</value>
+  </data>
+  <data name="scripting_stale" xml:space="preserve">
+    <value>تغيّر العالم. افحصه مجددًا قبل تشغيل البرنامج النصي.</value>
+  </data>
+  <data name="scripting_cancel" xml:space="preserve">
+    <value>أُلغي تشغيل البرنامج النصي</value>
+  </data>
+  <data name="scripting_timeout" xml:space="preserve">
+    <value>انتهت المهلة بعد {0} مللي ثانية</value>
+  </data>
+  <data name="scripting_finalize" xml:space="preserve">
+    <value>{0} تعذّر إنهاء العملية: {1}</value>
+  </data>
+  <data name="scripting_binding" xml:space="preserve">
+    <value>تعذرت تهيئة واجهة برمجة البرامج النصية.</value>
+  </data>
+  <data name="scripting_running" xml:space="preserve">
+    <value>[{0}] جارٍ تشغيل البرنامج النصي…</value>
+  </data>
+  <data name="scripting_warning" xml:space="preserve">
+    <value>[تحذير] {0}</value>
+  </data>
+  <data name="scripting_error" xml:space="preserve">
+    <value>[خطأ] {0}</value>
+  </data>
+  <data name="scripting_done" xml:space="preserve">
+    <value>[تم] اكتمل خلال {0} مللي ثانية</value>
+  </data>
+  <data name="scripting_elapsed" xml:space="preserve">
+    <value>[خطأ] {0} ({1} مللي ثانية)</value>
+  </data>
+  <data name="scripting_saved" xml:space="preserve">
+    <value>تم الحفظ: {0}</value>
+  </data>
+  <data name="scripting_generated" xml:space="preserve">
+    <value>تم الإنشاء: {0}</value>
+  </data>
+  <data name="scripting_js_error" xml:space="preserve">
+    <value>خطأ JavaScript: ‏{0} (السطر {1})</value>
+  </data>
+  <data name="scripting_lua_error" xml:space="preserve">
+    <value>خطأ Lua: ‏{0}</value>
+  </data>
+  <data name="scripting_generic_error" xml:space="preserve">
+    <value>خطأ: {0}</value>
+  </data>
+  <data name="mcp_enable" xml:space="preserve">
+    <value>تمكين خادم MCP المحلي</value>
+  </data>
+  <data name="mcp_edit" xml:space="preserve">
+    <value>السماح بأدوات الرسم</value>
+  </data>
+  <data name="mcp_port" xml:space="preserve">
+    <value>المنفذ (1024–65535)</value>
+  </data>
+  <data name="mcp_profile" xml:space="preserve">
+    <value>اسم ملف تعريف العميل</value>
+  </data>
+  <data name="mcp_issue" xml:space="preserve">
+    <value>إنشاء رمز وصول</value>
+  </data>
+  <data name="mcp_revoke" xml:space="preserve">
+    <value>إلغاء رمز الوصول المحدد</value>
+  </data>
+  <data name="mcp_history" xml:space="preserve">
+    <value>سجل العمليات</value>
+  </data>
+  <data name="mcp_profile_error" xml:space="preserve">
+    <value>تحقق من اسم ملف التعريف وإمكانية الوصول إلى مخزن بيانات الاعتماد.</value>
+  </data>
+  <data name="mcp_host_Disabled" xml:space="preserve">
+    <value>الخادم متوقف</value>
+  </data>
+  <data name="mcp_host_Running" xml:space="preserve">
+    <value>نشط · للقراءة فقط</value>
+  </data>
+  <data name="mcp_host_OtherEditor" xml:space="preserve">
+    <value>تستضيف نسخة أخرى من TEdit خادم MCP.</value>
+  </data>
+  <data name="mcp_host_PortBusy" xml:space="preserve">
+    <value>المنفذ مستخدم. اختر منفذًا آخر.</value>
+  </data>
+  <data name="mcp_host_Fault" xml:space="preserve">
+    <value>تعذر بدء الخادم. تحقق من الإعدادات ومساحة تخزين المستخدم.</value>
+  </data>
+  <data name="mcp_running" xml:space="preserve">
+    <value>قيد التشغيل</value>
+  </data>
+  <data name="mcp_cancel_requested" xml:space="preserve">
+    <value>طُلب الإلغاء</value>
+  </data>
+  <data name="mcp_succeeded" xml:space="preserve">
+    <value>اكتملت</value>
+  </data>
+  <data name="mcp_failed" xml:space="preserve">
+    <value>فشلت</value>
+  </data>
+  <data name="mcp_canceled" xml:space="preserve">
+    <value>أُلغيت</value>
+  </data>
+  <data name="mcp_copy_setup" xml:space="preserve">
+    <value>نسخ التعليمات لوكيلي</value>
+  </data>
+  <data name="mcp_setup_prompt" xml:space="preserve">
+    <value>اتصل بـ TEdit عبر Streamable HTTP على العنوان {0}. أرشدني إلى إدخال قيمة Authorization كاملة من خيارات TEdit في إعدادات بيانات الاعتماد الخاصة بالعميل. أبقِها خارج المحادثة والملفات المشتركة. تحقّق من الاتصال باستخدام get_status.</value>
+  </data>
+  <data name="scripting_drawing_rejected" xml:space="preserve">
+    <value>تعذّر تنفيذ طلب الرسم ({0}).</value>
+  </data>
+  <data name="mcp_scripts" xml:space="preserve">
+    <value>السماح أيضًا ببرامج JavaScript وLua النصية</value>
+  </data>
+  <data name="mcp_scripts_enabled" xml:space="preserve">
+    <value>قيد الاستماع · الرسم والبرامج النصية مفعّلان</value>
+  </data>
+  <data name="mcp_shared" xml:space="preserve">
+    <value>مشاركة الوصول مع جميع العملاء المحليين دون رمز</value>
+  </data>
+  <data name="mcp_shared_setup" xml:space="preserve">
+    <value>اتصل بـ TEdit على {0} باستخدام Streamable HTTP دون مصادقة. تحقق من الاتصال باستخدام get_status.</value>
+  </data>
+  <data name="mcp_drawing_enabled" xml:space="preserve">
+    <value>نشط · الرسم متاح</value>
+  </data>
+  <data name="agent_connect" xml:space="preserve"><value>توصيل وكيل</value></data>
+  <data name="agent_workspace" xml:space="preserve"><value>استخدام إعدادات مساحة العمل</value></data>
+  <data name="agent_stdio" xml:space="preserve"><value>استخدام جسر stdio</value></data>
+  <data name="agent_merge" xml:space="preserve"><value>أضف إدخال TEdit إلى إعدادات العميل أو نفّذ الأمر المعروض.</value></data>
+  <data name="agent_check" xml:space="preserve"><value>فحص الاتصال</value></data>
+  <data name="agent_ok" xml:space="preserve"><value>استجاب TEdit للأمر get_status.</value></data>
+  <data name="agent_failed" xml:space="preserve"><value>فشل الاتصال. تحقق من إعدادات MCP والمنفذ وملف التعريف في TEdit.</value></data>
+  <data name="agent_refresh" xml:space="preserve"><value>هذه الإعدادات تخص جلسة أخرى. انسخها مجددًا من نافذة TEdit المطلوبة.</value></data>
+  <data name="agent_missing" xml:space="preserve"><value>افتح نافذة TEdit المطلوبة وفعّل خادم MCP في الإعدادات.</value></data>
+  <data name="agent_profile" xml:space="preserve"><value>حدد ملف تعريف للعميل أو أنشئ واحدًا أعلاه.</value></data>
+  <data name="agent_export_error" xml:space="preserve"><value>اختر ملفًا جديدًا في مجلد قابل للكتابة.</value></data>
 </root>

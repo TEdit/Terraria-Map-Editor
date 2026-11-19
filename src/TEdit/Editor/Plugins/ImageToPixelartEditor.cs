@@ -16,7 +16,7 @@ namespace TEdit.Editor.Plugins
         }
 
         // Method to execute the plugin functionality.
-        public override void Execute()
+        protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
         {
             // No need to wait for world load due to the nature of this plugin.
             // if (_wvm.CurrentWorld == null) return;

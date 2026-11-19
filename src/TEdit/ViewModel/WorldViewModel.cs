@@ -196,6 +196,7 @@ public partial class WorldViewModel : ReactiveObject
     public WorldViewModel()
     {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
+        InitializeWorldOperations();
 
         _updateMode = UserSettingsService.Current.UpdateMode;
         _windowLaunchMode = UserSettingsService.Current.WindowLaunchMode;
@@ -2219,6 +2220,8 @@ public partial class WorldViewModel : ReactiveObject
 
     public CacheCleanupResult ClearTEditCache()
     {
+        using var operation = BeginWorldOperation("ClearTEditCache");
+        if (operation == null) return new CacheCleanupResult();
         bool hadUnsavedChanges = HasUnsavedChanges;
         bool hadUnsavedUserChanges = HasUnsavedUserChanges;
         CacheCleanupResult result = FileMaintenance.ClearBackupAndAutosaveCaches();
@@ -2386,6 +2389,7 @@ public partial class WorldViewModel : ReactiveObject
         foreach (var item in _allNpcs.Where(i => !i.IsDuplicateInstance).ToList())
         {
             item.World = CurrentWorld;
+            item.BeginEdit = () => BeginWorldOperation("NPC properties");
             var worldNpcs = CurrentWorld?.NPCs.Where(n => n.SpriteId == item.SpriteId).ToList();
             item.WorldNpc = worldNpcs?.FirstOrDefault();
 
@@ -2402,6 +2406,7 @@ public partial class WorldViewModel : ReactiveObject
                         npcData?.CanShimmer ?? false,
                         instanceIndex: i);
                     dupItem.World = CurrentWorld;
+                    dupItem.BeginEdit = () => BeginWorldOperation("NPC properties");
                     dupItem.WorldNpc = worldNpcs[i];
                     _allNpcs.Insert(insertIndex + i, dupItem);
                 }
@@ -2451,6 +2456,13 @@ public partial class WorldViewModel : ReactiveObject
         get { return _currentWorld; }
         set
         {
+            if (ReferenceEquals(_currentWorld, value)) return;
+            using var operation = BeginWorldOperation("Replace world", allowNoWorld: true);
+            if (operation == null) throw new InvalidOperationException(Properties.Language.scripting_busy);
+            if (WorldOperations.TrySetWorld(value, allowOwnedChange: true) != TEdit.Scripting.Execution.OperationRejection.None)
+                throw new InvalidOperationException(Properties.Language.scripting_busy);
+            _worldChangeTracker?.Dispose();
+            _worldChangeTracker = null;
             // Unsubscribe from old world
             if (_currentWorld != null)
             {
@@ -2468,6 +2480,8 @@ public partial class WorldViewModel : ReactiveObject
             }
 
             this.RaiseAndSetIfChanged(ref _currentWorld, value);
+            FilterOverlayMap = null;
+            MinimapImage = null;
 
             if (value != null)
             {
@@ -3193,6 +3207,8 @@ public partial class WorldViewModel : ReactiveObject
             // Must access WriteableBitmap on UI thread
             System.Windows.Application.Current?.Dispatcher?.BeginInvoke((Action)(() =>
             {
+                using var operation = BeginWorldRead("Minimap");
+                if (operation == null) { _minimapDirty = true; return; }
                 if (CurrentWorld != null && MinimapImage != null)
                 {
                     RenderMiniMap.UpdateMinimap(CurrentWorld, ref _minimapImage, UserSettingsService.Current.MinimapBackground);
@@ -3207,11 +3223,12 @@ public partial class WorldViewModel : ReactiveObject
 
     private void SaveTimerTick(object sender, ElapsedEventArgs e)
     {
-        if (IsAutoSaveEnabled && HasUnsavedChanges)
+        Application.Current?.Dispatcher.BeginInvoke((Action)(() =>
         {
+            if (WorldOperations.IsBusy || !IsAutoSaveEnabled || !HasUnsavedChanges) return;
             string baseName = GetWorldBaseName();
-            _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, baseName + ".autosave"), GetSaveVersion_MaxConfig());
-        }
+            ObserveWorldTask(SaveWorldThreadedAsync(Path.Combine(AutoSavePath, baseName + ".autosave"), GetSaveVersion_MaxConfig()));
+        }));
     }
 
     private string GetWorldBaseName()
@@ -3267,6 +3284,8 @@ public partial class WorldViewModel : ReactiveObject
     [ReactiveCommand]
     private void AnalyzeWorld()
     {
+        using var operation = BeginWorldOperation("AnalyzeWorld", mutation: false);
+        if (operation == null) return;
         WorldAnalysis = Editor.WorldAnalysis.AnalyzeWorld(CurrentWorld);
     }
 
@@ -3316,6 +3335,8 @@ public partial class WorldViewModel : ReactiveObject
 
     internal void SetActiveTool(ITool tool)
     {
+        if (WorldOperations.IsBusy && _manualOperation == null && !WorldOperations.IsOwner) return;
+        CompleteManualStroke();
         if (ActiveTool != tool)
         {
             if (tool.Name == "Paste" && !CanPaste())
@@ -3380,12 +3401,20 @@ public partial class WorldViewModel : ReactiveObject
     public void MouseDownTile(TileMouseState e)
     {
         if (CurrentWorld == null) return;
+        if (e.Location.X < 0 || e.Location.Y < 0 || e.Location.X >= CurrentWorld.TilesWide || e.Location.Y >= CurrentWorld.TilesHigh) return;
+        if (_manualOperation == null && WorldOperations.TryAcquire(true, null, out _manualOperation, name: "Manual stroke") != TEdit.Scripting.Execution.OperationRejection.None) return;
+        using var ownership = _manualOperation!.Enter();
 
-        if (e.Location != MouseOverTile.MouseState.Location)
+        if (MouseOverTile.MouseState == null || e.Location != MouseOverTile.MouseState.Location)
             MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
         MouseOverTile.MouseState = e;
-        ActiveTool?.MouseDown(e);
+        try { ActiveTool?.MouseDown(e); }
+        catch
+        {
+            CompleteManualStroke();
+            throw;
+        }
 
         CommandManager.InvalidateRequerySuggested();
     }
@@ -3393,18 +3422,36 @@ public partial class WorldViewModel : ReactiveObject
     public void MouseUpTile(TileMouseState e)
     {
         if (CurrentWorld == null) return;
+        if (_manualOperation == null) return;
+        using var ownership = _manualOperation.Enter();
 
-        if (e.Location != MouseOverTile.MouseState.Location)
+        if (e.Location.X < 0 || e.Location.Y < 0 || e.Location.X >= CurrentWorld.TilesWide || e.Location.Y >= CurrentWorld.TilesHigh)
+        {
+            CompleteManualStroke();
+            return;
+        }
+        if (MouseOverTile.MouseState == null || e.Location != MouseOverTile.MouseState.Location)
             MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
         MouseOverTile.MouseState = e;
-        ActiveTool?.MouseUp(e);
+        try { ActiveTool?.MouseUp(e); }
+        finally
+        {
+            if (e.LeftButton == MouseButtonState.Released && e.RightButton == MouseButtonState.Released)
+            {
+                _manualOperation.Dispose();
+                _manualOperation = null;
+            }
+        }
         CommandManager.InvalidateRequerySuggested();
     }
 
     public void MouseMoveTile(TileMouseState e)
     {
         if (CurrentWorld?.Tiles == null) return;
+        using var ownership = _manualOperation?.Enter();
+        using var operation = BeginWorldOperation("Mouse move", mutation: _manualOperation != null);
+        if (operation == null) return;
 
         if (e.Location.X >= 0 && e.Location.Y >= 0 && e.Location.X < CurrentWorld.TilesWide && e.Location.Y < CurrentWorld.TilesHigh)
         {
@@ -3419,7 +3466,17 @@ public partial class WorldViewModel : ReactiveObject
 
             MouseOverTile.MouseState = e;
 
-            ActiveTool?.MouseMove(e);
+            // A press rejected while busy must not turn into a write on a later
+            // move after the operation completes. A fresh accepted down starts
+            // the stroke and its undo/revision lifetime.
+            if (_manualOperation == null && (e.LeftButton == MouseButtonState.Pressed ||
+                e.RightButton == MouseButtonState.Pressed || e.MiddleButton == MouseButtonState.Pressed)) return;
+            try { ActiveTool?.MouseMove(e); }
+            catch
+            {
+                CompleteManualStroke();
+                throw;
+            }
         }
     }
 
@@ -3431,8 +3488,10 @@ public partial class WorldViewModel : ReactiveObject
     }
 
     [ReactiveCommand]
-    private void NewWorld()
+    private async Task NewWorld()
     {
+        using var operation = BeginWorldOperation("New world", allowNoWorld: true);
+        if (operation == null) return;
         // Define the bool for prompting ore generation plugin
         bool generateOres = false;
 
@@ -3447,7 +3506,7 @@ public partial class WorldViewModel : ReactiveObject
             _saveTimer.Stop(); // Stop the save timer as we are generating a new world
 
             // Start a new task for world generation
-            Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
                 // Retrieve the new world settings from the dialog
                 World w = nwDialog.NewWorld;
@@ -3529,7 +3588,7 @@ public partial class WorldViewModel : ReactiveObject
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format(Properties.Language.progress_world_loaded_in_seconds, _loadTimer.Elapsed.TotalSeconds))); // Report completion
                 _saveTimer.Start(); // Restart the save timer
             }, TaskFactoryHelper.UiTaskScheduler)
-            .ContinueWith(t =>
+            .ContinueWith(async t =>
             {
                 // Launch the ore generation plugin after completion
                 if (generateOres)
@@ -3537,9 +3596,9 @@ public partial class WorldViewModel : ReactiveObject
                     // OnProgressChanged(this, new ProgressChangedEventArgs(0, "Launched OreGen Plugin")); // Report launch completion
 
                     var orePlugin = new SimpleOreGeneratorPlugin(this);
-                    orePlugin.Execute();
+                    await orePlugin.ExecuteAsync();
                 }
-            }, TaskFactoryHelper.UiTaskScheduler); // Ensure UI updates are performed on the UI thread
+            }, TaskFactoryHelper.UiTaskScheduler).Unwrap(); // Ensure UI updates are performed on the UI thread
         }
     }
 
@@ -3996,6 +4055,8 @@ public partial class WorldViewModel : ReactiveObject
 
     private async Task SaveWorldAsync()
     {
+        using var operation = BeginWorldOperation("SaveWorldAsync");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         if (string.IsNullOrWhiteSpace(CurrentFile))
@@ -4006,6 +4067,8 @@ public partial class WorldViewModel : ReactiveObject
 
     private async Task SaveWorldAsVersionAsync()
     {
+        using var operation = BeginWorldOperation("SaveWorldAsVersionAsync");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         var w = new SaveAsVersionGUI();
@@ -4031,6 +4094,8 @@ public partial class WorldViewModel : ReactiveObject
 
     private async Task SaveWorldAsAsync()
     {
+        using var operation = BeginWorldOperation("SaveWorldAsAsync");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         // Build "Save As" targets from gameVersionToSaveVersion keys.
@@ -4105,6 +4170,8 @@ public partial class WorldViewModel : ReactiveObject
         bool preserveAll = true,
         bool saveAsWinPhone = false)
     {
+        using var operation = BeginWorldOperation("SaveWorldFileAsync");
+        if (operation == null) return;
         if (CurrentWorld == null)
             return;
 
@@ -4177,6 +4244,8 @@ public partial class WorldViewModel : ReactiveObject
         bool preserveAll = true,
         bool saveAsWinPhone = false)
     {
+        using var operation = BeginWorldOperation("SaveWorldThreadedAsync");
+        if (operation == null) return;
         bool saveCompleted = false;
         try
         {
@@ -4241,6 +4310,8 @@ public partial class WorldViewModel : ReactiveObject
 
     public async Task ReloadWorldAsync()
     {
+        using var operation = BeginWorldOperation("Reload world");
+        if (operation == null) return;
         // perform validations.
         if (CurrentWorld == null)
         {
@@ -4254,11 +4325,15 @@ public partial class WorldViewModel : ReactiveObject
             return; // if no, abort.
 
         // Load world.
-        LoadWorld(CurrentFile);
+        await LoadWorldAsync(CurrentFile);
     }
 
-    public void LoadWorld(string filename)
+    public void LoadWorld(string filename) => ObserveWorldTask(LoadWorldAsync(filename));
+
+    public async Task LoadWorldAsync(string filename)
     {
+        using var operation = BeginWorldOperation("Load world", allowNoWorld: true);
+        if (operation == null) return;
         _loadTimer.Reset();
         _loadTimer.Start();
         _saveTimer.Stop();
@@ -4273,7 +4348,7 @@ public partial class WorldViewModel : ReactiveObject
 
         GC.WaitForFullGCComplete();
 
-        Task.Run(async () =>
+        await Task.Run(async () =>
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);

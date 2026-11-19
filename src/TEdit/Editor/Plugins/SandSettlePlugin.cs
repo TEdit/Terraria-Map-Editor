@@ -13,7 +13,7 @@ public sealed class SandSettlePlugin : BasePlugin
         TitleKey = "plugin_sandsettle_menu";
     }
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_wvm.CurrentWorld == null)
             return;

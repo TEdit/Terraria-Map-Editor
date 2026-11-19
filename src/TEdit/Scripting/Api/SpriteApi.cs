@@ -104,7 +104,7 @@ public class SpriteApi
         return PlaceSprite(sprite, x, y);
     }
 
-    private bool PlaceSprite(SpriteItem sprite, int x, int y)
+    internal bool PlaceSprite(SpriteItem sprite, int x, int y)
     {
         // Bounds check entire footprint
         int w = sprite.SizeTiles.X;
@@ -147,8 +147,8 @@ public class SpriteApi
             if (_world.IsAnchor(x, y) && _world.GetTileEntityAtTile(x, y, true) == null)
             {
                 var tile = _world.Tiles[x, y];
-                var te = TileEntity.CreateForTile(tile, x, y, _world.TileEntities.Count);
-                _world.TileEntities.Add(te);
+                var te = TileEntity.CreateForTile(tile, x, y, 0);
+                TileEntity.PlaceEntity(te, _world);
             }
         }
     }

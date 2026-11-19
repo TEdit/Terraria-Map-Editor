@@ -16,7 +16,7 @@ namespace TEdit.Editor.Plugins
             TitleKey = "plugin_removetile_menu";
         }
 
-        public override async void Execute()
+        protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
         {
             if (_wvm.CurrentWorld == null) return;
 

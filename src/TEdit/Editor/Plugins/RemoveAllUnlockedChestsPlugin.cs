@@ -27,7 +27,7 @@ public class RemoveAllUnlockedChestsPlugin : BasePlugin
         return false;
     }
 
-    public override async void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_wvm.CurrentWorld == null) return;
 

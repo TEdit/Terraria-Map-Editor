@@ -42,6 +42,8 @@ public partial class MainWindow : FluentWindow
     private nint _appIcon;
     private nint _hwnd;
 
+    private readonly Mcp.McpServerService _mcp;
+    private bool _mcpShutdown;
     private WorldViewModel _vm;
     private ITool _toolBeforePicker;
     private DateTime _pickerKeyDownTime;
@@ -53,6 +55,8 @@ public partial class MainWindow : FluentWindow
         InitializeComponent();
         DataContext = ViewModelLocator.WorldViewModel;
         _vm = (WorldViewModel)DataContext;
+        _mcp = new(_vm, Dispatcher, Mcp.McpServerService.UserDirectory);
+        Deactivated += (_, _) => _vm.CompleteManualStroke();
         AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
         AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
 
@@ -159,6 +163,7 @@ public partial class MainWindow : FluentWindow
         _vm.ExportSelection = (f, s, p) => MapView?.ExportSelectionToFileAsync(f, s, p) ?? Task.CompletedTask;
         _vm.ExportMapTilesAction = (dir, area, p) => MapView?.ExportTilesToFolderAsync(dir, area, p) ?? Task.CompletedTask;
 
+        await _mcp.ApplyAsync(UserSettingsService.Current.McpServer);
         bool shouldAsk = false;
         string currentVersion = App.Version.ToString();
 
@@ -200,7 +205,22 @@ public partial class MainWindow : FluentWindow
 
     private async void MainWindow_Closing(object sender, CancelEventArgs e)
     {
-        if (_allowClose || !_vm.HasUnsavedUserChanges) return;
+        if (_vm.IsWorldBusy)
+        {
+            e.Cancel = true;
+            return;
+        }
+        if (_allowClose || !_vm.HasUnsavedUserChanges)
+        {
+            if (_mcpShutdown) return;
+            e.Cancel = true;
+            if (_closePromptActive) return;
+            _closePromptActive = true;
+            try { await _mcp.ApplyAsync(new()); _mcpShutdown = true; }
+            finally { _closePromptActive = false; }
+            _ = Dispatcher.BeginInvoke(new Action(Close));
+            return;
+        }
 
         e.Cancel = true;
         if (_closePromptActive) return;
@@ -339,6 +359,12 @@ public partial class MainWindow : FluentWindow
 
     private void HandleKeyDownEvent(object sender, KeyEventArgs e)
     {
+        if (_vm.IsWorldBusy)
+        {
+            if (e.Key == Key.Escape) { _vm.CompleteManualStroke(); _vm.WorldOperations.CancelActive(); }
+            e.Handled = true;
+            return;
+        }
         if (!(e.Source is View.WorldRenderXna)) return;
 
         try
@@ -970,6 +996,8 @@ public partial class MainWindow : FluentWindow
 
     private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
+        using var operation = _vm.BeginWorldOperation("Edit tile frames");
+        if (operation == null) return;
         // Check if the left mouse button was clicked
         if (e.LeftButton == MouseButtonState.Pressed)
         {
@@ -1002,7 +1030,7 @@ public partial class MainWindow : FluentWindow
 
     private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        var settingsWindow = new SettingsWindow(_vm);
+        var settingsWindow = new SettingsWindow(_vm, _mcp);
         settingsWindow.Owner = this;
         settingsWindow.ShowDialog();
     }

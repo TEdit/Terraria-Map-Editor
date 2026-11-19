@@ -9,6 +9,19 @@ public static class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        if (args is [Mcp.AgentBridge.Argument, ..])
+        {
+            Environment.ExitCode = Mcp.AgentBridge.RunAsync(args).GetAwaiter().GetResult();
+            return;
+        }
+
+        if (args is [Mcp.Scripting.ScriptProtocol.WorkerArgument])
+        {
+            try { Mcp.Scripting.ScriptWorker.MainLoop(Console.OpenStandardInput(), Console.OpenStandardOutput()); }
+            catch { Environment.ExitCode = 1; }
+            return;
+        }
+
         var totalSw = Stopwatch.StartNew();
         var sw = Stopwatch.StartNew();
 

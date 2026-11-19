@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using ReactiveUI;
 using TEdit.Terraria;
 
@@ -6,6 +7,7 @@ namespace TEdit.ViewModel;
 
 public class NpcListItem : ReactiveObject
 {
+    public Func<IDisposable?>? BeginEdit { get; set; }
     public int SpriteId { get; }
     public string Name { get; }
     public string LocalizedName { get; }
@@ -46,6 +48,8 @@ public class NpcListItem : ReactiveObject
         get => WorldNpc?.TownNpcVariationIndex ?? 0;
         set
         {
+            using var operation = BeginEdit?.Invoke();
+            if (BeginEdit != null && operation == null) return;
             if (WorldNpc != null)
             {
                 WorldNpc.TownNpcVariationIndex = value;
@@ -62,6 +66,8 @@ public class NpcListItem : ReactiveObject
             && _world.ShimmeredTownNPCs[SpriteId] != 0;
         set
         {
+            using var operation = BeginEdit?.Invoke();
+            if (BeginEdit != null && operation == null) return;
             if (_world != null && SpriteId >= 0)
             {
                 // Pad collection if NPC ID is beyond current size
@@ -82,6 +88,8 @@ public class NpcListItem : ReactiveObject
         get => _world?.PartyingNPCs.Contains(SpriteId) ?? false;
         set
         {
+            using var operation = BeginEdit?.Invoke();
+            if (BeginEdit != null && operation == null) return;
             if (_world != null)
             {
                 bool current = _world.PartyingNPCs.Contains(SpriteId);

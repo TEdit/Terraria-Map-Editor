@@ -2824,6 +2824,21 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
     {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
+        // Progress drawing does not read the world and must remain available while
+        // the export owns its read lease.
+        if (_isExporting)
+        {
+            e.GraphicsDevice.Clear(_backgroundColor);
+            DrawExportProgressOverlay(e.GraphicsDevice);
+            return;
+        }
+        if (_wvm?.CurrentWorld == null)
+        {
+            e.GraphicsDevice.Clear(_backgroundColor);
+            return;
+        }
+        using var operation = _wvm?.BeginWorldRead("Viewport render");
+        if (operation == null) return;
 
         // Clear the graphics device and texture buffer
         e.GraphicsDevice.Clear(_backgroundColor);
@@ -2831,13 +2846,6 @@ public partial class WorldRenderXna : UserControl
         // Abort rendering if in design mode or if gameTimer is not running
         if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null)
             return;
-
-        // Draw export progress overlay instead of normal rendering while exporting
-        if (_isExporting)
-        {
-            DrawExportProgressOverlay(e.GraphicsDevice);
-            return;
-        }
 
         Update(e);
         Render(e);
@@ -2907,6 +2915,8 @@ public partial class WorldRenderXna : UserControl
     private World? _lastRenderedWorld = null;
     private void Render(GraphicsDeviceEventArgs e)
     {
+        using var operation = _wvm?.BeginWorldRead("Viewport render");
+        if (operation == null) return;
         // NOTE: Texture queue processing is now handled by DispatcherTimer (StartPreviewProcessing)
         // to avoid blocking render frames. The timer runs on UI thread with Background priority.
 
@@ -8357,6 +8367,8 @@ public partial class WorldRenderXna : UserControl
     /// </summary>
     public async Task ExportSelectionToFileAsync(string filename, int scale, IProgress<ProgressChangedEventArgs>? progress = null)
     {
+        using var operation = _wvm.BeginWorldOperation("Export selection", mutation: false);
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
 
         var area = _wvm.Selection.SelectionArea;
@@ -8595,6 +8607,8 @@ public partial class WorldRenderXna : UserControl
     /// </summary>
     public async Task ExportTilesToFolderAsync(string outputDir, RectangleInt32 area, IProgress<ProgressChangedEventArgs>? progress = null)
     {
+        using var operation = _wvm.BeginWorldOperation("Export map tiles", mutation: false);
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
         if (area.Width <= 0 || area.Height <= 0) return;
 
@@ -8607,7 +8621,7 @@ public partial class WorldRenderXna : UserControl
         _isExporting = true;
         _exportOverallPercent = 0;
         _exportLayerPercent = 0;
-        _exportCts = new CancellationTokenSource();
+        _exportCts = CancellationTokenSource.CreateLinkedTokenSource(_wvm.WorldOperations.ActiveCancellation);
 
         // Wrap progress to update on-map overlay
         var overlayProgress = new Progress<ProgressChangedEventArgs>(e =>

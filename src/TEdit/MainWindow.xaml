@@ -99,7 +99,7 @@
         </ui:TitleBar>
 
         <!-- Main Content -->
-        <DockPanel Grid.Row="1" LastChildFill="True">
+        <DockPanel Grid.Row="1" LastChildFill="True" IsEnabled="{Binding IsWorldInteractionEnabled}">
             <Menu DockPanel.Dock="Top">
                 <MenuItem>
                     <MenuItem.Header>
@@ -572,6 +572,20 @@
             </Grid>
         </DockPanel>
         </Grid>
+
+        <Button Content="{x:Static p:Language.common_cancel}" Command="{Binding CancelWorldOperationCommand}"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,38,16,0" Panel.ZIndex="90">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CanCancelWorldOperation}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <!-- WPF UI Snackbar for notifications - at top to avoid DirectX airspace issue -->
         <ui:SnackbarPresenter x:Name="SnackbarPresenter"

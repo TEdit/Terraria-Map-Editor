@@ -15,6 +15,7 @@ public partial class ReplayPluginPlayerView
     private static readonly string[] DelayLabels = ["10ms", "50ms", "100ms", "250ms", "500ms", "1000ms"];
 
     private ReplayPlayer _player;
+    private TEdit.Terraria.World _playbackWorld;
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromMilliseconds(10) };
     private bool _seeking;
 
@@ -26,9 +27,12 @@ public partial class ReplayPluginPlayerView
 
     public void Load(ReplayFile file)
     {
+        using var operation = ViewModelLocator.WorldViewModel.BeginWorldOperation("Load");
+        if (operation == null) return;
         _timer.Tick += TickTimer_Tick;
 
         _player = new ReplayPlayer(file);
+        _playbackWorld = file.BaselineWorld;
 
         ViewModelLocator.WorldViewModel.CurrentWorld = file.BaselineWorld;
 
@@ -40,12 +44,16 @@ public partial class ReplayPluginPlayerView
 
     private void StartButton_Click(object sender, RoutedEventArgs e)
     {
+        using var operation = BeginPlaybackEdit();
+        if (operation == null) return;
         _player.Seek(0);
         UpdateDisplay();
     }
 
     private void StepBackButton_Click(object sender, RoutedEventArgs e)
     {
+        using var operation = BeginPlaybackEdit();
+        if (operation == null) return;
         _player.StepBackward();
         UpdateDisplay();
     }
@@ -70,12 +78,16 @@ public partial class ReplayPluginPlayerView
 
     private void StepForwardButton_Click(object sender, RoutedEventArgs e)
     {
+        using var operation = BeginPlaybackEdit();
+        if (operation == null) return;
         _player.StepForward();
         UpdateDisplay();
     }
 
     private void ProgressSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
+        using var operation = BeginPlaybackEdit();
+        if (operation == null) return;
         if (_seeking || _player == null) return;
         _seeking = true;
 
@@ -123,10 +135,23 @@ public partial class ReplayPluginPlayerView
 
     private void TickTimer_Tick(object sender, EventArgs e)
     {
+        using var operation = BeginPlaybackEdit();
+        if (operation == null) return;
         _player.OnTick();
         UpdateDisplay();
     }
 
+    private IDisposable BeginPlaybackEdit()
+    {
+        var vm = ViewModelLocator.WorldViewModel;
+        if (!ReferenceEquals(vm.CurrentWorld, _playbackWorld))
+        {
+            _player?.Pause();
+            _timer.Stop();
+            return null;
+        }
+        return vm.BeginWorldOperation("Replay playback");
+    }
     private void UpdateDisplay()
     {
         if (_player.IsPlaying)

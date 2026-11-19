@@ -74,6 +74,30 @@ public class UndoBuffer : IDisposable
     }
 
     private readonly Dictionary<Tile, HashSet<Vector2Int32>> _undoTiles = new();
+    // A frame restores the first state of each coordinate, even when later edits
+    // change its tile value or the frame has already flushed a batch to disk.
+    private System.Collections.BitArray? _savedLocations;
+    private HashSet<Vector2Int32>? _unboundedSavedLocations;
+
+    private bool TryRecordLocation(Vector2Int32 location)
+    {
+        if (_world != null && _world.ValidTileLocation(location))
+        {
+            _savedLocations ??= new System.Collections.BitArray(checked(_world.TilesWide * _world.TilesHigh));
+            int index = location.X + location.Y * _world.TilesWide;
+            if (_savedLocations[index]) return false;
+            _savedLocations[index] = true;
+            return true;
+        }
+        return (_unboundedSavedLocations ??= new()).Add(location);
+    }
+
+    private void ForgetLocation(Vector2Int32 location)
+    {
+        if (_savedLocations != null && _world.ValidTileLocation(location))
+            _savedLocations[location.X + location.Y * _world.TilesWide] = false;
+        _unboundedSavedLocations?.Remove(location);
+    }
     private readonly List<Tile> _tileOrder = new(); // For order preservation
     private int _totalTileCount; // Maintained incrementally to avoid LINQ enumeration
     private int _uniqueTileGroupsWritten = 0; // Track across batches for file header
@@ -115,6 +139,7 @@ public class UndoBuffer : IDisposable
             {
                 if (kvp.Value.Remove(new Vector2Int32(x, y)))
                 {
+                    ForgetLocation(new Vector2Int32(x, y));
                     _totalTileCount--;
                     // If this was the last location for this tile, remove the tile entry
                     if (kvp.Value.Count == 0)
@@ -134,6 +159,8 @@ public class UndoBuffer : IDisposable
         lock (UndoSaveLock)
         {
             _undoTiles.Clear();
+            _savedLocations?.SetAll(false);
+            _unboundedSavedLocations?.Clear();
             _tileOrder.Clear();
             _totalTileCount = 0;
             LastTile = null;
@@ -148,6 +175,7 @@ public class UndoBuffer : IDisposable
 
         lock (UndoSaveLock)
         {
+            if (!TryRecordLocation(location)) return;
             // Find or create tile entry
             if (!_undoTiles.TryGetValue(tile, out var locations))
             {

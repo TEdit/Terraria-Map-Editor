@@ -78,6 +78,8 @@ public partial class NbtExplorerViewModel
     [ReactiveCommand]
     private void ApplyEdit()
     {
+        using var operation = _worldViewModel.BeginWorldOperation("ApplyEdit");
+        if (operation == null) return;
         if (SelectedNode is not { IsEditable: true }) return;
 
         var twldData = _worldViewModel.CurrentWorld?.TwldData;
@@ -101,6 +103,8 @@ public partial class NbtExplorerViewModel
     [ReactiveCommand]
     private void EditEntity(NbtNodeViewModel? node)
     {
+        using var operation = _worldViewModel.BeginWorldOperation("EditEntity");
+        if (operation == null) return;
         node ??= SelectedNode;
         if (node == null || node.EntityKind == NbtEntityKind.None) return;
 

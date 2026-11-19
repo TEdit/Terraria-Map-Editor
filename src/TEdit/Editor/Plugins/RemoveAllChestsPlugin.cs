@@ -15,7 +15,7 @@ public class RemoveAllChestsPlugin : BasePlugin
         TitleKey = "plugin_removeallchests_menu";
     }
 
-    public override async void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_wvm.CurrentWorld == null) return;
 

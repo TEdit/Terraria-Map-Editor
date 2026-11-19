@@ -61,6 +61,27 @@ public class UndoBufferTests : IDisposable
         Assert.True(tiles[0].Tile.Equals(tile));
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void RepeatedCoordinatePreservesFirstStateAcrossFlush(bool flush)
+    {
+        var fileName = GetTestFileName();
+        var first = new Tile { IsActive = true, Type = 1 };
+        var world = TEdit.Tests.Scripting.TestWorldFactory.CreateSmallWorld();
+        using (var buffer = new UndoBuffer(fileName, world))
+        {
+            buffer.Add(first, 3, 4);
+            if (flush) buffer.SaveTileData();
+            buffer.Add(new Tile { IsActive = true, Type = 2, Wall = 2 }, 3, 4);
+            buffer.Close();
+        }
+        using var reader = new BinaryReader(File.OpenRead(fileName));
+        var tiles = UndoBuffer.ReadUndoTilesFromStream(reader).ToList();
+        Assert.Single(tiles);
+        Assert.Equal(first, tiles[0].Tile);
+    }
+
     [Fact]
     public void UndoBuffer_RoundTrip_MultipleTiles_AllUnique()
     {

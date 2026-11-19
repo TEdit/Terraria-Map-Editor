@@ -758,6 +758,33 @@ public class WorldEditor : IDisposable
         return lookup[bits];
     }
 
+    public static void ApplyMaterial(ref Tile curTile, int? tile, int? wall)
+    {
+        if (tile != null)
+        {
+            if (tile == -1)
+            {
+                curTile.ClearTile();
+            }
+            else
+            {
+                curTile.Type = (ushort)tile;
+                curTile.IsActive = true;
+                if (WorldConfiguration.TileProperties[curTile.Type].IsSolid
+                    && !WorldConfiguration.TileProperties[curTile.Type].IsFramed)
+                {
+                    curTile.U = -1;
+                    curTile.V = -1;
+                    // All solid blocks can contain liquid.
+                    // curTile.LiquidAmount = 0;
+                }
+            }
+        }
+
+        if (wall != null)
+            curTile.Wall = (ushort)wall;
+    }
+
     private void SetPixelAutomatic(
         ref Tile curTile,
         int? tile = null,
@@ -785,26 +812,7 @@ public class WorldEditor : IDisposable
         if (v != null)
             curTile.V = (short)v;
 
-        if (tile != null)
-        {
-            if (tile == -1)
-            {
-                curTile.ClearTile();
-            }
-            else
-            {
-                curTile.Type = (ushort)tile;
-                curTile.IsActive = true;
-                if (WorldConfiguration.TileProperties[curTile.Type].IsSolid
-                    && !WorldConfiguration.TileProperties[curTile.Type].IsFramed)
-                {
-                    curTile.U = -1;
-                    curTile.V = -1;
-                    // All solid blocks can contain liquid.
-                    // curTile.LiquidAmount = 0;
-                }
-            }
-        }
+        ApplyMaterial(ref curTile, tile, wall);
 
         if (actuator != null && curTile.IsActive)
         {
@@ -820,9 +828,6 @@ public class WorldEditor : IDisposable
         {
             curTile.BrickStyle = (BrickStyle)brickStyle;
         }
-
-        if (wall != null)
-            curTile.Wall = (ushort)wall;
 
         if (liquidType == LiquidType.None)
         {

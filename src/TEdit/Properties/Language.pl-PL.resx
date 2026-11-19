@@ -5414,4 +5414,162 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
   </data>
+  <data name="scripting_profile" xml:space="preserve">
+    <value>Wybierz profil dostępu, aby uruchomić skrypt.</value>
+  </data>
+  <data name="scripting_inspect" xml:space="preserve">
+    <value>W trybie podglądu skrypty są wyłączone.</value>
+  </data>
+  <data name="scripting_mcp" xml:space="preserve">
+    <value>Skrypty MCP są wyłączone do czasu ukończenia kontroli bezpieczeństwa edytora.</value>
+  </data>
+  <data name="scripting_unknown" xml:space="preserve">
+    <value>Nieznany profil dostępu.</value>
+  </data>
+  <data name="scripting_empty" xml:space="preserve">
+    <value>Brak kodu do uruchomienia.</value>
+  </data>
+  <data name="scripting_timeout_positive" xml:space="preserve">
+    <value>Limit czasu musi być dodatni.</value>
+  </data>
+  <data name="scripting_start" xml:space="preserve">
+    <value>Nie uruchomiono skryptu.</value>
+  </data>
+  <data name="scripting_busy" xml:space="preserve">
+    <value>Świat jest zajęty. Spróbuj ponownie po zakończeniu operacji.</value>
+  </data>
+  <data name="scripting_stale" xml:space="preserve">
+    <value>Świat się zmienił. Sprawdź go przed uruchomieniem skryptu.</value>
+  </data>
+  <data name="scripting_cancel" xml:space="preserve">
+    <value>Anulowano skrypt</value>
+  </data>
+  <data name="scripting_timeout" xml:space="preserve">
+    <value>Przekroczono limit czasu po {0} ms</value>
+  </data>
+  <data name="scripting_finalize" xml:space="preserve">
+    <value>{0} Błąd podczas kończenia: {1}</value>
+  </data>
+  <data name="scripting_binding" xml:space="preserve">
+    <value>Nie można zainicjować API skryptów.</value>
+  </data>
+  <data name="scripting_running" xml:space="preserve">
+    <value>[{0}] Uruchamianie skryptu…</value>
+  </data>
+  <data name="scripting_warning" xml:space="preserve">
+    <value>[Ostrzeżenie] {0}</value>
+  </data>
+  <data name="scripting_error" xml:space="preserve">
+    <value>[Błąd] {0}</value>
+  </data>
+  <data name="scripting_done" xml:space="preserve">
+    <value>[Gotowe] Ukończono w {0} ms</value>
+  </data>
+  <data name="scripting_elapsed" xml:space="preserve">
+    <value>[Błąd] {0} ({1} ms)</value>
+  </data>
+  <data name="scripting_saved" xml:space="preserve">
+    <value>Zapisano: {0}</value>
+  </data>
+  <data name="scripting_generated" xml:space="preserve">
+    <value>Wygenerowano: {0}</value>
+  </data>
+  <data name="scripting_js_error" xml:space="preserve">
+    <value>Błąd JavaScript: {0} (wiersz {1})</value>
+  </data>
+  <data name="scripting_lua_error" xml:space="preserve">
+    <value>Błąd Lua: {0}</value>
+  </data>
+  <data name="scripting_generic_error" xml:space="preserve">
+    <value>Błąd: {0}</value>
+  </data>
+  <data name="mcp_enable" xml:space="preserve">
+    <value>Włącz lokalny serwer MCP</value>
+  </data>
+  <data name="mcp_edit" xml:space="preserve">
+    <value>Zezwalaj na narzędzia rysowania</value>
+  </data>
+  <data name="mcp_port" xml:space="preserve">
+    <value>Port (1024–65535)</value>
+  </data>
+  <data name="mcp_profile" xml:space="preserve">
+    <value>Nazwa profilu klienta</value>
+  </data>
+  <data name="mcp_issue" xml:space="preserve">
+    <value>Utwórz token dostępu</value>
+  </data>
+  <data name="mcp_revoke" xml:space="preserve">
+    <value>Unieważnij wybrany token</value>
+  </data>
+  <data name="mcp_history" xml:space="preserve">
+    <value>Historia operacji</value>
+  </data>
+  <data name="mcp_profile_error" xml:space="preserve">
+    <value>Sprawdź nazwę profilu i dostęp do magazynu poświadczeń.</value>
+  </data>
+  <data name="mcp_host_Disabled" xml:space="preserve">
+    <value>Serwer wyłączony</value>
+  </data>
+  <data name="mcp_host_Running" xml:space="preserve">
+    <value>Aktywny · tylko odczyt</value>
+  </data>
+  <data name="mcp_host_OtherEditor" xml:space="preserve">
+    <value>Inna instancja TEdit obsługuje MCP.</value>
+  </data>
+  <data name="mcp_host_PortBusy" xml:space="preserve">
+    <value>Port zajęty. Wybierz inny.</value>
+  </data>
+  <data name="mcp_host_Fault" xml:space="preserve">
+    <value>Nie można uruchomić serwera. Sprawdź ustawienia i magazyn użytkownika.</value>
+  </data>
+  <data name="mcp_running" xml:space="preserve">
+    <value>W toku</value>
+  </data>
+  <data name="mcp_cancel_requested" xml:space="preserve">
+    <value>Zażądano anulowania</value>
+  </data>
+  <data name="mcp_succeeded" xml:space="preserve">
+    <value>Ukończono</value>
+  </data>
+  <data name="mcp_failed" xml:space="preserve">
+    <value>Niepowodzenie</value>
+  </data>
+  <data name="mcp_canceled" xml:space="preserve">
+    <value>Anulowano</value>
+  </data>
+  <data name="mcp_copy_setup" xml:space="preserve">
+    <value>Kopiuj instrukcje dla mojego agenta</value>
+  </data>
+  <data name="mcp_setup_prompt" xml:space="preserve">
+    <value>Połącz się z TEdit przez Streamable HTTP pod adresem {0}. Pokaż mi, gdzie w prywatnych ustawieniach poświadczeń klienta wpisać pełną wartość Authorization z opcji TEdit. Pomiń ją w czacie i plikach udostępnionych. Sprawdź połączenie za pomocą get_status.</value>
+  </data>
+  <data name="scripting_drawing_rejected" xml:space="preserve">
+    <value>Nie udało się wykonać żądania rysowania ({0}).</value>
+  </data>
+  <data name="mcp_scripts" xml:space="preserve">
+    <value>Zezwalaj również na skrypty JavaScript i Lua</value>
+  </data>
+  <data name="mcp_scripts_enabled" xml:space="preserve">
+    <value>Nasłuchiwanie · rysowanie i skrypty włączone</value>
+  </data>
+  <data name="mcp_shared" xml:space="preserve">
+    <value>Udostępnij dostęp bez tokenu wszystkim lokalnym klientom</value>
+  </data>
+  <data name="mcp_shared_setup" xml:space="preserve">
+    <value>Połącz się z TEdit pod adresem {0} przez Streamable HTTP bez uwierzytelniania. Sprawdź połączenie za pomocą get_status.</value>
+  </data>
+  <data name="mcp_drawing_enabled" xml:space="preserve">
+    <value>Aktywny · rysowanie dozwolone</value>
+  </data>
+  <data name="agent_connect" xml:space="preserve"><value>Połącz agenta</value></data>
+  <data name="agent_workspace" xml:space="preserve"><value>Użyj ustawień obszaru roboczego</value></data>
+  <data name="agent_stdio" xml:space="preserve"><value>Użyj mostu stdio</value></data>
+  <data name="agent_merge" xml:space="preserve"><value>Dodaj wpis TEdit do ustawień klienta lub wykonaj wyświetlone polecenie.</value></data>
+  <data name="agent_check" xml:space="preserve"><value>Sprawdź połączenie</value></data>
+  <data name="agent_ok" xml:space="preserve"><value>TEdit odpowiedział na get_status.</value></data>
+  <data name="agent_failed" xml:space="preserve"><value>Nie udało się połączyć. Sprawdź ustawienia MCP, port i profil w TEdit.</value></data>
+  <data name="agent_refresh" xml:space="preserve"><value>Te ustawienia dotyczą innej sesji. Skopiuj je ponownie z właściwego okna TEdit.</value></data>
+  <data name="agent_missing" xml:space="preserve"><value>Otwórz właściwe okno TEdit i włącz serwer MCP w ustawieniach.</value></data>
+  <data name="agent_profile" xml:space="preserve"><value>Wybierz lub utwórz profil klienta powyżej.</value></data>
+  <data name="agent_export_error" xml:space="preserve"><value>Wybierz nowy plik w folderze z prawem zapisu.</value></data>
 </root>

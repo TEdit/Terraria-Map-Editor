@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using TEdit.Common.Geometry;
 using TEdit.Editor;
 using TEdit.Editor.Undo;
@@ -17,15 +18,54 @@ public class DrawApi
     private readonly WorldEditor _editor;
     private readonly TileMaskSettings _maskSettings;
 
-    public DrawApi(World world, IUndoManager undo, ISelection selection)
+    private readonly CancellationToken _cancellation;
+
+    public DrawApi(World world, IUndoManager undo, ISelection selection, CancellationToken cancellation = default)
     {
         _world = world;
         _undo = undo;
         _selection = selection;
+        _cancellation = cancellation;
 
         var picker = new TilePicker();
         _maskSettings = new TileMaskSettings();
         _editor = new WorldEditor(picker, _maskSettings, world, selection, undo, notifyTileChanged: null);
+    }
+
+    // Explicit, bounded tools use the same material and selection rules as MCP.
+    public int Line(int x, int y, int endX, int endY, int thickness, string layer, int material, bool selectionOnly, int matchId) =>
+        Apply(new("line", x, y, endX, endY, false, thickness, layer, material, selectionOnly, matchId));
+
+    public int Rectangle(int x, int y, int endX, int endY, bool filled, int thickness, string layer, int material, bool selectionOnly, int matchId) =>
+        Apply(new("rectangle", x, y, endX, endY, filled, thickness, layer, material, selectionOnly, matchId));
+
+    public int Ellipse(int x, int y, int endX, int endY, bool filled, int thickness, string layer, int material, bool selectionOnly, int matchId) =>
+        Apply(new("ellipse", x, y, endX, endY, filled, thickness, layer, material, selectionOnly, matchId));
+
+    public int FillRegion(int x, int y, int endX, int endY, string layer, int material, bool selectionOnly, int matchId) =>
+        Apply(new("fill", x, y, endX, endY, true, 1, layer, material, selectionOnly, matchId));
+
+    public int PlaceSprite(int x, int y, int tileId, int style, bool selectionOnly) =>
+        Apply(new("sprite", x, y, x, y, true, 1, "tile", tileId, selectionOnly, -1, style));
+
+    private int Apply(DrawingSpec spec)
+    {
+        RectangleInt32? selection = _selection.IsActive ? _selection.SelectionArea : null;
+        _cancellation.ThrowIfCancellationRequested();
+        if (spec.Validate(_world, selection, out var sprite) is string error)
+            throw new ArgumentException(string.Format(Properties.Language.scripting_drawing_rejected, error));
+        if (sprite != null)
+        {
+            new SpriteApi(_world, _undo).PlaceSprite(sprite, spec.X, spec.Y);
+            return sprite.SizeTiles.X * sprite.SizeTiles.Y;
+        }
+        int changed = 0;
+        foreach (var point in spec.Points())
+        {
+            _cancellation.ThrowIfCancellationRequested();
+            if (spec.Paint(_world, _undo, selection, point)) changed++;
+        }
+        return changed;
     }
 
     // ── Picker Configuration ─────────────────────────────────────────

@@ -17,7 +17,7 @@ public class RandomizerPlugin : BasePlugin
         TitleKey = "plugin_randomizer_menu";
     }
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_wvm.CurrentWorld == null)
             return;
@@ -85,7 +85,7 @@ public class RandomizerPlugin : BasePlugin
         if (view.EnableUndo)
             _wvm.UndoManager.SaveUndo();
 
-        _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
+        await _wvm.UpdateRenderRegionAsync(randomizationArea); // Re-render map
         _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, showBackground: Configuration.UserSettingsService.Current.MinimapBackground); // Update Minimap
     }
 

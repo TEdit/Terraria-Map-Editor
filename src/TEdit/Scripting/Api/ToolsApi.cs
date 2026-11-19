@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.ViewModel;
@@ -12,10 +14,16 @@ namespace TEdit.Scripting.Api;
 public class ToolsApi
 {
     private readonly WorldViewModel _wvm;
+    private readonly Func<bool>? _canLoad;
+    private readonly Action? _loaded;
+    private readonly CancellationToken _cancellation;
 
-    public ToolsApi(WorldViewModel wvm)
+    public ToolsApi(WorldViewModel wvm, Func<bool>? canLoad = null, Action? loaded = null, CancellationToken cancellation = default)
     {
         _wvm = wvm;
+        _canLoad = canLoad;
+        _loaded = loaded;
+        _cancellation = cancellation;
     }
 
     public List<string> ListTools()
@@ -85,7 +93,6 @@ public class ToolsApi
             return false;
 
         filename = ResolveWorldPath(filename);
-        _wvm.CurrentFile = filename;
         return SaveToFile(filename, version);
     }
 
@@ -97,6 +104,13 @@ public class ToolsApi
     /// </summary>
     public bool Load(string filename)
     {
+        // Replacing a world inside a batch callback would invalidate the outer loop.
+        if (_canLoad?.Invoke() == false) return false;
+        // Script host methods run on the worker. Never block the UI on its own
+        // asynchronous undo/render completion.
+        if (System.Windows.Application.Current?.Dispatcher.CheckAccess() != false) return false;
+        using var operation = _wvm.BeginWorldOperation("Script load");
+        if (operation == null) return false;
         if (string.IsNullOrWhiteSpace(filename))
             return false;
 
@@ -105,22 +119,34 @@ public class ToolsApi
         if (!File.Exists(filename))
             return false;
 
+        bool installed = false;
         try
         {
+            _cancellation.ThrowIfCancellationRequested();
             var (world, error) = World.LoadWorld(filename);
             if (world == null)
                 return false;
+            _cancellation.ThrowIfCancellationRequested();
 
             // Must set CurrentWorld on UI thread since it triggers rendering
-            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            System.Windows.Application.Current.Dispatcher.InvokeAsync(async () =>
             {
+                await _wvm.UndoManager.SaveUndoAsync();
+                _cancellation.ThrowIfCancellationRequested();
                 _wvm.CurrentWorld = world;
+                installed = true;
+                _loaded?.Invoke();
                 _wvm.CurrentFile = filename;
-            });
+                _wvm.Selection.IsActive = false;
+                _wvm.PixelMap = new TEdit.Render.PixelMapManager();
+                _wvm.PixelMap.InitializeBuffers(world.TilesWide, world.TilesHigh);
+                await _wvm.UpdateRenderWorldAsync();
+            }).Task.Unwrap().GetAwaiter().GetResult();
 
             return true;
         }
-        catch
+        catch (OperationCanceledException) { throw; }
+        catch when (!installed)
         {
             return false;
         }
@@ -152,8 +178,14 @@ public class ToolsApi
 
     private bool SaveToFile(string filename, int version)
     {
+        if (System.Windows.Application.Current?.Dispatcher.CheckAccess() != false) return false;
+        using var operation = _wvm.BeginWorldOperation("Script save");
+        if (operation == null) return false;
         try
         {
+            _cancellation.ThrowIfCancellationRequested();
+            System.Windows.Application.Current.Dispatcher.InvokeAsync(() => _wvm.UndoManager.SaveUndoAsync())
+                .Task.Unwrap().GetAwaiter().GetResult();
             // Preserve the world's version unless an explicit override is given.
             // Version numbers are never clamped — config lookup finds the best match.
             uint worldVer = _wvm.CurrentWorld?.Version ?? 0;
@@ -165,6 +197,8 @@ public class ToolsApi
                 versionOverride: (int)v,
                 progress: new Progress<ProgressChangedEventArgs>(_ => { })
             ).GetAwaiter().GetResult();
+
+            System.Windows.Application.Current.Dispatcher.Invoke(() => _wvm.MarkScriptSaveCompleted(filename));
 
             return true;
         }

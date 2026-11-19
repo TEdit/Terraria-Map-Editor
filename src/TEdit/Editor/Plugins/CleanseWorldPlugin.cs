@@ -14,7 +14,7 @@ namespace TEdit.Editor.Plugins
             TitleKey = "plugin_cleanseworld_menu";
         }
 
-        public override void Execute()
+        protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
         {
             // Check if the current world is loaded.
             if (_wvm.CurrentWorld == null)

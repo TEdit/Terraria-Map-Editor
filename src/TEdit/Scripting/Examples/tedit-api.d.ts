@@ -665,6 +665,17 @@ declare const draw: {
     // Picker configuration
     /** Set tile type to paint. */
     setTile(tileType: number): void;
+
+    /** Draw a line with a square brush between inclusive endpoints. Returns the changed tile count. */
+    line(x: number, y: number, endX: number, endY: number, thickness: number, layer: "tile" | "wall", material: number, selectionOnly: boolean, matchId: number): number;
+    /** Draw a filled or outlined rectangle between inclusive corners. Returns the changed tile count. */
+    rectangle(x: number, y: number, endX: number, endY: number, filled: boolean, thickness: number, layer: "tile" | "wall", material: number, selectionOnly: boolean, matchId: number): number;
+    /** Draw a filled or outlined ellipse inside inclusive corners. Returns the changed tile count. */
+    ellipse(x: number, y: number, endX: number, endY: number, filled: boolean, thickness: number, layer: "tile" | "wall", material: number, selectionOnly: boolean, matchId: number): number;
+    /** Fill an inclusive rectangular region, optionally replacing a matching material. Returns the changed tile count. */
+    fillRegion(x: number, y: number, endX: number, endY: number, layer: "tile" | "wall", material: number, selectionOnly: boolean, matchId: number): number;
+    /** Place a sprite style at its top-left tile. The entire footprint must be empty and within the requested bounds and selection. Returns the changed tile count. */
+    placeSprite(x: number, y: number, tileId: number, style: number, selectionOnly: boolean): number;
     /** Set wall type to paint. */
     setWall(wallType: number): void;
     /** Enable/disable eraser mode. */

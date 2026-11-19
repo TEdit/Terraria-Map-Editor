@@ -22,7 +22,7 @@ namespace TEdit.Editor.Plugins
         }
 
         // Method to execute the plugin functionality
-        public async override void Execute()
+        protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
         {
             // Ensure the world is loaded
             if (_wvm.CurrentWorld == null) return;

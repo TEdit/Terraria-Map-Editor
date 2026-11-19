@@ -15,6 +15,8 @@ public class JintScriptEngine : IScriptEngine
 
     public ScriptResult Execute(string code, ScriptApi api, ScriptExecutionContext context)
     {
+        var denial = Execution.ScriptAccessPolicy.GetDenial(context.AccessProfile);
+        if (denial != null) return new ScriptResult(false, denial, 0);
         var sw = Stopwatch.StartNew();
 
         try
@@ -32,22 +34,22 @@ public class JintScriptEngine : IScriptEngine
             engine.SetValue("eval", Jint.Native.JsValue.Undefined);
 
             // Expose API surfaces
-            engine.SetValue("tile", api.Tile);
-            engine.SetValue("geometry", api.Geometry);
-            engine.SetValue("chests", api.Chests);
-            engine.SetValue("signs", api.Signs);
-            engine.SetValue("npcs", api.Npcs);
-            engine.SetValue("world", api.World);
-            engine.SetValue("selection", api.Selection);
-            engine.SetValue("metadata", api.Metadata);
-            engine.SetValue("log", api.Log);
-            engine.SetValue("batch", api.Batch);
-            engine.SetValue("tools", api.Tools);
-            engine.SetValue("finder", api.Finder);
-            engine.SetValue("sprites", api.Sprites);
-            engine.SetValue("draw", api.Draw);
-            engine.SetValue("tileEntities", api.TileEntities);
-            engine.SetValue("generate", api.Generate);
+            RegisterLiveApi(engine, "tile", () => api.Tile, api);
+            RegisterLiveApi(engine, "geometry", () => api.Geometry, api);
+            RegisterLiveApi(engine, "chests", () => api.Chests, api);
+            RegisterLiveApi(engine, "signs", () => api.Signs, api);
+            RegisterLiveApi(engine, "npcs", () => api.Npcs, api);
+            RegisterLiveApi(engine, "world", () => api.World, api);
+            RegisterLiveApi(engine, "selection", () => api.Selection, api);
+            RegisterLiveApi(engine, "metadata", () => api.Metadata, api);
+            RegisterLiveApi(engine, "log", () => api.Log, api);
+            RegisterLiveApi(engine, "batch", () => api.Batch, api);
+            RegisterLiveApi(engine, "tools", () => api.Tools, api);
+            RegisterLiveApi(engine, "finder", () => api.Finder, api);
+            RegisterLiveApi(engine, "sprites", () => api.Sprites, api);
+            RegisterLiveApi(engine, "draw", () => api.Draw, api);
+            RegisterLiveApi(engine, "tileEntities", () => api.TileEntities, api);
+            RegisterLiveApi(engine, "generate", () => api.Generate, api);
 
             // print() convenience
             engine.SetValue("print", new Action<object>(msg =>
@@ -61,23 +63,60 @@ public class JintScriptEngine : IScriptEngine
         catch (TimeoutException)
         {
             sw.Stop();
-            return new ScriptResult(false, $"Script timed out after {context.TimeoutMs}ms", sw.ElapsedMilliseconds);
+            return new ScriptResult(false, string.Format(Properties.Language.scripting_timeout, context.TimeoutMs), sw.ElapsedMilliseconds);
         }
-        catch (OperationCanceledException)
+        catch (Exception ex) when (ex is OperationCanceledException or ExecutionCanceledException)
         {
             sw.Stop();
-            return new ScriptResult(false, "Script was cancelled", sw.ElapsedMilliseconds);
+            return new ScriptResult(false, Properties.Language.scripting_cancel, sw.ElapsedMilliseconds);
         }
         catch (JavaScriptException ex)
         {
             sw.Stop();
-            return new ScriptResult(false, $"JavaScript error: {ex.Message} (line {ex.Location.Start.Line})", sw.ElapsedMilliseconds);
+            return new ScriptResult(false, string.Format(Properties.Language.scripting_js_error, ex.Message, ex.Location.Start.Line), sw.ElapsedMilliseconds);
         }
         catch (Exception ex)
         {
             sw.Stop();
-            return new ScriptResult(false, $"Error: {ex.Message}", sw.ElapsedMilliseconds);
+            return new ScriptResult(false, string.Format(Properties.Language.scripting_generic_error, ex.Message), sw.ElapsedMilliseconds);
         }
+    }
+
+    private static void RegisterLiveApi(Jint.Engine engine, string name, Func<object?> currentModule, ScriptApi api)
+    {
+        if (currentModule() == null)
+        {
+            engine.SetValue(name, Jint.Native.JsValue.Null);
+            return;
+        }
+        engine.SetValue("__teditGetModule", currentModule);
+        engine.SetValue("__teditEnterApi", new Action(api.EnterApiCall));
+        engine.SetValue("__teditExitApi", new Action(api.ExitApiCall));
+        // Resolve again when a saved method is invoked: tools.load may have replaced
+        // both the world and its undo manager since the method was obtained.
+        engine.Execute($$"""
+            var {{name}} = (function(getModule, enter, exit) {
+                return new Proxy({}, {
+                    get: function(_, key) {
+                        var value = getModule()[key];
+                        if (typeof value !== 'function') return value;
+                        return function(...args) {
+                            enter();
+                            try { return getModule()[key](...args); }
+                            finally { exit(); }
+                        };
+                    },
+                    set: function(_, key, value) { getModule()[key] = value; return true; }
+                });
+            })(__teditGetModule, __teditEnterApi, __teditExitApi);
+            delete __teditGetModule;
+            delete __teditEnterApi;
+            delete __teditExitApi;
+            """);
+        if (!engine.GetValue("__teditGetModule").IsUndefined() ||
+            !engine.GetValue("__teditEnterApi").IsUndefined() ||
+            !engine.GetValue("__teditExitApi").IsUndefined())
+            throw new InvalidOperationException(Properties.Language.scripting_binding);
     }
 
     private static IEnumerable<string> ToCamelCase(MemberInfo member)

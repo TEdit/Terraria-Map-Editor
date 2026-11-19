@@ -110,6 +110,8 @@ public partial class BannerViewModel : ReactiveObject
     /// </summary>
     private void PopulateBanners()
     {
+        using var operation = _wvm.BeginWorldOperation("PopulateBanners", mutation: false);
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
 
         BannerData.Clear();
@@ -181,6 +183,8 @@ public partial class BannerViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task ImportBanners()
     {
+        using var operation = _wvm.BeginWorldOperation("ImportBanners");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
@@ -222,6 +226,8 @@ public partial class BannerViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task SaveBanners()
     {
+        using var operation = _wvm.BeginWorldOperation("SaveBanners");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
@@ -257,6 +263,8 @@ public partial class BannerViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task MaxOutBanners()
     {
+        using var operation = _wvm.BeginWorldOperation("MaxOutBanners");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
@@ -275,6 +283,8 @@ public partial class BannerViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task ResetBanners()
     {
+        using var operation = _wvm.BeginWorldOperation("ResetBanners");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(

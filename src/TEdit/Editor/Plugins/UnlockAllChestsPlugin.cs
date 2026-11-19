@@ -35,7 +35,7 @@ public class UnlockAllChestsPlugin : BasePlugin
         return false;
     }
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_wvm.CurrentWorld == null) return;
 

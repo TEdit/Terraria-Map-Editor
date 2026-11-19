@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +25,8 @@ public partial class WorldViewModel
 
     public void EditDelete()
     {
+        using var operation = BeginWorldOperation("EditDelete");
+        if (operation == null) return;
         if (Selection.IsActive)
         {
             for (int x = Selection.SelectionArea.Left; x < Selection.SelectionArea.Right; x++)
@@ -58,6 +60,8 @@ public partial class WorldViewModel
 
     public void EditCopy()
     {
+        using var operation = BeginWorldOperation("EditCopy", mutation: false);
+        if (operation == null) return;
         if (!CanCopy())
             return;
 
@@ -67,6 +71,8 @@ public partial class WorldViewModel
 
     public void EditCut()
     {
+        using var operation = BeginWorldOperation("EditCut");
+        if (operation == null) return;
         if (!CanCopy())
             return;
 
@@ -76,6 +82,8 @@ public partial class WorldViewModel
 
     public async Task CropWorldAsync()
     {
+        using var operation = BeginWorldOperation("CropWorldAsync");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
         if (!CanCopy())
             return;
@@ -126,8 +134,10 @@ public partial class WorldViewModel
         FinalizeLoad();
     }
 
-    public async void ExpandWorld()
+    public async Task ExpandWorld()
     {
+        using var operation = BeginWorldOperation("ExpandWorld");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         var dlg = new ExpandWorldView(
@@ -369,6 +379,8 @@ public partial class WorldViewModel
 
     public void EditPaste()
     {
+        using var operation = BeginWorldOperation("EditPaste");
+        if (operation == null) return;
         if (!CanPaste())
             return;
 
@@ -393,6 +405,8 @@ public partial class WorldViewModel
 
     public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
     {
+        using var operation = BeginWorldOperation("SetPixel");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
         if (TilePicker == null) return;
 
@@ -405,6 +419,8 @@ public partial class WorldViewModel
     /// </summary>
     public bool ReplaceAll()
     {
+        using var operation = BeginWorldOperation("ReplaceAll");
+        if (operation == null) return false;
         if (CurrentWorld == null) return false;
         if (!WorldEditor.ReplaceAll(selectionOnly: false)) return false;
         UndoManager.SaveUndo();
@@ -416,6 +432,8 @@ public partial class WorldViewModel
     /// </summary>
     public bool ReplaceSelection()
     {
+        using var operation = BeginWorldOperation("ReplaceSelection");
+        if (operation == null) return false;
         if (CurrentWorld == null || !Selection.IsActive) return false;
         if (!WorldEditor.ReplaceAll(selectionOnly: true)) return false;
         UndoManager.SaveUndo();
@@ -424,7 +442,14 @@ public partial class WorldViewModel
 
     public void UpdateRenderWorld()
     {
-        Task.Factory.StartNew(
+        ObserveWorldTask(UpdateRenderWorldAsync());
+    }
+
+    public async Task UpdateRenderWorldAsync()
+    {
+        using var operation = BeginWorldOperation("Render world", mutation: false);
+        if (operation == null) return;
+        await Task.Run(
             () =>
             {
                 if (CurrentWorld != null)
@@ -447,7 +472,14 @@ public partial class WorldViewModel
     // Renders the PixelMap with Hide filter support. Darken is handled by the overlay.
     public void UpdateRenderWorldUsingFilter()
     {
-        Task.Factory.StartNew(
+        ObserveWorldTask(UpdateRenderWorldUsingFilterAsync());
+    }
+
+    public async Task UpdateRenderWorldUsingFilterAsync()
+    {
+        using var operation = BeginWorldOperation("Render filter", mutation: false);
+        if (operation == null) return;
+        await Task.Run(
             () =>
             {
                 if (CurrentWorld != null)
@@ -517,6 +549,8 @@ public partial class WorldViewModel
     /// <param name="useFilter">If true, apply current FilterManager settings</param>
     public void RefreshAllRenderings(bool useFilter)
     {
+        using var operation = BeginWorldOperation("RefreshAllRenderings", mutation: false);
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         bool showBg = UserSettingsService.Current.MinimapBackground;
@@ -534,10 +568,14 @@ public partial class WorldViewModel
 
     public void UpdateRenderPixel(Vector2Int32 p)
     {
+        using var operation = BeginWorldOperation("UpdateRenderPixel", mutation: false);
+        if (operation == null) return;
         UpdateRenderPixel(p.X, p.Y);
     }
     public void UpdateRenderPixel(int x, int y)
     {
+        using var operation = BeginWorldOperation("UpdateRenderPixel", mutation: false);
+        if (operation == null) return;
         if (CurrentWorld == null) return;
         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
@@ -547,6 +585,8 @@ public partial class WorldViewModel
 
     public void UpdateRenderPixels(IReadOnlyList<Vector2Int32> tiles)
     {
+        using var operation = BeginWorldOperation("UpdateRenderPixels", mutation: false);
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         // Always render synchronously to avoid reading stale tile data
@@ -573,6 +613,8 @@ public partial class WorldViewModel
     /// </summary>
     public void UpdateRenderRegionSync(int x, int y, int width, int height)
     {
+        using var operation = BeginWorldOperation("UpdateRenderRegionSync", mutation: false);
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         int left = Math.Max(x, 0);
@@ -631,7 +673,24 @@ public partial class WorldViewModel
 
     public void UpdateRenderRegion(RectangleInt32 area)
     {
-        Task.Factory.StartNew(
+        if (_manualOperation != null && WorldOperations.IsOwner)
+        {
+            // A stroke can receive another mouse event before a background render
+            // finishes. Keep its preview read synchronous with the tile mutation.
+            int left = Math.Max(0, area.Left), top = Math.Max(0, area.Top);
+            int right = Math.Min(CurrentWorld.TilesWide, area.Right);
+            int bottom = Math.Min(CurrentWorld.TilesHigh, area.Bottom);
+            UpdateRenderRegionSync(left, top, Math.Max(0, right - left), Math.Max(0, bottom - top));
+            return;
+        }
+        ObserveWorldTask(UpdateRenderRegionAsync(area));
+    }
+
+    public async Task UpdateRenderRegionAsync(RectangleInt32 area)
+    {
+        using var operation = BeginWorldOperation("UpdateRenderRegion", mutation: false);
+        if (operation == null) return;
+        await Task.Run(
         (Action)(() =>
         {
             if (CurrentWorld == null) return;
@@ -736,8 +795,12 @@ public partial class WorldViewModel
     /// Rebuilds the entire filter overlay map. Runs on a background thread.
     /// Uses binary byte mask (0 or 255) with per-chunk ChunkStatus classification.
     /// </summary>
-    public void RebuildFilterOverlay()
+    public void RebuildFilterOverlay() => ObserveWorldTask(RebuildFilterOverlayAsync());
+
+    public async Task RebuildFilterOverlayAsync()
     {
+        using var operation = BeginWorldOperation("RebuildFilterOverlay", mutation: false);
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         var overlay = FilterOverlayMap;
@@ -748,7 +811,7 @@ public partial class WorldViewModel
             FilterOverlayMap = overlay;
         }
 
-        Task.Factory.StartNew(() =>
+        await Task.Run(() =>
         {
             bool filterActive = (FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) || FilterManager.FindOverlayActive;
 

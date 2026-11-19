@@ -1,4 +1,4 @@
-﻿using TEdit.ViewModel;
+using TEdit.ViewModel;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria;
 
@@ -13,7 +13,7 @@ public sealed class SpriteDebuggerPlugin : BasePlugin
         TitleKey = "plugin_spritedebugger_menu";
     }
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_wvm.CurrentWorld == null)
             return;

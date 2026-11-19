@@ -9,7 +9,6 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Scripting;
-using TEdit.Scripting.Api;
 using TEdit.Scripting.Engine;
 
 namespace TEdit.ViewModel;
@@ -57,12 +56,12 @@ public partial class ScriptingSidebarViewModel
         if (_isRunning) return;
         if (_wvm.CurrentWorld == null)
         {
-            AppendLog("[Error] No world loaded.");
+            AppendLog(string.Format(Properties.Language.scripting_error, Properties.Language.find_no_world_loaded));
             return;
         }
         if (string.IsNullOrWhiteSpace(_scriptCode))
         {
-            AppendLog("[Error] No script code to run.");
+            AppendLog(string.Format(Properties.Language.scripting_error, Properties.Language.scripting_empty));
             return;
         }
 
@@ -74,17 +73,18 @@ public partial class ScriptingSidebarViewModel
         var engine = _engines[_selectedEngineIndex];
         var code = _scriptCode;
 
-        AppendLog($"[{engine.Name}] Running script...");
+        AppendLog(string.Format(Properties.Language.scripting_running, engine.Name));
 
         var findVm = ViewModelLocator.GetFindSidebarViewModel();
 
         var context = new ScriptExecutionContext
         {
+            AccessProfile = Scripting.Execution.ScriptAccessProfile.LocalSidebar,
             TimeoutMs = UserSettingsService.Current.ScriptTimeoutSeconds * 1000,
             CancellationToken = _cts.Token,
             OnLog = msg => _dispatcher.BeginInvoke(() => AppendLog(msg)),
-            OnWarn = msg => _dispatcher.BeginInvoke(() => AppendLog($"[Warn] {msg}")),
-            OnError = msg => _dispatcher.BeginInvoke(() => AppendLog($"[Error] {msg}")),
+            OnWarn = msg => _dispatcher.BeginInvoke(() => AppendLog(string.Format(Properties.Language.scripting_warning, msg))),
+            OnError = msg => _dispatcher.BeginInvoke(() => AppendLog(string.Format(Properties.Language.scripting_error, msg))),
             OnProgress = p => _dispatcher.BeginInvoke(() => Progress = p * 100),
             OnFindResult = (name, x, y, type, extra) => _dispatcher.BeginInvoke(() =>
             {
@@ -110,44 +110,22 @@ public partial class ScriptingSidebarViewModel
             }),
         };
 
-        ScriptResult result;
-        ScriptApi? scriptApi = null;
         try
         {
-            result = await Task.Run(() =>
-            {
-                scriptApi = new ScriptApi(_wvm, context);
-                scriptApi.BeginExecution();
-                return engine.Execute(code, scriptApi, context);
-            }, _cts.Token);
-        }
-        catch (OperationCanceledException)
-        {
-            result = new ScriptResult(false, "Script was cancelled", 0);
-        }
-        catch (Exception ex)
-        {
-            result = new ScriptResult(false, ex.Message, 0);
+            var run = await _wvm.ScriptExecution.ExecuteAsync(engine, code, context);
+            var result = run.Script;
+            if (result.Success)
+                AppendLog(string.Format(Properties.Language.scripting_done, result.ElapsedMs));
+            else
+                AppendLog(string.Format(Properties.Language.scripting_elapsed, result.Error, result.ElapsedMs));
         }
         finally
         {
-            // EndExecution must run on UI thread (updates WriteableBitmap).
-            // Always finalize undo so partial changes from failed/cancelled scripts
-            // get a proper undo checkpoint (SaveUndo skips if buffer is empty).
-            if (scriptApi != null)
-                scriptApi.EndExecution();
-
-            scriptApi?.Dispose();
+            Progress = 0;
+            IsRunning = false;
+            _cts.Dispose();
+            _cts = null;
         }
-
-        if (result.Success)
-            AppendLog($"[Done] Completed in {result.ElapsedMs}ms");
-        else
-            AppendLog($"[Error] {result.Error} ({result.ElapsedMs}ms)");
-
-        Progress = 0;
-        IsRunning = false;
-        _cts = null;
     }
 
     [ReactiveCommand]
@@ -175,7 +153,7 @@ public partial class ScriptingSidebarViewModel
         }
 
         File.WriteAllText(_selectedScriptPath!, _scriptCode);
-        AppendLog($"Saved: {Path.GetFileName(_selectedScriptPath)}");
+        AppendLog(string.Format(Properties.Language.scripting_saved, Path.GetFileName(_selectedScriptPath)));
         LoadScriptFiles();
     }
 
@@ -191,7 +169,7 @@ public partial class ScriptingSidebarViewModel
         var dir = GetScriptsDirectory();
         var path = Path.Combine(dir, "API_REFERENCE.md");
         File.WriteAllText(path, ScriptApiDocGenerator.GenerateMarkdown());
-        AppendLog($"Generated: API_REFERENCE.md");
+        AppendLog(string.Format(Properties.Language.scripting_generated, "API_REFERENCE.md"));
     }
 
     [ReactiveCommand]

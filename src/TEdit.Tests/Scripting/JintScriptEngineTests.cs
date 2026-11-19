@@ -20,6 +20,7 @@ public class JintScriptEngineTests
 
         var context = new ScriptExecutionContext
         {
+            AccessProfile = TEdit.Scripting.Execution.ScriptAccessProfile.LocalSidebar,
             CancellationToken = CancellationToken.None,
             OnLog = msg => logs.Add(msg),
             OnWarn = msg => logs.Add($"[Warn] {msg}"),
@@ -110,12 +111,13 @@ public class JintScriptEngineTests
 
         var result = _engine.Execute("while(true) {}", api, new ScriptExecutionContext
         {
+            AccessProfile = TEdit.Scripting.Execution.ScriptAccessProfile.LocalSidebar,
             TimeoutMs = 500,
             CancellationToken = CancellationToken.None
         });
 
         result.Success.ShouldBeFalse();
-        result.Error.ShouldContain("timed out", Case.Insensitive);
+        result.Error.ShouldBe(string.Format(Properties.Language.scripting_timeout, 500));
     }
 
     [Fact]
@@ -127,11 +129,12 @@ public class JintScriptEngineTests
 
         var result = _engine.Execute("while(true) {}", api, new ScriptExecutionContext
         {
+            AccessProfile = TEdit.Scripting.Execution.ScriptAccessProfile.LocalSidebar,
             CancellationToken = cts.Token
         });
 
         result.Success.ShouldBeFalse();
-        result.Error.ShouldContain("cancel", Case.Insensitive);
+        result.Error.ShouldBe(Properties.Language.scripting_cancel);
     }
 
     [Fact]

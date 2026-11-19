@@ -11,6 +11,9 @@ namespace TEdit.Configuration;
 
 public class UserSettings : INotifyPropertyChanged
 {
+    private Mcp.McpPreferences _mcp = new(AllowEdits: true, SharedLocalAccess: true);
+    public Mcp.McpPreferences McpServer { get => _mcp; set => SetField(ref _mcp, value ?? new()); }
+
     private string _terrariaPath = "";
     private bool _autosave = true;
     private UpdateMode _updateMode = UpdateMode.AutoDownload;

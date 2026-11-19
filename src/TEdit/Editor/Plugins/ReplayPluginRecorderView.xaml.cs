@@ -37,6 +37,8 @@ public partial class ReplayPluginRecorderView
 
     private void StopRecording()
     {
+        using var operation = TEdit.ViewModel.ViewModelLocator.WorldViewModel.BeginWorldRead("Save replay");
+        if (operation == null) return;
         _timer.Stop();
         _recorder.Stop();
 
@@ -86,6 +88,8 @@ public partial class ReplayPluginRecorderView
 
     private void Timer_Tick(object sender, EventArgs e)
     {
+        using var operation = TEdit.ViewModel.ViewModelLocator.WorldViewModel.BeginWorldRead("Record replay");
+        if (operation == null) return;
         _recorder.Poll();
         if (_recorder.Recording != null)
         {

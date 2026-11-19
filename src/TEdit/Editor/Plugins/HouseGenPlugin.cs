@@ -40,7 +40,7 @@ public partial class HouseGenPlugin : BasePlugin
         TitleKey = "plugin_housegen_menu";
     }
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         if (_view == null)
         {

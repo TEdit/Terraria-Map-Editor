@@ -5414,4 +5414,162 @@ TEdit 最大世界尺寸：{1}
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修正背景空隙</value>
   </data>
+  <data name="scripting_profile" xml:space="preserve">
+    <value>執行指令碼需要明確指定存取設定。</value>
+  </data>
+  <data name="scripting_inspect" xml:space="preserve">
+    <value>僅供檢查模式不允許執行指令碼。</value>
+  </data>
+  <data name="scripting_mcp" xml:space="preserve">
+    <value>編輯器完成安全性檢查後才能執行 MCP 指令碼。</value>
+  </data>
+  <data name="scripting_unknown" xml:space="preserve">
+    <value>未知的存取設定。</value>
+  </data>
+  <data name="scripting_empty" xml:space="preserve">
+    <value>沒有可執行的程式碼。</value>
+  </data>
+  <data name="scripting_timeout_positive" xml:space="preserve">
+    <value>逾時時間必須大於零。</value>
+  </data>
+  <data name="scripting_start" xml:space="preserve">
+    <value>指令碼未啟動。</value>
+  </data>
+  <data name="scripting_busy" xml:space="preserve">
+    <value>世界忙碌中。請在目前操作結束後重試。</value>
+  </data>
+  <data name="scripting_stale" xml:space="preserve">
+    <value>世界已變更。請在執行指令碼前重新檢查。</value>
+  </data>
+  <data name="scripting_cancel" xml:space="preserve">
+    <value>已取消指令碼</value>
+  </data>
+  <data name="scripting_timeout" xml:space="preserve">
+    <value>指令碼在 {0} 毫秒後逾時</value>
+  </data>
+  <data name="scripting_finalize" xml:space="preserve">
+    <value>{0} 結束處理失敗：{1}</value>
+  </data>
+  <data name="scripting_binding" xml:space="preserve">
+    <value>無法初始化指令碼 API。</value>
+  </data>
+  <data name="scripting_running" xml:space="preserve">
+    <value>[{0}] 正在執行指令碼…</value>
+  </data>
+  <data name="scripting_warning" xml:space="preserve">
+    <value>[警告] {0}</value>
+  </data>
+  <data name="scripting_error" xml:space="preserve">
+    <value>[錯誤] {0}</value>
+  </data>
+  <data name="scripting_done" xml:space="preserve">
+    <value>[完成] 已在 {0} 毫秒內完成</value>
+  </data>
+  <data name="scripting_elapsed" xml:space="preserve">
+    <value>[錯誤] {0}（{1} 毫秒）</value>
+  </data>
+  <data name="scripting_saved" xml:space="preserve">
+    <value>已儲存：{0}</value>
+  </data>
+  <data name="scripting_generated" xml:space="preserve">
+    <value>已產生：{0}</value>
+  </data>
+  <data name="scripting_js_error" xml:space="preserve">
+    <value>JavaScript 錯誤：{0}（第 {1} 行）</value>
+  </data>
+  <data name="scripting_lua_error" xml:space="preserve">
+    <value>Lua 錯誤：{0}</value>
+  </data>
+  <data name="scripting_generic_error" xml:space="preserve">
+    <value>錯誤：{0}</value>
+  </data>
+  <data name="mcp_enable" xml:space="preserve">
+    <value>啟用本機 MCP 伺服器</value>
+  </data>
+  <data name="mcp_edit" xml:space="preserve">
+    <value>允許繪圖工具</value>
+  </data>
+  <data name="mcp_port" xml:space="preserve">
+    <value>連接埠（1024–65535）</value>
+  </data>
+  <data name="mcp_profile" xml:space="preserve">
+    <value>用戶端設定檔名稱</value>
+  </data>
+  <data name="mcp_issue" xml:space="preserve">
+    <value>建立存取權杖</value>
+  </data>
+  <data name="mcp_revoke" xml:space="preserve">
+    <value>撤銷選取的權杖</value>
+  </data>
+  <data name="mcp_history" xml:space="preserve">
+    <value>作業記錄</value>
+  </data>
+  <data name="mcp_profile_error" xml:space="preserve">
+    <value>請檢查設定檔名稱及認證儲存區的存取權。</value>
+  </data>
+  <data name="mcp_host_Disabled" xml:space="preserve">
+    <value>伺服器已關閉</value>
+  </data>
+  <data name="mcp_host_Running" xml:space="preserve">
+    <value>接聽中 · 唯讀</value>
+  </data>
+  <data name="mcp_host_OtherEditor" xml:space="preserve">
+    <value>另一個 TEdit 執行個體正在執行 MCP。</value>
+  </data>
+  <data name="mcp_host_PortBusy" xml:space="preserve">
+    <value>連接埠使用中。請選擇其他連接埠。</value>
+  </data>
+  <data name="mcp_host_Fault" xml:space="preserve">
+    <value>無法啟動伺服器。請檢查設定和使用者儲存區。</value>
+  </data>
+  <data name="mcp_running" xml:space="preserve">
+    <value>執行中</value>
+  </data>
+  <data name="mcp_cancel_requested" xml:space="preserve">
+    <value>已要求取消</value>
+  </data>
+  <data name="mcp_succeeded" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="mcp_failed" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="mcp_canceled" xml:space="preserve">
+    <value>已取消</value>
+  </data>
+  <data name="mcp_copy_setup" xml:space="preserve">
+    <value>複製給代理程式的說明</value>
+  </data>
+  <data name="mcp_setup_prompt" xml:space="preserve">
+    <value>使用 Streamable HTTP 連線到 {0} 的 TEdit。請指引我將 TEdit 選項中完整的 Authorization 值輸入用戶端的私人認證設定。請勿將該值放入聊天或共用檔案。呼叫 get_status 檢查連線。</value>
+  </data>
+  <data name="scripting_drawing_rejected" xml:space="preserve">
+    <value>無法執行繪製要求（{0}）。</value>
+  </data>
+  <data name="mcp_scripts" xml:space="preserve">
+    <value>同時允許 JavaScript 和 Lua 指令碼</value>
+  </data>
+  <data name="mcp_scripts_enabled" xml:space="preserve">
+    <value>正在接聽 · 已啟用繪製和指令碼</value>
+  </data>
+  <data name="mcp_shared" xml:space="preserve">
+    <value>允許所有本機用戶端免權杖存取</value>
+  </data>
+  <data name="mcp_shared_setup" xml:space="preserve">
+    <value>透過 Streamable HTTP 連線到 {0} 的 TEdit，無須驗證。呼叫 get_status 檢查連線。</value>
+  </data>
+  <data name="mcp_drawing_enabled" xml:space="preserve">
+    <value>接聽中 · 允許繪圖</value>
+  </data>
+  <data name="agent_connect" xml:space="preserve"><value>連線至代理程式</value></data>
+  <data name="agent_workspace" xml:space="preserve"><value>使用工作區設定</value></data>
+  <data name="agent_stdio" xml:space="preserve"><value>使用 stdio 橋接</value></data>
+  <data name="agent_merge" xml:space="preserve"><value>將 TEdit 項目加入用戶端設定，或執行顯示的命令。</value></data>
+  <data name="agent_check" xml:space="preserve"><value>檢查連線</value></data>
+  <data name="agent_ok" xml:space="preserve"><value>TEdit 已回應 get_status。</value></data>
+  <data name="agent_failed" xml:space="preserve"><value>連線失敗。請檢查 TEdit 中的 MCP 設定、連接埠和設定檔。</value></data>
+  <data name="agent_refresh" xml:space="preserve"><value>此設定屬於其他工作階段。請從目標 TEdit 視窗重新複製設定。</value></data>
+  <data name="agent_missing" xml:space="preserve"><value>開啟目標 TEdit 視窗，在設定中啟用 MCP 伺服器。</value></data>
+  <data name="agent_profile" xml:space="preserve"><value>請在上方選取或建立用戶端設定檔。</value></data>
+  <data name="agent_export_error" xml:space="preserve"><value>請在可寫入的資料夾中選取新檔案。</value></data>
 </root>

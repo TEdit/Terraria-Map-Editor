@@ -15735,5 +15735,79 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("wp_fixbackground", resourceCulture);
             }
         }
+
+        public static string mcp_enable => ResourceManager.GetString("mcp_enable", resourceCulture);
+        public static string mcp_edit => ResourceManager.GetString("mcp_edit", resourceCulture);
+        public static string mcp_port => ResourceManager.GetString("mcp_port", resourceCulture);
+        public static string mcp_copy_setup => ResourceManager.GetString("mcp_copy_setup", resourceCulture);
+        public static string mcp_setup_prompt => ResourceManager.GetString("mcp_setup_prompt", resourceCulture);
+        public static string mcp_shared => ResourceManager.GetString("mcp_shared", resourceCulture);
+        public static string scripting_drawing_rejected => ResourceManager.GetString("scripting_drawing_rejected", resourceCulture);
+        public static string mcp_scripts => ResourceManager.GetString("mcp_scripts", resourceCulture);
+        public static string mcp_scripts_enabled => ResourceManager.GetString("mcp_scripts_enabled", resourceCulture);
+        public static string agent_connect => ResourceManager.GetString("agent_connect", resourceCulture);
+        public static string agent_workspace => ResourceManager.GetString("agent_workspace", resourceCulture);
+        public static string agent_stdio => ResourceManager.GetString("agent_stdio", resourceCulture);
+        public static string agent_merge => ResourceManager.GetString("agent_merge", resourceCulture);
+        public static string agent_check => ResourceManager.GetString("agent_check", resourceCulture);
+        public static string agent_ok => ResourceManager.GetString("agent_ok", resourceCulture);
+        public static string agent_failed => ResourceManager.GetString("agent_failed", resourceCulture);
+        public static string agent_refresh => ResourceManager.GetString("agent_refresh", resourceCulture);
+        public static string agent_missing => ResourceManager.GetString("agent_missing", resourceCulture);
+        public static string agent_profile => ResourceManager.GetString("agent_profile", resourceCulture);
+        public static string agent_export_error => ResourceManager.GetString("agent_export_error", resourceCulture);
+        public static string mcp_shared_setup => ResourceManager.GetString("mcp_shared_setup", resourceCulture);
+        public static string mcp_drawing_enabled => ResourceManager.GetString("mcp_drawing_enabled", resourceCulture);
+        public static string mcp_profile => ResourceManager.GetString("mcp_profile", resourceCulture);
+        public static string mcp_issue => ResourceManager.GetString("mcp_issue", resourceCulture);
+        public static string mcp_revoke => ResourceManager.GetString("mcp_revoke", resourceCulture);
+        public static string mcp_history => ResourceManager.GetString("mcp_history", resourceCulture);
+        public static string mcp_profile_error => ResourceManager.GetString("mcp_profile_error", resourceCulture);
+
+        public static string scripting_profile => ResourceManager.GetString("scripting_profile", resourceCulture);
+
+        public static string scripting_inspect => ResourceManager.GetString("scripting_inspect", resourceCulture);
+
+        public static string scripting_mcp => ResourceManager.GetString("scripting_mcp", resourceCulture);
+
+        public static string scripting_unknown => ResourceManager.GetString("scripting_unknown", resourceCulture);
+
+        public static string scripting_empty => ResourceManager.GetString("scripting_empty", resourceCulture);
+
+        public static string scripting_timeout_positive => ResourceManager.GetString("scripting_timeout_positive", resourceCulture);
+
+        public static string scripting_start => ResourceManager.GetString("scripting_start", resourceCulture);
+
+        public static string scripting_busy => ResourceManager.GetString("scripting_busy", resourceCulture);
+
+        public static string scripting_stale => ResourceManager.GetString("scripting_stale", resourceCulture);
+
+        public static string scripting_cancel => ResourceManager.GetString("scripting_cancel", resourceCulture);
+
+        public static string scripting_timeout => ResourceManager.GetString("scripting_timeout", resourceCulture);
+
+        public static string scripting_finalize => ResourceManager.GetString("scripting_finalize", resourceCulture);
+
+        public static string scripting_binding => ResourceManager.GetString("scripting_binding", resourceCulture);
+
+        public static string scripting_running => ResourceManager.GetString("scripting_running", resourceCulture);
+
+        public static string scripting_warning => ResourceManager.GetString("scripting_warning", resourceCulture);
+
+        public static string scripting_error => ResourceManager.GetString("scripting_error", resourceCulture);
+
+        public static string scripting_done => ResourceManager.GetString("scripting_done", resourceCulture);
+
+        public static string scripting_elapsed => ResourceManager.GetString("scripting_elapsed", resourceCulture);
+
+        public static string scripting_saved => ResourceManager.GetString("scripting_saved", resourceCulture);
+
+        public static string scripting_generated => ResourceManager.GetString("scripting_generated", resourceCulture);
+
+        public static string scripting_js_error => ResourceManager.GetString("scripting_js_error", resourceCulture);
+
+        public static string scripting_lua_error => ResourceManager.GetString("scripting_lua_error", resourceCulture);
+
+        public static string scripting_generic_error => ResourceManager.GetString("scripting_generic_error", resourceCulture);
     }
 }

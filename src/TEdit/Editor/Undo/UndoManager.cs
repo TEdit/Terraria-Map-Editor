@@ -478,7 +478,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
     public Task SaveUndoAsync()
     {
         SaveUndo();
-        return Task.CompletedTask;
+        return _pendingClose ?? Task.CompletedTask;
     }
 
     public Task<IReadOnlyList<Vector2Int32>> UndoAsync(World world)

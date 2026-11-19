@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +28,7 @@ public partial class TextStatuePlugin : BasePlugin
     [Reactive]
     private ClipboardBuffer _generatedSchematic;
 
-    public override void Execute()
+    protected override async System.Threading.Tasks.Task ExecuteCoreAsync()
     {
         var view = new TextStatuePluginView();
         view.Owner = Application.Current.MainWindow;

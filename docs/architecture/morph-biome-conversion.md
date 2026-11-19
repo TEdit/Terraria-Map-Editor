@@ -1,6 +1,6 @@
 # Morph / Biome Conversion — Technical Reference
 
-Related issue: #533 | Remaining work: `docs/todo/morph-tool.md`
+Related issue: #533
 
 ---
 
@@ -65,7 +65,7 @@ public class MorphId
 }
 ```
 
-**Lookup is by source ID, not by name.** On initialization, `MorphBiomeDataApplier.InitCache()` builds two flat dictionaries (`_tileCache`, `_wallCache`) mapping each source ID to its `MorphId`. The current implementation uses `TryAdd`, so duplicate source IDs are silently first-wins. This can hide later hand-authored or generated sprite rules and is tracked as a conversion-integrity defect in `docs/todo/morph-tool.md`.
+**Lookup is by source ID, not by name.** On initialization, `MorphBiomeDataApplier.InitCache()` builds two flat dictionaries (`_tileCache`, `_wallCache`) mapping each source ID to its `MorphId`. The current implementation uses `TryAdd`, so duplicate source IDs are silently first-wins. This can hide later hand-authored or generated sprite rules.
 
 ### 1.4 MorphIdLevels — Depth-Dependent Target IDs
 
@@ -207,7 +207,7 @@ Biome classifications and canonical conversion counterparts come from the decomp
 
 TEdit's executable biome data comes from the embedded resources `src/TEdit.Terraria/Data/morphBiomes.json` and `src/TEdit.Terraria/Data/tiles.json`. The former defines TEdit's mappings; the latter validates IDs, framing, sprites, and solidity. The root-level `tiles.json` is a different file and is not authoritative for morph validation.
 
-Tests should extract a normalized manifest from the supported game-code version and compare it with the two embedded JSON resources. GitHub issues and `docs/todo/biome-tile-catalog.md` provide history and review context, but they must not override the game resources or executable JSON.
+Tests should extract a normalized manifest from the supported game-code version and compare it with the two embedded JSON resources. GitHub issues provide history and review context, but they must not override the game resources or executable JSON.
 
 Terraria may delete content or perform one-way material conversions. Safe conversion treats those behaviors as biome-membership evidence and preserves unsupported content. Generate biome retains the broad TEdit behavior behind an explicit destructive mode. Tests cover both policies separately.
 

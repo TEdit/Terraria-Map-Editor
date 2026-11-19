@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Lua;
@@ -15,6 +17,8 @@ public class LuaScriptEngine : IScriptEngine
 
     public ScriptResult Execute(string code, ScriptApi api, ScriptExecutionContext context)
     {
+        var denial = Execution.ScriptAccessPolicy.GetDenial(context.AccessProfile);
+        if (denial != null) return new ScriptResult(false, denial, 0);
         var sw = Stopwatch.StartNew();
 
         try
@@ -35,22 +39,22 @@ public class LuaScriptEngine : IScriptEngine
             state.Environment["package"] = default(LuaValue);
 
             // Expose API surfaces as tables with methods
-            RegisterApi(state, "tile", api.Tile);
-            RegisterApi(state, "geometry", api.Geometry);
-            RegisterApi(state, "chests", api.Chests);
-            RegisterApi(state, "signs", api.Signs);
-            RegisterApi(state, "npcs", api.Npcs);
-            RegisterApi(state, "world", api.World);
-            RegisterApi(state, "selection", api.Selection);
-            RegisterApi(state, "metadata", api.Metadata);
-            RegisterApi(state, "log", api.Log);
-            RegisterApi(state, "batch", api.Batch);
-            RegisterApi(state, "tools", api.Tools);
-            RegisterApi(state, "finder", api.Finder);
-            RegisterApi(state, "sprites", api.Sprites);
-            RegisterApi(state, "draw", api.Draw);
-            RegisterApi(state, "tileEntities", api.TileEntities);
-            RegisterApi(state, "generate", api.Generate);
+            RegisterApi(state, "tile", () => api.Tile, api);
+            RegisterApi(state, "geometry", () => api.Geometry, api);
+            RegisterApi(state, "chests", () => api.Chests, api);
+            RegisterApi(state, "signs", () => api.Signs, api);
+            RegisterApi(state, "npcs", () => api.Npcs, api);
+            RegisterApi(state, "world", () => api.World, api);
+            RegisterApi(state, "selection", () => api.Selection, api);
+            RegisterApi(state, "metadata", () => api.Metadata, api);
+            RegisterApi(state, "log", () => api.Log, api);
+            RegisterApi(state, "batch", () => api.Batch, api);
+            RegisterApi(state, "tools", () => api.Tools, api);
+            RegisterApi(state, "finder", () => api.Finder, api);
+            RegisterApi(state, "sprites", () => api.Sprites, api);
+            RegisterApi(state, "draw", () => api.Draw, api);
+            RegisterApi(state, "tileEntities", () => api.TileEntities, api);
+            RegisterApi(state, "generate", () => api.Generate, api);
 
             // print() convenience
             state.Environment["print"] = new LuaFunction((ctx, ct) =>
@@ -72,24 +76,26 @@ public class LuaScriptEngine : IScriptEngine
         {
             sw.Stop();
             var msg = context.CancellationToken.IsCancellationRequested
-                ? "Script was cancelled"
-                : $"Script timed out after {context.TimeoutMs}ms";
+                ? Properties.Language.scripting_cancel
+                : string.Format(Properties.Language.scripting_timeout, context.TimeoutMs);
             return new ScriptResult(false, msg, sw.ElapsedMilliseconds);
         }
         catch (LuaRuntimeException ex)
         {
             sw.Stop();
-            return new ScriptResult(false, $"Lua error: {ex.Message}", sw.ElapsedMilliseconds);
+            return new ScriptResult(false, string.Format(Properties.Language.scripting_lua_error, ex.Message), sw.ElapsedMilliseconds);
         }
         catch (Exception ex)
         {
             sw.Stop();
-            return new ScriptResult(false, $"Error: {ex.Message}", sw.ElapsedMilliseconds);
+            return new ScriptResult(false, string.Format(Properties.Language.scripting_generic_error, ex.Message), sw.ElapsedMilliseconds);
         }
     }
 
-    private static void RegisterApi(LuaState state, string name, object apiObject)
+    private static void RegisterApi(LuaState state, string name, Func<object?> currentModule, ScriptApi api)
     {
+        var apiObject = currentModule();
+        if (apiObject == null) return;
         var table = new LuaTable();
         var type = apiObject.GetType();
 
@@ -126,7 +132,7 @@ public class LuaScriptEngine : IScriptEngine
                             var luaState = ctx.State;
                             args[i] = new Action<int, int>((x, y) =>
                             {
-                                luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, CancellationToken.None)
+                                luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, ct)
                                     .AsTask().GetAwaiter().GetResult();
                             });
                         }
@@ -136,7 +142,7 @@ public class LuaScriptEngine : IScriptEngine
                             var luaState = ctx.State;
                             args[i] = new Func<int, int, bool>((x, y) =>
                             {
-                                var results = luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, CancellationToken.None)
+                                var results = luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, ct)
                                     .AsTask().GetAwaiter().GetResult();
                                 return results.Length > 0 && results[0].TryRead<bool>(out var b) && b;
                             });
@@ -150,7 +156,18 @@ public class LuaScriptEngine : IScriptEngine
                     }
                 }
 
-                var result = methodInfo.Invoke(apiObject, args);
+                object? result;
+                try
+                {
+                    api.EnterApiCall();
+                    try { result = methodInfo.Invoke(currentModule(), args); }
+                    finally { api.ExitApiCall(); }
+                }
+                catch (TargetInvocationException ex) when (ex.InnerException is OperationCanceledException)
+                {
+                    ExceptionDispatchInfo.Capture(ex.InnerException).Throw();
+                    throw;
+                }
 
                 if (result == null || methodInfo.ReturnType == typeof(void))
                     return new ValueTask<int>(0);
@@ -168,7 +185,7 @@ public class LuaScriptEngine : IScriptEngine
 
             table[propName] = new LuaFunction((ctx, ct) =>
             {
-                var value = propInfo.GetValue(apiObject);
+                var value = propInfo.GetValue(currentModule());
                 ctx.Return(ToLuaValue(value));
                 return new ValueTask<int>(1);
             });

@@ -5414,4 +5414,162 @@ TEdit v{0}
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
   </data>
+  <data name="scripting_profile" xml:space="preserve">
+    <value>Для запуска скрипта укажите профиль доступа.</value>
+  </data>
+  <data name="scripting_inspect" xml:space="preserve">
+    <value>В режиме просмотра запуск скриптов недоступен.</value>
+  </data>
+  <data name="scripting_mcp" xml:space="preserve">
+    <value>Скрипты MCP отключены до завершения проверок безопасности редактора.</value>
+  </data>
+  <data name="scripting_unknown" xml:space="preserve">
+    <value>Неизвестный профиль доступа.</value>
+  </data>
+  <data name="scripting_empty" xml:space="preserve">
+    <value>Нет кода для выполнения.</value>
+  </data>
+  <data name="scripting_timeout_positive" xml:space="preserve">
+    <value>Время ожидания должно быть положительным.</value>
+  </data>
+  <data name="scripting_start" xml:space="preserve">
+    <value>Скрипт не запустился.</value>
+  </data>
+  <data name="scripting_busy" xml:space="preserve">
+    <value>Мир занят. Повторите попытку после завершения операции.</value>
+  </data>
+  <data name="scripting_stale" xml:space="preserve">
+    <value>Мир изменился. Проверьте его перед запуском скрипта.</value>
+  </data>
+  <data name="scripting_cancel" xml:space="preserve">
+    <value>Выполнение скрипта отменено</value>
+  </data>
+  <data name="scripting_timeout" xml:space="preserve">
+    <value>Превышено время ожидания ({0} мс)</value>
+  </data>
+  <data name="scripting_finalize" xml:space="preserve">
+    <value>{0} Ошибка завершения: {1}</value>
+  </data>
+  <data name="scripting_binding" xml:space="preserve">
+    <value>Не удалось инициализировать API скриптов.</value>
+  </data>
+  <data name="scripting_running" xml:space="preserve">
+    <value>[{0}] Выполнение скрипта…</value>
+  </data>
+  <data name="scripting_warning" xml:space="preserve">
+    <value>[Предупреждение] {0}</value>
+  </data>
+  <data name="scripting_error" xml:space="preserve">
+    <value>[Ошибка] {0}</value>
+  </data>
+  <data name="scripting_done" xml:space="preserve">
+    <value>[Готово] Выполнено за {0} мс</value>
+  </data>
+  <data name="scripting_elapsed" xml:space="preserve">
+    <value>[Ошибка] {0} ({1} мс)</value>
+  </data>
+  <data name="scripting_saved" xml:space="preserve">
+    <value>Сохранено: {0}</value>
+  </data>
+  <data name="scripting_generated" xml:space="preserve">
+    <value>Создано: {0}</value>
+  </data>
+  <data name="scripting_js_error" xml:space="preserve">
+    <value>Ошибка JavaScript: {0} (строка {1})</value>
+  </data>
+  <data name="scripting_lua_error" xml:space="preserve">
+    <value>Ошибка Lua: {0}</value>
+  </data>
+  <data name="scripting_generic_error" xml:space="preserve">
+    <value>Ошибка: {0}</value>
+  </data>
+  <data name="mcp_enable" xml:space="preserve">
+    <value>Включить локальный сервер MCP</value>
+  </data>
+  <data name="mcp_edit" xml:space="preserve">
+    <value>Разрешить инструменты рисования</value>
+  </data>
+  <data name="mcp_port" xml:space="preserve">
+    <value>Порт (1024–65535)</value>
+  </data>
+  <data name="mcp_profile" xml:space="preserve">
+    <value>Имя профиля клиента</value>
+  </data>
+  <data name="mcp_issue" xml:space="preserve">
+    <value>Создать токен доступа</value>
+  </data>
+  <data name="mcp_revoke" xml:space="preserve">
+    <value>Отозвать выбранный токен</value>
+  </data>
+  <data name="mcp_history" xml:space="preserve">
+    <value>История операций</value>
+  </data>
+  <data name="mcp_profile_error" xml:space="preserve">
+    <value>Проверьте имя профиля и доступ к хранилищу учётных данных.</value>
+  </data>
+  <data name="mcp_host_Disabled" xml:space="preserve">
+    <value>Сервер выключен</value>
+  </data>
+  <data name="mcp_host_Running" xml:space="preserve">
+    <value>Активен · только чтение</value>
+  </data>
+  <data name="mcp_host_OtherEditor" xml:space="preserve">
+    <value>MCP уже запущен в другом экземпляре TEdit.</value>
+  </data>
+  <data name="mcp_host_PortBusy" xml:space="preserve">
+    <value>Порт занят. Выберите другой порт.</value>
+  </data>
+  <data name="mcp_host_Fault" xml:space="preserve">
+    <value>Не удалось запустить сервер. Проверьте настройки и хранилище пользователя.</value>
+  </data>
+  <data name="mcp_running" xml:space="preserve">
+    <value>Выполняется</value>
+  </data>
+  <data name="mcp_cancel_requested" xml:space="preserve">
+    <value>Запрошена отмена</value>
+  </data>
+  <data name="mcp_succeeded" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="mcp_failed" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="mcp_canceled" xml:space="preserve">
+    <value>Отменено</value>
+  </data>
+  <data name="mcp_copy_setup" xml:space="preserve">
+    <value>Скопировать инструкции для моего агента</value>
+  </data>
+  <data name="mcp_setup_prompt" xml:space="preserve">
+    <value>Подключись к TEdit через Streamable HTTP по адресу {0}. Покажи, куда в закрытых настройках учётных данных клиента ввести полное значение Authorization из параметров TEdit. Не помещай его в чат или общие файлы. Проверь подключение с помощью get_status.</value>
+  </data>
+  <data name="scripting_drawing_rejected" xml:space="preserve">
+    <value>Не удалось выполнить запрос на рисование ({0}).</value>
+  </data>
+  <data name="mcp_scripts" xml:space="preserve">
+    <value>Также разрешить скрипты JavaScript и Lua</value>
+  </data>
+  <data name="mcp_scripts_enabled" xml:space="preserve">
+    <value>Ожидание подключений · рисование и скрипты включены</value>
+  </data>
+  <data name="mcp_shared" xml:space="preserve">
+    <value>Разрешить всем локальным клиентам доступ без токена</value>
+  </data>
+  <data name="mcp_shared_setup" xml:space="preserve">
+    <value>Подключись к TEdit по адресу {0} через Streamable HTTP без аутентификации. Проверь подключение с помощью get_status.</value>
+  </data>
+  <data name="mcp_drawing_enabled" xml:space="preserve">
+    <value>Активен · рисование разрешено</value>
+  </data>
+  <data name="agent_connect" xml:space="preserve"><value>Подключить агента</value></data>
+  <data name="agent_workspace" xml:space="preserve"><value>Использовать настройки рабочей области</value></data>
+  <data name="agent_stdio" xml:space="preserve"><value>Использовать мост stdio</value></data>
+  <data name="agent_merge" xml:space="preserve"><value>Добавьте запись TEdit в настройки клиента или выполните указанную команду.</value></data>
+  <data name="agent_check" xml:space="preserve"><value>Проверить подключение</value></data>
+  <data name="agent_ok" xml:space="preserve"><value>TEdit ответил на get_status.</value></data>
+  <data name="agent_failed" xml:space="preserve"><value>Не удалось подключиться. Проверьте настройки MCP, порт и профиль в TEdit.</value></data>
+  <data name="agent_refresh" xml:space="preserve"><value>Настройки относятся к другому сеансу. Скопируйте их из нужного окна TEdit.</value></data>
+  <data name="agent_missing" xml:space="preserve"><value>Откройте нужное окно TEdit и включите сервер MCP в настройках.</value></data>
+  <data name="agent_profile" xml:space="preserve"><value>Выберите или создайте профиль клиента выше.</value></data>
+  <data name="agent_export_error" xml:space="preserve"><value>Выберите новый файл в папке с правом записи.</value></data>
 </root>

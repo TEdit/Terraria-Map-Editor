@@ -33,6 +33,8 @@ namespace TEdit.ViewModel
 
         public void LoadFromWorld()
         {
+        using var operation = _wvm.BeginWorldOperation("LoadFromWorld", mutation: false);
+        if (operation == null) return;
             var powers = _wvm?.CurrentWorld?.CreativePowers;
             if (powers == null) { return; }
 
@@ -56,6 +58,8 @@ namespace TEdit.ViewModel
 
         public void SaveToWorld()
         {
+        using var operation = _wvm.BeginWorldOperation("SaveToWorld");
+        if (operation == null) return;
             var powers = _wvm?.CurrentWorld?.CreativePowers;
             if (powers == null) { return; }
 

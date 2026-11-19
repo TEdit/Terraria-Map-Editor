@@ -18,6 +18,10 @@
     </Content>
 	</ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Scripting\mcp-script-api-members.txt" Link="mcp-script-api-members.txt" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
 		<PackageReference Include="coverlet.collector" Version="10.1.1">
@@ -56,5 +60,10 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
+
+    <!-- Test output uses the installed frameworks; the published editor ships its own runtime. -->
+    <Target Name="PrepareMcpWorkerForTests" AfterTargets="Build">
+      <Copy SourceFiles="$(ProjectRuntimeConfigFilePath);$(ProjectDepsFilePath)" DestinationFiles="$(TargetDir)TEdit.runtimeconfig.json;$(TargetDir)TEdit.deps.json" />
+    </Target>
 
 </Project>

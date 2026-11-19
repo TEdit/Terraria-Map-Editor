@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,6 +65,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void NpcAdd(int npcId)
     {
+        using var operation = BeginWorldOperation("NpcAdd");
+        if (operation == null) return;
         if (CurrentWorld == null || !WorldConfiguration.NpcNames.ContainsKey(npcId))
             return;
 
@@ -96,6 +98,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void NpcRemove(object parameter)
     {
+        using var operation = BeginWorldOperation("NpcRemove");
+        if (operation == null) return;
         if (CurrentWorld == null)
             return;
 
@@ -169,6 +173,8 @@ public partial class WorldViewModel
 
     private void ExecuteSaveTileEntity(bool save)
     {
+        using var operation = BeginWorldOperation("ExecuteSaveTileEntity");
+        if (operation == null) return;
         if (save)
         {
             if (SelectedTileEntity != null)
@@ -199,6 +205,8 @@ public partial class WorldViewModel
 
     private void SaveXmasTree(bool save)
     {
+        using var operation = BeginWorldOperation("SaveXmasTree");
+        if (operation == null) return;
         if (save)
         {
             if (SelectedXmas != null)
@@ -218,6 +226,8 @@ public partial class WorldViewModel
 
     private void ExecuteSaveSign(bool save)
     {
+        using var operation = BeginWorldOperation("ExecuteSaveSign");
+        if (operation == null) return;
         if (save)
         {
             if (SelectedSign != null)
@@ -239,6 +249,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void SaveChest(bool save)
     {
+        using var operation = BeginWorldOperation("SaveChest");
+        if (operation == null) return;
         if (save)
         {
             if (SelectedChest != null)
@@ -311,9 +323,11 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void RunPlugin(IPlugin plugin)
+    private async Task RunPlugin(IPlugin plugin)
     {
-        plugin.Execute();
+        using var operation = BeginWorldOperation("Plugin");
+        if (operation == null) return;
+        await plugin.ExecuteAsync();
     }
 
     // Command wrappers for methods defined in other files
@@ -348,11 +362,13 @@ public partial class WorldViewModel
     private Task Crop() => CropWorldAsync();
 
     [ReactiveCommand]
-    private void Expand() => ExpandWorld();
+    private Task Expand() => ExpandWorld();
 
     [ReactiveCommand]
     private void Redo()
     {
+        using var operation = BeginWorldOperation("Redo");
+        if (operation == null) return;
         var changedTiles = UndoManager?.Redo();
         if (changedTiles?.Count > 0)
         {
@@ -364,6 +380,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void Undo()
     {
+        using var operation = BeginWorldOperation("Undo");
+        if (operation == null) return;
         var changedTiles = UndoManager?.Undo();
         if (changedTiles?.Count > 0)
         {
@@ -582,6 +600,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void PasteAccept()
     {
+        using var operation = BeginWorldOperation("PasteAccept");
+        if (operation == null) return;
         if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
             pt.AcceptPaste();
     }
@@ -589,6 +609,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void PasteCancel()
     {
+        using var operation = BeginWorldOperation("PasteCancel");
+        if (operation == null) return;
         if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
         {
             pt.CancelPaste();
@@ -601,6 +623,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void PasteRotateCW()
     {
+        using var operation = BeginWorldOperation("PasteRotateCW");
+        if (operation == null) return;
         if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
             pt.RotateCW();
     }
@@ -608,6 +632,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void PasteRotateCCW()
     {
+        using var operation = BeginWorldOperation("PasteRotateCCW");
+        if (operation == null) return;
         if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
             pt.RotateCCW();
     }
@@ -615,6 +641,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void PasteFlipH()
     {
+        using var operation = BeginWorldOperation("PasteFlipH");
+        if (operation == null) return;
         if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
             pt.FlipH();
     }
@@ -622,6 +650,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void PasteFlipV()
     {
+        using var operation = BeginWorldOperation("PasteFlipV");
+        if (operation == null) return;
         if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
             pt.FlipV();
     }
@@ -674,6 +704,8 @@ public partial class WorldViewModel
 
     private async Task ImportKillsAndBestiaryAsync()
     {
+        using var operation = BeginWorldOperation("Import bestiary");
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         var confirmResult = await App.DialogService.ShowMessageAsync(
@@ -787,6 +819,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private async Task ExportSelectionAsPng(int scale)
     {
+        using var operation = BeginWorldOperation("ExportSelectionAsPng", mutation: false);
+        if (operation == null) return;
         if (!Selection.IsActive) return;
 
         var area = Selection.SelectionArea;
@@ -845,6 +879,8 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private async Task ExportMapTiles()
     {
+        using var operation = BeginWorldOperation("ExportMapTiles", mutation: false);
+        if (operation == null) return;
         if (CurrentWorld == null) return;
 
         // Determine area: selection if active, otherwise full world

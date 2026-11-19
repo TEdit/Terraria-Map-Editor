@@ -157,6 +157,8 @@ public partial class FindSidebarViewModel
     [ReactiveCommand]
     private void ExecuteSearch()
     {
+        using var operation = _wvm.BeginWorldOperation("ExecuteSearch", mutation: false);
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null)
         {
             _ = App.DialogService.ShowWarningAsync(Properties.Language.find_dialog_title, Properties.Language.find_no_world_loaded);

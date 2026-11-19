@@ -5414,4 +5414,162 @@ TEdit の最大ワールドサイズ: {1}
   <data name="wp_fixbackground" xml:space="preserve">
     <value>背景のギャップを修正</value>
   </data>
+  <data name="scripting_profile" xml:space="preserve">
+    <value>スクリプトを実行するにはアクセスプロファイルを指定してください。</value>
+  </data>
+  <data name="scripting_inspect" xml:space="preserve">
+    <value>閲覧専用モードではスクリプトを実行できません。</value>
+  </data>
+  <data name="scripting_mcp" xml:space="preserve">
+    <value>エディターの安全性チェックが完了するまで MCP スクリプトは無効です。</value>
+  </data>
+  <data name="scripting_unknown" xml:space="preserve">
+    <value>不明なアクセスプロファイルです。</value>
+  </data>
+  <data name="scripting_empty" xml:space="preserve">
+    <value>実行するコードがありません。</value>
+  </data>
+  <data name="scripting_timeout_positive" xml:space="preserve">
+    <value>タイムアウトには正の値を指定してください。</value>
+  </data>
+  <data name="scripting_start" xml:space="preserve">
+    <value>スクリプトを開始できませんでした。</value>
+  </data>
+  <data name="scripting_busy" xml:space="preserve">
+    <value>ワールドは使用中です。現在の操作が終了してから再試行してください。</value>
+  </data>
+  <data name="scripting_stale" xml:space="preserve">
+    <value>ワールドが変更されました。スクリプトを実行する前に再確認してください。</value>
+  </data>
+  <data name="scripting_cancel" xml:space="preserve">
+    <value>スクリプトをキャンセルしました</value>
+  </data>
+  <data name="scripting_timeout" xml:space="preserve">
+    <value>{0} ミリ秒でタイムアウトしました</value>
+  </data>
+  <data name="scripting_finalize" xml:space="preserve">
+    <value>{0} 終了処理に失敗しました：{1}</value>
+  </data>
+  <data name="scripting_binding" xml:space="preserve">
+    <value>スクリプト API を初期化できませんでした。</value>
+  </data>
+  <data name="scripting_running" xml:space="preserve">
+    <value>[{0}] スクリプトを実行中…</value>
+  </data>
+  <data name="scripting_warning" xml:space="preserve">
+    <value>[警告] {0}</value>
+  </data>
+  <data name="scripting_error" xml:space="preserve">
+    <value>[エラー] {0}</value>
+  </data>
+  <data name="scripting_done" xml:space="preserve">
+    <value>[完了] {0} ミリ秒で完了しました</value>
+  </data>
+  <data name="scripting_elapsed" xml:space="preserve">
+    <value>[エラー] {0}（{1} ミリ秒）</value>
+  </data>
+  <data name="scripting_saved" xml:space="preserve">
+    <value>保存しました：{0}</value>
+  </data>
+  <data name="scripting_generated" xml:space="preserve">
+    <value>生成しました：{0}</value>
+  </data>
+  <data name="scripting_js_error" xml:space="preserve">
+    <value>JavaScript エラー：{0}（{1} 行目）</value>
+  </data>
+  <data name="scripting_lua_error" xml:space="preserve">
+    <value>Lua エラー：{0}</value>
+  </data>
+  <data name="scripting_generic_error" xml:space="preserve">
+    <value>エラー：{0}</value>
+  </data>
+  <data name="mcp_enable" xml:space="preserve">
+    <value>ローカル MCP サーバーを有効にする</value>
+  </data>
+  <data name="mcp_edit" xml:space="preserve">
+    <value>描画ツールを許可</value>
+  </data>
+  <data name="mcp_port" xml:space="preserve">
+    <value>ポート（1024～65535）</value>
+  </data>
+  <data name="mcp_profile" xml:space="preserve">
+    <value>クライアントプロファイル名</value>
+  </data>
+  <data name="mcp_issue" xml:space="preserve">
+    <value>アクセストークンを作成</value>
+  </data>
+  <data name="mcp_revoke" xml:space="preserve">
+    <value>選択したトークンを失効させる</value>
+  </data>
+  <data name="mcp_history" xml:space="preserve">
+    <value>操作履歴</value>
+  </data>
+  <data name="mcp_profile_error" xml:space="preserve">
+    <value>プロファイル名と資格情報ストアへのアクセスを確認してください。</value>
+  </data>
+  <data name="mcp_host_Disabled" xml:space="preserve">
+    <value>サーバー停止中</value>
+  </data>
+  <data name="mcp_host_Running" xml:space="preserve">
+    <value>稼働中・読み取り専用</value>
+  </data>
+  <data name="mcp_host_OtherEditor" xml:space="preserve">
+    <value>別の TEdit が MCP をホストしています。</value>
+  </data>
+  <data name="mcp_host_PortBusy" xml:space="preserve">
+    <value>ポートは使用中です。別のポートを選んでください。</value>
+  </data>
+  <data name="mcp_host_Fault" xml:space="preserve">
+    <value>サーバーを起動できません。設定とユーザーストレージを確認してください。</value>
+  </data>
+  <data name="mcp_running" xml:space="preserve">
+    <value>実行中</value>
+  </data>
+  <data name="mcp_cancel_requested" xml:space="preserve">
+    <value>キャンセル要求済み</value>
+  </data>
+  <data name="mcp_succeeded" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="mcp_failed" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="mcp_canceled" xml:space="preserve">
+    <value>キャンセル済み</value>
+  </data>
+  <data name="mcp_copy_setup" xml:space="preserve">
+    <value>エージェント向けの手順をコピー</value>
+  </data>
+  <data name="mcp_setup_prompt" xml:space="preserve">
+    <value>Streamable HTTP を使って {0} の TEdit に接続してください。TEdit のオプションに表示される Authorization の値全体をクライアントの非公開の認証設定に入力する手順を案内してください。この値をチャットや共有ファイルに含めないでください。get_status で接続を確認してください。</value>
+  </data>
+  <data name="scripting_drawing_rejected" xml:space="preserve">
+    <value>描画リクエストを適用できませんでした（{0}）。</value>
+  </data>
+  <data name="mcp_scripts" xml:space="preserve">
+    <value>JavaScript と Lua のスクリプトも許可する</value>
+  </data>
+  <data name="mcp_scripts_enabled" xml:space="preserve">
+    <value>待機中 · 描画とスクリプトが有効</value>
+  </data>
+  <data name="mcp_shared" xml:space="preserve">
+    <value>すべてのローカルクライアントにトークンなしでアクセスを許可</value>
+  </data>
+  <data name="mcp_shared_setup" xml:space="preserve">
+    <value>認証なしの Streamable HTTP で {0} の TEdit に接続し、get_status で接続を確認してください。</value>
+  </data>
+  <data name="mcp_drawing_enabled" xml:space="preserve">
+    <value>稼働中・描画可能</value>
+  </data>
+  <data name="agent_connect" xml:space="preserve"><value>エージェントを接続</value></data>
+  <data name="agent_workspace" xml:space="preserve"><value>ワークスペースの設定を使う</value></data>
+  <data name="agent_stdio" xml:space="preserve"><value>stdio ブリッジを使う</value></data>
+  <data name="agent_merge" xml:space="preserve"><value>クライアント設定に TEdit の項目を追加するか、表示されたコマンドを実行してください。</value></data>
+  <data name="agent_check" xml:space="preserve"><value>接続を確認</value></data>
+  <data name="agent_ok" xml:space="preserve"><value>TEdit が get_status に応答しました。</value></data>
+  <data name="agent_failed" xml:space="preserve"><value>接続できませんでした。TEdit の MCP 設定、ポート、プロファイルを確認してください。</value></data>
+  <data name="agent_refresh" xml:space="preserve"><value>別のセッションの設定です。接続したい TEdit ウィンドウで設定をコピーし直してください。</value></data>
+  <data name="agent_missing" xml:space="preserve"><value>接続したい TEdit ウィンドウを開き、設定で MCP サーバーを有効にしてください。</value></data>
+  <data name="agent_profile" xml:space="preserve"><value>上でクライアントプロファイルを選択または作成してください。</value></data>
+  <data name="agent_export_error" xml:space="preserve"><value>書き込み可能なフォルダーに新しいファイルを指定してください。</value></data>
 </root>

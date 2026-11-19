@@ -1,0 +1,830 @@
+BLOCKED | Batch | Int32 ClearTilesByType(Int32)
+BLOCKED | Batch | Int32 ReplaceTile(Int32, Int32)
+BLOCKED | Batch | Int32 ReplaceTileInSelection(Int32, Int32)
+BLOCKED | Batch | Int32 ReplaceWall(Int32, Int32)
+BLOCKED | Batch | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] FindTiles(System.Func`3[System.Int32,System.Int32,System.Boolean])
+BLOCKED | Batch | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] FindTilesByType(Int32, Boolean)
+BLOCKED | Batch | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] FindTilesByWall(Int32)
+BLOCKED | Batch | Void ForEachInSelection(System.Action`2[System.Int32,System.Int32])
+BLOCKED | Batch | Void ForEachTile(System.Action`2[System.Int32,System.Int32])
+BLOCKED | Chests | Boolean AddItem(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Chests | Int32 Count
+BLOCKED | Chests | Int32 get_Count()
+BLOCKED | Chests | System.Collections.Generic.Dictionary`2[System.String,System.Object] GetAt(Int32, Int32)
+BLOCKED | Chests | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] FindByItem(Int32)
+BLOCKED | Chests | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] FindByItemName(System.String)
+BLOCKED | Chests | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] FindByName(System.String)
+BLOCKED | Chests | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAll()
+BLOCKED | Chests | Void ClearItem(Int32, Int32, Int32)
+BLOCKED | Chests | Void SetItem(Int32, Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Chests | Void SetName(Int32, Int32, System.String)
+BLOCKED | Draw | Int32 Ellipse(Int32, Int32, Int32, Int32, Boolean, Int32, System.String, Int32, Boolean, Int32)
+BLOCKED | Draw | Int32 FillRegion(Int32, Int32, Int32, Int32, System.String, Int32, Boolean, Int32)
+BLOCKED | Draw | Int32 Line(Int32, Int32, Int32, Int32, Int32, System.String, Int32, Boolean, Int32)
+BLOCKED | Draw | Int32 PlaceSprite(Int32, Int32, Int32, Int32, Boolean)
+BLOCKED | Draw | Int32 Rectangle(Int32, Int32, Int32, Int32, Boolean, Int32, System.String, Int32, Boolean, Int32)
+BLOCKED | Draw | Int32 RouteBus(Int32, Int32, Int32, Int32, Int32, System.String, System.String)
+BLOCKED | Draw | Int32 RouteWire(Int32, Int32, Int32, Int32, System.String, System.String)
+BLOCKED | Draw | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] RouteBusPath(Int32, Int32, Int32, Int32, Int32, System.String, System.String)
+BLOCKED | Draw | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] RouteWirePath(Int32, Int32, Int32, Int32, System.String, System.String)
+BLOCKED | Draw | Void Brush(Int32, Int32, Int32, Int32)
+BLOCKED | Draw | Void ClearMasks()
+BLOCKED | Draw | Void Fill(Int32, Int32)
+BLOCKED | Draw | Void Hammer(Int32, Int32, Int32, Int32)
+BLOCKED | Draw | Void Pencil(Int32, Int32, Int32, Int32)
+BLOCKED | Draw | Void Reset()
+BLOCKED | Draw | Void SetActuator(Boolean, Boolean)
+BLOCKED | Draw | Void SetActuatorMask(System.String)
+BLOCKED | Draw | Void SetBrickStyle(System.String)
+BLOCKED | Draw | Void SetBrickStyleMask(System.String, System.String)
+BLOCKED | Draw | Void SetBrush(Int32, Int32, System.String)
+BLOCKED | Draw | Void SetBrushOutline(Int32, Boolean)
+BLOCKED | Draw | Void SetErase(Boolean)
+BLOCKED | Draw | Void SetExactMask(Int32, Int32)
+BLOCKED | Draw | Void SetFlip(Boolean, Boolean)
+BLOCKED | Draw | Void SetLiquid(System.String, System.String)
+BLOCKED | Draw | Void SetLiquidLevelMask(System.String, Byte)
+BLOCKED | Draw | Void SetLiquidTypeMask(System.String, System.String)
+BLOCKED | Draw | Void SetMaskPreset(System.String)
+BLOCKED | Draw | Void SetPaintMode(System.String)
+BLOCKED | Draw | Void SetRotation(Double)
+BLOCKED | Draw | Void SetSpray(Boolean, Int32, Int32)
+BLOCKED | Draw | Void SetTile(Int32)
+BLOCKED | Draw | Void SetTileCoating(Boolean, Boolean)
+BLOCKED | Draw | Void SetTileCoatingMask(System.String, System.String)
+BLOCKED | Draw | Void SetTileColor(Int32)
+BLOCKED | Draw | Void SetTileMask(System.String, Int32)
+BLOCKED | Draw | Void SetTilePaintMask(System.String, Int32)
+BLOCKED | Draw | Void SetWall(Int32)
+BLOCKED | Draw | Void SetWallCoating(Boolean, Boolean)
+BLOCKED | Draw | Void SetWallCoatingMask(System.String, System.String)
+BLOCKED | Draw | Void SetWallColor(Int32)
+BLOCKED | Draw | Void SetWallMask(System.String, Int32)
+BLOCKED | Draw | Void SetWallPaintMask(System.String, Int32)
+BLOCKED | Draw | Void SetWire(Boolean, Boolean, Boolean, Boolean)
+BLOCKED | Draw | Void SetWireMask(System.String, System.String, System.String, System.String)
+BLOCKED | Finder | Boolean AddResult(System.String, Int32, Int32, System.String, System.String)
+BLOCKED | Finder | Void Clear()
+BLOCKED | Finder | Void Navigate(Int32)
+BLOCKED | Finder | Void NavigateFirst()
+BLOCKED | Generate | Boolean Tree(System.String, Int32, Int32)
+BLOCKED | Generate | Int32 Corruption(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 Crimson(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 Desert(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 FindSurface(Int32, Int32, Int32)
+BLOCKED | Generate | Int32 Forest(System.String[], Int32, Int32, Int32, Int32, Double)
+BLOCKED | Generate | Int32 ForestInSelection(System.String[], Double)
+BLOCKED | Generate | Int32 Hallow(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 IceBiome(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 Jungle(Int32, Int32, Int32, Int32, System.String, Int32)
+BLOCKED | Generate | Int32 MushroomBiome(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 Ocean(Int32, Int32, Int32)
+BLOCKED | Generate | Int32 PlaceLifeCrystals(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Int32 PlacePlants(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 PlacePots(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Int32 PlaceStalactites(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Int32 PlaceSunflowers(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Int32 PlaceThorns(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 PlaceTraps(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Int32 PlaceVines(Int32, Int32, Int32, Int32, System.String)
+BLOCKED | Generate | Int32 SmoothWorld(Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Int32 Underworld(Int32)
+BLOCKED | Generate | System.Object[] ListOreTypes()
+BLOCKED | Generate | System.Object[] ListTreeTypes()
+BLOCKED | Generate | Void Beehive(Int32, Int32, Int32)
+BLOCKED | Generate | Void Dungeon(Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Void GraniteCave(Int32, Int32, Double)
+BLOCKED | Generate | Void JungleTemple(Int32, Int32, Int32, Int32)
+BLOCKED | Generate | Void Lake(Int32, Int32, System.String, Double)
+BLOCKED | Generate | Void LivingTree(Int32, Int32, Int32)
+BLOCKED | Generate | Void MarbleCave(Int32, Int32, Double)
+BLOCKED | Generate | Void OreVein(System.String, Int32, Int32, System.String)
+BLOCKED | Generate | Void Pyramid(Int32, Int32, Int32)
+BLOCKED | Generate | Void SpiderCave(Int32, Int32, Double)
+BLOCKED | Generate | Void TileRunner(Int32, Int32, Double, Int32, Int32, Double, Double)
+BLOCKED | Generate | Void Tunnel(Int32, Int32, Double, Int32, Double, Double)
+BLOCKED | Generate | Void UndergroundHouse(Int32, Int32, Int32)
+BLOCKED | Geometry | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] Ellipse(Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] FillEllipse(Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] FillRect(Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] Line(Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Int32]] Rect(Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | Void ClearTiles(Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | Void SetTiles(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Geometry | Void SetWalls(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | Log | Void Error(System.String)
+BLOCKED | Log | Void Print(System.String)
+BLOCKED | Log | Void Progress(Double)
+BLOCKED | Log | Void Warn(System.String)
+BLOCKED | Metadata | Int32 ItemId(System.String)
+BLOCKED | Metadata | Int32 TileId(System.String)
+BLOCKED | Metadata | Int32 WallId(System.String)
+BLOCKED | Metadata | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] AllItems()
+BLOCKED | Metadata | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] AllTiles()
+BLOCKED | Metadata | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] AllWalls()
+BLOCKED | Metadata | System.String ItemName(Int32)
+BLOCKED | Metadata | System.String TileName(Int32)
+BLOCKED | Metadata | System.String WallName(Int32)
+BLOCKED | Npcs | Boolean Remove(System.String)
+BLOCKED | Npcs | Int32 Count
+BLOCKED | Npcs | Int32 SetHomeAll(System.String, Int32, Int32)
+BLOCKED | Npcs | Int32 get_Count()
+BLOCKED | Npcs | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAll()
+BLOCKED | Npcs | Void Create(System.String, System.String, Int32, Int32)
+BLOCKED | Npcs | Void SetHome(System.String, Int32, Int32)
+BLOCKED | Npcs | Void SetHome(System.String, Int32, Int32, Int32)
+BLOCKED | Selection | Boolean Contains(Int32, Int32)
+BLOCKED | Selection | Boolean IsActive
+BLOCKED | Selection | Boolean get_IsActive()
+BLOCKED | Selection | Int32 Bottom
+BLOCKED | Selection | Int32 Height
+BLOCKED | Selection | Int32 Left
+BLOCKED | Selection | Int32 Right
+BLOCKED | Selection | Int32 Top
+BLOCKED | Selection | Int32 Width
+BLOCKED | Selection | Int32 X
+BLOCKED | Selection | Int32 Y
+BLOCKED | Selection | Int32 get_Bottom()
+BLOCKED | Selection | Int32 get_Height()
+BLOCKED | Selection | Int32 get_Left()
+BLOCKED | Selection | Int32 get_Right()
+BLOCKED | Selection | Int32 get_Top()
+BLOCKED | Selection | Int32 get_Width()
+BLOCKED | Selection | Int32 get_X()
+BLOCKED | Selection | Int32 get_Y()
+BLOCKED | Selection | Void Clear()
+BLOCKED | Selection | Void Set(Int32, Int32, Int32, Int32)
+BLOCKED | Signs | Int32 Count
+BLOCKED | Signs | Int32 get_Count()
+BLOCKED | Signs | System.Collections.Generic.Dictionary`2[System.String,System.Object] GetAt(Int32, Int32)
+BLOCKED | Signs | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAll()
+BLOCKED | Signs | Void SetText(Int32, Int32, System.String)
+BLOCKED | Sprites | Boolean Place(Int32, Int32, Int32, Int32)
+BLOCKED | Sprites | Boolean PlaceByName(System.String, Int32, Int32)
+BLOCKED | Sprites | System.Object[] GetStyles(Int32)
+BLOCKED | Sprites | System.Object[] ListSprites()
+BLOCKED | Tile | Boolean GetTileEcho(Int32, Int32)
+BLOCKED | Tile | Boolean GetTileIlluminant(Int32, Int32)
+BLOCKED | Tile | Boolean GetWallEcho(Int32, Int32)
+BLOCKED | Tile | Boolean GetWallIlluminant(Int32, Int32)
+BLOCKED | Tile | Boolean GetWire(Int32, Int32, Int32)
+BLOCKED | Tile | Boolean IsActive(Int32, Int32)
+BLOCKED | Tile | Int32 GetFrameU(Int32, Int32)
+BLOCKED | Tile | Int32 GetFrameV(Int32, Int32)
+BLOCKED | Tile | Int32 GetLiquidAmount(Int32, Int32)
+BLOCKED | Tile | Int32 GetLiquidType(Int32, Int32)
+BLOCKED | Tile | Int32 GetPaint(Int32, Int32)
+BLOCKED | Tile | Int32 GetTileType(Int32, Int32)
+BLOCKED | Tile | Int32 GetWall(Int32, Int32)
+BLOCKED | Tile | Int32 GetWallPaint(Int32, Int32)
+BLOCKED | Tile | System.String GetSlope(Int32, Int32)
+BLOCKED | Tile | Void Clear(Int32, Int32)
+BLOCKED | Tile | Void Copy(Int32, Int32, Int32, Int32)
+BLOCKED | Tile | Void SetActive(Int32, Int32, Boolean)
+BLOCKED | Tile | Void SetFrameUV(Int32, Int32, Int32, Int32)
+BLOCKED | Tile | Void SetLiquid(Int32, Int32, Int32, Int32)
+BLOCKED | Tile | Void SetPaint(Int32, Int32, Int32)
+BLOCKED | Tile | Void SetSlope(Int32, Int32, System.String)
+BLOCKED | Tile | Void SetTileEcho(Int32, Int32, Boolean)
+BLOCKED | Tile | Void SetTileIlluminant(Int32, Int32, Boolean)
+BLOCKED | Tile | Void SetType(Int32, Int32, Int32)
+BLOCKED | Tile | Void SetWall(Int32, Int32, Int32)
+BLOCKED | Tile | Void SetWallEcho(Int32, Int32, Boolean)
+BLOCKED | Tile | Void SetWallIlluminant(Int32, Int32, Boolean)
+BLOCKED | Tile | Void SetWallPaint(Int32, Int32, Int32)
+BLOCKED | Tile | Void SetWire(Int32, Int32, Int32, Boolean)
+BLOCKED | TileEntities | Int32 Count
+BLOCKED | TileEntities | Int32 FoodPlatterCount
+BLOCKED | TileEntities | Int32 GetPose(Int32, Int32)
+BLOCKED | TileEntities | Int32 HatRackCount
+BLOCKED | TileEntities | Int32 ItemFrameCount
+BLOCKED | TileEntities | Int32 LogicSensorCount
+BLOCKED | TileEntities | Int32 MannequinCount
+BLOCKED | TileEntities | Int32 PylonCount
+BLOCKED | TileEntities | Int32 TrainingDummyCount
+BLOCKED | TileEntities | Int32 WeaponRackCount
+BLOCKED | TileEntities | Int32 get_Count()
+BLOCKED | TileEntities | Int32 get_FoodPlatterCount()
+BLOCKED | TileEntities | Int32 get_HatRackCount()
+BLOCKED | TileEntities | Int32 get_ItemFrameCount()
+BLOCKED | TileEntities | Int32 get_LogicSensorCount()
+BLOCKED | TileEntities | Int32 get_MannequinCount()
+BLOCKED | TileEntities | Int32 get_PylonCount()
+BLOCKED | TileEntities | Int32 get_TrainingDummyCount()
+BLOCKED | TileEntities | Int32 get_WeaponRackCount()
+BLOCKED | TileEntities | System.Collections.Generic.Dictionary`2[System.String,System.Object] GetAt(Int32, Int32)
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] FindByItem(Int32)
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAll()
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAllByType(System.String)
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAllFoodPlatters()
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAllHatRacks()
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAllItemFrames()
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAllMannequins()
+BLOCKED | TileEntities | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] GetAllWeaponRacks()
+BLOCKED | TileEntities | Void ClearDye(Int32, Int32, Int32)
+BLOCKED | TileEntities | Void ClearEquipment(Int32, Int32, Int32)
+BLOCKED | TileEntities | Void ClearHatRackDye(Int32, Int32, Int32)
+BLOCKED | TileEntities | Void ClearHatRackItem(Int32, Int32, Int32)
+BLOCKED | TileEntities | Void ClearItem(Int32, Int32)
+BLOCKED | TileEntities | Void ClearWeapon(Int32, Int32)
+BLOCKED | TileEntities | Void SetDye(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetEquipment(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetHatRackDye(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetHatRackItem(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetItem(Int32, Int32, Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetLogicSensor(Int32, Int32, Int32, Boolean)
+BLOCKED | TileEntities | Void SetPose(Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetTrainingDummyNpc(Int32, Int32, Int32)
+BLOCKED | TileEntities | Void SetWeapon(Int32, Int32, Int32, Int32)
+BLOCKED | Tools | Boolean Load(System.String)
+BLOCKED | Tools | Boolean Save()
+BLOCKED | Tools | Boolean SaveAs(System.String)
+BLOCKED | Tools | Boolean SaveAs(System.String, Int32)
+BLOCKED | Tools | Int32 GetTilePickerTile()
+BLOCKED | Tools | Int32 GetTilePickerWall()
+BLOCKED | Tools | System.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.String]] GetCloudWorldsFolders()
+BLOCKED | Tools | System.Collections.Generic.List`1[System.String] ListTools()
+BLOCKED | Tools | System.String GetFilePath()
+BLOCKED | Tools | System.String GetSteamWorldsFolder()
+BLOCKED | Tools | System.String GetWorldsFolder()
+BLOCKED | Tools | Void CopySelection()
+BLOCKED | Tools | Void SetFilePath(System.String)
+BLOCKED | World | Boolean Apocalypse
+BLOCKED | World | Boolean BloodMoon
+BLOCKED | World | Boolean BoughtBunny
+BLOCKED | World | Boolean BoughtCat
+BLOCKED | World | Boolean BoughtDog
+BLOCKED | World | Boolean CelestialNebulaActive
+BLOCKED | World | Boolean CelestialSolarActive
+BLOCKED | World | Boolean CelestialStardustActive
+BLOCKED | World | Boolean CelestialVortexActive
+BLOCKED | World | Boolean CombatBookUsed
+BLOCKED | World | Boolean CombatBookVolumeTwoWasUsed
+BLOCKED | World | Boolean DayTime
+BLOCKED | World | Boolean DontStarveWorld
+BLOCKED | World | Boolean DownedCelestialNebula
+BLOCKED | World | Boolean DownedCelestialSolar
+BLOCKED | World | Boolean DownedCelestialStardust
+BLOCKED | World | Boolean DownedCelestialVortex
+BLOCKED | World | Boolean DownedChristmasQueen
+BLOCKED | World | Boolean DownedChristmasTree
+BLOCKED | World | Boolean DownedClown
+BLOCKED | World | Boolean DownedDD2InvasionT1
+BLOCKED | World | Boolean DownedDD2InvasionT2
+BLOCKED | World | Boolean DownedDD2InvasionT3
+BLOCKED | World | Boolean DownedDeerclops
+BLOCKED | World | Boolean DownedDestroyer
+BLOCKED | World | Boolean DownedEaterOfWorlds
+BLOCKED | World | Boolean DownedEmpressOfLight
+BLOCKED | World | Boolean DownedEyeOfCthulhu
+BLOCKED | World | Boolean DownedFishron
+BLOCKED | World | Boolean DownedFrost
+BLOCKED | World | Boolean DownedGoblins
+BLOCKED | World | Boolean DownedGolem
+BLOCKED | World | Boolean DownedHalloweenKing
+BLOCKED | World | Boolean DownedHalloweenTree
+BLOCKED | World | Boolean DownedLunaticCultist
+BLOCKED | World | Boolean DownedMartians
+BLOCKED | World | Boolean DownedMechBossAny
+BLOCKED | World | Boolean DownedMoonlord
+BLOCKED | World | Boolean DownedPirates
+BLOCKED | World | Boolean DownedPlantera
+BLOCKED | World | Boolean DownedQueenBee
+BLOCKED | World | Boolean DownedQueenSlime
+BLOCKED | World | Boolean DownedSanta
+BLOCKED | World | Boolean DownedSkeletron
+BLOCKED | World | Boolean DownedSkeletronPrime
+BLOCKED | World | Boolean DownedSlimeKing
+BLOCKED | World | Boolean DownedTwins
+BLOCKED | World | Boolean DrunkWorld
+BLOCKED | World | Boolean DualDungeonsSeed
+BLOCKED | World | Boolean FastForwardTime
+BLOCKED | World | Boolean FastForwardTimeToDusk
+BLOCKED | World | Boolean ForceHalloweenForToday
+BLOCKED | World | Boolean ForceHalloweenForever
+BLOCKED | World | Boolean ForceXMasForToday
+BLOCKED | World | Boolean ForceXMasForever
+BLOCKED | World | Boolean GoodWorld
+BLOCKED | World | Boolean HardMode
+BLOCKED | World | Boolean InfectedSeed
+BLOCKED | World | Boolean IsChinese
+BLOCKED | World | Boolean IsConsole
+BLOCKED | World | Boolean IsCrimson
+BLOCKED | World | Boolean IsEclipse
+BLOCKED | World | Boolean IsFavorite
+BLOCKED | World | Boolean IsRaining
+BLOCKED | World | Boolean LanternNightGenuine
+BLOCKED | World | Boolean LanternNightManual
+BLOCKED | World | Boolean LanternNightNextNightIsGenuine
+BLOCKED | World | Boolean MoreLightningSeed
+BLOCKED | World | Boolean NoLightningSeed
+BLOCKED | World | Boolean NoTrapsWorld
+BLOCKED | World | Boolean NotTheBeesWorld
+BLOCKED | World | Boolean PartyGenuine
+BLOCKED | World | Boolean PartyManual
+BLOCKED | World | Boolean PartyOfDoom
+BLOCKED | World | Boolean PeddlersSatchelWasUsed
+BLOCKED | World | Boolean RemixWorld
+BLOCKED | World | Boolean SafeGroundLayers
+BLOCKED | World | Boolean SandStormHappening
+BLOCKED | World | Boolean SavedAngler
+BLOCKED | World | Boolean SavedBartender
+BLOCKED | World | Boolean SavedGoblin
+BLOCKED | World | Boolean SavedGolfer
+BLOCKED | World | Boolean SavedMech
+BLOCKED | World | Boolean SavedStylist
+BLOCKED | World | Boolean SavedTaxCollector
+BLOCKED | World | Boolean SavedWizard
+BLOCKED | World | Boolean ShadowOrbSmashed
+BLOCKED | World | Boolean SkyblockWorld
+BLOCKED | World | Boolean SpawnMeteor
+BLOCKED | World | Boolean TenthAnniversaryWorld
+BLOCKED | World | Boolean UnlockedArmsDealerSpawn
+BLOCKED | World | Boolean UnlockedDemolitionistSpawn
+BLOCKED | World | Boolean UnlockedDyeTraderSpawn
+BLOCKED | World | Boolean UnlockedMerchantSpawn
+BLOCKED | World | Boolean UnlockedNurseSpawn
+BLOCKED | World | Boolean UnlockedPartyGirlSpawn
+BLOCKED | World | Boolean UnlockedPrincessSpawn
+BLOCKED | World | Boolean UnlockedSlimeBlueSpawn
+BLOCKED | World | Boolean UnlockedSlimeCopperSpawn
+BLOCKED | World | Boolean UnlockedSlimeGreenSpawn
+BLOCKED | World | Boolean UnlockedSlimeOldSpawn
+BLOCKED | World | Boolean UnlockedSlimePurpleSpawn
+BLOCKED | World | Boolean UnlockedSlimeRainbowSpawn
+BLOCKED | World | Boolean UnlockedSlimeRedSpawn
+BLOCKED | World | Boolean UnlockedSlimeYellowSpawn
+BLOCKED | World | Boolean UnlockedTruffleSpawn
+BLOCKED | World | Boolean VampireSeed
+BLOCKED | World | Boolean ZenithWorld
+BLOCKED | World | Boolean get_Apocalypse()
+BLOCKED | World | Boolean get_BloodMoon()
+BLOCKED | World | Boolean get_BoughtBunny()
+BLOCKED | World | Boolean get_BoughtCat()
+BLOCKED | World | Boolean get_BoughtDog()
+BLOCKED | World | Boolean get_CelestialNebulaActive()
+BLOCKED | World | Boolean get_CelestialSolarActive()
+BLOCKED | World | Boolean get_CelestialStardustActive()
+BLOCKED | World | Boolean get_CelestialVortexActive()
+BLOCKED | World | Boolean get_CombatBookUsed()
+BLOCKED | World | Boolean get_CombatBookVolumeTwoWasUsed()
+BLOCKED | World | Boolean get_DayTime()
+BLOCKED | World | Boolean get_DontStarveWorld()
+BLOCKED | World | Boolean get_DownedCelestialNebula()
+BLOCKED | World | Boolean get_DownedCelestialSolar()
+BLOCKED | World | Boolean get_DownedCelestialStardust()
+BLOCKED | World | Boolean get_DownedCelestialVortex()
+BLOCKED | World | Boolean get_DownedChristmasQueen()
+BLOCKED | World | Boolean get_DownedChristmasTree()
+BLOCKED | World | Boolean get_DownedClown()
+BLOCKED | World | Boolean get_DownedDD2InvasionT1()
+BLOCKED | World | Boolean get_DownedDD2InvasionT2()
+BLOCKED | World | Boolean get_DownedDD2InvasionT3()
+BLOCKED | World | Boolean get_DownedDeerclops()
+BLOCKED | World | Boolean get_DownedDestroyer()
+BLOCKED | World | Boolean get_DownedEaterOfWorlds()
+BLOCKED | World | Boolean get_DownedEmpressOfLight()
+BLOCKED | World | Boolean get_DownedEyeOfCthulhu()
+BLOCKED | World | Boolean get_DownedFishron()
+BLOCKED | World | Boolean get_DownedFrost()
+BLOCKED | World | Boolean get_DownedGoblins()
+BLOCKED | World | Boolean get_DownedGolem()
+BLOCKED | World | Boolean get_DownedHalloweenKing()
+BLOCKED | World | Boolean get_DownedHalloweenTree()
+BLOCKED | World | Boolean get_DownedLunaticCultist()
+BLOCKED | World | Boolean get_DownedMartians()
+BLOCKED | World | Boolean get_DownedMechBossAny()
+BLOCKED | World | Boolean get_DownedMoonlord()
+BLOCKED | World | Boolean get_DownedPirates()
+BLOCKED | World | Boolean get_DownedPlantera()
+BLOCKED | World | Boolean get_DownedQueenBee()
+BLOCKED | World | Boolean get_DownedQueenSlime()
+BLOCKED | World | Boolean get_DownedSanta()
+BLOCKED | World | Boolean get_DownedSkeletron()
+BLOCKED | World | Boolean get_DownedSkeletronPrime()
+BLOCKED | World | Boolean get_DownedSlimeKing()
+BLOCKED | World | Boolean get_DownedTwins()
+BLOCKED | World | Boolean get_DrunkWorld()
+BLOCKED | World | Boolean get_DualDungeonsSeed()
+BLOCKED | World | Boolean get_FastForwardTime()
+BLOCKED | World | Boolean get_FastForwardTimeToDusk()
+BLOCKED | World | Boolean get_ForceHalloweenForToday()
+BLOCKED | World | Boolean get_ForceHalloweenForever()
+BLOCKED | World | Boolean get_ForceXMasForToday()
+BLOCKED | World | Boolean get_ForceXMasForever()
+BLOCKED | World | Boolean get_GoodWorld()
+BLOCKED | World | Boolean get_HardMode()
+BLOCKED | World | Boolean get_InfectedSeed()
+BLOCKED | World | Boolean get_IsChinese()
+BLOCKED | World | Boolean get_IsConsole()
+BLOCKED | World | Boolean get_IsCrimson()
+BLOCKED | World | Boolean get_IsEclipse()
+BLOCKED | World | Boolean get_IsFavorite()
+BLOCKED | World | Boolean get_IsRaining()
+BLOCKED | World | Boolean get_LanternNightGenuine()
+BLOCKED | World | Boolean get_LanternNightManual()
+BLOCKED | World | Boolean get_LanternNightNextNightIsGenuine()
+BLOCKED | World | Boolean get_MoreLightningSeed()
+BLOCKED | World | Boolean get_NoLightningSeed()
+BLOCKED | World | Boolean get_NoTrapsWorld()
+BLOCKED | World | Boolean get_NotTheBeesWorld()
+BLOCKED | World | Boolean get_PartyGenuine()
+BLOCKED | World | Boolean get_PartyManual()
+BLOCKED | World | Boolean get_PartyOfDoom()
+BLOCKED | World | Boolean get_PeddlersSatchelWasUsed()
+BLOCKED | World | Boolean get_RemixWorld()
+BLOCKED | World | Boolean get_SafeGroundLayers()
+BLOCKED | World | Boolean get_SandStormHappening()
+BLOCKED | World | Boolean get_SavedAngler()
+BLOCKED | World | Boolean get_SavedBartender()
+BLOCKED | World | Boolean get_SavedGoblin()
+BLOCKED | World | Boolean get_SavedGolfer()
+BLOCKED | World | Boolean get_SavedMech()
+BLOCKED | World | Boolean get_SavedStylist()
+BLOCKED | World | Boolean get_SavedTaxCollector()
+BLOCKED | World | Boolean get_SavedWizard()
+BLOCKED | World | Boolean get_ShadowOrbSmashed()
+BLOCKED | World | Boolean get_SkyblockWorld()
+BLOCKED | World | Boolean get_SpawnMeteor()
+BLOCKED | World | Boolean get_TenthAnniversaryWorld()
+BLOCKED | World | Boolean get_UnlockedArmsDealerSpawn()
+BLOCKED | World | Boolean get_UnlockedDemolitionistSpawn()
+BLOCKED | World | Boolean get_UnlockedDyeTraderSpawn()
+BLOCKED | World | Boolean get_UnlockedMerchantSpawn()
+BLOCKED | World | Boolean get_UnlockedNurseSpawn()
+BLOCKED | World | Boolean get_UnlockedPartyGirlSpawn()
+BLOCKED | World | Boolean get_UnlockedPrincessSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeBlueSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeCopperSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeGreenSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeOldSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimePurpleSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeRainbowSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeRedSpawn()
+BLOCKED | World | Boolean get_UnlockedSlimeYellowSpawn()
+BLOCKED | World | Boolean get_UnlockedTruffleSpawn()
+BLOCKED | World | Boolean get_VampireSeed()
+BLOCKED | World | Boolean get_ZenithWorld()
+BLOCKED | World | Byte BgCorruption
+BLOCKED | World | Byte BgCrimson
+BLOCKED | World | Byte BgDesert
+BLOCKED | World | Byte BgHallow
+BLOCKED | World | Byte BgJungle
+BLOCKED | World | Byte BgOcean
+BLOCKED | World | Byte BgSnow
+BLOCKED | World | Byte BgTree
+BLOCKED | World | Byte BgTree2
+BLOCKED | World | Byte BgTree3
+BLOCKED | World | Byte BgTree4
+BLOCKED | World | Byte MoonType
+BLOCKED | World | Byte MoondialCooldown
+BLOCKED | World | Byte MushroomBg
+BLOCKED | World | Byte SundialCooldown
+BLOCKED | World | Byte UnderworldBg
+BLOCKED | World | Byte get_BgCorruption()
+BLOCKED | World | Byte get_BgCrimson()
+BLOCKED | World | Byte get_BgDesert()
+BLOCKED | World | Byte get_BgHallow()
+BLOCKED | World | Byte get_BgJungle()
+BLOCKED | World | Byte get_BgOcean()
+BLOCKED | World | Byte get_BgSnow()
+BLOCKED | World | Byte get_BgTree()
+BLOCKED | World | Byte get_BgTree2()
+BLOCKED | World | Byte get_BgTree3()
+BLOCKED | World | Byte get_BgTree4()
+BLOCKED | World | Byte get_MoonType()
+BLOCKED | World | Byte get_MoondialCooldown()
+BLOCKED | World | Byte get_MushroomBg()
+BLOCKED | World | Byte get_SundialCooldown()
+BLOCKED | World | Byte get_UnderworldBg()
+BLOCKED | World | Double InvasionX
+BLOCKED | World | Double RockLevel
+BLOCKED | World | Double SlimeRainTime
+BLOCKED | World | Double SurfaceLevel
+BLOCKED | World | Double Time
+BLOCKED | World | Double get_InvasionX()
+BLOCKED | World | Double get_RockLevel()
+BLOCKED | World | Double get_SlimeRainTime()
+BLOCKED | World | Double get_SurfaceLevel()
+BLOCKED | World | Double get_Time()
+BLOCKED | World | Int16 NumClouds
+BLOCKED | World | Int16 get_NumClouds()
+BLOCKED | World | Int32 AltarCount
+BLOCKED | World | Int32 AnglerQuest
+BLOCKED | World | Int32 CaveBackStyle0
+BLOCKED | World | Int32 CaveBackStyle1
+BLOCKED | World | Int32 CaveBackStyle2
+BLOCKED | World | Int32 CaveBackStyle3
+BLOCKED | World | Int32 CaveBackX0
+BLOCKED | World | Int32 CaveBackX1
+BLOCKED | World | Int32 CaveBackX2
+BLOCKED | World | Int32 CultistDelay
+BLOCKED | World | Int32 DungeonX
+BLOCKED | World | Int32 DungeonY
+BLOCKED | World | Int32 GameMode
+BLOCKED | World | Int32 Height
+BLOCKED | World | Int32 HellBackStyle
+BLOCKED | World | Int32 IceBackStyle
+BLOCKED | World | Int32 InvasionSize
+BLOCKED | World | Int32 InvasionType
+BLOCKED | World | Int32 JungleBackStyle
+BLOCKED | World | Int32 LanternNightCooldown
+BLOCKED | World | Int32 MoonPhase
+BLOCKED | World | Int32 PartyCooldown
+BLOCKED | World | Int32 SandStormTimeLeft
+BLOCKED | World | Int32 SavedOreTiersAdamantite
+BLOCKED | World | Int32 SavedOreTiersCobalt
+BLOCKED | World | Int32 SavedOreTiersCopper
+BLOCKED | World | Int32 SavedOreTiersGold
+BLOCKED | World | Int32 SavedOreTiersIron
+BLOCKED | World | Int32 SavedOreTiersMythril
+BLOCKED | World | Int32 SavedOreTiersSilver
+BLOCKED | World | Int32 ShadowOrbCount
+BLOCKED | World | Int32 SpawnX
+BLOCKED | World | Int32 SpawnY
+BLOCKED | World | Int32 TempCoinRain
+BLOCKED | World | Int32 TempMeteorShowerCount
+BLOCKED | World | Int32 TempRainTime
+BLOCKED | World | Int32 TreeStyle0
+BLOCKED | World | Int32 TreeStyle1
+BLOCKED | World | Int32 TreeStyle2
+BLOCKED | World | Int32 TreeStyle3
+BLOCKED | World | Int32 TreeTop1
+BLOCKED | World | Int32 TreeTop2
+BLOCKED | World | Int32 TreeTop3
+BLOCKED | World | Int32 TreeTop4
+BLOCKED | World | Int32 TreeX0
+BLOCKED | World | Int32 TreeX1
+BLOCKED | World | Int32 TreeX2
+BLOCKED | World | Int32 Width
+BLOCKED | World | Int32 WorldId
+BLOCKED | World | Int32 get_AltarCount()
+BLOCKED | World | Int32 get_AnglerQuest()
+BLOCKED | World | Int32 get_CaveBackStyle0()
+BLOCKED | World | Int32 get_CaveBackStyle1()
+BLOCKED | World | Int32 get_CaveBackStyle2()
+BLOCKED | World | Int32 get_CaveBackStyle3()
+BLOCKED | World | Int32 get_CaveBackX0()
+BLOCKED | World | Int32 get_CaveBackX1()
+BLOCKED | World | Int32 get_CaveBackX2()
+BLOCKED | World | Int32 get_CultistDelay()
+BLOCKED | World | Int32 get_DungeonX()
+BLOCKED | World | Int32 get_DungeonY()
+BLOCKED | World | Int32 get_GameMode()
+BLOCKED | World | Int32 get_Height()
+BLOCKED | World | Int32 get_HellBackStyle()
+BLOCKED | World | Int32 get_IceBackStyle()
+BLOCKED | World | Int32 get_InvasionSize()
+BLOCKED | World | Int32 get_InvasionType()
+BLOCKED | World | Int32 get_JungleBackStyle()
+BLOCKED | World | Int32 get_LanternNightCooldown()
+BLOCKED | World | Int32 get_MoonPhase()
+BLOCKED | World | Int32 get_PartyCooldown()
+BLOCKED | World | Int32 get_SandStormTimeLeft()
+BLOCKED | World | Int32 get_SavedOreTiersAdamantite()
+BLOCKED | World | Int32 get_SavedOreTiersCobalt()
+BLOCKED | World | Int32 get_SavedOreTiersCopper()
+BLOCKED | World | Int32 get_SavedOreTiersGold()
+BLOCKED | World | Int32 get_SavedOreTiersIron()
+BLOCKED | World | Int32 get_SavedOreTiersMythril()
+BLOCKED | World | Int32 get_SavedOreTiersSilver()
+BLOCKED | World | Int32 get_ShadowOrbCount()
+BLOCKED | World | Int32 get_SpawnX()
+BLOCKED | World | Int32 get_SpawnY()
+BLOCKED | World | Int32 get_TempCoinRain()
+BLOCKED | World | Int32 get_TempMeteorShowerCount()
+BLOCKED | World | Int32 get_TempRainTime()
+BLOCKED | World | Int32 get_TreeStyle0()
+BLOCKED | World | Int32 get_TreeStyle1()
+BLOCKED | World | Int32 get_TreeStyle2()
+BLOCKED | World | Int32 get_TreeStyle3()
+BLOCKED | World | Int32 get_TreeTop1()
+BLOCKED | World | Int32 get_TreeTop2()
+BLOCKED | World | Int32 get_TreeTop3()
+BLOCKED | World | Int32 get_TreeTop4()
+BLOCKED | World | Int32 get_TreeX0()
+BLOCKED | World | Int32 get_TreeX1()
+BLOCKED | World | Int32 get_TreeX2()
+BLOCKED | World | Int32 get_Width()
+BLOCKED | World | Int32 get_WorldId()
+BLOCKED | World | Int64 CreationTime
+BLOCKED | World | Int64 LastPlayed
+BLOCKED | World | Int64 get_CreationTime()
+BLOCKED | World | Int64 get_LastPlayed()
+BLOCKED | World | Single BottomWorld
+BLOCKED | World | Single CloudBgActive
+BLOCKED | World | Single LeftWorld
+BLOCKED | World | Single RightWorld
+BLOCKED | World | Single SandStormIntendedSeverity
+BLOCKED | World | Single SandStormSeverity
+BLOCKED | World | Single TempMaxRain
+BLOCKED | World | Single TopWorld
+BLOCKED | World | Single WindSpeedSet
+BLOCKED | World | Single get_BottomWorld()
+BLOCKED | World | Single get_CloudBgActive()
+BLOCKED | World | Single get_LeftWorld()
+BLOCKED | World | Single get_RightWorld()
+BLOCKED | World | Single get_SandStormIntendedSeverity()
+BLOCKED | World | Single get_SandStormSeverity()
+BLOCKED | World | Single get_TempMaxRain()
+BLOCKED | World | Single get_TopWorld()
+BLOCKED | World | Single get_WindSpeedSet()
+BLOCKED | World | System.String Seed
+BLOCKED | World | System.String Title
+BLOCKED | World | System.String get_Seed()
+BLOCKED | World | System.String get_Title()
+BLOCKED | World | UInt32 FileRevision
+BLOCKED | World | UInt32 get_FileRevision()
+BLOCKED | World | UInt64 WorldGenVersion
+BLOCKED | World | UInt64 get_WorldGenVersion()
+BLOCKED | World | Void set_AltarCount(Int32)
+BLOCKED | World | Void set_AnglerQuest(Int32)
+BLOCKED | World | Void set_Apocalypse(Boolean)
+BLOCKED | World | Void set_BgCorruption(Byte)
+BLOCKED | World | Void set_BgCrimson(Byte)
+BLOCKED | World | Void set_BgDesert(Byte)
+BLOCKED | World | Void set_BgHallow(Byte)
+BLOCKED | World | Void set_BgJungle(Byte)
+BLOCKED | World | Void set_BgOcean(Byte)
+BLOCKED | World | Void set_BgSnow(Byte)
+BLOCKED | World | Void set_BgTree(Byte)
+BLOCKED | World | Void set_BgTree2(Byte)
+BLOCKED | World | Void set_BgTree3(Byte)
+BLOCKED | World | Void set_BgTree4(Byte)
+BLOCKED | World | Void set_BloodMoon(Boolean)
+BLOCKED | World | Void set_BottomWorld(Single)
+BLOCKED | World | Void set_BoughtBunny(Boolean)
+BLOCKED | World | Void set_BoughtCat(Boolean)
+BLOCKED | World | Void set_BoughtDog(Boolean)
+BLOCKED | World | Void set_CaveBackStyle0(Int32)
+BLOCKED | World | Void set_CaveBackStyle1(Int32)
+BLOCKED | World | Void set_CaveBackStyle2(Int32)
+BLOCKED | World | Void set_CaveBackStyle3(Int32)
+BLOCKED | World | Void set_CaveBackX0(Int32)
+BLOCKED | World | Void set_CaveBackX1(Int32)
+BLOCKED | World | Void set_CaveBackX2(Int32)
+BLOCKED | World | Void set_CelestialNebulaActive(Boolean)
+BLOCKED | World | Void set_CelestialSolarActive(Boolean)
+BLOCKED | World | Void set_CelestialStardustActive(Boolean)
+BLOCKED | World | Void set_CelestialVortexActive(Boolean)
+BLOCKED | World | Void set_CloudBgActive(Single)
+BLOCKED | World | Void set_CombatBookUsed(Boolean)
+BLOCKED | World | Void set_CombatBookVolumeTwoWasUsed(Boolean)
+BLOCKED | World | Void set_CreationTime(Int64)
+BLOCKED | World | Void set_CultistDelay(Int32)
+BLOCKED | World | Void set_DayTime(Boolean)
+BLOCKED | World | Void set_DontStarveWorld(Boolean)
+BLOCKED | World | Void set_DownedCelestialNebula(Boolean)
+BLOCKED | World | Void set_DownedCelestialSolar(Boolean)
+BLOCKED | World | Void set_DownedCelestialStardust(Boolean)
+BLOCKED | World | Void set_DownedCelestialVortex(Boolean)
+BLOCKED | World | Void set_DownedChristmasQueen(Boolean)
+BLOCKED | World | Void set_DownedChristmasTree(Boolean)
+BLOCKED | World | Void set_DownedClown(Boolean)
+BLOCKED | World | Void set_DownedDD2InvasionT1(Boolean)
+BLOCKED | World | Void set_DownedDD2InvasionT2(Boolean)
+BLOCKED | World | Void set_DownedDD2InvasionT3(Boolean)
+BLOCKED | World | Void set_DownedDeerclops(Boolean)
+BLOCKED | World | Void set_DownedDestroyer(Boolean)
+BLOCKED | World | Void set_DownedEaterOfWorlds(Boolean)
+BLOCKED | World | Void set_DownedEmpressOfLight(Boolean)
+BLOCKED | World | Void set_DownedEyeOfCthulhu(Boolean)
+BLOCKED | World | Void set_DownedFishron(Boolean)
+BLOCKED | World | Void set_DownedFrost(Boolean)
+BLOCKED | World | Void set_DownedGoblins(Boolean)
+BLOCKED | World | Void set_DownedGolem(Boolean)
+BLOCKED | World | Void set_DownedHalloweenKing(Boolean)
+BLOCKED | World | Void set_DownedHalloweenTree(Boolean)
+BLOCKED | World | Void set_DownedLunaticCultist(Boolean)
+BLOCKED | World | Void set_DownedMartians(Boolean)
+BLOCKED | World | Void set_DownedMoonlord(Boolean)
+BLOCKED | World | Void set_DownedPirates(Boolean)
+BLOCKED | World | Void set_DownedPlantera(Boolean)
+BLOCKED | World | Void set_DownedQueenBee(Boolean)
+BLOCKED | World | Void set_DownedQueenSlime(Boolean)
+BLOCKED | World | Void set_DownedSanta(Boolean)
+BLOCKED | World | Void set_DownedSkeletron(Boolean)
+BLOCKED | World | Void set_DownedSkeletronPrime(Boolean)
+BLOCKED | World | Void set_DownedSlimeKing(Boolean)
+BLOCKED | World | Void set_DownedTwins(Boolean)
+BLOCKED | World | Void set_DrunkWorld(Boolean)
+BLOCKED | World | Void set_DualDungeonsSeed(Boolean)
+BLOCKED | World | Void set_DungeonX(Int32)
+BLOCKED | World | Void set_DungeonY(Int32)
+BLOCKED | World | Void set_FastForwardTime(Boolean)
+BLOCKED | World | Void set_FastForwardTimeToDusk(Boolean)
+BLOCKED | World | Void set_FileRevision(UInt32)
+BLOCKED | World | Void set_ForceHalloweenForToday(Boolean)
+BLOCKED | World | Void set_ForceHalloweenForever(Boolean)
+BLOCKED | World | Void set_ForceXMasForToday(Boolean)
+BLOCKED | World | Void set_ForceXMasForever(Boolean)
+BLOCKED | World | Void set_GameMode(Int32)
+BLOCKED | World | Void set_GoodWorld(Boolean)
+BLOCKED | World | Void set_HardMode(Boolean)
+BLOCKED | World | Void set_HellBackStyle(Int32)
+BLOCKED | World | Void set_IceBackStyle(Int32)
+BLOCKED | World | Void set_InfectedSeed(Boolean)
+BLOCKED | World | Void set_InvasionSize(Int32)
+BLOCKED | World | Void set_InvasionType(Int32)
+BLOCKED | World | Void set_InvasionX(Double)
+BLOCKED | World | Void set_IsChinese(Boolean)
+BLOCKED | World | Void set_IsConsole(Boolean)
+BLOCKED | World | Void set_IsCrimson(Boolean)
+BLOCKED | World | Void set_IsEclipse(Boolean)
+BLOCKED | World | Void set_IsFavorite(Boolean)
+BLOCKED | World | Void set_IsRaining(Boolean)
+BLOCKED | World | Void set_JungleBackStyle(Int32)
+BLOCKED | World | Void set_LanternNightCooldown(Int32)
+BLOCKED | World | Void set_LanternNightGenuine(Boolean)
+BLOCKED | World | Void set_LanternNightManual(Boolean)
+BLOCKED | World | Void set_LanternNightNextNightIsGenuine(Boolean)
+BLOCKED | World | Void set_LastPlayed(Int64)
+BLOCKED | World | Void set_LeftWorld(Single)
+BLOCKED | World | Void set_MoonPhase(Int32)
+BLOCKED | World | Void set_MoonType(Byte)
+BLOCKED | World | Void set_MoondialCooldown(Byte)
+BLOCKED | World | Void set_MoreLightningSeed(Boolean)
+BLOCKED | World | Void set_MushroomBg(Byte)
+BLOCKED | World | Void set_NoLightningSeed(Boolean)
+BLOCKED | World | Void set_NoTrapsWorld(Boolean)
+BLOCKED | World | Void set_NotTheBeesWorld(Boolean)
+BLOCKED | World | Void set_NumClouds(Int16)
+BLOCKED | World | Void set_PartyCooldown(Int32)
+BLOCKED | World | Void set_PartyGenuine(Boolean)
+BLOCKED | World | Void set_PartyManual(Boolean)
+BLOCKED | World | Void set_PartyOfDoom(Boolean)
+BLOCKED | World | Void set_PeddlersSatchelWasUsed(Boolean)
+BLOCKED | World | Void set_RemixWorld(Boolean)
+BLOCKED | World | Void set_RightWorld(Single)
+BLOCKED | World | Void set_RockLevel(Double)
+BLOCKED | World | Void set_SafeGroundLayers(Boolean)
+BLOCKED | World | Void set_SandStormHappening(Boolean)
+BLOCKED | World | Void set_SandStormIntendedSeverity(Single)
+BLOCKED | World | Void set_SandStormSeverity(Single)
+BLOCKED | World | Void set_SandStormTimeLeft(Int32)
+BLOCKED | World | Void set_SavedAngler(Boolean)
+BLOCKED | World | Void set_SavedBartender(Boolean)
+BLOCKED | World | Void set_SavedGoblin(Boolean)
+BLOCKED | World | Void set_SavedGolfer(Boolean)
+BLOCKED | World | Void set_SavedMech(Boolean)
+BLOCKED | World | Void set_SavedOreTiersAdamantite(Int32)
+BLOCKED | World | Void set_SavedOreTiersCobalt(Int32)
+BLOCKED | World | Void set_SavedOreTiersCopper(Int32)
+BLOCKED | World | Void set_SavedOreTiersGold(Int32)
+BLOCKED | World | Void set_SavedOreTiersIron(Int32)
+BLOCKED | World | Void set_SavedOreTiersMythril(Int32)
+BLOCKED | World | Void set_SavedOreTiersSilver(Int32)
+BLOCKED | World | Void set_SavedStylist(Boolean)
+BLOCKED | World | Void set_SavedTaxCollector(Boolean)
+BLOCKED | World | Void set_SavedWizard(Boolean)
+BLOCKED | World | Void set_Seed(System.String)
+BLOCKED | World | Void set_ShadowOrbCount(Int32)
+BLOCKED | World | Void set_ShadowOrbSmashed(Boolean)
+BLOCKED | World | Void set_SkyblockWorld(Boolean)
+BLOCKED | World | Void set_SlimeRainTime(Double)
+BLOCKED | World | Void set_SpawnMeteor(Boolean)
+BLOCKED | World | Void set_SpawnX(Int32)
+BLOCKED | World | Void set_SpawnY(Int32)
+BLOCKED | World | Void set_SundialCooldown(Byte)
+BLOCKED | World | Void set_SurfaceLevel(Double)
+BLOCKED | World | Void set_TempCoinRain(Int32)
+BLOCKED | World | Void set_TempMaxRain(Single)
+BLOCKED | World | Void set_TempMeteorShowerCount(Int32)
+BLOCKED | World | Void set_TempRainTime(Int32)
+BLOCKED | World | Void set_TenthAnniversaryWorld(Boolean)
+BLOCKED | World | Void set_Time(Double)
+BLOCKED | World | Void set_Title(System.String)
+BLOCKED | World | Void set_TopWorld(Single)
+BLOCKED | World | Void set_TreeStyle0(Int32)
+BLOCKED | World | Void set_TreeStyle1(Int32)
+BLOCKED | World | Void set_TreeStyle2(Int32)
+BLOCKED | World | Void set_TreeStyle3(Int32)
+BLOCKED | World | Void set_TreeTop1(Int32)
+BLOCKED | World | Void set_TreeTop2(Int32)
+BLOCKED | World | Void set_TreeTop3(Int32)
+BLOCKED | World | Void set_TreeTop4(Int32)
+BLOCKED | World | Void set_TreeX0(Int32)
+BLOCKED | World | Void set_TreeX1(Int32)
+BLOCKED | World | Void set_TreeX2(Int32)
+BLOCKED | World | Void set_UnderworldBg(Byte)
+BLOCKED | World | Void set_UnlockedArmsDealerSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedDemolitionistSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedDyeTraderSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedMerchantSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedNurseSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedPartyGirlSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedPrincessSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeBlueSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeCopperSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeGreenSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeOldSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimePurpleSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeRainbowSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeRedSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedSlimeYellowSpawn(Boolean)
+BLOCKED | World | Void set_UnlockedTruffleSpawn(Boolean)
+BLOCKED | World | Void set_VampireSeed(Boolean)
+BLOCKED | World | Void set_WindSpeedSet(Single)
+BLOCKED | World | Void set_WorldGenVersion(UInt64)
+BLOCKED | World | Void set_WorldId(Int32)
+BLOCKED | World | Void set_ZenithWorld(Boolean)

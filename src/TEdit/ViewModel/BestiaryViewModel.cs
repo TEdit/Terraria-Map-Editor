@@ -184,6 +184,8 @@ public partial class BestiaryViewModel : ReactiveObject
     [ReactiveCommand]
     private void UpdateKillTally()
     {
+        using var operation = _wvm.BeginWorldOperation("UpdateKillTally", mutation: false);
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) { return; }
 
         // clear out kill tally
@@ -206,6 +208,8 @@ public partial class BestiaryViewModel : ReactiveObject
     [ReactiveCommand]
     private void LoadBestiary()
     {
+        using var operation = _wvm.BeginWorldOperation("LoadBestiary", mutation: false);
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) { return; }
 
         BestiaryData.Clear();
@@ -257,6 +261,8 @@ public partial class BestiaryViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task CompleteBestiary()
     {
+        using var operation = _wvm.BeginWorldOperation("CompleteBestiary");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) { return; }
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
@@ -305,6 +311,8 @@ public partial class BestiaryViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task ResetBestiary()
     {
+        using var operation = _wvm.BeginWorldOperation("ResetBestiary");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) { return; }
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
@@ -341,6 +349,8 @@ public partial class BestiaryViewModel : ReactiveObject
     [ReactiveCommand]
     private async Task SaveBestiary()
     {
+        using var operation = _wvm.BeginWorldOperation("SaveBestiary");
+        if (operation == null) return;
         if (_wvm.CurrentWorld == null) { return; }
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
