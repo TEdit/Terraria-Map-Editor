@@ -4183,7 +4183,9 @@ public partial class WorldViewModel : ReactiveObject
             OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, Properties.Language.progress_saving_world));
             Progress<ProgressChangedEventArgs> progress = new(e =>
             {
-                if (e.ProgressPercentage < 100)
+                // The app reports its own localized completion message after the save finishes,
+                // so drop only the core library's completion messages, not every 100% step.
+                if (e.UserState is not (ProgressKeys.WorldSaveComplete or ProgressKeys.SaveComplete))
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
                 }

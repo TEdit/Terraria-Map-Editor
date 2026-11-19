@@ -135,7 +135,7 @@ public partial class World
             if ((x & 31) == 0)
                 progress?.Report(new ProgressChangedEventArgs(
                     x.ProgressPercentage(world.TilesWide),
-                    "Loading Windows Phone tiles..."));
+                    ProgressKeys.LoadingWindowsPhoneTiles));
 
             for (int y = 0; y < encodedHeight;)
             {
@@ -429,7 +429,7 @@ public partial class World
             if ((x & 31) == 0)
                 progress?.Report(new ProgressChangedEventArgs(
                     x.ProgressPercentage(world.TilesWide),
-                    "Loading legacy Windows Phone tiles..."));
+                    ProgressKeys.LoadingLegacyWindowsPhoneTiles));
 
             for (int y = 0; y < world.TilesHigh;)
             {

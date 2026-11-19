@@ -11983,24 +11983,6 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default.
-        /// </summary>
-        public static string spriteeditor_frame_default {
-            get {
-                return ResourceManager.GetString("spriteeditor_frame_default", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Frame {0}.
-        /// </summary>
-        public static string spriteeditor_frame_format {
-            get {
-                return ResourceManager.GetString("spriteeditor_frame_format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Save canceled: player file was externally modified..
         /// </summary>
         public static string player_editor_save_canceled {
@@ -13799,6 +13781,33 @@ namespace TEdit.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Loading legacy Windows Phone tiles....
+        /// </summary>
+        public static string progress_loading_legacy_winphone_tiles {
+            get {
+                return ResourceManager.GetString("progress_loading_legacy_winphone_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Windows Phone tiles....
+        /// </summary>
+        public static string progress_loading_winphone_tiles {
+            get {
+                return ResourceManager.GetString("progress_loading_winphone_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validating World....
+        /// </summary>
+        public static string progress_validating_world {
+            get {
+                return ResourceManager.GetString("progress_validating_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Converting world to Windows Phone....
         /// </summary>
         public static string progress_converting_to_windows_phone {
@@ -14804,5 +14813,848 @@ namespace TEdit.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Glowing Mushroom.
+        /// </summary>
+        public static string MorphBiome_GlowingMushroom {
+            get {
+                return ResourceManager.GetString("MorphBiome_GlowingMushroom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest.
+        /// </summary>
+        public static string MorphBiome_Forest {
+            get {
+                return ResourceManager.GetString("MorphBiome_Forest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snow.
+        /// </summary>
+        public static string MorphBiome_Snow {
+            get {
+                return ResourceManager.GetString("MorphBiome_Snow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None (Remove).
+        /// </summary>
+        public static string morph_moss_None {
+            get {
+                return ResourceManager.GetString("morph_moss_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grass.
+        /// </summary>
+        public static string morph_moss_Grass {
+            get {
+                return ResourceManager.GetString("morph_moss_Grass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string morph_moss_Green {
+            get {
+                return ResourceManager.GetString("morph_moss_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string morph_moss_Yellow {
+            get {
+                return ResourceManager.GetString("morph_moss_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string morph_moss_Red {
+            get {
+                return ResourceManager.GetString("morph_moss_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string morph_moss_Blue {
+            get {
+                return ResourceManager.GetString("morph_moss_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple.
+        /// </summary>
+        public static string morph_moss_Purple {
+            get {
+                return ResourceManager.GetString("morph_moss_Purple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lava.
+        /// </summary>
+        public static string morph_moss_Lava {
+            get {
+                return ResourceManager.GetString("morph_moss_Lava", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Krypton.
+        /// </summary>
+        public static string morph_moss_Krypton {
+            get {
+                return ResourceManager.GetString("morph_moss_Krypton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xenon.
+        /// </summary>
+        public static string morph_moss_Xenon {
+            get {
+                return ResourceManager.GetString("morph_moss_Xenon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Argon.
+        /// </summary>
+        public static string morph_moss_Argon {
+            get {
+                return ResourceManager.GetString("morph_moss_Argon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neon.
+        /// </summary>
+        public static string morph_moss_Neon {
+            get {
+                return ResourceManager.GetString("morph_moss_Neon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helium.
+        /// </summary>
+        public static string morph_moss_Helium {
+            get {
+                return ResourceManager.GetString("morph_moss_Helium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string frame_anchor_none {
+            get {
+                return ResourceManager.GetString("frame_anchor_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string frame_anchor_left {
+            get {
+                return ResourceManager.GetString("frame_anchor_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string frame_anchor_right {
+            get {
+                return ResourceManager.GetString("frame_anchor_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top.
+        /// </summary>
+        public static string frame_anchor_top {
+            get {
+                return ResourceManager.GetString("frame_anchor_top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom.
+        /// </summary>
+        public static string frame_anchor_bottom {
+            get {
+                return ResourceManager.GetString("frame_anchor_bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        public static string frame_anchor_center {
+            get {
+                return ResourceManager.GetString("frame_anchor_center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (natural).
+        /// </summary>
+        public static string wall_natural_format {
+            get {
+                return ResourceManager.GetString("wall_natural_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (unused).
+        /// </summary>
+        public static string wall_unused_format {
+            get {
+                return ResourceManager.GetString("wall_unused_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sky.
+        /// </summary>
+        public static string wall_sky {
+            get {
+                return ResourceManager.GetString("wall_sky", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbreakable Wall.
+        /// </summary>
+        public static string wall_unbreakable {
+            get {
+                return ResourceManager.GetString("wall_unbreakable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string frame_text_off {
+            get {
+                return ResourceManager.GetString("frame_text_off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string frame_text_on {
+            get {
+                return ResourceManager.GetString("frame_text_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monster Banner.
+        /// </summary>
+        public static string frame_text_monster_banner {
+            get {
+                return ResourceManager.GetString("frame_text_monster_banner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string frame_text_left {
+            get {
+                return ResourceManager.GetString("frame_text_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string frame_text_right {
+            get {
+                return ResourceManager.GetString("frame_text_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small Decos.
+        /// </summary>
+        public static string frame_text_small_decos {
+            get {
+                return ResourceManager.GetString("frame_text_small_decos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest Tree.
+        /// </summary>
+        public static string frame_text_forest_tree {
+            get {
+                return ResourceManager.GetString("frame_text_forest_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topaz Tree.
+        /// </summary>
+        public static string frame_text_topaz_tree {
+            get {
+                return ResourceManager.GetString("frame_text_topaz_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amethyst Tree.
+        /// </summary>
+        public static string frame_text_amethyst_tree {
+            get {
+                return ResourceManager.GetString("frame_text_amethyst_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sapphire Tree.
+        /// </summary>
+        public static string frame_text_sapphire_tree {
+            get {
+                return ResourceManager.GetString("frame_text_sapphire_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emerald Tree.
+        /// </summary>
+        public static string frame_text_emerald_tree {
+            get {
+                return ResourceManager.GetString("frame_text_emerald_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ruby Tree.
+        /// </summary>
+        public static string frame_text_ruby_tree {
+            get {
+                return ResourceManager.GetString("frame_text_ruby_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diamond Tree.
+        /// </summary>
+        public static string frame_text_diamond_tree {
+            get {
+                return ResourceManager.GetString("frame_text_diamond_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amber Tree.
+        /// </summary>
+        public static string frame_text_amber_tree {
+            get {
+                return ResourceManager.GetString("frame_text_amber_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vanity Tree Sakura.
+        /// </summary>
+        public static string frame_text_vanity_tree_sakura {
+            get {
+                return ResourceManager.GetString("frame_text_vanity_tree_sakura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vanity Tree Yellow Willow.
+        /// </summary>
+        public static string frame_text_vanity_tree_yellow_willow {
+            get {
+                return ResourceManager.GetString("frame_text_vanity_tree_yellow_willow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ash Tree.
+        /// </summary>
+        public static string frame_text_ash_tree {
+            get {
+                return ResourceManager.GetString("frame_text_ash_tree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single.
+        /// </summary>
+        public static string frame_text_single {
+            get {
+                return ResourceManager.GetString("frame_text_single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small Rubble (1x1).
+        /// </summary>
+        public static string frame_text_small_rubble_1x1 {
+            get {
+                return ResourceManager.GetString("frame_text_small_rubble_1x1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flat.
+        /// </summary>
+        public static string frame_text_flat {
+            get {
+                return ResourceManager.GetString("frame_text_flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endcap Right.
+        /// </summary>
+        public static string frame_text_endcap_right {
+            get {
+                return ResourceManager.GetString("frame_text_endcap_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endcap Left.
+        /// </summary>
+        public static string frame_text_endcap_left {
+            get {
+                return ResourceManager.GetString("frame_text_endcap_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attach Left.
+        /// </summary>
+        public static string frame_text_attach_left {
+            get {
+                return ResourceManager.GetString("frame_text_attach_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attach Right.
+        /// </summary>
+        public static string frame_text_attach_right {
+            get {
+                return ResourceManager.GetString("frame_text_attach_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attach Left Endcap.
+        /// </summary>
+        public static string frame_text_attach_left_endcap {
+            get {
+                return ResourceManager.GetString("frame_text_attach_left_endcap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attach Right Endcap.
+        /// </summary>
+        public static string frame_text_attach_right_endcap {
+            get {
+                return ResourceManager.GetString("frame_text_attach_right_endcap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Up-Right Riser.
+        /// </summary>
+        public static string frame_text_stair_up_right_riser {
+            get {
+                return ResourceManager.GetString("frame_text_stair_up_right_riser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Up-Right Stringer.
+        /// </summary>
+        public static string frame_text_stair_up_right_stringer {
+            get {
+                return ResourceManager.GetString("frame_text_stair_up_right_stringer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Up-Left Riser.
+        /// </summary>
+        public static string frame_text_stair_up_left_riser {
+            get {
+                return ResourceManager.GetString("frame_text_stair_up_left_riser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Up-Left Stringer.
+        /// </summary>
+        public static string frame_text_stair_up_left_stringer {
+            get {
+                return ResourceManager.GetString("frame_text_stair_up_left_stringer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Top Landing R.
+        /// </summary>
+        public static string frame_text_stair_top_landing_r {
+            get {
+                return ResourceManager.GetString("frame_text_stair_top_landing_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Top Landing L.
+        /// </summary>
+        public static string frame_text_stair_top_landing_l {
+            get {
+                return ResourceManager.GetString("frame_text_stair_top_landing_l", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Top Landing L-R.
+        /// </summary>
+        public static string frame_text_stair_top_landing_l_r {
+            get {
+                return ResourceManager.GetString("frame_text_stair_top_landing_l_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Top Landing R Endcap.
+        /// </summary>
+        public static string frame_text_stair_top_landing_r_endcap {
+            get {
+                return ResourceManager.GetString("frame_text_stair_top_landing_r_endcap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Top Landing L Endcap.
+        /// </summary>
+        public static string frame_text_stair_top_landing_l_endcap {
+            get {
+                return ResourceManager.GetString("frame_text_stair_top_landing_l_endcap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Bottom Landing R.
+        /// </summary>
+        public static string frame_text_stair_bottom_landing_r {
+            get {
+                return ResourceManager.GetString("frame_text_stair_bottom_landing_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Bottom Landing L.
+        /// </summary>
+        public static string frame_text_stair_bottom_landing_l {
+            get {
+                return ResourceManager.GetString("frame_text_stair_bottom_landing_l", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inset Up-Right 1.
+        /// </summary>
+        public static string frame_text_stair_inset_up_right_1 {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inset_up_right_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inset Up-Left 1.
+        /// </summary>
+        public static string frame_text_stair_inset_up_left_1 {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inset_up_left_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inset Up-Right 2.
+        /// </summary>
+        public static string frame_text_stair_inset_up_right_2 {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inset_up_right_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inset Up-Left 2.
+        /// </summary>
+        public static string frame_text_stair_inset_up_left_2 {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inset_up_left_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inset Up-Right 3.
+        /// </summary>
+        public static string frame_text_stair_inset_up_right_3 {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inset_up_right_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inset Up-Left 3.
+        /// </summary>
+        public static string frame_text_stair_inset_up_left_3 {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inset_up_left_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inverted Right.
+        /// </summary>
+        public static string frame_text_stair_inverted_right {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inverted_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stair Inverted Left.
+        /// </summary>
+        public static string frame_text_stair_inverted_left {
+            get {
+                return ResourceManager.GetString("frame_text_stair_inverted_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium Rubble (2x1).
+        /// </summary>
+        public static string frame_text_medium_rubble_2x1 {
+            get {
+                return ResourceManager.GetString("frame_text_medium_rubble_2x1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decos (3x2) (Group 2).
+        /// </summary>
+        public static string frame_text_decos_3x2_group_2 {
+            get {
+                return ResourceManager.GetString("frame_text_decos_3x2_group_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large Rubble (3x2) (Group 2).
+        /// </summary>
+        public static string frame_text_large_rubble_3x2_group_2 {
+            get {
+                return ResourceManager.GetString("frame_text_large_rubble_3x2_group_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest Short Plants.
+        /// </summary>
+        public static string frame_text_forest_short_plants {
+            get {
+                return ResourceManager.GetString("frame_text_forest_short_plants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest Tall Plants.
+        /// </summary>
+        public static string frame_text_forest_tall_plants {
+            get {
+                return ResourceManager.GetString("frame_text_forest_tall_plants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Statue.
+        /// </summary>
+        public static string frame_text_text_statue {
+            get {
+                return ResourceManager.GetString("frame_text_text_statue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decos (3x2).
+        /// </summary>
+        public static string frame_text_decos_3x2 {
+            get {
+                return ResourceManager.GetString("frame_text_decos_3x2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large Rubble (3x2).
+        /// </summary>
+        public static string frame_text_large_rubble_3x2 {
+            get {
+                return ResourceManager.GetString("frame_text_large_rubble_3x2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pumpkin Plant.
+        /// </summary>
+        public static string frame_text_pumpkin_plant {
+            get {
+                return ResourceManager.GetString("frame_text_pumpkin_plant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boss Trophy.
+        /// </summary>
+        public static string frame_text_boss_trophy {
+            get {
+                return ResourceManager.GetString("frame_text_boss_trophy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Critter Anchor.
+        /// </summary>
+        public static string frame_text_critter_anchor {
+            get {
+                return ResourceManager.GetString("frame_text_critter_anchor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest Pot.
+        /// </summary>
+        public static string frame_text_forest_pot {
+            get {
+                return ResourceManager.GetString("frame_text_forest_pot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corruption Short Plants.
+        /// </summary>
+        public static string frame_text_corruption_short_plants {
+            get {
+                return ResourceManager.GetString("frame_text_corruption_short_plants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jungle Short Plants.
+        /// </summary>
+        public static string frame_text_jungle_short_plants {
+            get {
+                return ResourceManager.GetString("frame_text_jungle_short_plants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hallow Short Plants.
+        /// </summary>
+        public static string frame_text_hallow_short_plants {
+            get {
+                return ResourceManager.GetString("frame_text_hallow_short_plants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crimson Short Plants.
+        /// </summary>
+        public static string frame_text_crimson_short_plants {
+            get {
+                return ResourceManager.GetString("frame_text_crimson_short_plants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ore Bars.
+        /// </summary>
+        public static string frame_text_ore_bars {
+            get {
+                return ResourceManager.GetString("frame_text_ore_bars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jungle Plants Echo.
+        /// </summary>
+        public static string frame_text_jungle_plants_echo {
+            get {
+                return ResourceManager.GetString("frame_text_jungle_plants_echo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked.
+        /// </summary>
+        public static string frame_text_locked {
+            get {
+                return ResourceManager.GetString("frame_text_locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jungle Large Plants.
+        /// </summary>
+        public static string frame_text_jungle_large_plants {
+            get {
+                return ResourceManager.GetString("frame_text_jungle_large_plants", resourceCulture);
+            }
+        }
+        
+        public static string statusbar_empty_tile {
+            get {
+                return ResourceManager.GetString("statusbar_empty_tile", resourceCulture);
+            }
+        }
+
+        public static string statusbar_invalid_tile {
+            get {
+                return ResourceManager.GetString("statusbar_invalid_tile", resourceCulture);
+            }
+        }
+
+        public static string statusbar_invalid_wall {
+            get {
+                return ResourceManager.GetString("statusbar_invalid_wall", resourceCulture);
+            }
+        }
+
+        public static string statusbar_unknown_paint {
+            get {
+                return ResourceManager.GetString("statusbar_unknown_paint", resourceCulture);
+            }
+        }
+
     }
 }

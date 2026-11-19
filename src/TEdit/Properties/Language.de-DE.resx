@@ -669,13 +669,13 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Exact Match</value>
   </data>
   <data name="mask_section_actuator" xml:space="preserve">
-    <value>Actuator</value>
+    <value>Aktuator</value>
   </data>
   <data name="mask_section_brickstyle" xml:space="preserve">
     <value>Blockform</value>
   </data>
   <data name="mask_section_inactive" xml:space="preserve">
-    <value>Inactive</value>
+    <value>Inaktiv</value>
   </data>
   <data name="mask_section_liquid_level" xml:space="preserve">
     <value>Liquid Level</value>
@@ -3888,5 +3888,42 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>Das Schema wurde gespeichert.</value>
+  </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[leer]</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>Ungültiger Block ({0})</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>Ungültige Wand ({0})</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>Unbekannte Farbe ({0})</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>Himmel</value>
+  </data>
+  <data name="common_air" xml:space="preserve">
+    <value>Luft</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>Ältere Welt laden?</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>Du lädst eine Welt mit einer älteren Version: {0}.
+Das Bearbeiten älterer Dateien kann zu unerwarteten Ergebnissen führen.
+Erstelle eine Sicherungskopie, da die Weltdatei beschädigt werden könnte.
+Möchtest du fortfahren?</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>Ältere tModLoader-Welt laden?</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>Du lädst eine tModLoader-Welt mit einer älteren Version: {0}.
+1. Das Bearbeiten älterer Dateien ist eine BETA-Funktion.
+2. Das Bearbeiten modifizierter Welten wird nicht unterstützt.
+Erstelle eine Sicherungskopie, da die Weltdatei beschädigt werden könnte.
+Möchtest du fortfahren?</value>
   </data>
 </root>

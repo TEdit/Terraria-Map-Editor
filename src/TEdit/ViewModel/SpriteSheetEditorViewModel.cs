@@ -20,7 +20,8 @@ namespace TEdit.ViewModel;
 /// </summary>
 public partial class EditableFrame : ReactiveObject
 {
-    [Reactive] private string _name = Properties.Language.spriteeditor_frame_default;
+    // Frame names are persisted to shareable override JSON, so defaults stay invariant (not localized).
+    [Reactive] private string _name = "Default";
     [Reactive] private string? _variety;
     [Reactive] private short _uvX;
     [Reactive] private short _uvY;
@@ -29,8 +30,34 @@ public partial class EditableFrame : ReactiveObject
     [Reactive] private FrameAnchor _anchor = FrameAnchor.None;
     [Reactive] private bool _isSelected;
 
-    /// <summary>Localized display name for the frame (resolves base name / item / style). Not persisted.</summary>
-    public string LocalizedName { get; set; } = string.Empty;
+    private string? _loadedLocalizedName;
+    private string? _loadedName;
+    private string? _loadedVariety;
+
+    public EditableFrame()
+    {
+        // The displayed name tracks edits: once Name/Variety change, the loaded localized name no longer applies.
+        this.WhenAnyValue(x => x.Name, x => x.Variety)
+            .Subscribe(_ => this.RaisePropertyChanged(nameof(LocalizedName)));
+    }
+
+    /// <summary>
+    /// Localized display name for the frame (resolves base name / item / style). Not persisted.
+    /// Falls back to <see cref="Name"/> for new frames or after the name or variety is edited.
+    /// </summary>
+    public string LocalizedName
+    {
+        get => !string.IsNullOrEmpty(_loadedLocalizedName) && Name == _loadedName && Variety == _loadedVariety
+            ? _loadedLocalizedName!
+            : Name;
+        set
+        {
+            _loadedLocalizedName = value;
+            _loadedName = Name;
+            _loadedVariety = Variety;
+            this.RaisePropertyChanged();
+        }
+    }
 
     /// <summary>Pixel X position on texture.</summary>
     public int PixelX { get; set; }
@@ -475,7 +502,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
         Frames.Clear();
         Frames.Add(new EditableFrame
         {
-            Name = string.Format(Properties.Language.spriteeditor_frame_format, 0),
+            Name = "Frame 0",
             UvX = 0,
             UvY = 0,
             SizeX = FrameSizeX,
@@ -530,7 +557,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
             {
                 Frames.Add(new EditableFrame
                 {
-                    Name = string.Format(Properties.Language.spriteeditor_frame_format, index),
+                    Name = $"Frame {index}",
                     UvX = (short)x,
                     UvY = (short)y,
                     SizeX = FrameSizeX,
@@ -549,7 +576,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     {
         var frame = new EditableFrame
         {
-            Name = string.Format(Properties.Language.spriteeditor_frame_format, Frames.Count),
+            Name = $"Frame {Frames.Count}",
             UvX = 0,
             UvY = 0,
             SizeX = FrameSizeX,
@@ -615,7 +642,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     {
         var frame = new EditableFrame
         {
-            Name = string.Format(Properties.Language.spriteeditor_frame_format, Frames.Count),
+            Name = $"Frame {Frames.Count}",
             UvX = uvX,
             UvY = uvY,
             SizeX = sizeX,

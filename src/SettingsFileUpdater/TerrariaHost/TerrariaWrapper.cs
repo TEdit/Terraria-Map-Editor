@@ -1150,6 +1150,9 @@ namespace SettingsFileUpdater.TerrariaHost
                 { 28, ("Brown", "BrownPaint", new TEditColor(255, 178, 125, 255)) },
                 { 29, ("Shadow", "ShadowPaint", new TEditColor(25, 25, 25, 255)) },
                 { 30, ("Negative", "NegativePaint", new TEditColor(255, 255, 255, 255)) },
+                // Legacy PaintID.IlluminantPaint: no item carries this id (the game converts it to the
+                // glow coating on load), but old worlds still store it, so keep it for rendering.
+                { 31, ("Illuminant Paint", null, new TEditColor(255, 255, 255, 255)) },
             };
 
             foreach (var kvp in paintColors.OrderBy(x => x.Key))

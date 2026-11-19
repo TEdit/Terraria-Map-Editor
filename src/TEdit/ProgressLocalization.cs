@@ -65,6 +65,9 @@ public static class ProgressLocalization
             ProgressKeys.LoadingTModLoaderData => Language.progress_loading_tmodloader_data,
             ProgressKeys.LoadedWindowsPhoneHeader => Language.progress_loaded_windows_phone_header,
             ProgressKeys.ConvertingToWindowsPhone => Language.progress_converting_to_windows_phone,
+            ProgressKeys.LoadingWindowsPhoneTiles => Language.progress_loading_winphone_tiles,
+            ProgressKeys.LoadingLegacyWindowsPhoneTiles => Language.progress_loading_legacy_winphone_tiles,
+            ProgressKeys.ValidatingWorld => Language.progress_validating_world,
 
             _ => text,
         };

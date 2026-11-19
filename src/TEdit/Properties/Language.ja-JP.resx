@@ -3889,4 +3889,41 @@
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>設計図を保存しました。</value>
   </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[空]</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>無効なブロック（{0}）</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>無効な壁（{0}）</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>不明なペイント（{0}）</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>空</value>
+  </data>
+  <data name="common_air" xml:space="preserve">
+    <value>空気</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>旧バージョンのワールドを読み込みますか？</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>旧バージョンのワールドを読み込もうとしています：{0}。
+古いファイルを編集すると、予期しない結果が生じる可能性があります。
+ワールドファイルが破損する可能性があるため、バックアップを作成してください。
+続行しますか？</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>旧バージョンの tModLoader ワールドを読み込みますか？</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>旧バージョンの tModLoader ワールドを読み込もうとしています：{0}。
+1. 古いファイルの編集はベータ版の機能です。
+2. MOD ワールドの編集はサポートされていません。
+ワールドファイルが破損する可能性があるため、バックアップを作成してください。
+続行しますか？</value>
+  </data>
 </root>

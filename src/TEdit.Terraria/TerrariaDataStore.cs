@@ -539,12 +539,11 @@ public class TerrariaDataStore
             if (tile.Key != null && data.Tiles.ContainsKey(tile.Key))
                 continue;
 
+            // A tile's key matching an item key names the same thing (e.g. DirtBlock). Category tiles
+            // (Platforms, Herbs, Gems, ...) are placed by many items, so "the first placing item" is not
+            // a valid name for them; those keep their English name until the locale data names them.
             if (tile.Key != null && data.Items.TryGetValue(tile.Key, out var tileName))
                 tile.LocalizedName = tileName;
-            else if (tile.Key != null && data.SupplementalNames.TryGetValue(tile.Key, out var frameTileName))
-                tile.LocalizedName = frameTileName;
-            else if (GetPlacingItemName(TileItemLookup, tile.Id) is { } itemName)
-                tile.LocalizedName = itemName;
         }
 
         // Apply wall names
@@ -562,17 +561,18 @@ public class TerrariaDataStore
                 wall.LocalizedName = wallName;
             else if (data.Items.TryGetValue(wall.Key + "Wall", out var wallNameWall))
                 wall.LocalizedName = wallNameWall;
-            // Walls the game's own language files never name (no MapObject entry, no placing item)
-            // carry a pinned entry under the "Wall." prefix in supplementalNames (see the generator).
-            else if (data.SupplementalNames.TryGetValue("Wall." + wall.Key, out var wallSupp))
-                wall.LocalizedName = wallSupp;
+            // Walls the game's own language files never name come from TEdit's UI resources.
+            else if (wall.Key == "None" && LocalizationUiLabels.Get(LocalizationUiLabels.WallSky) is { } sky)
+                wall.LocalizedName = sky;
+            else if (wall.Key == "UnbreakableBlockWall" && LocalizationUiLabels.Get(LocalizationUiLabels.WallUnbreakable) is { } unbreakable)
+                wall.LocalizedName = unbreakable;
             else if (GetPlacingItemName(WallItemLookup, wall.Id) is { } itemName)
                 wall.LocalizedName = itemName;
         }
 
-        // Natural/unused variants have no game name; reuse the base wall's name + marker.
-        if (data.SupplementalNames.TryGetValue("Wall.Natural", out var naturalMarker)
-            && data.SupplementalNames.TryGetValue("Wall.Unused", out var unusedMarker))
+        // Natural/unused variants have no game name; reuse the base wall's name + a TEdit UI marker.
+        if (LocalizationUiLabels.Get(LocalizationUiLabels.WallNaturalFormat) is { } naturalFormat
+            && LocalizationUiLabels.Get(LocalizationUiLabels.WallUnusedFormat) is { } unusedFormat)
         {
             var baseLocalizedByName = new Dictionary<string, string>();
             foreach (var wall in Walls)
@@ -580,22 +580,21 @@ public class TerrariaDataStore
 
             foreach (var wall in Walls)
             {
-                string marker;
+                string format;
                 if (wall.Name.EndsWith(" (natural)", StringComparison.Ordinal))
-                    marker = naturalMarker;
+                    format = naturalFormat;
                 else if (wall.Name.EndsWith(" (unused)", StringComparison.Ordinal))
-                    marker = unusedMarker;
+                    format = unusedFormat;
                 else
                     continue;
 
                 var baseEnglish = wall.Name[..wall.Name.LastIndexOf('(')].TrimEnd();
                 if (baseLocalizedByName.TryGetValue(baseEnglish, out var baseLocalized) && baseLocalized != baseEnglish)
-                    wall.LocalizedName = baseLocalized + marker;
+                    wall.LocalizedName = FormatOrFallback(format, baseLocalized, wall.Name);
             }
         }
 
-        // Apply paint names. Paint 0 shares the "None" key with wall 0, so a paint entry the game
-        // data does not carry is looked up under the "Paint." prefix to keep the two apart.
+        // Apply paint names. Paint 0 ("None") is not a game item, so it comes from TEdit's UI resources.
         foreach (var paint in Paints)
         {
             if (paint.Key == null)
@@ -603,8 +602,8 @@ public class TerrariaDataStore
 
             if (data.Items.TryGetValue(paint.Key, out var paintName))
                 paint.LocalizedName = paintName;
-            else if (data.SupplementalNames.TryGetValue("Paint." + paint.Key, out var paintSupp))
-                paint.LocalizedName = paintSupp;
+            else if (paint.Key == "None" && LocalizationUiLabels.Get(LocalizationUiLabels.PaintNone) is { } paintNone)
+                paint.LocalizedName = paintNone;
         }
 
         // Apply bestiary NPC names
@@ -661,19 +660,25 @@ public class TerrariaDataStore
         RebuildFrameImportant();
     }
 
-    /// <summary>Gets the localized name of a frame anchor (e.g. "Left").</summary>
-    public string GetLocalizedAnchor(FrameAnchor anchor)
-    {
-        var key = $"Anchor.{anchor}";
-        if (Localization?.SupplementalNames.TryGetValue(key, out var label) == true)
-            return label;
+    /// <summary>Gets the localized name of a frame anchor (e.g. "Left") from TEdit's UI resources.</summary>
+    public string GetLocalizedAnchor(FrameAnchor anchor) =>
+        LocalizationUiLabels.Get(LocalizationUiLabels.AnchorPrefix + anchor) ?? anchor.ToString();
 
-        return anchor.ToString();
+    private static string FormatOrFallback(string format, string value, string fallback)
+    {
+        try
+        {
+            return string.Format(format, value);
+        }
+        catch (FormatException)
+        {
+            return fallback;
+        }
     }
 
     /// <summary>
-    /// Resolves a supplemental sprite-style / biome-variant label: item name, then tile name, then
-    /// supplementalNames.{locale}.json, falling back to the original name when unmatched.
+    /// Resolves a sprite-style / biome-variant label from game data: item name, then tile name,
+    /// falling back to the original (English) name when unmatched.
     /// </summary>
     public string GetLocalizedSpriteStyle(string name) =>
         Localization is { } loc ? ResolveStyleName(loc, name) : name;
@@ -687,11 +692,42 @@ public class TerrariaDataStore
             return itemName;
         if (loc.Tiles.TryGetValue(name, out var tileName))
             return tileName;
-        if (loc.SupplementalNames.TryGetValue(name, out var styleName))
-            return styleName;
+        if (ResolveFrameText(name) is { } frameText)
+            return frameText;
 
         return name;
     }
+
+    /// <summary>
+    /// Translates a TEdit-made frame label (no game equivalent) through the application's UI resources.
+    /// Lettered on/off variants ("B On") keep the letter and translate the state.
+    /// </summary>
+    private static string? ResolveFrameText(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return null;
+
+        // A resource that still holds the English text (not yet translated) counts as unresolved, so the
+        // name composer keeps its category label instead of treating the English text as a translation.
+        if (LocalizationUiLabels.Get(LocalizationUiLabels.FrameTextPrefix + text) is { } label)
+            return label == text ? null : label;
+
+        int lastSpace = text.LastIndexOf(' ');
+        if (lastSpace > 0 && lastSpace <= 2)
+        {
+            string state = text[(lastSpace + 1)..];
+            if ((state == "On" || state == "Off")
+                && LocalizationUiLabels.Get(LocalizationUiLabels.FrameTextPrefix + state) is { } stateLabel
+                && stateLabel != state)
+                return text[..lastSpace] + " " + stateLabel;
+        }
+
+        return null;
+    }
+
+    /// <summary>Frames without a real name: blank, the "Default" placeholder, or a bare legacy number.</summary>
+    private static bool IsPlaceholderFrameName(string? name) =>
+        string.IsNullOrWhiteSpace(name) || name == "Default" || name.All(char.IsDigit);
 
     /// <summary>Builds the full localized name for a tile frame style (base name, variant and anchor suffix).</summary>
     public string GetLocalizedFrameName(TileProperty tile, FrameProperty frame)
@@ -700,7 +736,7 @@ public class TerrariaDataStore
         {
             // English UI loads no localization data. An unnamed frame still shows its tile's name
             // instead of the "Default" placeholder, mirroring the fallback in the localized path below.
-            if ((string.IsNullOrWhiteSpace(frame.Name) || frame.Name == "Default")
+            if (IsPlaceholderFrameName(frame.Name)
                 && !string.IsNullOrWhiteSpace(tile.Name) && tile.Name != "Default")
             {
                 string englishName = tile.Name;
@@ -716,7 +752,7 @@ public class TerrariaDataStore
         // 1. Base name from the style lookup, falling back to the tile's own name for default frames.
         string baseName = ResolveStyleName(loc, frame.Name);
         if (baseName == frame.Name
-            && (string.IsNullOrWhiteSpace(frame.Name) || frame.Name == "Default")
+            && IsPlaceholderFrameName(frame.Name)
             && !string.IsNullOrWhiteSpace(tile.LocalizedName) && tile.LocalizedName != "Default")
             baseName = tile.LocalizedName;
 
@@ -725,36 +761,34 @@ public class TerrariaDataStore
         bool varietyResolved = false;
         if (!string.IsNullOrWhiteSpace(frame.Variety) && frame.Variety != "None")
         {
-            // Boss trophies: the variant + " Trophy" is the item name (e.g. Eye of Cthulhu).
-            if (frame.Name == "Boss Trophy" && ResolveItemName(loc, frame.Variety + " Trophy") is { } trophyItem)
-                return trophyItem;
+            // Boss trophies: the variant is the full item name ("Moon Lord Trophy") or the boss name
+            // ("Eye of Cthulhu" + " Trophy"). The item name is the whole display name; never prefix the category.
+            if (frame.Name == "Boss Trophy"
+                && (ResolveItemName(loc, frame.Variety) ?? ResolveItemName(loc, frame.Variety + " Trophy")) is { } trophyItem)
+                return WithAnchor(trophyItem, frame);
 
             // Banners / paintings: the variant is the item name (e.g. Blue Slime Banner).
             if (ResolveItemName(loc, frame.Variety) is { } directItem)
             {
                 // Painting tiles (keys Painting3X3/4X3/6X4/2X3/3X2) use the variant's item name as the full display
-                // name. Tile 240 also hosts boss trophies, which must keep the composed name.
+                // name (boss trophies on tile 240 are handled above).
                 bool isPaintingTile = tile.Key?.StartsWith("Painting", StringComparison.Ordinal) == true;
                 if (frame.Name.EndsWith("Banner", StringComparison.OrdinalIgnoreCase) ||
-                    frame.Name == "Painting" || (isPaintingTile && frame.Name != "Boss Trophy"))
+                    frame.Name == "Painting" || isPaintingTile)
                 {
-                    return directItem;
+                    return WithAnchor(directItem, frame);
                 }
                 localizedVariety = directItem;
                 varietyResolved = true;
             }
-            // Look up the style name directly in the supplementalNames dictionary. These entries are exactly
-            // the residual names that game data does not cover (see tools/generate_supplemental_names_en.py),
-            // i.e. they have no official item/tile counterpart at all, so this is their only translated source.
-            // This must precede the suffix split below: the split resolves its own head through this same
-            // dictionary and keeps the tail verbatim, so it would rewrite whole-entry translations into
-            // half-English strings ("Stair Top Landing R Endcap" -> "楼梯 顶层右平台 Endcap").
-            else if (loc.SupplementalNames.TryGetValue(frame.Variety, out var styleVal))
+            // TEdit-made descriptors (platform/stair pieces, on/off states) from the UI resources.
+            else if (ResolveFrameText(frame.Variety) is { } frameTextVal)
             {
-                localizedVariety = styleVal;
+                localizedVariety = frameTextVal;
                 varietyResolved = true;
             }
             // Compound suffix pattern (e.g. split "Flat A" into "Flat" + " A").
+            // Descriptors with no translation stay English.
             else if (ResolveVarietySuffix(loc, frame.Variety) is { } suffixVal)
             {
                 localizedVariety = suffixVal;
@@ -781,16 +815,40 @@ public class TerrariaDataStore
             if (!string.IsNullOrWhiteSpace(localizedVariety))
                 name += ": " + localizedVariety;
         }
-        if (frame.Anchor != FrameAnchor.None)
-            name += $" [{GetLocalizedAnchor(frame.Anchor)}]";
-        return name;
+        return WithAnchor(name, frame);
     }
 
+    /// <summary>Appends the localized anchor suffix (e.g. " [Left]") when the frame has an anchor.</summary>
+    private string WithAnchor(string name, FrameProperty frame) =>
+        frame.Anchor == FrameAnchor.None ? name : $"{name} [{GetLocalizedAnchor(frame.Anchor)}]";
+
     /// <summary>Resolves a style/variant name to a localized item name (by item key, then directly by name).</summary>
-    private string? ResolveItemName(LocalizationData loc, string name) =>
-        _itemKeyByName.TryGetValue(name, out var key) && loc.Items.TryGetValue(key, out var value) ? value
-        : loc.Items.TryGetValue(name, out var directValue) ? directValue
-        : null;
+    private string? ResolveItemName(LocalizationData loc, string name)
+    {
+        if (_itemKeyByName.TryGetValue(name, out var key) && loc.Items.TryGetValue(key, out var value))
+            return value;
+        if (loc.Items.TryGetValue(name, out var directValue))
+            return directValue;
+        // TEdit frame names that differ from the game's item name (kept as-is because they are identities).
+        if (FrameItemNameAliases.TryGetValue(name, out var itemName)
+            && _itemKeyByName.TryGetValue(itemName, out var aliasKey)
+            && loc.Items.TryGetValue(aliasKey, out var aliasValue))
+            return aliasValue;
+        return null;
+    }
+
+    /// <summary>Display-only aliases from TEdit frame names to the game's English item names.</summary>
+    private static readonly Dictionary<string, string> FrameItemNameAliases = new(StringComparer.Ordinal)
+    {
+        ["Spooky Platform"] = "Spooky Wood Platform",
+        ["Dynasty Platform"] = "Dynasty Wood Platform",
+        ["Pillagin Me Pixels"] = "Pillagin' Me Pixels",
+        ["Presents"] = "Present",
+        ["Party Presents"] = "Party Present",
+        ["Books"] = "Book",
+        ["Tombstones"] = "Tombstone",
+        ["Catacombs"] = "Catacomb",
+    };
 
     /// <summary>Resolves by base name + variant suffix (e.g. split 'Flat A' into 'Flat' + ' A').</summary>
     private string? ResolveVarietySuffix(LocalizationData loc, string variety)
@@ -800,7 +858,7 @@ public class TerrariaDataStore
             return null;
 
         string basePart = variety[..lastSpace];
-        var resolved = loc.SupplementalNames.TryGetValue(basePart, out var style) ? style : ResolveItemName(loc, basePart);
+        var resolved = ResolveItemName(loc, basePart);
         return resolved is null ? null : resolved + variety[lastSpace..];
     }
 }

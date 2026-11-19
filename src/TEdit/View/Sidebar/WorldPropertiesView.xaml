@@ -349,7 +349,7 @@
     <TextBlock Text="{x:Static p:Language.tool_wp_revision}" HorizontalAlignment="Right" />
     <StackPanel Orientation="Horizontal">
       <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
-      <TextBlock Text="v" HorizontalAlignment="Left" Margin="10 0 0 0" />
+      <TextBlock Text="{x:Static p:Language.about_version}" HorizontalAlignment="Left" Margin="10 0 4 0" />
       <TextBlock Text="{Binding CurrentWorld.WorldVersion}" HorizontalAlignment="Left" />
     </StackPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_seed}" HorizontalAlignment="Right" />

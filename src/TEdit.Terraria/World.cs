@@ -937,7 +937,7 @@ public partial class World
 
         for (int x = 0; x < TilesWide; x++)
         {
-            progress?.Report(new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+            progress?.Report(new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), ProgressKeys.ValidatingWorld));
 
             for (int y = 0; y < TilesHigh; y++)
             {

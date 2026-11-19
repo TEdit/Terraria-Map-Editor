@@ -91,6 +91,13 @@ public partial class App : Application
                 break;
 
         }
+
+        // Worker threads (world generation, render, autosave) look up Language.* resources too;
+        // without this they resolve to the OS UI language instead of the one chosen in TEdit.
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+
+        // TEdit-only labels used when composing localized game-data names; must be set before game data loads.
+        TEdit.Terraria.LocalizationUiLabels.Resolver = UiLabelResolver.Resolve;
     }
 
     public static SemVersion Version { get; set; }

@@ -3889,4 +3889,41 @@
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>已保存结构图。</value>
   </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[空]</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>无效物块（{0}）</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>无效墙壁（{0}）</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>未知油漆（{0}）</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>天空</value>
+  </data>
+  <data name="common_air" xml:space="preserve">
+    <value>空气</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>加载旧版世界？</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>你正在加载旧版世界：{0}。
+编辑旧版文件可能导致意外结果。
+请先备份，世界文件可能会损坏。
+是否继续？</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>加载旧版 tModLoader 世界？</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>你正在加载旧版 tModLoader 世界：{0}。
+1. 编辑旧版文件是一项测试版功能。
+2. 不支持编辑模组世界。
+请先备份，世界文件可能会损坏。
+是否继续？</value>
+  </data>
 </root>

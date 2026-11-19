@@ -184,5 +184,10 @@
     "name": "Negative",
     "key": "NegativePaint",
     "color": "#FFFFFFFF"
+  },
+  {
+    "id": 31,
+    "name": "Illuminant Paint",
+    "color": "#FFFFFFFF"
   }
 ]

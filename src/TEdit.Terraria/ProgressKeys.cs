@@ -65,5 +65,8 @@ public static class ProgressKeys
     public const string LoadingTModLoaderData = "Loading tModLoader data...";
     public const string LoadedWindowsPhoneHeader = "Loaded Windows Phone world header.";
     public const string ConvertingToWindowsPhone = "Converting world to Windows Phone...";
+    public const string LoadingWindowsPhoneTiles = "Loading Windows Phone tiles...";
+    public const string LoadingLegacyWindowsPhoneTiles = "Loading legacy Windows Phone tiles...";
+    public const string ValidatingWorld = "Validating World...";
 
 }
