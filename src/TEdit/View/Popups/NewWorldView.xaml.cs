@@ -28,7 +28,7 @@ namespace TEdit.View.Popups
             _newWorld.CaveNoise = 0.08;
             _newWorld.CaveMultiplier = 0.02;
             _newWorld.CaveDensity = 3.00;
-            _newWorld.CavePresets = new ObservableCollection<string> { "Normal", "Large", "labyrinth" };
+            _newWorld.CavePresets = new ObservableCollection<string> { Properties.Language.newworld_cave_preset_normal, Properties.Language.newworld_cave_preset_large, Properties.Language.newworld_cave_preset_labyrinth };
             _newWorld.CavePresetIndex = 0;
             _newWorld.GenerateAsh = true;
             _newWorld.GenerateLava = true;

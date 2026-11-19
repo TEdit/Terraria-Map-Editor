@@ -91,6 +91,13 @@ public partial class App : Application
                 break;
 
         }
+
+        // Worker threads (world generation, render, autosave) look up Language.* resources too;
+        // without this they resolve to the OS UI language instead of the one chosen in TEdit.
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+
+        // TEdit-only labels used when composing localized game-data names; must be set before game data loads.
+        TEdit.Terraria.LocalizationUiLabels.Resolver = UiLabelResolver.Resolve;
     }
 
     public static SemVersion Version { get; set; }
@@ -129,6 +136,11 @@ public partial class App : Application
             WorldConfiguration.Sprites2,
             WorldConfiguration.Sprites2Lock);
         ErrorLogging.LogDebug($"[Startup] WorldConfiguration.Sprites2 init: {sw.ElapsedMilliseconds}ms");
+
+        // The synthetic "Air" tile (Id -1) has no game-side name, so the localized
+        // data never covers it. Give it the UI label once the culture is applied.
+        foreach (var airTile in WorldConfiguration.TileBricks.Where(t => t.Id < 0))
+            airTile.LocalizedName = TEdit.Properties.Language.common_air;
 
         sw.Restart();
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
@@ -297,7 +309,7 @@ public partial class App : Application
         throw (Exception)e.ExceptionObject;
 #else
         ErrorLogging.LogException(e.ExceptionObject as Exception);
-        System.Windows.MessageBox.Show("An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted." + e.ExceptionObject.ToString(), "Unhandled Exception");
+        System.Windows.MessageBox.Show(TEdit.Properties.Language.error_unhandled + e.ExceptionObject.ToString(), TEdit.Properties.Language.error_unhandled_title);
         // Current.Shutdown();
 #endif
     }

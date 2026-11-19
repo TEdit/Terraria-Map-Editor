@@ -35,9 +35,9 @@ public partial class SettingsViewModel
         PopulateSettings(wvm);
         CaptureOriginalValues();
 
-        // Initialize all categories as expanded
+        // Initialize all categories as collapsed
         foreach (var category in AllSettings.Select(s => s.Category).Distinct())
-            _categoryExpansionState[category] = true;
+            _categoryExpansionState[category] = false;
 
         var cvs = new CollectionViewSource { Source = AllSettings };
         SettingsView = cvs.View;
@@ -64,8 +64,8 @@ public partial class SettingsViewModel
         if (!string.IsNullOrWhiteSpace(SearchText))
             return AllSettings.Any(s => s.Category == category && FilterSetting(s));
 
-        // Otherwise use manual state (default: expanded)
-        return _categoryExpansionState.GetValueOrDefault(category, true);
+        // Otherwise use manual state (default: collapsed)
+        return _categoryExpansionState.GetValueOrDefault(category, false);
     }
 
     /// <summary>
@@ -306,8 +306,8 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = "High Quality Brush Preview",
-            Description = "Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview.",
+            Name = Language.settings_brush_preview,
+            Description = Language.settings_brush_preview_desc,
             Category = Language.settings_category_rendering,
             EditorType = SettingEditorType.CheckBox,
             Getter = () => UserSettingsService.Current.HighQualityBrushPreview,
@@ -366,13 +366,13 @@ public partial class SettingsViewModel
             () => wvm.MinimapBackground, v => wvm.MinimapBackground = v);
 
         // ── Filter & Search ──
-        var filterCategory = "Filter & Search";
+        var filterCategory = Language.settings_category_filter;
         var settings = UserSettingsService.Current;
 
         AllSettings.Add(new SettingItem
         {
-            Name = "Filter Mode",
-            Description = "Default filter mode when applying tile/wall/liquid/wire filters",
+            Name = Language.settings_filter_mode,
+            Description = Language.settings_filter_mode_desc,
             Category = filterCategory,
             EditorType = SettingEditorType.ComboBox,
             Getter = () => settings.FilterMode,
@@ -382,8 +382,8 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = "Darken Amount",
-            Description = "Opacity of the darken overlay for non-selected tiles (0–100%)",
+            Name = Language.settings_darken_amount,
+            Description = Language.settings_darken_amount_desc,
             Category = filterCategory,
             EditorType = SettingEditorType.Slider,
             SliderMin = 0,
@@ -470,7 +470,7 @@ public partial class SettingsViewModel
         {
             Name = Language.settings_picker_hold_threshold,
             Description = Language.settings_picker_hold_threshold_desc,
-            Category = "Keybindings - Tools",
+            Category = string.Format(Language.settings_category_keybindings_format, Language.input_category_tools),
             EditorType = SettingEditorType.Slider,
             SliderMin = 100,
             SliderMax = 500,
@@ -495,7 +495,7 @@ public partial class SettingsViewModel
                 {
                     Name = action.Name,
                     Description = action.Description ?? "",
-                    Category = $"Keybindings - {category}",
+                    Category = string.Format(Language.settings_category_keybindings_format, GetLocalizedInputCategory(category)),
                     EditorType = SettingEditorType.Keybinding,
                     ActionId = action.Id,
                     Bindings = bindings
@@ -517,6 +517,20 @@ public partial class SettingsViewModel
             Setter = v => setter((bool)v)
         });
     }
+
+    private static string GetLocalizedInputCategory(string category) => category switch
+    {
+        InputCategory.File => Language.input_category_file,
+        InputCategory.Editing => Language.input_category_editing,
+        InputCategory.Selection => Language.input_category_selection,
+        InputCategory.Navigation => Language.input_category_navigation,
+        InputCategory.Tools => Language.input_category_tools,
+        InputCategory.ToolDrawing => Language.input_category_tooldrawing,
+        InputCategory.Toggles => Language.input_category_toggles,
+        InputCategory.View => Language.input_category_view,
+        InputCategory.Help => Language.input_category_help,
+        _ => category,
+    };
 }
 
 /// <summary>
@@ -532,11 +546,32 @@ public class CategoryExpandedConverter : IMultiValueConverter
         // values[1] = SettingsViewModel
         if (values[0] is string category && values[1] is SettingsViewModel vm)
             return vm.IsCategoryExpanded(category);
-        return true;
+        return false;
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
     {
         throw new NotSupportedException("CategoryExpandedConverter is one-way only");
     }
+}
+
+public class SettingEnumValueConverter : IValueConverter
+{
+    public static SettingEnumValueConverter Instance { get; } = new();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+        GetLocalizedName(value);
+
+    public static string GetLocalizedName(object? value)
+    {
+        if (value is Enum e)
+        {
+            string key = $"enum_{e.GetType().Name}_{e}";
+            return Properties.Language.ResourceManager.GetString(key) ?? value.ToString()!;
+        }
+        return value?.ToString() ?? string.Empty;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        Binding.DoNothing;
 }

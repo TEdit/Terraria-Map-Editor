@@ -17,7 +17,7 @@ public class ReplayPlugin : BasePlugin
     {
         if (_wvm.CurrentWorld == null)
         {
-            MessageBox.Show("Open a world first.", Name, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Properties.Language.plugin_replay_no_world, Title, MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
 

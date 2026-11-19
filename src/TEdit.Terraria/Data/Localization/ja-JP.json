@@ -3705,10 +3705,10 @@
     "MusicBoxQueenBeeAlt": "オルゴール（クイーンビー・別曲）",
     "MusicBoxQueenSlime": "ジュークボックス（クイーンスライム）",
     "MusicBoxRain": "ジュークボックス（あめ）",
-    "MusicBoxRainbowBoulder": "オルゴール（にじいろのおおいわ）",
+    "MusicBoxRainbowBoulder": "オルゴール（虹色の大岩）",
     "MusicBoxSandstorm": "ジュークボックス（すなあらし）",
     "MusicBoxShimmer": "シェルフォン（エーテル）",
-    "MusicBoxSilence": "オルゴール（しじま）",
+    "MusicBoxSilence": "オルゴール（静寂）",
     "MusicBoxSkeletron": "オルゴール（スケルトロン）",
     "MusicBoxSkeletronPrime": "オルゴール（スケルトンプライム）",
     "MusicBoxSlimeRain": "ジュークボックス（スライムのあめ）",
@@ -5610,7 +5610,7 @@
     "TheUndertaker": "ジ・アンダーテイカー",
     "TheWerewolf": "人狼",
     "ThinIce": "うすいこおり",
-    "ThisIsCanonNow": "これが公式だ",
+    "ThisIsCanonNow": "ブラジルの空",
     "ThisIsGettingOutOfHand": "ディスイズゲッティングアウトオブハンド",
     "ThornChakram": "いばらのチャクラム",
     "ThornHook": "いばらのフック",
@@ -6190,6 +6190,10 @@
       "name": "アビゲイル",
       "description": "アビゲイルが一緒に戦って守ってくれる"
     },
+    "AcceleratePoisons": {
+      "name": "加速毒",
+      "description": "毒の効果が強化される"
+    },
     "AmberMinecart": {
       "name": "{$BuffName.Minecart}",
       "description": "{$BuffDescription.Minecart}"
@@ -6362,6 +6366,10 @@
       "name": "青いニワトリ",
       "description": "名札によると 「シェイン」というらしい"
     },
+    "BlueLightning": {
+      "name": "感電",
+      "description": "身体がしびれている"
+    },
     "BoneJavelin": {
       "name": "かんつう",
       "description": "しゅっけつしている"
@@ -6422,9 +6430,17 @@
       "name": "さむけ",
       "description": "移動速度が下がってしまった"
     },
+    "ChlorophyteSpore": {
+      "name": "胞子感染",
+      "description": "ライフ減少"
+    },
     "Clairvoyance": {
       "name": "せんりがん",
       "description": "まりょくが上がる"
+    },
+    "ClayPotMinion": {
+      "name": "クレイバッド",
+      "description": "クレイバッドが一緒に戦ってくれる"
     },
     "CobWhipPlayerBuff": {
       "name": "ムチクモ",
@@ -6646,6 +6662,10 @@
       "name": "あしヒレ",
       "description": "みずの中でもふつうに動ける"
     },
+    "ForbiddenMinion": {
+      "name": "禁忌の遺物",
+      "description": "禁忌の遺物が一緒に戦ってくれる"
+    },
     "Frostburn": {
       "name": "フロストバーン",
       "description": "いたい とにかくいたい"
@@ -6810,6 +6830,10 @@
       "name": "マジェスティックホースのマウント",
       "description": "マジェスティックホースに のる"
     },
+    "ManaHeat": {
+      "name": "マナサージ",
+      "description": "魔法ダメージ増加"
+    },
     "ManaRegeneration": {
       "name": "マナリジェネ",
       "description": "マナの回復速度が 上がる"
@@ -6954,6 +6978,22 @@
       "name": "キツネビ",
       "description": "キツネビが一緒に戦ってくれる"
     },
+    "PalworldMinionTrustyCattiva": {
+      "name": "頼れるツッパニャン",
+      "description": "ツッパニャンが一緒に戦ってくれる"
+    },
+    "PalworldMinionTrustyFoxsparks": {
+      "name": "頼れるキツネビ",
+      "description": "キツネビが一緒に戦ってくれる"
+    },
+    "PalworldMountTrustyChillet": {
+      "name": "頼れるオコチョ",
+      "description": "オコチョが冒険の仲間になる\nとっても動きが激しいぞ！"
+    },
+    "PalworldMountTrustyChilletIgnis": {
+      "name": "頼れるオコチョ・イグニス",
+      "description": "オコチョ・イグニスが冒険の仲間になる\nなですぎると火花が散るかも！"
+    },
     "PalworldPetChillet": {
       "name": "オコチョ",
       "description": "オコチョが冒険の仲間になる\nとっても動きが激しいぞ！"
@@ -7058,6 +7098,10 @@
       "name": "どく",
       "description": "ライフをゆっくり失う"
     },
+    "PotentAcid": {
+      "name": "強酸",
+      "description": "ライフ減少"
+    },
     "PotionSickness": {
       "name": "ポーションちゅうどく",
       "description": "かいふくアイテムを 使用できない"
@@ -7113,6 +7157,10 @@
     "Ravens": {
       "name": "カラス",
       "description": "カラスが てきを攻撃する"
+    },
+    "RedLightning": {
+      "name": "感電",
+      "description": "身体がしびれている"
     },
     "Regeneration": {
       "name": "リジェネ",
@@ -7444,7 +7492,7 @@
     },
     "Warmth": {
       "name": "あたたかさ",
-      "description": "冷たいものから受ける ダメージをへらす"
+      "description": "寒さによる影響を軽減"
     },
     "WaterCandle": {
       "name": "ウォーターキャンドル",
@@ -7480,7 +7528,7 @@
     },
     "WeaponImbueNanites": {
       "name": "エンチャント：ナノマシン",
-      "description": "近接攻撃で てきを こんらんさせる"
+      "description": "近接攻撃が敵を混乱させ、ダメージが5%増加する"
     },
     "WeaponImbuePoison": {
       "name": "エンチャント：どく",
@@ -8379,6 +8427,7 @@
     "AncientSilverBrick": "こだいのぎんレンガ",
     "AnnouncementBox": "こくちばこ",
     "AntiPortalBlock": "アンチ・ポータルブロック",
+    "Anvils": "かなとこ",
     "ArgonMossBlock": "アルゴンのコケレンガ",
     "ArgonMossBrick": "アルゴンのコケレンガ",
     "ArrowSign": "やじるし",
@@ -8388,6 +8437,7 @@
     "AstraBrick": "アストラレンガ",
     "Autohammer": "すりおろしき",
     "Bamboo": "たけ",
+    "Banners": "バナー",
     "BeeHive": "蜂の巣",
     "BewitchingTable": "みわくてきなテーブル",
     "BirdCage": "トリのオリ",
@@ -8425,6 +8475,8 @@
     "CardinalCage": "あかいトリのオリ",
     "CatBast": "バステトのぞう",
     "Chain": "くさり",
+    "Chairs": "イス",
+    "Chandeliers": "シャンデリア",
     "Chimney": "えんとつ",
     "ChimneySmoke": "けむりブロック",
     "ChineseLanterns": "オリエンタルランタン",
@@ -8434,6 +8486,7 @@
     "ChristmasTree": "クリスマスツリー",
     "ClayBlock": "ねんどブロック",
     "ClayPot": "うえきばち",
+    "ClosedDoor": "とびら",
     "Cobalt": "コバルトこうせき",
     "CobaltBrick": "コバルトレンガ",
     "Cobweb": "クモのす",
@@ -8446,6 +8499,7 @@
     "Coral": "サンゴ",
     "Coralstone": "コーラルストーンブロック",
     "CorruptIce": "パープルアイスブロック",
+    "CorruptThorns": "いばら",
     "CosmicEmberBrick": "コズミックエンバーレンガ",
     "CrackedBlueDungeonBrick": "ひびわれたあおレンガ",
     "CrackedGreenDungeonBrick": "ひびわれたみどりレンガ",
@@ -8465,9 +8519,11 @@
     "DeadCellsDisplayJar": "アイテムフラスコ",
     "DeadCellsPotionStation": "錬金フラスコ",
     "DefendersForge": "ディフェンダーのかまど",
+    "DemonAltar": "あくまのさいだん",
     "DemonAltarReplica": "祭壇レプリカ（悪魔）",
     "Demonite": "デモナイトこうせき",
     "DemoniteBrick": "デモナイトレンガ",
+    "DesertFossil": "かせき",
     "Detonator": "きばくそうち",
     "Diamond": "ダイアモンドのブロック",
     "DiamondBunnyCage": "ダイアモンドのウサギのオリ",
@@ -8495,10 +8551,13 @@
     "EmpressButterflyJar": "プリズムのクサカゲロウのビン",
     "Explosives": "せっちがたばくだん",
     "Extractinator": "ぶんかいするきかい",
+    "FallenLog": "とうぼく",
+    "FallenLogEcho": "とうぼく",
     "FallenStarBlock": "流れ星のブロック",
     "Feywood": "フェイウッド",
     "FireflyinaBottle": "ビンづめのホタル",
     "Fireplace": "だんろ",
+    "Firework": "ロケット",
     "FireworkFountain": "はなびのふんすい",
     "FireworksBox": "はなびのはこ",
     "FishBowl": "キンギョばち",
@@ -8509,10 +8568,12 @@
     "FogMachine": "きりマシン",
     "FoodPlatter": "プレート",
     "ForbiddenBlock": "禁じられたブロック",
+    "FossilOre": "かせき",
     "FrogCage": "カエルのオリ",
     "FrozenSlimeBlock": "こおったスライムブロック",
     "Furnaces": "かまど",
     "GardenGnome": "ガーデンノーム",
+    "GemSaplings": "なえぎ",
     "GeyserTrap": "かんけつせん",
     "Ghoulder": "悪霊に憑かれた大岩",
     "GiantTiki": "巨大ティキ",
@@ -8552,6 +8613,7 @@
     "GreenStucco": "みどりのしっくい",
     "HallowedBrick": "神聖なレンガ",
     "HallowedIce": "ピンクアイスブロック",
+    "HangingLanterns": "ランタン",
     "HardenedSand": "かたいすなブロック",
     "HarpyBlock": "ハーピーのブロック",
     "HatRack": "ぼうしかけ",
@@ -8559,8 +8621,10 @@
     "HellButterflyJar": "じごくチョウチョのビン",
     "Hellforge": "じごくのかまど",
     "HellstoneBrick": "ヘルストーンレンガ",
+    "HolidayLights": "クリスマスライト",
     "HoneyBlock": "ハチミツブロック",
     "HoneyDispenser": "ハチミツディスペンサー",
+    "HoneyDrip": "したたるハチミツ",
     "Honeyfall": "ハチミツしたたるブロック",
     "IceBlock": "こおりブロック",
     "IceBrick": "こおりレンガ",
@@ -8575,14 +8639,18 @@
     "Jackolanterns": "ジャックランタン",
     "JellyfishBlock": "クラゲのブロック",
     "JuliaButterflyJar": "チャイロドクチョウのビン",
+    "JungleThorns": "いばら",
     "Kegs": "さかだる",
     "KryptonMossBlock": "クリプトンのコケレンガ",
     "KryptonMossBrick": "クリプトンのコケレンガ",
     "LadybugCage": "てんとうむしのケージ",
     "Lampposts": "がいとう",
+    "Lamps": "フロアランプ",
     "LandMine": "じらい",
+    "Larva": "ラーヴァ",
     "LavaBoulder": "溶岩の大岩",
     "LavaCloud": "溶岩雲",
+    "LavaDrip": "したたるようがん",
     "LavaLamp": "ようがんランプ",
     "LavaMoss": "マグマのコケ",
     "LavaMossBlock": "マグマのコケレンガ",
@@ -8608,6 +8676,7 @@
     "LivingFrostFire": "うごくこおりのほのおのブロック",
     "LivingLoom": "リビングルーム",
     "LivingUltrabrightFire": "うごくとてもあかるいほのおのブロック",
+    "LivingWood": "きょだいじゅ",
     "Loom": "はたおりき",
     "LunarBlockNebula": "ネビュラのかけらのブロック",
     "LunarBlockSolar": "しゃくねつのかけらのブロック",
@@ -8623,8 +8692,10 @@
     "MarbleBlock": "なめらかだいりせきブロック",
     "MarbleColumn": "だいりせきのはしら",
     "MartianConduitPlating": "かせいじんのでんせんメッキ",
+    "MasterTrophyBase": "レリック",
     "MeatGrinder": "ひきにくき",
     "MercuryBrick": "マーキュリーレンガ",
+    "MetalBars": "きんぞくのインゴット",
     "MeteoriteBrick": "メテオライトレンガ",
     "MinecartTrack": "マインカートのレール",
     "MonarchButterflyJar": "オオカバマダラのビン",
@@ -8635,19 +8706,26 @@
     "Mudstone": "でいがんレンガ",
     "MushroomBeam": "キノコのはり",
     "MushroomStatue": "キノコのせきぞう",
+    "MushroomTrees": "きょだいキノコ",
     "Mythril": "ミスリルこうせき",
     "MythrilBrick": "ミスリルレンガ",
     "NebulaBrick": "ネビュラレンガ",
     "NoirMonolith": "映写機",
     "ObsidianBrick": "こくようせきレンガ",
     "OfficeBlock": "オフィスのブロック",
+    "OpenDoor": "とびら",
     "OrangeDragonflyJar": "オレンジのとんぼのビン",
     "Orichalcum": "オリハルコンこうせき",
     "OutletPump": "はきだしポンプ",
     "OwlCage": "フクロウのケージ",
     "PaintedArrowSign": "やじるしのペイント",
+    "Painting2X3": "え",
+    "Painting3X2": "え",
+    "Painting3X3": "トロフィー",
+    "Painting6X4": "かいが",
     "Palladium": "パラジウムこうせき",
     "PalladiumColumn": "パラジウムのはしら",
+    "PalmTree": "ヤシのき",
     "PalmWood": "ヤシのき",
     "PartyBundleOfBalloonTile": "おばかなたくさんのヒモつきふうせん",
     "PartyMonolith": "パーティーセンター",
@@ -8667,12 +8745,15 @@
     "PinkJellyfishBowl": "ピンククラゲのビン",
     "PinkSlimeBlock": "ピンクスライムブロック",
     "PixelBox": "ピクセルボックス",
+    "PlanteraBulb": "プランテラのつぼみ",
     "PlasmaLamp": "プラズマのランプ",
     "Platinum": "プラチナこうせき",
     "PlatinumBrick": "プラチナレンガ",
     "PlatinumCandelabra": "プラチナのしょくだい",
     "PlatinumCandle": "プラチナのロウソク",
     "PoopBlock": "うんち",
+    "Pots": "つぼ",
+    "PotsEcho": "つぼ",
     "PottedLavaPlantTendrils": "のこり火のまきひげのはちうえ",
     "Poulder": "うんちの大岩",
     "ProjectilePressurePad": "ティールあつりょくパッド",
@@ -8704,12 +8785,14 @@
     "RubySquirrelCage": "ルビーのリスのオリ",
     "Safes": "きんこ",
     "Sand": "すなブロック",
+    "SandDrip": "すなのながれ",
     "SandFallBlock": "サンドフォールブロック",
     "SandStoneSlab": "サンドストーンのたいらな板",
     "Sandcastles": "すなのしろのバケツ",
     "Sandstone": "サンドストーンブロック",
     "SandstoneBrick": "サンドストーンレンガ",
     "SandstoneColumn": "さがんのはしら",
+    "Saplings": "なえぎ",
     "Sapphire": "サファイアのブロック",
     "SapphireBunnyCage": "サファイアのウサギのオリ",
     "SapphireGemspark": "サファイアジェムスパークブロック",
@@ -8742,6 +8825,7 @@
     "Silt": "じゃりブロック",
     "Silver": "ぎんこうせき",
     "SilverBrick": "ぎんレンガ",
+    "Sinks": "シンク",
     "SkullLanterns": "ドクロのランタン",
     "SkyMill": "スカイミル",
     "SliceOfCake": "ケーキひときれ",
@@ -8766,6 +8850,7 @@
     "StarCloud": "星雲",
     "StarRoyaleBrick": "スターロイヤルレンガ",
     "StardustBrick": "ほしくずレンガ",
+    "Statues": "せきぞう",
     "SteampunkBoiler": "スチームパンクボイラー",
     "StinkbugCage": "カメムシのカゴ",
     "StinkbugHousingBlocker": "カメムシブロッカー",
@@ -8778,6 +8863,8 @@
     "Sunplate": "サンプレートブロック",
     "Switches": "スイッチ",
     "TNTBarrel": "TNTのタル",
+    "Tables": "テーブル",
+    "Tables2": "テーブル",
     "TargetDummy": "れんしゅうようマネキン",
     "TatteredWoodSign": "ぼろぼろのきのかんばん",
     "TeaKettle": "ティーポット",
@@ -8801,28 +8888,42 @@
     "TeamBlockYellowVariant": "くすんだイエローチームブロック",
     "Teleporter": "テレポーター",
     "Thrones": "ぎょくざ",
+    "Timers": "タイマー",
     "Tin": "スズこうせき",
     "TinBrick": "ブリキレンガ",
     "TinPlating": "ブリキのメッキ",
     "TinkerersWorkbench": "よろずやのどうぐ",
     "Titanium": "チタニウムこうせき",
     "Titanstone": "チタンせきブロック",
+    "Toilets": "トイレ",
     "Topaz": "トパーズのブロック",
     "TopazBunnyCage": "トパーズのウサギのオリ",
     "TopazGemspark": "トパーズジェムスパークブロック",
     "TopazSquirrelCage": "トパーズのリスのオリ",
     "ToucanCage": "オオハシのカゴ",
     "ToyBreakerBlock": "トイブレーカーブロック",
+    "Traps": "わな",
     "TrashCan": "ゴミばこ",
+    "TreeAmber": "き",
+    "TreeAmethyst": "き",
+    "TreeAsh": "き",
+    "TreeDiamond": "き",
+    "TreeEmerald": "き",
     "TreeNymphButterflyJar": "オオゴマダラのビン",
+    "TreeRuby": "き",
+    "TreeSapphire": "き",
+    "TreeTopaz": "き",
+    "Trees": "き",
     "TruffleWormCage": "トリュフミミズのオリ",
     "Tungsten": "タングステンこうせき",
     "TungstenBrick": "タングステンレンガ",
     "TurtleCage": "カメのケージ",
     "TurtleJungleCage": "ジャングルガメのケージ",
     "UlyssesButterflyJar": "オオルリアゲハのビン",
+    "VanityTreeSakura": "き",
     "VanityTreeSakuraSaplings": "サクラのなえぎ",
     "VanityTreeWillowSaplings": "きいろヤナギのなえぎ",
+    "VanityTreeYellowWillow": "き",
     "VineRope": "ツタロープ",
     "VioletMossBlock": "ネオンのコケレンガ",
     "VioletMossBrick": "ネオンのコケレンガ",
@@ -8835,6 +8936,8 @@
     "WarTableBanner": "ウォーテーブルバナー",
     "WaterBlock": "水中のブロック",
     "WaterCandle": "ウォーターキャンドル",
+    "WaterDrip": "したたるみず",
+    "WaterFountain": "ふんすい",
     "WaterStriderCage": "アメンボのオリ",
     "Waterfall": "たきのブロック",
     "WeaponsRack2": "ぶきおきだな",

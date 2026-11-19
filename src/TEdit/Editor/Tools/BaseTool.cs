@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
@@ -34,7 +35,7 @@ public abstract partial class BaseTool : ReactiveObject, ITool
 
     public string Name { get; protected set; }
 
-    public string Title => Properties.Language.ResourceManager.GetString($"tool_{Name.ToLower()}_title") ?? Name;
+    public string Title => Properties.Language.ResourceManager.GetString($"tool_{Name.ToLower()}_title", CultureInfo.CurrentUICulture) ?? Name;
 
     public string ToolTipText
     {

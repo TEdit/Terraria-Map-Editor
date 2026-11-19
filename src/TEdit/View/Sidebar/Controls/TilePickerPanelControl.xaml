@@ -58,8 +58,8 @@
                     ItemTemplate="{StaticResource ColorPickerTemplate}"
                     SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
                     SelectedValuePath="Id"
-                    DisplayMemberPath="Name"
-                    FilterMemberPath="Name"
+                    DisplayMemberPath="LocalizedName"
+                    FilterMemberPath="LocalizedName"
                     FilterIdMemberPath="Id"
                     ModIdThreshold="{x:Static Terraria:WorldConfiguration.TileCount}"
                     Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
@@ -79,8 +79,8 @@
                     ItemTemplate="{StaticResource ColorPickerTemplate}"
                     SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
                     SelectedValuePath="Id"
-                    DisplayMemberPath="Name"
-                    FilterMemberPath="Name"
+                    DisplayMemberPath="LocalizedName"
+                    FilterMemberPath="LocalizedName"
                     FilterIdMemberPath="Id"
                     ModIdThreshold="{x:Static Terraria:WorldConfiguration.WallCount}"
                     Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />

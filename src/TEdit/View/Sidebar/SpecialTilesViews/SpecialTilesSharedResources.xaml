@@ -70,7 +70,7 @@
             </Grid.Background>
             <DockPanel>
                 <TextBlock DockPanel.Dock="Right" Text="{Binding Key, StringFormat='[{0}]'}" Margin="8,2,4,2" Foreground="Gray" />
-                <TextBlock Text="{Binding Value.Name}" Margin="4,2,4,2" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding Value.LocalizedName}" Margin="4,2,4,2" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
     </DataTemplate>
@@ -82,7 +82,7 @@
             </Grid.Background>
             <DockPanel>
                 <TextBlock DockPanel.Dock="Right" Text="{Binding Id, StringFormat='[{0}]'}" Margin="8,2,4,2" Foreground="Gray" />
-                <TextBlock Text="{Binding Name}" Margin="4,2,4,2" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding LocalizedName}" Margin="4,2,4,2" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
     </DataTemplate>
@@ -98,7 +98,7 @@
                 <Image DockPanel.Dock="Left" Source="{Binding Value.Id, Converter={StaticResource ItemIdToPreviewConverter}}"
                        Width="20" Height="20" Stretch="Uniform" Margin="2,0,2,0"
                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                <TextBlock Text="{Binding Value.Name}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding Value.LocalizedName}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
     </DataTemplate>
@@ -113,7 +113,7 @@
                 <Image DockPanel.Dock="Left" Source="{Binding Id, Converter={StaticResource ItemIdToPreviewConverter}}"
                        Width="20" Height="20" Stretch="Uniform" Margin="2,0,2,0"
                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                <TextBlock Text="{Binding Name}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding LocalizedName}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
     </DataTemplate>
@@ -129,7 +129,7 @@
                 <Image DockPanel.Dock="Left" Source="{Binding Value.Id, Converter={StaticResource ItemIdToPreviewConverter}}"
                        Width="20" Height="20" Stretch="Uniform" Margin="2,0,2,0"
                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                <TextBlock x:Name="ItemText" Text="{Binding Value.Name}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <TextBlock x:Name="ItemText" Text="{Binding Value.LocalizedName}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
         <DataTemplate.Triggers>
@@ -150,7 +150,7 @@
                 <Image DockPanel.Dock="Left" Source="{Binding Id, Converter={StaticResource ItemIdToPreviewConverter}}"
                        Width="20" Height="20" Stretch="Uniform" Margin="2,0,2,0"
                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                <TextBlock x:Name="ItemText" Text="{Binding Name}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <TextBlock x:Name="ItemText" Text="{Binding LocalizedName}" Margin="2,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
         <DataTemplate.Triggers>

@@ -112,7 +112,7 @@ public static class WorldAnalysis
                 var prop = WorldConfiguration.TileProperties[tilePair.Key];
                 if (prop != null)
                 {
-                    name = prop.Name;
+                    name = prop.LocalizedName;
                 }
             }
 

@@ -8,8 +8,8 @@
     <DefaultNamespace>TEdit</DefaultNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
-    <VersionPrefix>5.1.0</VersionPrefix>
-    <VersionSuffix>alpha0</VersionSuffix>
+    <VersionPrefix>5.2.6</VersionPrefix>
+    <VersionSuffix>beta1</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>

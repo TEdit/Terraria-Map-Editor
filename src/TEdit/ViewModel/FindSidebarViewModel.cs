@@ -261,7 +261,7 @@ public partial class FindSidebarViewModel
 
                     AddSpriteToOverlay(world, chest.X, chest.Y);
                     AddResult(new FindResultItem(
-                        item.GetName(),
+                        item.Name,
                         chest.X,
                         chest.Y,
                         Properties.Language.find_result_type_chest,
@@ -286,7 +286,7 @@ public partial class FindSidebarViewModel
 
                         // Get item name from WorldConfiguration
                         var itemProp = WorldConfiguration.ItemProperties.FirstOrDefault(p => p.Id == item.Id);
-                        var itemName = itemProp?.Name ?? $"Item {item.Id}";
+                        var itemName = itemProp?.LocalizedName ?? $"Item {item.Id}";
 
                         AddSpriteToOverlay(world, entity.PosX, entity.PosY);
                         AddResult(new FindResultItem(
@@ -390,13 +390,13 @@ public partial class FindSidebarViewModel
     private static string GetTileName(int tileId)
     {
         var prop = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == tileId);
-        return prop?.Name ?? $"Tile {tileId}";
+        return prop?.LocalizedName ?? $"Tile {tileId}";
     }
 
     private static string GetWallName(int wallId)
     {
         var prop = WorldConfiguration.WallProperties.FirstOrDefault(w => w.Id == wallId);
-        return prop?.Name ?? $"Wall {wallId}";
+        return prop?.LocalizedName ?? $"Wall {wallId}";
     }
 
     private string GetSpriteName(int spriteId, Geometry.Vector2Short? uv)

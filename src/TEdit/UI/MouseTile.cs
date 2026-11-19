@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Properties;
@@ -42,12 +43,21 @@ public partial class MouseTile : ReactiveObject
             });
     }
 
+    private static string GetLiquidName(LiquidType type) => type switch
+    {
+        LiquidType.Water => Language.LiquidType_Water,
+        LiquidType.Lava => Language.LiquidType_Lava,
+        LiquidType.Honey => Language.LiquidType_Honey,
+        LiquidType.Shimmer => Language.LiquidType_Shimmer,
+        _ => type.ToString(),
+    };
+
     private static string GetPaintName(byte colorId)
     {
         if (colorId == 0) return null;
         if (colorId < WorldConfiguration.PaintProperties.Count)
-            return WorldConfiguration.PaintProperties[colorId].Name;
-        return $"Unknown ({colorId})";
+            return WorldConfiguration.PaintProperties[colorId].LocalizedName;
+        return string.Format(Language.statusbar_unknown_paint, colorId);
     }
 
     private void UpdateTileInfo(Tile tile)
@@ -56,56 +66,57 @@ public partial class MouseTile : ReactiveObject
         if (WorldConfiguration.TileProperties.Count > tile.Type)
         {
             var tileProperty = WorldConfiguration.TileProperties[tile.Type];
-            TileName = tile.IsActive ? $"{tileProperty.Name} ({tile.Type})" : "[empty]";
+            TileName = tile.IsActive ? $"{tileProperty.LocalizedName} ({tile.Type})" : Language.statusbar_empty_tile;
         }
         else
         {
-            TileName = $"INVALID TILE ({tile.Type})";
+            TileName = string.Format(Language.statusbar_invalid_tile, tile.Type);
         }
 
         // Wall name
         if (WorldConfiguration.WallProperties.Count > tile.Wall)
-            WallName = $"{WorldConfiguration.WallProperties[tile.Wall].Name} ({tile.Wall})";
+            WallName = $"{WorldConfiguration.WallProperties[tile.Wall].LocalizedName} ({tile.Wall})";
         else
-            WallName = $"INVALID WALL ({tile.Wall})";
+            WallName = string.Format(Language.statusbar_invalid_wall, tile.Wall);
 
         // UV
         UV = new Vector2Short(tile.U, tile.V);
 
         // Extras
-        var extras = tile.LiquidAmount > 0
-            ? $"{tile.LiquidType}: {tile.LiquidAmount}"
-            : string.Empty;
+        var extras = new List<string>();
+        if (tile.LiquidAmount > 0)
+            extras.Add($"{GetLiquidName(tile.LiquidType)}: {tile.LiquidAmount}");
 
         if (tile.InActive)
-            extras += " Inactive";
+            extras.Add(Language.mask_section_inactive);
 
         if (tile.Actuator)
-            extras += " Actuator";
+            extras.Add(Language.mask_section_actuator);
 
         if (tile.WireRed || tile.WireBlue || tile.WireGreen || tile.WireYellow)
         {
-            extras += string.IsNullOrWhiteSpace(extras) ? "Wire " : ", Wire ";
-            if (tile.WireRed) extras += "R";
-            if (tile.WireGreen) extras += "G";
-            if (tile.WireBlue) extras += "B";
-            if (tile.WireYellow) extras += "Y";
+            var colors = new List<string>();
+            if (tile.WireRed) colors.Add(Language.tool_paint_wire_red);
+            if (tile.WireGreen) colors.Add(Language.tool_paint_wire_green);
+            if (tile.WireBlue) colors.Add(Language.tool_paint_wire_blue);
+            if (tile.WireYellow) colors.Add(Language.tool_paint_wire_yellow);
+            extras.Add($"{Language.PaintMode_Wire}: {string.Join(", ", colors)}");
         }
 
-        TileExtras = extras;
+        TileExtras = string.Join(", ", extras);
 
         // Paint
         string tilePaint = GetPaintName(tile.TileColor);
         string wallPaint = GetPaintName(tile.WallColor);
 
         if (tilePaint != null && wallPaint != null)
-            Paint = $"Tile: {tilePaint}, Wall: {wallPaint}";
+            Paint = $"{Language.statusbar_tile_label}: {tilePaint}, {Language.statusbar_wall_label}: {wallPaint}";
         else if (tilePaint != null)
-            Paint = $"Tile: {tilePaint}";
+            Paint = $"{Language.statusbar_tile_label}: {tilePaint}";
         else if (wallPaint != null)
-            Paint = $"Wall: {wallPaint}";
+            Paint = $"{Language.statusbar_wall_label}: {wallPaint}";
         else
-            Paint = "None";
+            Paint = Language.common_none;
     }
 
     /// <summary>

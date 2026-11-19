@@ -32,7 +32,7 @@ namespace TEdit.Editor.Plugins
             {
                 InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Players"),
                 Filter = "Player Files (*.plr)|*.plr",
-                Title = "Select a Player File"
+                Title = Properties.Language.dialog_select_player_file
             };
 
             if (openFileDialog.ShowDialog() == true)
@@ -53,7 +53,7 @@ namespace TEdit.Editor.Plugins
                     await MapBuilder.BuildMapAsync(_wvm.CurrentWorld, newFolderPath);
 
                     // Show the completion
-                    await App.DialogService.ShowAlertAsync("Player Map", "Map Generated!");
+                    await App.DialogService.ShowAlertAsync(Properties.Language.plugin_playermap_title, Properties.Language.plugin_playermap_completed);
                 }
                 catch (Exception ex)
                 {
@@ -63,7 +63,7 @@ namespace TEdit.Editor.Plugins
             else
             {
                 // Handle the case where the user cancels the file selection
-                await App.DialogService.ShowAlertAsync("Player Map", "No player file selected.");
+                await App.DialogService.ShowAlertAsync(Properties.Language.plugin_playermap_title, Properties.Language.plugin_playermap_no_file);
             }
         }
 

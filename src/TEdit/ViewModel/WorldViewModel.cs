@@ -46,7 +46,7 @@ public partial class WorldViewModel : ReactiveObject
     private readonly Stopwatch _loadTimer = new Stopwatch();
     private readonly MouseTile _mouseOverTile = new MouseTile();
     private readonly ObservableCollection<IPlugin> _plugins = new ObservableCollection<IPlugin>();
-    private readonly ObservableCollection<string> _points = new ObservableCollection<string>();
+    private readonly ObservableCollection<PointItem> _points = new ObservableCollection<PointItem>();
     private readonly ObservableCollection<NpcListItem> _allNpcs = new ObservableCollection<NpcListItem>();
     private string _npcSearchText = string.Empty;
     private readonly Timer _saveTimer = new Timer();
@@ -279,6 +279,7 @@ public partial class WorldViewModel : ReactiveObject
                 {
                     Tile = (ushort)tile.Id,
                     Name = tile.Name,
+                    LocalizedName = tile.LocalizedName,
                     SizeTiles = tile.FrameSize,
                     SizePixelsRender = tile.TextureGrid,
                     SizePixelsInterval = tile.TextureGrid + tile.FrameGap,
@@ -294,6 +295,7 @@ public partial class WorldViewModel : ReactiveObject
                         Tile = sprite.Tile,
                         Style = styleIndex++,
                         Name = frame.ToString(),
+                        LocalizedName = WorldConfiguration.GetLocalizedFrameName(tile, frame),
                         UV = frame.UV,
                         SizeTiles = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : tile.FrameSize[0],
                         SizePixelsInterval = sprite.SizePixelsInterval,
@@ -329,6 +331,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             Tile = (ushort)tile.Id,
             Name = tile.Name,
+            LocalizedName = tile.LocalizedName,
             SizeTiles = tile.FrameSize,
             SizePixelsRender = tile.TextureGrid,
             SizePixelsInterval = tile.TextureGrid + tile.FrameGap,
@@ -343,6 +346,7 @@ public partial class WorldViewModel : ReactiveObject
                 Tile = newSprite.Tile,
                 Style = styleIndex++,
                 Name = frame.ToString(),
+                LocalizedName = WorldConfiguration.GetLocalizedFrameName(tile, frame),
                 UV = frame.UV,
                 SizeTiles = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : tile.FrameSize[0],
                 SizePixelsInterval = newSprite.SizePixelsInterval,
@@ -560,6 +564,7 @@ public partial class WorldViewModel : ReactiveObject
                         Tile = virtualId,
                         Style = styleIndex++,
                         Name = frame.ToString(),
+                        LocalizedName = frame.ToString(),
                         UV = frame.UV,
                         SizeTiles = frame.Size,
                         SizePixelsInterval = interval,
@@ -705,6 +710,7 @@ public partial class WorldViewModel : ReactiveObject
                     {
                         Tile = virtualId,
                         Name = entry.FullName,
+                        LocalizedName = entry.FullName,
                         SizeTiles = tileOverride.FrameSize ?? [new Geometry.Vector2Short(1, 1)],
                         SizePixelsRender = tileOverride.TextureGrid,
                         SizePixelsInterval = tileOverride.TextureGrid + tileOverride.FrameGap,
@@ -723,6 +729,7 @@ public partial class WorldViewModel : ReactiveObject
                             Tile = virtualId,
                             Style = styleIndex++,
                             Name = frame.ToString(),
+                            LocalizedName = frame.ToString(),
                             UV = frame.UV,
                             SizeTiles = sizeTiles,
                             SizePixelsInterval = sprite.SizePixelsInterval,
@@ -746,6 +753,7 @@ public partial class WorldViewModel : ReactiveObject
                         Tile = virtualId,
                         Style = 0,
                         Name = entry.FullName,
+                        LocalizedName = entry.FullName,
                         UV = new Geometry.Vector2Short(0, 0),
                         SizeTiles = new Geometry.Vector2Short(1, 1),
                         SizeTexture = new Geometry.Vector2Short(16, 16),
@@ -757,6 +765,7 @@ public partial class WorldViewModel : ReactiveObject
                     {
                         Tile = virtualId,
                         Name = entry.FullName,
+                        LocalizedName = entry.FullName,
                         SizeTiles = new[] { new Geometry.Vector2Short(1, 1) },
                         SizePixelsRender = new Geometry.Vector2Short(16, 16),
                         SizePixelsInterval = new Geometry.Vector2Short(18, 18),
@@ -1666,12 +1675,14 @@ public partial class WorldViewModel : ReactiveObject
                 // Tile ID prefix match (for searching "5" to find 50, 51, etc.)
                 if (sprite.Tile.ToString().StartsWith(term)) return true;
 
-                // Case-insensitive name match
+                // Case-insensitive name and raw name match
+                if (sprite.LocalizedName?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
                 if (sprite.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
 
-                // Match against any child style name
+                // Match against any child style name or raw name
                 foreach (var style in sprite.Styles)
                 {
+                    if (style.LocalizedName?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
                     if (style.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
                 }
             }
@@ -1708,7 +1719,9 @@ public partial class WorldViewModel : ReactiveObject
                     string[] filterTerms = _spriteFilter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string term in filterTerms)
                     {
-                        // If parent name matches, show all its styles
+                        // If parent name or raw name matches, show all its styles
+                        if (parentSheet.LocalizedName?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                            return true;
                         if (parentSheet.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
                             return true;
                         // Also check if tile ID matches
@@ -1717,12 +1730,12 @@ public partial class WorldViewModel : ReactiveObject
                     }
                 }
 
-                // Otherwise, filter by style's own name
-                return MatchesSpriteFilter(sprite.Name, _spriteFilter);
+                // Otherwise, filter by style's own name and raw name
+                return MatchesSpriteFilter(sprite.LocalizedName, _spriteFilter, sprite.Name);
             }
 
-            // No tile filter - only show if text filter matches style name or tile ID
-            return MatchesSpriteFilter(sprite.Name, _spriteFilter) ||
+            // No tile filter - only show if text filter matches style name, raw name or tile ID
+            return MatchesSpriteFilter(sprite.LocalizedName, _spriteFilter, sprite.Name) ||
                    sprite.Tile.ToString() == _spriteFilter.Trim();
         };
 
@@ -1734,15 +1747,17 @@ public partial class WorldViewModel : ReactiveObject
     /// <summary>
     /// Helper method to check if a name matches the sprite filter terms.
     /// </summary>
-    private bool MatchesSpriteFilter(string name, string filter)
+    private bool MatchesSpriteFilter(string? name, string filter, string? identityName)
     {
-        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(filter))
+        if (string.IsNullOrWhiteSpace(filter))
             return false;
 
         string[] terms = filter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string term in terms)
         {
-            if (name.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+            if (name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                return true;
+            if (identityName?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
                 return true;
         }
         return false;
@@ -1928,7 +1943,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 foreach (var variant in tileProperty.BiomeVariants)
                 {
-                    names.Add(variant.Name);
+                    names.Add(WorldConfiguration.GetLocalizedSpriteStyle(variant.Name));
                 }
             }
             return names;
@@ -2033,8 +2048,8 @@ public partial class WorldViewModel : ReactiveObject
         catch
         {
             result = await App.DialogService.ShowMessageAsync(
-                "Unable to open external browser. Copy to clipboard?",
-                "Link Error",
+                Properties.Language.dialog_link_error_message,
+                Properties.Language.dialog_link_error_title,
                 DialogButton.YesNo,
                 DialogImage.Exclamation);
         }
@@ -2243,7 +2258,7 @@ public partial class WorldViewModel : ReactiveObject
         set { this.RaiseAndSetIfChanged(ref _showTextures, value); }
     }
 
-    public ObservableCollection<string> Points
+    public ObservableCollection<PointItem> Points
     {
         get { return _points; }
     }
@@ -2262,7 +2277,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 _allNpcsView = CollectionViewSource.GetDefaultView(_allNpcs);
                 _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.IsOnMap), ListSortDirection.Descending));
-                _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.DefaultName), ListSortDirection.Ascending));
+                _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.LocalizedName), ListSortDirection.Ascending));
                 _allNpcsView.Filter = FilterNpc;
             }
             return _allNpcsView;
@@ -2283,7 +2298,8 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (obj is not NpcListItem item) return false;
         if (string.IsNullOrWhiteSpace(NpcSearchText)) return true;
-        return item.DefaultName.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase)
+        return item.LocalizedName.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase)
+            || item.Name.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase)
             || (item.WorldNpc?.DisplayName?.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase) ?? false);
     }
 
@@ -2296,14 +2312,14 @@ public partial class WorldViewModel : ReactiveObject
     private void RefreshPoints()
     {
         Points.Clear();
-        Points.Add("Spawn");
-        Points.Add("Dungeon");
+        Points.Add(new PointItem(SpawnPointId, Properties.Language.tool_point_spawn));
+        Points.Add(new PointItem(DungeonPointId, Properties.Language.tool_point_dungeon));
 
         if (CurrentWorld?.TeamBasedSpawnsSeed == true)
         {
             for (int i = 0; i < World.TeamNames.Length; i++)
             {
-                Points.Add($"Team {World.TeamNames[i]}");
+                Points.Add(new PointItem(GetTeamPointId(i), GetTeamPointName(i)));
             }
         }
 
@@ -2311,11 +2327,37 @@ public partial class WorldViewModel : ReactiveObject
         {
             foreach (NPC npc in CurrentWorld.NPCs)
             {
-                Points.Add(npc.Name);
+                var label = WorldConfiguration.NpcById.TryGetValue(npc.SpriteId, out var npcData) ? npcData.LocalizedName : npc.Name;
+                Points.Add(new PointItem(npc.Name, label));
             }
         }
 
         RefreshAllNpcs();
+    }
+
+    /// <summary>Invariant point identity for the world spawn point.</summary>
+    public const string SpawnPointId = "Spawn";
+
+    /// <summary>Invariant point identity for the dungeon point.</summary>
+    public const string DungeonPointId = "Dungeon";
+
+    /// <summary>Gets the invariant identity of a team spawn point (e.g. "Team Red"); used for matching, never displayed.</summary>
+    public static string GetTeamPointId(int teamIndex) => $"Team {World.TeamNames[teamIndex]}";
+
+    /// <summary>Gets the localized display name of a team spawn point (e.g. "Team Red" / "红队").</summary>
+    public static string GetTeamPointName(int teamIndex)
+    {
+        string color = World.TeamNames[teamIndex] switch
+        {
+            "White" => Properties.Language.player_stats_team_white,
+            "Red" => Properties.Language.player_stats_team_red,
+            "Green" => Properties.Language.player_stats_team_green,
+            "Blue" => Properties.Language.player_stats_team_blue,
+            "Yellow" => Properties.Language.player_stats_team_yellow,
+            "Pink" => Properties.Language.player_stats_team_pink,
+            _ => World.TeamNames[teamIndex]
+        };
+        return string.Format(Properties.Language.tool_point_team_format, color);
     }
 
     private void RefreshAllNpcs()
@@ -2329,11 +2371,12 @@ public partial class WorldViewModel : ReactiveObject
 
         if (_allNpcs.Count == 0)
         {
-            foreach (var kvp in WorldConfiguration.NpcNames.OrderBy(x => x.Value))
+            foreach (var kvp in WorldConfiguration.NpcNames
+                .OrderBy(x => WorldConfiguration.NpcById.TryGetValue(x.Key, out var n) ? n.LocalizedName : x.Value))
             {
                 WorldConfiguration.NpcById.TryGetValue(kvp.Key, out var npcData);
                 _allNpcs.Add(new NpcListItem(
-                    kvp.Key, kvp.Value,
+                    kvp.Key, kvp.Value, npcData?.LocalizedName ?? kvp.Value,
                     npcData?.Variants,
                     npcData?.CanShimmer ?? false));
             }
@@ -2354,7 +2397,7 @@ public partial class WorldViewModel : ReactiveObject
                 for (int i = 1; i < worldNpcs.Count; i++)
                 {
                     var dupItem = new NpcListItem(
-                        item.SpriteId, item.DefaultName,
+                        item.SpriteId, item.Name, item.LocalizedName,
                         npcData?.Variants,
                         npcData?.CanShimmer ?? false,
                         instanceIndex: i);
@@ -2692,7 +2735,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             routingMode = bt.CadRoutingMode;
             verticalFirstOverride = bt.CadVerticalFirstOverride;
-            toolLabel = "Bus ";
+            toolLabel = Properties.Language.drawing_mode_bus + " ";
         }
 
         if (routingMode != null)
@@ -2701,7 +2744,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 WireRoutingMode.Elbow90 => Properties.Language.drawing_mode_wire90,
                 WireRoutingMode.Miter45 => Properties.Language.drawing_mode_wire45,
-                _ => "Wire"
+                _ => Properties.Language.drawing_mode_wire
             };
             var dir = verticalFirstOverride switch
             {
@@ -3212,7 +3255,7 @@ public partial class WorldViewModel : ReactiveObject
         sfd.DefaultExt = "Text File|*.txt";
         sfd.Filter = "Text Files|*.txt";
         sfd.FileName = CurrentWorld.Title + " Analysis.txt";
-        sfd.Title = "Save world analysis.";
+        sfd.Title = Properties.Language.dialog_save_world_analysis;
         sfd.OverwritePrompt = true;
         if (sfd.ShowDialog() == true)
         {
@@ -3327,7 +3370,11 @@ public partial class WorldViewModel : ReactiveObject
 
     private void OnProgressChanged(object sender, ProgressChangedEventArgs e)
     {
-        DispatcherHelper.CheckBeginInvokeOnUI(() => Progress = e);
+        var state = ProgressLocalization.Translate(e.UserState);
+        var progress = ReferenceEquals(state, e.UserState)
+            ? e
+            : new ProgressChangedEventArgs(e.ProgressPercentage, state);
+        DispatcherHelper.CheckBeginInvokeOnUI(() => Progress = progress);
     }
 
     public void MouseDownTile(TileMouseState e)
@@ -3406,7 +3453,7 @@ public partial class WorldViewModel : ReactiveObject
                 World w = nwDialog.NewWorld;
 
                 // Report progress at the beginning of world generation
-                OnProgressChanged(w, new ProgressChangedEventArgs(100, "Generating World..."));
+                OnProgressChanged(w, new ProgressChangedEventArgs(100, Properties.Language.progress_generating_world));
 
                 // Generate a new seed if not provided
                 w.Seed = w.Seed;
@@ -3479,7 +3526,7 @@ public partial class WorldViewModel : ReactiveObject
                 RefreshPoints();
                 MinimapImage = RenderMiniMap.Render(CurrentWorld, showBackground: UserSettingsService.Current.MinimapBackground); // Render and set the minimap image
                 _loadTimer.Stop(); // Stop the load timer
-                OnProgressChanged(this, new ProgressChangedEventArgs(0, $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds.")); // Report completion
+                OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format(Properties.Language.progress_world_loaded_in_seconds, _loadTimer.Elapsed.TotalSeconds))); // Report completion
                 _saveTimer.Start(); // Restart the save timer
             }, TaskFactoryHelper.UiTaskScheduler)
             .ContinueWith(t =>
@@ -3503,7 +3550,7 @@ public partial class WorldViewModel : ReactiveObject
         // Hill generation
         for (int y = 0; y < w.TilesHigh; y++) // Iterate through all y levels
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating Hills..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_generating_hills));
 
             for (int x = 0; x < w.TilesWide; x++)
             {
@@ -3650,7 +3697,7 @@ public partial class WorldViewModel : ReactiveObject
 
     private void GenerateCaves(World w, Random rand, double caveNoise, double caveMultiplier, double caveDensity, bool surfaceCaves, bool skipUnderworld, bool generateGrass, bool generateWalls)
     {
-        OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(0, w.TilesHigh), "Generating Caves..."));
+        OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(0, w.TilesHigh), Properties.Language.progress_generating_caves));
 
         int width = w.TilesWide;
         int height = w.TilesHigh;
@@ -3665,7 +3712,7 @@ public partial class WorldViewModel : ReactiveObject
 
         for (int y = 0; y < height; y++)
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating Cave Noise..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_generating_cave_noise));
 
             for (int x = 0; x < width; x++)
             {
@@ -3682,7 +3729,7 @@ public partial class WorldViewModel : ReactiveObject
 
             for (int y = 1; y < height - 1; y++)
             {
-                OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Refining Caves..."));
+                OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_refining_caves));
 
                 for (int x = 1; x < width - 1; x++)
                 {
@@ -3707,7 +3754,7 @@ public partial class WorldViewModel : ReactiveObject
         // Apply cave map to world with adjustable cave size
         for (int y = 0; y < height; y++)
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Placing Caves..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_placing_caves));
 
             if (!surfaceCaves && y < w.RockLevel) continue; // Skip tiles above ground level
             if (skipUnderworld && y > height - 200) continue; // Skip tiles in underworld
@@ -3801,7 +3848,7 @@ public partial class WorldViewModel : ReactiveObject
         // Iterate through the bottom 200 tiles to generate the underworld
         for (int y = underworldStart; y < height; y++)
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, height), "Generating Underworld..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, height), Properties.Language.progress_generating_underworld));
 
             for (int x = 0; x < width; x++)
             {
@@ -3967,7 +4014,7 @@ public partial class WorldViewModel : ReactiveObject
 
         var sfd = new SaveFileDialog();
         sfd.Filter = "Terraria World File|*.wld";
-        sfd.Title = "Save World As";
+        sfd.Title = Properties.Language.dialog_save_world_as;
         sfd.InitialDirectory = DependencyChecker.PathToWorlds;
         sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
 
@@ -4008,7 +4055,7 @@ public partial class WorldViewModel : ReactiveObject
                 "Windows Phone v1.2.4.3 world|*.world|" +
                 string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld")),
 
-            Title = "Save World As",
+            Title = Properties.Language.dialog_save_world_as,
             InitialDirectory = DependencyChecker.PathToWorlds,
             FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()))
         };
@@ -4073,8 +4120,8 @@ public partial class WorldViewModel : ReactiveObject
         if (File.Exists(CurrentFile) && CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
         {
             var overwriteResult = await App.DialogService.ShowMessageAsync(
-                _currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?",
-                "World Modified",
+                string.Format(Properties.Language.dialog_world_modified_prompt, _currentWorld.Title),
+                Properties.Language.dialog_world_modified_title,
                 DialogButton.OKCancel,
                 DialogImage.Warning);
 
@@ -4133,22 +4180,28 @@ public partial class WorldViewModel : ReactiveObject
         bool saveCompleted = false;
         try
         {
-            OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Saving World..."));
+            OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, Properties.Language.progress_saving_world));
             Progress<ProgressChangedEventArgs> progress = new(e =>
             {
-                DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
+                // The app reports its own localized completion message after the save finishes,
+                // so drop only the core library's completion messages, not every 100% step.
+                if (e.UserState is not (ProgressKeys.WorldSaveComplete or ProgressKeys.SaveComplete))
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
+                }
             });
             if (saveAsWinPhone)
                 await World.SaveWinPhoneAsync(CurrentWorld, filename, progress);
             else
                 await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: progress);
             saveCompleted = true;
+            OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(100, Properties.Language.progress_world_save_complete));
         }
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
             await App.DialogService.ShowExceptionAsync(
-                $"Failed to save the world. The open world was restored and your edits remain unsaved.\r\n{ex.Message}");
+                string.Format(Properties.Language.dialog_world_save_failed, ex.Message));
         }
 
         if (saveCompleted && _undoManager != null)
@@ -4191,12 +4244,12 @@ public partial class WorldViewModel : ReactiveObject
         // perform validations.
         if (CurrentWorld == null)
         {
-            await App.DialogService.ShowExceptionAsync("No opened world loaded for reloading.");
+            await App.DialogService.ShowExceptionAsync(Properties.Language.dialog_reload_no_world);
             return;
         }
 
         // Prompt for world loading.
-        var confirm = await App.DialogService.ShowConfirmationAsync("Reload Current World?", "Unsaved work will be lost!");
+        var confirm = await App.DialogService.ShowConfirmationAsync(Properties.Language.dialog_reload_world_title, Properties.Language.dialog_reload_world_prompt);
         if (!confirm)
             return; // if no, abort.
 
@@ -4227,16 +4280,13 @@ public partial class WorldViewModel : ReactiveObject
 
             if (validation.IsPreeminent)
             {
-                string message =
-                        $"This world version is NEWER than supported by TEdit's config.\r\n\r\n" +
-                        $"World version: {validation.Version}\r\n" +
-                        $"Max supported: {WorldConfiguration.CompatibleVersion}\r\n\r\n" +
-                        $"TEdit will fall back to config version {WorldConfiguration.CompatibleVersion} " +
-                        $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
-                        $"Do you want to attempt to load anyway?";
+                string message = string.Format(
+                    Properties.Language.dialog_newer_version_prompt,
+                    validation.Version,
+                    WorldConfiguration.CompatibleVersion);
 
                 var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowConfirmationAsync("Newer World Version", message)).Task.Unwrap();
+                    await App.DialogService.ShowConfirmationAsync(Properties.Language.dialog_newer_version_title, message)).Task.Unwrap();
                 if (!confirm)
                     return null;
 
@@ -4246,14 +4296,7 @@ public partial class WorldViewModel : ReactiveObject
             else if (validation.IsCorrupt)
             {
                 // The world file contains all-zeros (corrupt).
-                string msg =
-                    "The world file appears to be empty or corrupt (all bytes are zero).\r\n" +
-                    "This file cannot be recovered as no data exists.\r\n\r\n" +
-                    "What can I do?\r\n" +
-                    "1. Restore a previously made backup (.bak, .bak2).\r\n" +
-                    "2. Restore a previously made manual backup.\r\n" +
-                    "3. Restore a previously created TEdit checkpoint (.TEdit).\r\n" +
-                    "4. Restore a backup via windows file history (if previously enabled).";
+                string msg = Properties.Language.dialog_world_corrupt_empty;
 
                 await Application.Current.Dispatcher.InvokeAsync(async () =>
                     await App.DialogService.ShowExceptionAsync(msg)).Task.Unwrap();
@@ -4261,13 +4304,12 @@ public partial class WorldViewModel : ReactiveObject
             }
             else if (!validation.IsValid)
             {
-                string msg =
-                    "There was an error reading the world file.\r\n" +
-                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEdit.App.Version.WithoutMetadata()}\r\n" +
-                    $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
-                    $"Current World: {validation.Version}\r\n\r\n" +
-                    $"The error is :\r\n{validation.Message}";
+                string msg = string.Format(
+                    Properties.Language.dialog_world_read_error,
+                    TEdit.App.Version.WithoutMetadata(),
+                    WorldConfiguration.CompatibleVersion,
+                    validation.Version,
+                    validation.Message);
 
                 await Application.Current.Dispatcher.InvokeAsync(async () =>
                     await App.DialogService.ShowExceptionAsync(msg)).Task.Unwrap();
@@ -4276,38 +4318,32 @@ public partial class WorldViewModel : ReactiveObject
 
             if (validation.IsLegacy && validation.IsTModLoader)
             {
-                string message = $"You are loading a legacy TModLoader world version: {validation.Version}.\r\n" +
-                    $"1. Editing legacy files is a BETA feature.\r\n" +
-                    $"2. Editing modded worlds is unsupported.\r\n" +
-                    "Please make a backup as you may experience world file corruption.\r\n" +
-                    "Do you wish to continue?";
+                string message = string.Format(
+                    Properties.Language.dialog_legacy_tmodloader_prompt,
+                    validation.Version);
 
                 var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowConfirmationAsync("Load Legacy TModLoader World?", message)).Task.Unwrap();
+                    await App.DialogService.ShowConfirmationAsync(Properties.Language.dialog_legacy_tmodloader_title, message)).Task.Unwrap();
                 if (!confirm)
                     return null;
             }
             else if (validation.IsLegacy)
             {
-                string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
-                    $"Editing legacy files could cause unexpected results.\r\n" +
-                    "Please make a backup as you may experience world file corruption.\r\n" +
-                    "Do you wish to continue?";
+                string message = string.Format(
+                    Properties.Language.dialog_legacy_world_prompt,
+                    validation.Version);
 
                 var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowConfirmationAsync("Load Legacy World?", message)).Task.Unwrap();
+                    await App.DialogService.ShowConfirmationAsync(Properties.Language.dialog_legacy_world_title, message)).Task.Unwrap();
                 if (!confirm)
                     return null;
             }
             else if (validation.IsTModLoader)
             {
-                string message = $"You are loading a TModLoader world. " +
-                    $"Editing modded worlds is unsupported.\r\n" +
-                    "Please make a backup as you may experience world file corruption.\r\n" +
-                    "Do you wish to continue?";
+                string message = Properties.Language.dialog_mod_world_prompt;
 
                 var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowConfirmationAsync("Load Mod World?", message)).Task.Unwrap();
+                    await App.DialogService.ShowConfirmationAsync(Properties.Language.dialog_mod_world_title, message)).Task.Unwrap();
                 if (!confirm)
                     return null;
             }
@@ -4340,18 +4376,15 @@ public partial class WorldViewModel : ReactiveObject
             {
                 ErrorLogging.LogException(error);
 
-                string msg =
-                    "There was an error reading the world file.\r\n" +
-                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEdit.App.Version.WithoutMetadata()}\r\n" +
-                    $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
-                    $"Current World: {validation.Version}\r\n\r\n" +
-                    "Do you wish to force it to load anyway?\r\n\r\n" +
-                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                    $"The error is :\r\n{error.Message}";
+                string msg = string.Format(
+                    Properties.Language.dialog_invalid_world_prompt,
+                    TEdit.App.Version.WithoutMetadata(),
+                    WorldConfiguration.CompatibleVersion,
+                    validation.Version,
+                    error.Message);
 
                 var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowConfirmationAsync("Load Invalid World?", msg)).Task.Unwrap();
+                    await App.DialogService.ShowConfirmationAsync(Properties.Language.dialog_invalid_world_title, msg)).Task.Unwrap();
                 if (!confirm)
                     return null;
             }
@@ -4404,7 +4437,7 @@ public partial class WorldViewModel : ReactiveObject
                     UpdateTitle();
 
                     OnProgressChanged(this, new ProgressChangedEventArgs(0,
-                        $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+                        string.Format(Properties.Language.progress_world_loaded_in_seconds, _loadTimer.Elapsed.TotalSeconds)));
                     _saveTimer.Start();
                 }
             }

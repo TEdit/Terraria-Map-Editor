@@ -83,7 +83,7 @@ public partial class WorldViewModel
             SpriteId = npcId
         };
         CurrentWorld.NPCs.Add(npc);
-        Points.Add(name);
+        Points.Add(new PointItem(name, WorldConfiguration.NpcById.TryGetValue(npcId, out var addedNpc) ? addedNpc.LocalizedName : name));
 
         var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
         if (listItem != null)
@@ -119,7 +119,9 @@ public partial class WorldViewModel
             return;
 
         CurrentWorld.NPCs.Remove(npc);
-        Points.Remove(npc.Name);
+        var removedPoint = Points.FirstOrDefault(p => p.Name == npc.Name);
+        if (removedPoint != null)
+            Points.Remove(removedPoint);
 
         RefreshAllNpcs();
     }
@@ -398,8 +400,8 @@ public partial class WorldViewModel
         UserSettingsService.Current.Language = language;
 
         var result = await App.DialogService.ShowMessageAsync(
-            $"Language changed to {language}. Do you wish to restart now?",
-            "Restart to change language",
+            string.Format(Properties.Language.dialog_language_restart_prompt, SettingEnumValueConverter.GetLocalizedName(language)),
+            Properties.Language.dialog_language_restart_title,
             DialogButton.YesNo,
             DialogImage.Question);
 
@@ -675,8 +677,8 @@ public partial class WorldViewModel
         if (CurrentWorld == null) return;
 
         var confirmResult = await App.DialogService.ShowMessageAsync(
-            "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
-            "Load Bestiary?",
+            Properties.Language.dialog_load_bestiary_prompt,
+            Properties.Language.dialog_load_bestiary_title,
             DialogButton.YesNo,
             DialogImage.Question);
 
@@ -686,7 +688,7 @@ public partial class WorldViewModel
         var ofd = new OpenFileDialog();
         ofd.Filter = "Terraria World File|*.wld";
         ofd.DefaultExt = "Terraria World File| *.wld";
-        ofd.Title = "Import Bestiary and Kills from World File";
+        ofd.Title = Properties.Language.dialog_import_bestiary;
         ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
         if (!Directory.Exists(ofd.InitialDirectory))
             Directory.CreateDirectory(ofd.InitialDirectory);
@@ -710,8 +712,8 @@ public partial class WorldViewModel
                 world.KilledMobs.Clear();
                 world.KilledMobs.AddRange(killTally);
                 await App.DialogService.ShowMessageAsync(
-                    $"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}",
-                    "Import Error",
+                    string.Format(Properties.Language.dialog_import_bestiary_error, ofd.FileName, ex.Message),
+                    Properties.Language.dialog_import_error_title,
                     DialogButton.OK,
                     DialogImage.Error);
             }
@@ -724,7 +726,7 @@ public partial class WorldViewModel
         {
             Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp",
             DefaultExt = "TEdit Schematic File|*.TEditSch",
-            Title = "Import TEdit Schematic File",
+            Title = Properties.Language.dialog_import_schematic,
             InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics"),
             Multiselect = true
         };
@@ -753,7 +755,7 @@ public partial class WorldViewModel
     {
         var sfd = new SaveFileDialog();
         sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
-        sfd.Title = "Export Schematic File";
+        sfd.Title = Properties.Language.dialog_export_schematic;
         sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
         if (!Directory.Exists(sfd.InitialDirectory))
             Directory.CreateDirectory(sfd.InitialDirectory);
@@ -874,7 +876,7 @@ public partial class WorldViewModel
         // Folder browser dialog
         var dlg = new System.Windows.Forms.FolderBrowserDialog
         {
-            Description = "Select output folder for map tiles",
+            Description = Properties.Language.dialog_select_output_folder,
             UseDescriptionForTitle = true,
         };
 

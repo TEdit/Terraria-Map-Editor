@@ -3886,4 +3886,314 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
+  <data name="progress_validating_world" xml:space="preserve">
+    <value>Validating World...</value>
+  </data>
+  <data name="progress_loading_winphone_tiles" xml:space="preserve">
+    <value>Loading Windows Phone tiles...</value>
+  </data>
+  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
+    <value>Loading legacy Windows Phone tiles...</value>
+  </data>
+  <data name="frame_anchor_none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="frame_anchor_left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="frame_anchor_right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="frame_anchor_top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="frame_anchor_bottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="frame_anchor_center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="wall_natural_format" xml:space="preserve">
+    <value>{0} (natural)</value>
+  </data>
+  <data name="wall_unused_format" xml:space="preserve">
+    <value>{0} (unused)</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>Sky</value>
+  </data>
+  <data name="wall_unbreakable" xml:space="preserve">
+    <value>Unbreakable Wall</value>
+  </data>
+  <data name="frame_text_off" xml:space="preserve">
+    <value>Off
+</value>
+  </data>
+  <data name="frame_text_on" xml:space="preserve">
+    <value>On
+</value>
+  </data>
+  <data name="frame_text_monster_banner" xml:space="preserve">
+    <value>Monster Banner
+</value>
+  </data>
+  <data name="frame_text_left" xml:space="preserve">
+    <value>Left
+</value>
+  </data>
+  <data name="frame_text_right" xml:space="preserve">
+    <value>Right
+</value>
+  </data>
+  <data name="frame_text_small_decos" xml:space="preserve">
+    <value>Small Decos
+</value>
+  </data>
+  <data name="frame_text_forest_tree" xml:space="preserve">
+    <value>Forest Tree
+</value>
+  </data>
+  <data name="frame_text_topaz_tree" xml:space="preserve">
+    <value>Topaz Tree
+</value>
+  </data>
+  <data name="frame_text_amethyst_tree" xml:space="preserve">
+    <value>Amethyst Tree
+</value>
+  </data>
+  <data name="frame_text_sapphire_tree" xml:space="preserve">
+    <value>Sapphire Tree
+</value>
+  </data>
+  <data name="frame_text_emerald_tree" xml:space="preserve">
+    <value>Emerald Tree
+</value>
+  </data>
+  <data name="frame_text_ruby_tree" xml:space="preserve">
+    <value>Ruby Tree
+</value>
+  </data>
+  <data name="frame_text_diamond_tree" xml:space="preserve">
+    <value>Diamond Tree
+</value>
+  </data>
+  <data name="frame_text_amber_tree" xml:space="preserve">
+    <value>Amber Tree
+</value>
+  </data>
+  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
+    <value>Vanity Tree Sakura
+</value>
+  </data>
+  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
+    <value>Vanity Tree Yellow Willow
+</value>
+  </data>
+  <data name="frame_text_ash_tree" xml:space="preserve">
+    <value>Ash Tree
+</value>
+  </data>
+  <data name="frame_text_single" xml:space="preserve">
+    <value>Single
+</value>
+  </data>
+  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
+    <value>Small Rubble (1x1)
+</value>
+  </data>
+  <data name="frame_text_flat" xml:space="preserve">
+    <value>Flat
+</value>
+  </data>
+  <data name="frame_text_endcap_right" xml:space="preserve">
+    <value>Endcap Right
+</value>
+  </data>
+  <data name="frame_text_endcap_left" xml:space="preserve">
+    <value>Endcap Left
+</value>
+  </data>
+  <data name="frame_text_attach_left" xml:space="preserve">
+    <value>Attach Left
+</value>
+  </data>
+  <data name="frame_text_attach_right" xml:space="preserve">
+    <value>Attach Right
+</value>
+  </data>
+  <data name="frame_text_attach_left_endcap" xml:space="preserve">
+    <value>Attach Left Endcap
+</value>
+  </data>
+  <data name="frame_text_attach_right_endcap" xml:space="preserve">
+    <value>Attach Right Endcap
+</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
+    <value>Stair Up-Right Riser
+</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
+    <value>Stair Up-Right Stringer
+</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
+    <value>Stair Up-Left Riser
+</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
+    <value>Stair Up-Left Stringer
+</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
+    <value>Stair Top Landing R
+</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
+    <value>Stair Top Landing L
+</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
+    <value>Stair Top Landing L-R
+</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
+    <value>Stair Top Landing R Endcap
+</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
+    <value>Stair Top Landing L Endcap
+</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
+    <value>Stair Bottom Landing R
+</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
+    <value>Stair Bottom Landing L
+</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
+    <value>Stair Inset Up-Right 1
+</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
+    <value>Stair Inset Up-Left 1
+</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
+    <value>Stair Inset Up-Right 2
+</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
+    <value>Stair Inset Up-Left 2
+</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
+    <value>Stair Inset Up-Right 3
+</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
+    <value>Stair Inset Up-Left 3
+</value>
+  </data>
+  <data name="frame_text_stair_inverted_right" xml:space="preserve">
+    <value>Stair Inverted Right
+</value>
+  </data>
+  <data name="frame_text_stair_inverted_left" xml:space="preserve">
+    <value>Stair Inverted Left
+</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
+    <value>Medium Rubble (2x1)
+</value>
+  </data>
+  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
+    <value>Decos (3x2) (Group 2)
+</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
+    <value>Large Rubble (3x2) (Group 2)
+</value>
+  </data>
+  <data name="frame_text_forest_short_plants" xml:space="preserve">
+    <value>Forest Short Plants
+</value>
+  </data>
+  <data name="frame_text_forest_tall_plants" xml:space="preserve">
+    <value>Forest Tall Plants
+</value>
+  </data>
+  <data name="frame_text_text_statue" xml:space="preserve">
+    <value>Text Statue
+</value>
+  </data>
+  <data name="frame_text_decos_3x2" xml:space="preserve">
+    <value>Decos (3x2)
+</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
+    <value>Large Rubble (3x2)
+</value>
+  </data>
+  <data name="frame_text_pumpkin_plant" xml:space="preserve">
+    <value>Pumpkin Plant
+</value>
+  </data>
+  <data name="frame_text_boss_trophy" xml:space="preserve">
+    <value>Boss Trophy
+</value>
+  </data>
+  <data name="frame_text_critter_anchor" xml:space="preserve">
+    <value>Critter Anchor
+</value>
+  </data>
+  <data name="frame_text_forest_pot" xml:space="preserve">
+    <value>Forest Pot
+</value>
+  </data>
+  <data name="frame_text_corruption_short_plants" xml:space="preserve">
+    <value>Corruption Short Plants
+</value>
+  </data>
+  <data name="frame_text_jungle_short_plants" xml:space="preserve">
+    <value>Jungle Short Plants
+</value>
+  </data>
+  <data name="frame_text_hallow_short_plants" xml:space="preserve">
+    <value>Hallow Short Plants
+</value>
+  </data>
+  <data name="frame_text_crimson_short_plants" xml:space="preserve">
+    <value>Crimson Short Plants
+</value>
+  </data>
+  <data name="frame_text_ore_bars" xml:space="preserve">
+    <value>Ore Bars
+</value>
+  </data>
+  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
+    <value>Jungle Plants Echo
+</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>Locked
+</value>
+  </data>
+  <data name="frame_text_jungle_large_plants" xml:space="preserve">
+    <value>Jungle Large Plants</value>
+  </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[empty]</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>Invalid tile ({0})</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>Invalid wall ({0})</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>Unknown paint ({0})</value>
+  </data>
 </root>

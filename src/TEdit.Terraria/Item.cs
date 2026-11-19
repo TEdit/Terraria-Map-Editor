@@ -75,9 +75,17 @@ public partial class Item : ReactiveObject
             StackSize = 1;
     }
 
+    /// <summary>Display name for the UI: localized item name, empty for an empty slot.</summary>
     public string Name
     {
-        get { return GetName(); }
+        get
+        {
+            if (IsModItem)
+                return $"{ModName}:{ModItemName}";
+            if (_currentItemProperty != null)
+                return _currentItemProperty.LocalizedName;
+            return _netId != 0 ? $"[unknown:{_netId}]" : string.Empty;
+        }
     }
 
     public string PrefixName
@@ -85,6 +93,7 @@ public partial class Item : ReactiveObject
         get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
     }
 
+    /// <summary>Stable English identity used by scripts and search; "[empty]" for an empty slot.</summary>
     public string GetName()
     {
         if (IsModItem)

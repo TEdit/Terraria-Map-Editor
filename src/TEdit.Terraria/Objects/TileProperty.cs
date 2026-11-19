@@ -78,13 +78,23 @@ public class TextureWrap
 
 public class TileProperty : ITile
 {
-    public override string ToString() => Name;
+    public override string ToString() => LocalizedName;
 
     [JsonPropertyOrder(0)]
     public int Id { get; set; }
 
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "UNKNOWN";
+
+    private string? _localizedName;
+
+    /// <summary>Localized display name; falls back to <see cref="Name"/>.</summary>
+    [JsonIgnore]
+    public string LocalizedName
+    {
+        get => _localizedName ?? Name;
+        set => _localizedName = value;
+    }
 
     [JsonPropertyOrder(2)]
     public string? Key { get; set; }

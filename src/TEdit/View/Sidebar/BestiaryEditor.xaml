@@ -72,7 +72,7 @@
 
                     <GridViewColumn Width="40" Header="ID" DisplayMemberBinding="{Binding NpcId}" />
                     <GridViewColumn Width="40" Header="BID" DisplayMemberBinding="{Binding BestiaryIndex}" />
-                    <GridViewColumn Width="130" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Width="130" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding LocalizedName}" />
 
                     <GridViewColumn Header="{x:Static p:Language.bestiary_defeated}">
                         <GridViewColumn.CellTemplate>

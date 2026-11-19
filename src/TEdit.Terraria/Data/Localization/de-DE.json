@@ -144,9 +144,13 @@
     "AmethystStoneBlock": "Amethyststeinblock",
     "AmmoBox": "Munitionskiste",
     "AmmoCycler4": "Chaoszylinder",
+    "AmmoCycler4$Gender": "MasculineSingular",
     "AmmoCyclerFullInv": "Chaoszylinder (Voll)",
+    "AmmoCyclerFullInv$Gender": "MasculineSingular",
     "AmmoCyclerNoCycle": "Chaoszylinder (Einfach)",
+    "AmmoCyclerNoCycle$Gender": "MasculineSingular",
     "AmmoCyclerRandom": "Chaoszylinder (Zufall)",
+    "AmmoCyclerRandom$Gender": "MasculineSingular",
     "AmmoReservationPotion": "Munitioneinsparungstrank",
     "AmphibianBoots": "Amphibische Stiefel",
     "AmphibianBoots$Gender": "MasculinePlural",
@@ -254,6 +258,7 @@
     "AquaScepter$Gender": "NeuterSingular",
     "ArapaimaBanner": "Arapaimabanner",
     "ArcSurge": "Blitzschub",
+    "ArcSurge$Gender": "MasculineSingular",
     "ArcaneCrystal": "Arkaner Kristall",
     "ArcaneFlower": "Arkane Blume",
     "ArcaneFlower$Gender": "FeminineSingular",
@@ -277,6 +282,7 @@
     "ArkhalisWings": "Arkhalis' Lichtschwingen",
     "ArkhalisWings$Gender": "FemininePlural",
     "ArmletOfRuin": "Armschutz der Verheerung",
+    "ArmletOfRuin$Gender": "MasculineSingular",
     "ArmorBracing": "Rüstungskorsett",
     "ArmorBracing$Gender": "NeuterSingular",
     "ArmorPolish": "Rüstungspolitur",
@@ -960,6 +966,7 @@
     "CatSword": "Katzenschwert",
     "Catacomb": "Katakombe",
     "CatalystBand": "Katalysator-Band",
+    "CatalystBand$Gender": "NeuterSingular",
     "Catfish": "Katzenfisch",
     "Cauldron": "Kessel",
     "Cave1Echo": "Grüne Mooswand",
@@ -1081,6 +1088,7 @@
     "ClayBlock": "Lehmblock",
     "ClayPot": "Tontopf",
     "ClayPotMinion": "Tonkumpel-Stab",
+    "ClayPotMinion$Gender": "MasculineSingular",
     "Clentaminator": "Clentaminator",
     "Clentaminator2": "Terraformer",
     "ClimbingClaws": "Kletterklauen",
@@ -1384,6 +1392,7 @@
     "CrossNecklace$Gender": "FeminineSingular",
     "CrossStatue": "Kreuzstatue",
     "CrossedHeartNecklace": "Herzkreuz-Halskette",
+    "CrossedHeartNecklace$Gender": "FeminineSingular",
     "CrownoDevoursHisLunch": "Crowno verschlingt sein Mittagessen",
     "CrownosBreastplate": "Crownos Brustplatte",
     "CrownosLeggings": "Crownos Gamaschen",
@@ -1544,6 +1553,7 @@
     "Daybloom": "Tagesblume",
     "DaybloomSeeds": "Tagesblumen-Saat",
     "DaybloomStaff": "Tagesblumen-Stab",
+    "DaybloomStaff$Gender": "MasculineSingular",
     "Daylight": "Tageslicht",
     "DeadCellsBarnacleSummonItem": "Rankenfußkrebsstab",
     "DeadCellsBarnacleSummonItem$Gender": "MasculineSingular",
@@ -1736,6 +1746,7 @@
     "DripplerFlail$Gender": "MasculineSingular",
     "DripplerStatue": "Tropfer-Statue",
     "DruidicSerpentCloak": "Druidischer Schlangenumhang",
+    "DruidicSerpentCloak$Gender": "MasculineSingular",
     "DrumSet": "Schlagzeug",
     "DrumStick": "Schlegel",
     "DryBomb": "Trockene Bombe",
@@ -2347,6 +2358,7 @@
     "ForbiddenLamp": "Verbotene Lampe",
     "ForbiddenLantern": "Verbotene Laterne",
     "ForbiddenMinion": "Verheerender Stab",
+    "ForbiddenMinion$Gender": "MasculineSingular",
     "ForbiddenPiano": "Verbotenes Klavier",
     "ForbiddenPlatform": "Verbotene Klappe",
     "ForbiddenSink": "Verbotenes Waschbecken",
@@ -2517,6 +2529,7 @@
     "GingerbreadCookie": "Lebkuchenkeks",
     "GingerbreadManBanner": "Lebkuchenmann-Banner",
     "GlacierFang": "Gletscherfangzahn",
+    "GlacierFang$Gender": "MasculineSingular",
     "GladiatorBreastplate": "Gladiatorenbrustplatte",
     "GladiatorHelmet": "Gladiatorenhelm",
     "GladiatorLeggings": "Gladiatorengamaschen",
@@ -3012,6 +3025,7 @@
     "HarpyChair": "Harpyienstuhl",
     "HarpyChandelier": "Harpyienkronleuchter",
     "HarpyCharm": "Harpyien-Amulett",
+    "HarpyCharm$Gender": "NeuterSingular",
     "HarpyChest": "Harpyientruhe",
     "HarpyClock": "Harpyienuhr",
     "HarpyDoor": "Harpyientür",
@@ -3046,6 +3060,7 @@
     "HeavenforgeBrick": "Himmelsschmiedenziegel",
     "HeavenforgeBrickWall": "Himmelsschmiedenziegelwand",
     "HeavySling": "Schwere Schlinge",
+    "HeavySling$Gender": "FeminineSingular",
     "HeavyWorkBench": "Schwerer Montierer",
     "HelFire": "Höllenfeuer",
     "HelFire$Gender": "NeuterSingular",
@@ -3580,6 +3595,7 @@
     "LightningBuginaBottle": "Leuchtkäfer in der Flasche",
     "LightningCarrot": "Blitzkarotte",
     "LightningStrike": "Blitzschlag",
+    "LightningStrike$Gender": "MasculineSingular",
     "LightningWhelkShell": "Blitzschneckenhaus",
     "LightsBane": "Schrecken des Tages",
     "LightsBane$Gender": "MasculineSingular",
@@ -3966,6 +3982,7 @@
     "MisterStabbyBanner": "Herr-Stabby-Banner",
     "MiteyTitey": "Mitey-Titey",
     "MobiusStrip": "Möbiusband",
+    "MobiusStrip$Gender": "NeuterSingular",
     "MolluskWhistle": "Weichtierpfeife",
     "MolotovCocktail": "Molotowcocktail",
     "MoltenBreastplate": "Geschmolzene Brustplatte",
@@ -4230,6 +4247,7 @@
     "MySon": "Mein Sohn",
     "MysteriousCape": "Geheimnisvoller Umhang",
     "MysticArtsSash": "Schärpe der mystischen Künste",
+    "MysticArtsSash$Gender": "FeminineSingular",
     "MysticCoilSnake": "Flöte des Schlangenbändigers",
     "MythrilAnvil": "Mithrilamboss",
     "MythrilBar": "Mithrilbarren",
@@ -4480,6 +4498,7 @@
     "OrnamentWallpaper": "Weihnachtsschmuck-Tapete",
     "OrnateShadowKey": "Kunstvoller Schattenschlüssel",
     "OuroborosRing": "Oroboros-Ring",
+    "OuroborosRing$Gender": "MasculineSingular",
     "Outcast": "Ausgestoßener",
     "OutletPump": "Auslasspumpe",
     "Owl": "Eule",
@@ -4588,7 +4607,9 @@
     "PalworldMinionFoxsparks": "Foxparks",
     "PalworldMinionFoxsparks$Gender": "FeminineSingular",
     "PalworldMinionTrustyCattiva": "Treues Cattiva",
+    "PalworldMinionTrustyCattiva$Gender": "NeuterSingular",
     "PalworldMinionTrustyFoxsparks": "Treues Foxparks",
+    "PalworldMinionTrustyFoxsparks$Gender": "NeuterSingular",
     "PalworldMountTrustyChillet": "Treues Chillet",
     "PalworldMountTrustyChilletIgnis": "Treues Chillet Ignis",
     "PalworldPalMetalArmorBody": "Pal-Metallbrustpanzer",
@@ -4669,6 +4690,7 @@
     "PenguinCage": "Pinguinkäfig",
     "PenguinStatue": "Pinguinstatue",
     "Petalstorm": "Mystikblume",
+    "Petalstorm$Gender": "FeminineSingular",
     "PewMaticHorn": "Peng-tastisches Horn",
     "PewMaticHorn$Gender": "NeuterSingular",
     "Phantasm": "Phantasm",
@@ -4683,6 +4705,7 @@
     "PhoenixBlaster": "Phoenix-Blaster",
     "PhoenixBlaster$Gender": "MasculineSingular",
     "PhoenixQuiver": "Phönix-Köcher",
+    "PhoenixQuiver$Gender": "MasculineSingular",
     "Piano": "Piano",
     "PickaxeAxe": "Spitzhackenaxt",
     "PickaxeAxe$Gender": "FeminineSingular",
@@ -4868,6 +4891,7 @@
     "PocketMirror$Gender": "MasculineSingular",
     "PogoStick": "Pogo Stick",
     "PoisonBarb": "Giftwiderhaken",
+    "PoisonBarb$Gender": "MasculineSingular",
     "PoisonDart": "Giftdartpfeil",
     "PoisonStaff": "Giftstab",
     "PoisonStaff$Gender": "MasculineSingular",
@@ -5029,6 +5053,7 @@
     "PygmyStaff": "Pygmäenstab",
     "PygmyStaff$Gender": "MasculineSingular",
     "Pyroclast": "Pyroklastischer Stein",
+    "Pyroclast$Gender": "MasculineSingular",
     "QuadBarrelShotgun": "Viererlauf-Schrotflinte",
     "QuadBarrelShotgun$Gender": "FeminineSingular",
     "QueenBeeBossBag": "Schatzbeutel (Bienenkönigin)",
@@ -5201,6 +5226,7 @@
     "ResplendentDessert": "Prächtiges Dessert",
     "RestorationPotion": "Wiederherstellungstrank",
     "RestorationShield": "Wiederherstellungsschild",
+    "RestorationShield$Gender": "NeuterSingular",
     "RetinazerTrophy": "Retinazertrophäe",
     "RetroMonolith": "Retro-Monolith",
     "Revolver": "Revolver",
@@ -5288,6 +5314,7 @@
     "RoyalGel": "Königlicher Glibber",
     "RoyalGel$Gender": "MasculineSingular",
     "RoyalGuardHarness": "Harnisch der königlichen Garde",
+    "RoyalGuardHarness$Gender": "MasculineSingular",
     "RoyalRomance": "Königliche Romanze",
     "RoyalScepter": "Königliches Zepter",
     "RoyalTiara": "Königliche Tiara",
@@ -5420,6 +5447,7 @@
     "ScourgeoftheCorruptor": "Plage des Verderbers",
     "ScourgeoftheCorruptor$Gender": "FeminineSingular",
     "ScoutSling": "Späher-Schlinge",
+    "ScoutSling$Gender": "FeminineSingular",
     "ScryingOrb": "Seherkugel",
     "ScutlixBanner": "Scutlix-Banner",
     "ScytheWhip": "Dunkle Ernte",
@@ -5443,6 +5471,7 @@
     "Seedler$Gender": "MasculineSingular",
     "Seedling": "Sämling",
     "SeraphNecklace": "Seraph-Halskette",
+    "SeraphNecklace$Gender": "FeminineSingular",
     "SeveredHandBanner": "Abgetrennte-Hand-Banner",
     "Sextant": "Sextant",
     "Sextant$Gender": "MasculineSingular",
@@ -5601,6 +5630,7 @@
     "SilverBow": "Silberbogen",
     "SilverBow$Gender": "MasculineSingular",
     "SilverBracer": "Silberner Armschutz",
+    "SilverBracer$Gender": "MasculineSingular",
     "SilverBrick": "Silberziegel",
     "SilverBrickWall": "Silberne Ziegelwand",
     "SilverBroadsword": "Silberbreitschwert",
@@ -5618,6 +5648,7 @@
     "SilverPickaxe": "Silberspitzhacke",
     "SilverPickaxe$Gender": "FeminineSingular",
     "SilverShield": "Silberner Schild",
+    "SilverShield$Gender": "MasculineSingular",
     "SilverShortsword": "Silberkurzschwert",
     "SilverShortsword$Gender": "NeuterSingular",
     "SilverWatch": "Silberuhr",
@@ -5732,9 +5763,11 @@
     "SnailCage": "Schneckenkäfig",
     "SnailStatue": "Schneckenstatue",
     "SnakeBand": "Schlangenband",
+    "SnakeBand$Gender": "NeuterSingular",
     "SnakeBanner": "Schlangenbanner",
     "SnakesIHateSnakes": "Schlangen, ich hasse Schlangen",
     "SnappingStone": "Bruchstein",
+    "SnappingStone$Gender": "MasculineSingular",
     "SnatcherBanner": "Schnapperbanner",
     "SniperRifle": "Snipergewehr",
     "SniperRifle$Gender": "NeuterSingular",
@@ -6217,6 +6250,7 @@
     "SuspiciouslySparkly": "Verdächtig funkelnd",
     "SwampThingBanner": "Das-Ding-aus-dem-Sumpf-Banner",
     "SweetBarb": "Süßer Widerhaken",
+    "SweetBarb$Gender": "MasculineSingular",
     "SweetheartNecklace": "Herzlieb-Halskette",
     "SweetheartNecklace$Gender": "FeminineSingular",
     "SwiftnessPotion": "Flinkheitstrank",
@@ -6300,6 +6334,7 @@
     "TempestStaff": "Sturmstab",
     "TempestStaff$Gender": "MasculineSingular",
     "TemplarSling": "Templer-Schlinge",
+    "TemplarSling$Gender": "FeminineSingular",
     "TempleKey": "Tempelschlüssel",
     "TendonBow": "Sehnenbogen",
     "TendonBow$Gender": "MasculineSingular",
@@ -6360,7 +6395,7 @@
     "TheUndertaker$Gender": "MasculineSingular",
     "TheWerewolf": "Der Werwolf",
     "ThinIce": "Dünnes Eis",
-    "ThisIsCanonNow": "Das ist jetzt so im Original",
+    "ThisIsCanonNow": "Brasilianischer Himmel",
     "ThisIsGettingOutOfHand": "Das gerät aus den Fugen",
     "ThornChakram": "Dornen-Chakram",
     "ThornChakram$Gender": "NeuterSingular",
@@ -6598,6 +6633,7 @@
     "TuxedoShirt": "Smokinghemd",
     "TwilightDye": "Zwielicht-Farbstoff",
     "TwilightGrasp": "Zwielichtgriff",
+    "TwilightGrasp$Gender": "MasculineSingular",
     "TwilightHairDye": "Zwielicht-Haarfärbemittel",
     "TwinMask": "Zwillingsmaske",
     "TwinsBossBag": "Schatzbeutel (Die Zwillinge)",
@@ -6862,7 +6898,9 @@
     "WhiteTuxedoShirt": "Weißes Smokinghemd",
     "WhoopieCushion": "Furzkissen",
     "WickedArmlet": "Böses Armband",
+    "WickedArmlet$Gender": "NeuterSingular",
     "WickedClaws": "Böse Klauen",
+    "WickedClaws$Gender": "FemininePlural",
     "WickedUndead": "Böser Untoter",
     "Wildflowers": "Wildblumen",
     "WillowShirt": "Pullover des Brandstifters",
@@ -7038,6 +7076,10 @@
       "name": "Abigail",
       "description": "Abigail wird kämpfen, um dich zu beschützen."
     },
+    "AcceleratePoisons": {
+      "name": "Beschleunigtes Leiden",
+      "description": "Macht Gift noch stärker"
+    },
     "AmberMinecart": {
       "name": "{$BuffName.Minecart}",
       "description": "{$BuffDescription.Minecart}"
@@ -7148,15 +7190,15 @@
     },
     "BeetleEndurance1": {
       "name": "Käferausdauer",
-      "description": "Absorbiert 15 % des erlittenen Schadens"
+      "description": "Absorbiert 15\u00A0% des erlittenen Schadens"
     },
     "BeetleEndurance2": {
       "name": "Käferausdauer",
-      "description": "Absorbiert 30 % des erlittenen Schadens"
+      "description": "Absorbiert 30\u00A0% des erlittenen Schadens"
     },
     "BeetleEndurance3": {
       "name": "Käferausdauer",
-      "description": "Absorbiert 45 % des erlittenen Schadens"
+      "description": "Absorbiert 45\u00A0% des erlittenen Schadens"
     },
     "BeetleMight1": {
       "name": "Käfermacht",
@@ -7210,6 +7252,10 @@
       "name": "Blaues Huhn",
       "description": "Auf dem Namensschild steht „Shane“"
     },
+    "BlueLightning": {
+      "name": "Geschockt",
+      "description": "Du spürst ein Kribbeln"
+    },
     "BoneJavelin": {
       "name": "Durchdrungen",
       "description": "Verbluten"
@@ -7224,7 +7270,7 @@
     },
     "BrainOfCthulhuPet": {
       "name": "Spinnenhirn",
-      "description": "Es krabbelt umher ... Wie eklig."
+      "description": "Es krabbelt umher\u00A0... Wie eklig."
     },
     "BrokenArmor": {
       "name": "Beschädigte Rüstung",
@@ -7270,9 +7316,17 @@
       "name": "Verfroren",
       "description": "Deine Bewegungsgeschwindigkeit wurde verlangsamt"
     },
+    "ChlorophyteSpore": {
+      "name": "Versport",
+      "description": "Leben geht verloren"
+    },
     "Clairvoyance": {
       "name": "Hellsehen",
       "description": "Magiekräfte werden erhöht"
+    },
+    "ClayPotMinion": {
+      "name": "Tonkumpel",
+      "description": "Der Tonkumpel kämpft für dich"
     },
     "CobWhipPlayerBuff": {
       "name": "Peitschenspinne",
@@ -7440,7 +7494,7 @@
     },
     "EyeOfCthulhuPet": {
       "name": "Verdächtiges Auge",
-      "description": "Halte nur mein Auge offen ..."
+      "description": "Halte nur mein Auge offen\u00A0..."
     },
     "EyeballSpring": {
       "name": "Augapfelfeder",
@@ -7494,6 +7548,10 @@
       "name": "Flosse",
       "description": "Ganz normal in Wasser bewegen"
     },
+    "ForbiddenMinion": {
+      "name": "Verbotener Ruin",
+      "description": "Der Verbotene Ruin kämpft für dich"
+    },
     "Frostburn": {
       "name": "Frostbrand",
       "description": "Ist entweder richtig kalt oder richtig heiß. Auf jeden Fall tut's WEH!"
@@ -7520,7 +7578,7 @@
     },
     "GlommerPet": {
       "name": "Glommer",
-      "description": "Flauschig! Und schleimig ..."
+      "description": "Flauschig! Und schleimig\u00A0..."
     },
     "GolemPet": {
       "name": "Spielzeuggolem",
@@ -7657,6 +7715,10 @@
     "MajesticHorseMount": {
       "name": "Majestätisches Pferde-Reittier",
       "description": "Reitet auf einem majestätischen Pferd"
+    },
+    "ManaHeat": {
+      "name": "Manaschub",
+      "description": "Magischer Schaden wird erhöht um"
     },
     "ManaRegeneration": {
       "name": "Mana-Wiederherstellung",
@@ -7802,6 +7864,22 @@
       "name": "Foxparks",
       "description": "Foxparks wird für dich kämpfen"
     },
+    "PalworldMinionTrustyCattiva": {
+      "name": "Treues Cattiva",
+      "description": "Cattiva kämpft für dich"
+    },
+    "PalworldMinionTrustyFoxsparks": {
+      "name": "Treues Foxparks",
+      "description": "Foxparks kämpft für dich"
+    },
+    "PalworldMountTrustyChillet": {
+      "name": "Treues Chillet",
+      "description": "Chillet ist mit dir auf Erkundung\nDer Ritt ist ziemlich wild!"
+    },
+    "PalworldMountTrustyChilletIgnis": {
+      "name": "Treues Chillet Ignis",
+      "description": "Chillet Ignis ist mit dir auf Erkundung\nStreichle es nicht zu lang oder es fliegen FUNKEN!"
+    },
     "PalworldPetChillet": {
       "name": "Chillet",
       "description": "Chillet ist mit dir auf Erkundung\nDer Ritt ist ziemlich wild!"
@@ -7872,7 +7950,7 @@
     },
     "PigronMount": {
       "name": "Schwrachen-Reittier",
-      "description": "Jetzt siehst du mich ..."
+      "description": "Jetzt siehst du mich\u00A0..."
     },
     "PirateMinecart": {
       "name": "{$BuffName.Minecart}",
@@ -7905,6 +7983,10 @@
     "Poisoned": {
       "name": "Vergiftet",
       "description": "Langsam entweicht das Leben"
+    },
+    "PotentAcid": {
+      "name": "Starke Säure",
+      "description": "Leben geht verloren"
     },
     "PotionSickness": {
       "name": "Tränkekrankheit",
@@ -7962,6 +8044,10 @@
       "name": "Raben",
       "description": "Die Raben greifen deine Gegner an"
     },
+    "RedLightning": {
+      "name": "Geschockt",
+      "description": "Du spürst ein Kribbeln"
+    },
     "Regeneration": {
       "name": "Wiederherstellung",
       "description": "Erhöht Lebensregeneration"
@@ -7992,7 +8078,7 @@
     },
     "SantankMount": {
       "name": "Weihnachtspanzer-Reittier",
-      "description": "Geht die Liste der Ungezogenen durch ..."
+      "description": "Geht die Liste der Ungezogenen durch\u00A0..."
     },
     "SapphireMinecart": {
       "name": "{$BuffName.Minecart}",
@@ -8080,15 +8166,15 @@
     },
     "SolarShield1": {
       "name": "Sonnen-Aufflammen",
-      "description": "Absorbiert 20 % des erlittenen Schadens, Gegner werden zurückgeworfen, wenn sie Schaden erleiden"
+      "description": "Absorbiert 20\u00A0% des erlittenen Schadens, Gegner werden zurückgeworfen, wenn sie Schaden erleiden"
     },
     "SolarShield2": {
       "name": "Sonnen-Aufflammen",
-      "description": "Absorbiert 20 % des erlittenen Schadens, Gegner werden zurückgeworfen, wenn sie Schaden erleiden"
+      "description": "Absorbiert 20\u00A0% des erlittenen Schadens, Gegner werden zurückgeworfen, wenn sie Schaden erleiden"
     },
     "SolarShield3": {
       "name": "Sonnen-Aufflammen",
-      "description": "Absorbiert 20 % des erlittenen Schadens, Gegner werden zurückgeworfen, wenn sie Schaden erleiden"
+      "description": "Absorbiert 20\u00A0% des erlittenen Schadens, Gegner werden zurückgeworfen, wenn sie Schaden erleiden"
     },
     "Sonar": {
       "name": "Sonar",
@@ -8292,7 +8378,7 @@
     },
     "Warmth": {
       "name": "Wärme",
-      "description": "Verringerter Schaden aus kalten Quellen"
+      "description": "Verringerte Effekte aus kalten Quellen"
     },
     "WaterCandle": {
       "name": "Wasserkerze",
@@ -8328,7 +8414,7 @@
     },
     "WeaponImbueNanites": {
       "name": "Waffentränkung: Naniten",
-      "description": "Nahkampfangriffe verwirren Feinde"
+      "description": "Nahkampfangriffe verwirren Feinde und verursachen 5 % zusätzlichen Schaden"
     },
     "WeaponImbuePoison": {
       "name": "Waffentränkung: Gift",
@@ -9809,6 +9895,7 @@
     "AncientSilverBrick": "Uralter Silberziegel",
     "AnnouncementBox": "Ankündigungsbox",
     "AntiPortalBlock": "Anti-Portal-Block",
+    "Anvils": "Amboss",
     "ArgonMossBlock": "Argon-Moosziegel",
     "ArgonMossBrick": "Argon-Moosziegel",
     "ArrowSign": "Pfeilschild",
@@ -9818,6 +9905,7 @@
     "AstraBrick": "Astraziegel",
     "Autohammer": "Autohammer",
     "Bamboo": "Bambus",
+    "Banners": "Banner",
     "BeeHive": "Bienenstock",
     "BewitchingTable": "Verhexter Tisch",
     "BirdCage": "Vogelkäfig",
@@ -9855,6 +9943,8 @@
     "CardinalCage": "Kardinalkäfig",
     "CatBast": "Bast-Statue",
     "Chain": "Kette",
+    "Chairs": "Stuhl",
+    "Chandeliers": "Kronleuchter",
     "Chimney": "Schornstein",
     "ChimneySmoke": "Rauchblock",
     "ChineseLanterns": "Chinesische Laterne",
@@ -9864,6 +9954,7 @@
     "ChristmasTree": "Weihnachtsbaum",
     "ClayBlock": "Lehmblock",
     "ClayPot": "Tontopf",
+    "ClosedDoor": "Tür",
     "Cobalt": "Kobalterz",
     "CobaltBrick": "Kobaltziegel",
     "Cobweb": "Spinnennetz",
@@ -9876,6 +9967,7 @@
     "Coral": "Koralle",
     "Coralstone": "Korallensteinblock",
     "CorruptIce": "Lila Eisblock",
+    "CorruptThorns": "Dornen",
     "CosmicEmberBrick": "Kosmischer Glutziegel",
     "CrackedBlueDungeonBrick": "Rissiger blauer Ziegel",
     "CrackedGreenDungeonBrick": "Rissiger grüner Ziegel",
@@ -9895,9 +9987,11 @@
     "DeadCellsDisplayJar": "Item-Flasche",
     "DeadCellsPotionStation": "Alchemieflasche",
     "DefendersForge": "Verteidigerschmiede",
+    "DemonAltar": "Dämonenaltar",
     "DemonAltarReplica": "Dämonenaltar-Nachbau",
     "Demonite": "Dämoniterz",
     "DemoniteBrick": "Dämonitziegel",
+    "DesertFossil": "Fossil",
     "Detonator": "Sprengzünder",
     "Diamond": "Diamantsteinblock",
     "DiamondBunnyCage": "Diamanthasenkäfig",
@@ -9925,10 +10019,13 @@
     "EmpressButterflyJar": "Prismatisches Florfliegeglas",
     "Explosives": "Sprengstoff",
     "Extractinator": "Extraktinator",
+    "FallenLog": "Gefallener Stamm",
+    "FallenLogEcho": "Gefallener Stamm",
     "FallenStarBlock": "Sternschnuppen-Block",
     "Feywood": "Feenholz",
     "FireflyinaBottle": "Glühwürmchen in der Flasche",
     "Fireplace": "Kamin",
+    "Firework": "Rakete",
     "FireworkFountain": "Feuerwerksbrunnen",
     "FireworksBox": "Feuerwerkkarton",
     "FishBowl": "Fischglas",
@@ -9939,10 +10036,12 @@
     "FogMachine": "Nebelmaschine",
     "FoodPlatter": "Teller",
     "ForbiddenBlock": "Verbotener Block",
+    "FossilOre": "Fossil",
     "FrogCage": "Froschkäfig",
     "FrozenSlimeBlock": "Gefrorener Schleimblock",
     "Furnaces": "Schmelzofen",
     "GardenGnome": "Gartenzwerg",
+    "GemSaplings": "Schössling",
     "GeyserTrap": "Geysir",
     "Ghoulder": "Ghulfelsen",
     "GiantTiki": "Riesiger Tiki",
@@ -9982,6 +10081,7 @@
     "GreenStucco": "Grüner Stuck",
     "HallowedBrick": "Geheiligter Ziegel",
     "HallowedIce": "Rosa Eisblock",
+    "HangingLanterns": "Laterne",
     "HardenedSand": "Verhärteter Sandblock",
     "HarpyBlock": "Harpyienblock",
     "HatRack": "Hutregal",
@@ -9989,8 +10089,10 @@
     "HellButterflyJar": "Höllenschmetterlingsglas",
     "Hellforge": "Höllenschmiede",
     "HellstoneBrick": "Höllensteinziegel",
+    "HolidayLights": "Weihnachtslicht",
     "HoneyBlock": "Honigblock",
     "HoneyDispenser": "Honigspender",
+    "HoneyDrip": "Tropfender Honig",
     "Honeyfall": "Honigstrom-Block",
     "IceBlock": "Eisblock",
     "IceBrick": "Eisziegel",
@@ -10005,14 +10107,18 @@
     "Jackolanterns": "Kürbislaterne",
     "JellyfishBlock": "Quallenblock",
     "JuliaButterflyJar": "Juliafalter-Glas",
+    "JungleThorns": "Dorn",
     "Kegs": "Gärbottich",
     "KryptonMossBlock": "Krypton-Moosziegel",
     "KryptonMossBrick": "Krypton-Moosziegel",
     "LadybugCage": "Marienkäferkäfig",
     "Lampposts": "Laternenpfahl",
+    "Lamps": "Bodenlampe",
     "LandMine": "Landmine",
+    "Larva": "Larve",
     "LavaBoulder": "Lavafelsen",
     "LavaCloud": "Lavawolke",
+    "LavaDrip": "Tropfende Lava",
     "LavaLamp": "Lavalampe",
     "LavaMoss": "Lavamoos",
     "LavaMossBlock": "Lavamoosziegel",
@@ -10038,6 +10144,7 @@
     "LivingFrostFire": "Lebendes-Frostfeuer-Block",
     "LivingLoom": "Lebender Webstuhl",
     "LivingUltrabrightFire": "Lebendes-Ultrahellfeuer-Block",
+    "LivingWood": "Lebendes Holz",
     "Loom": "Webstuhl",
     "LunarBlockNebula": "Nebula-Fragment-Block",
     "LunarBlockSolar": "Sonnenfragment-Block",
@@ -10053,8 +10160,10 @@
     "MarbleBlock": "Glatter Marmorblock",
     "MarbleColumn": "Marmorsäule",
     "MartianConduitPlating": "Marsianer-Isolierüberzug",
+    "MasterTrophyBase": "Relikt",
     "MeatGrinder": "Fleischwolf",
     "MercuryBrick": "Quecksilberziegel",
+    "MetalBars": "Metallbarren",
     "MeteoriteBrick": "Meteoritenziegel",
     "MinecartTrack": "Lorengleis",
     "MonarchButterflyJar": "Monarchfalter-Glas",
@@ -10065,19 +10174,26 @@
     "Mudstone": "Schlammsteinziegel",
     "MushroomBeam": "Pilzbalken",
     "MushroomStatue": "Pilzstatue",
+    "MushroomTrees": "Riesenpilz",
     "Mythril": "Mithrilerz",
     "MythrilBrick": "Mithrilziegel",
     "NebulaBrick": "Nebula-Ziegel",
     "NoirMonolith": "Filmprojektor",
     "ObsidianBrick": "Obsidianziegel",
     "OfficeBlock": "Büroblock",
+    "OpenDoor": "Tür",
     "OrangeDragonflyJar": "Orangenes Libellenglas",
     "Orichalcum": "Oreichalkoserz",
     "OutletPump": "Auslasspumpe",
     "OwlCage": "Eulenkäfig",
     "PaintedArrowSign": "Bemaltes Pfeilschild",
+    "Painting2X3": "Bild",
+    "Painting3X2": "Bild",
+    "Painting3X3": "Trophäe",
+    "Painting6X4": "Gemälde",
     "Palladium": "Palladiumerz",
     "PalladiumColumn": "Palladiumsäule",
+    "PalmTree": "Palme",
     "PalmWood": "Palmholz",
     "PartyBundleOfBalloonTile": "Albernes Ballonbündel",
     "PartyMonolith": "Partyzentrale",
@@ -10097,12 +10213,15 @@
     "PinkJellyfishBowl": "Rosa-Quallen-Glas",
     "PinkSlimeBlock": "Rosa Schleimblock",
     "PixelBox": "Pixelbox",
+    "PlanteraBulb": "Planteras Knolle",
     "PlasmaLamp": "Plasmalampe",
     "Platinum": "Platinerz",
     "PlatinumBrick": "Platinziegel",
     "PlatinumCandelabra": "Platinkandelaber",
     "PlatinumCandle": "Platinkerze",
     "PoopBlock": "Kacke",
+    "Pots": "Topf",
+    "PotsEcho": "Topf",
     "PottedLavaPlantTendrils": "Eingetopfte Glutranken",
     "Poulder": "Kotfelsen",
     "ProjectilePressurePad": "Blaugrüne Druckplatte",
@@ -10134,12 +10253,14 @@
     "RubySquirrelCage": "Rubineichhörnchenkäfig",
     "Safes": "Tresor",
     "Sand": "Sandblock",
+    "SandDrip": "Sandfluss",
     "SandFallBlock": "Sandstromblock",
     "SandStoneSlab": "Sandsteinplatte",
     "Sandcastles": "Sandburgeimer",
     "Sandstone": "Sandstein-Block",
     "SandstoneBrick": "Sandsteinziegel",
     "SandstoneColumn": "Sandstein-Säule",
+    "Saplings": "Schössling",
     "Sapphire": "Saphirsteinblock",
     "SapphireBunnyCage": "Saphirhasenkäfig",
     "SapphireGemspark": "Saphir-Funkenedelstein-Block",
@@ -10172,6 +10293,7 @@
     "Silt": "Schlickblock",
     "Silver": "Silbererz",
     "SilverBrick": "Silberziegel",
+    "Sinks": "Waschbecken",
     "SkullLanterns": "Schädellaterne",
     "SkyMill": "Himmelsmühle",
     "SliceOfCake": "Kuchenstück",
@@ -10196,6 +10318,7 @@
     "StarCloud": "Sternenwolke",
     "StarRoyaleBrick": "Königlicher Sternziegel",
     "StardustBrick": "Sternenstaub-Ziegel",
+    "Statues": "Statue",
     "SteampunkBoiler": "Steampunkheizkessel",
     "StinkbugCage": "Stinkkäferkäfig",
     "StinkbugHousingBlocker": "Stinkkäferblocker",
@@ -10208,6 +10331,8 @@
     "Sunplate": "Sonnenplattenblock",
     "Switches": "Schalter",
     "TNTBarrel": "TNT-Fass",
+    "Tables": "Tisch",
+    "Tables2": "Tisch",
     "TargetDummy": "Zielpuppe",
     "TatteredWoodSign": "Ramponiertes Holzschild",
     "TeaKettle": "Teekanne",
@@ -10231,28 +10356,42 @@
     "TeamBlockYellowVariant": "Stumpfer Gelbes-Team-Block",
     "Teleporter": "Teleporter",
     "Thrones": "Thron",
+    "Timers": "Timer",
     "Tin": "Zinnerz",
     "TinBrick": "Zinnziegel",
     "TinPlating": "Zinnüberzug",
     "TinkerersWorkbench": "Tüftler-Werkstatt",
     "Titanium": "Titanerz",
     "Titanstone": "Titansteinblock",
+    "Toilets": "Toilette",
     "Topaz": "Topassteinblock",
     "TopazBunnyCage": "Topashasenkäfig",
     "TopazGemspark": "Topas-Funkenedelstein-Block",
     "TopazSquirrelCage": "Topaseichhörnchenkäfig",
     "ToucanCage": "Tukankäfig",
     "ToyBreakerBlock": "Spielzeugbrecher-Ziegel",
+    "Traps": "Falle",
     "TrashCan": "Mülleimer",
+    "TreeAmber": "Baum",
+    "TreeAmethyst": "Baum",
+    "TreeAsh": "Baum",
+    "TreeDiamond": "Baum",
+    "TreeEmerald": "Baum",
     "TreeNymphButterflyJar": "Baumnymphenfalter-Glas",
+    "TreeRuby": "Baum",
+    "TreeSapphire": "Baum",
+    "TreeTopaz": "Baum",
+    "Trees": "Baum",
     "TruffleWormCage": "Trüffelwurmkäfig",
     "Tungsten": "Wolframerz",
     "TungstenBrick": "Wolframziegel",
     "TurtleCage": "Schildkrötenkäfig",
     "TurtleJungleCage": "Dschungelschildkrötenkäfig",
     "UlyssesButterflyJar": "Odysseusfalter-Glas",
+    "VanityTreeSakura": "Baum",
     "VanityTreeSakuraSaplings": "Kirschblütenschössling",
     "VanityTreeWillowSaplings": "Gelber Weidenschössling",
+    "VanityTreeYellowWillow": "Baum",
     "VineRope": "Rankenseil",
     "VioletMossBlock": "Neon-Moosziegel",
     "VioletMossBrick": "Neon-Moosziegel",
@@ -10265,6 +10404,8 @@
     "WarTableBanner": "Kriegstischbanner",
     "WaterBlock": "Aquariumblock",
     "WaterCandle": "Wasserkerze",
+    "WaterDrip": "Tropfendes Wasser",
+    "WaterFountain": "Wasserbrunnen",
     "WaterStriderCage": "Wasserläuferkäfig",
     "Waterfall": "Wasserfallblock",
     "WeaponsRack2": "Waffenrahmen",

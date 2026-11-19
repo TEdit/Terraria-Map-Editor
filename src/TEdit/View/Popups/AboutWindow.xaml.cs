@@ -27,7 +27,7 @@ public partial class AboutWindow : FluentWindow
 
         sb.AppendLine($"{Lang.about_compatible_version}:  {WorldConfiguration.CompatibleVersion}");
         sb.AppendLine($"{Lang.about_terraria_version}:  {terrariaVersion}");
-        sb.AppendLine($"{Lang.about_textures_available}:  {(texturesAvailable ? "Yes" : "No")}");
+        sb.AppendLine($"{Lang.about_textures_available}:  {(texturesAvailable ? Lang.common_yes : Lang.common_no)}");
         sb.AppendLine($"{Lang.about_content_path}:");
         sb.AppendLine($"  {contentPath}");
         sb.AppendLine();
@@ -38,7 +38,7 @@ public partial class AboutWindow : FluentWindow
         sb.AppendLine($"{Lang.about_items_loaded}:  {WorldConfiguration.ItemProperties.Count:N0}");
         sb.AppendLine();
 
-        sb.AppendLine($"— System —");
+        sb.AppendLine($"— {Lang.about_system} —");
         sb.AppendLine($"OS:  {DependencyChecker.GetOsVersion()}");
         sb.AppendLine($".NET:  {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}");
 

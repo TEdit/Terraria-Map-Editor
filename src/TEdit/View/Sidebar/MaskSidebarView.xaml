@@ -54,8 +54,8 @@
                         ItemTemplate="{StaticResource ColorPickerTemplate}"
                         SelectedValue="{Binding MaskSettings.TileMaskValue, Mode=TwoWay}"
                         SelectedValuePath="Id"
-                        DisplayMemberPath="Name"
-                        FilterMemberPath="Name"
+                        DisplayMemberPath="LocalizedName"
+                        FilterMemberPath="LocalizedName"
                         FilterIdMemberPath="Id"
                         Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
                 </Grid>
@@ -78,8 +78,8 @@
                         ItemTemplate="{StaticResource ColorPickerTemplate}"
                         SelectedValue="{Binding MaskSettings.WallMaskValue, Mode=TwoWay}"
                         SelectedValuePath="Id"
-                        DisplayMemberPath="Name"
-                        FilterMemberPath="Name"
+                        DisplayMemberPath="LocalizedName"
+                        FilterMemberPath="LocalizedName"
                         FilterIdMemberPath="Id"
                         Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
                 </Grid>

@@ -73,8 +73,8 @@ public partial class ReplayPluginRecorderView
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Failed to open replay file.\n\n{ex.Message}",
-                "Replay", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(string.Format(Properties.Language.plugin_replay_open_failed, ex.Message),
+                Properties.Language.plugin_replay_title, MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
 

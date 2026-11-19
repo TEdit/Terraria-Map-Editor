@@ -5610,7 +5610,7 @@
     "TheUndertaker": "夺命枪",
     "TheWerewolf": "狼人",
     "ThinIce": "薄冰",
-    "ThisIsCanonNow": "终成正典",
+    "ThisIsCanonNow": "巴西天空",
     "ThisIsGettingOutOfHand": "局面失控",
     "ThornChakram": "荆棘旋刃",
     "ThornHook": "刺钩",
@@ -6190,6 +6190,10 @@
       "name": "阿比盖尔",
       "description": "阿比盖尔会为了保护你而战"
     },
+    "AcceleratePoisons": {
+      "name": "加速负面效果",
+      "description": "增强中毒效果"
+    },
     "AmberMinecart": {
       "name": "{$BuffName.Minecart}",
       "description": "{$BuffDescription.Minecart}"
@@ -6362,6 +6366,10 @@
       "name": "蓝鸡",
       "description": "名牌上写着“Shane”"
     },
+    "BlueLightning": {
+      "name": "电击",
+      "description": "你感到一阵刺痛"
+    },
     "BoneJavelin": {
       "name": "穿透",
       "description": "血流不止"
@@ -6422,9 +6430,17 @@
       "name": "冷冻",
       "description": "你的移动速度已降低"
     },
+    "ChlorophyteSpore": {
+      "name": "孢子侵染",
+      "description": "正在损失生命值"
+    },
     "Clairvoyance": {
       "name": "灵视",
       "description": "提高魔能"
+    },
+    "ClayPotMinion": {
+      "name": "黏土蓓蕾",
+      "description": "黏土蓓蕾将为你而战"
     },
     "CobWhipPlayerBuff": {
       "name": "鞭蜘蛛",
@@ -6646,6 +6662,10 @@
       "name": "脚蹼",
       "description": "在水中移动如常"
     },
+    "ForbiddenMinion": {
+      "name": "禁戒遗迹",
+      "description": "禁戒遗迹将为你而战"
+    },
     "Frostburn": {
       "name": "霜冻",
       "description": "不是特别烫就是特别冻。反正都是特别特别痛"
@@ -6810,6 +6830,10 @@
       "name": "骏马坐骑",
       "description": "骑上一匹骏马"
     },
+    "ManaHeat": {
+      "name": "魔力涌动",
+      "description": "魔法伤害提高"
+    },
     "ManaRegeneration": {
       "name": "魔力再生",
       "description": "提高魔力再生速度"
@@ -6954,6 +6978,22 @@
       "name": "火绒狐",
       "description": "火绒狐将为你而战"
     },
+    "PalworldMinionTrustyCattiva": {
+      "name": "可靠的捣蛋猫",
+      "description": "捣蛋猫将为你而战"
+    },
+    "PalworldMinionTrustyFoxsparks": {
+      "name": "可靠的火绒狐",
+      "description": "火绒狐将为你而战"
+    },
+    "PalworldMountTrustyChillet": {
+      "name": "可靠的疾旋鼬",
+      "description": "疾旋鼬将陪你一起探索\n它跑起来相当威猛！"
+    },
+    "PalworldMountTrustyChilletIgnis": {
+      "name": "可靠的疾旋火鼬",
+      "description": "疾旋火鼬将陪你一起探索\n小心别抚摸它太长时间，否则火花将会开始飞舞！"
+    },
     "PalworldPetChillet": {
       "name": "疾旋鼬",
       "description": "疾旋鼬将陪你一起探索\n它跑起来相当威猛！"
@@ -7058,6 +7098,10 @@
       "name": "中毒",
       "description": "缓慢损失生命值"
     },
+    "PotentAcid": {
+      "name": "烈性酸液",
+      "description": "正在损失生命值"
+    },
     "PotionSickness": {
       "name": "耐药性",
       "description": "不能再消耗治疗物品"
@@ -7113,6 +7157,10 @@
     "Ravens": {
       "name": "乌鸦",
       "description": "乌鸦将攻击你的敌人"
+    },
+    "RedLightning": {
+      "name": "电击",
+      "description": "你感到一阵刺痛"
     },
     "Regeneration": {
       "name": "再生",
@@ -7444,7 +7492,7 @@
     },
     "Warmth": {
       "name": "温暖",
-      "description": "降低所受冷系伤害"
+      "description": "减轻寒冷源造成的影响"
     },
     "WaterCandle": {
       "name": "水蜡烛",
@@ -7480,7 +7528,7 @@
     },
     "WeaponImbueNanites": {
       "name": "武器灌注：纳米机器人",
-      "description": "近战攻击会使敌人困惑"
+      "description": "近战攻击会使敌人困惑，额外造成5%的伤害"
     },
     "WeaponImbuePoison": {
       "name": "武器灌注：毒药",
@@ -8379,6 +8427,7 @@
     "AncientSilverBrick": "远古银砖",
     "AnnouncementBox": "广播盒",
     "AntiPortalBlock": "反传送门块",
+    "Anvils": "砧",
     "ArgonMossBlock": "氩苔藓砖",
     "ArgonMossBrick": "氩苔藓砖",
     "ArrowSign": "箭头标牌",
@@ -8388,6 +8437,7 @@
     "AstraBrick": "星芒砖",
     "Autohammer": "自动锤炼机",
     "Bamboo": "竹子",
+    "Banners": "旗帜",
     "BeeHive": "蜂巢",
     "BewitchingTable": "施法桌",
     "BirdCage": "鸟笼",
@@ -8425,6 +8475,8 @@
     "CardinalCage": "红雀笼",
     "CatBast": "巴斯特雕像",
     "Chain": "链条",
+    "Chairs": "椅子",
+    "Chandeliers": "吊灯",
     "Chimney": "烟囱",
     "ChimneySmoke": "烟雾块",
     "ChineseLanterns": "中式灯笼",
@@ -8434,6 +8486,7 @@
     "ChristmasTree": "圣诞树",
     "ClayBlock": "粘土块",
     "ClayPot": "粘土盆",
+    "ClosedDoor": "门",
     "Cobalt": "钴矿",
     "CobaltBrick": "钴砖",
     "Cobweb": "蛛网",
@@ -8446,6 +8499,7 @@
     "Coral": "珊瑚",
     "Coralstone": "珊瑚石块",
     "CorruptIce": "紫冰雪块",
+    "CorruptThorns": "荆棘",
     "CosmicEmberBrick": "宇宙余烬砖",
     "CrackedBlueDungeonBrick": "破裂蓝砖",
     "CrackedGreenDungeonBrick": "破裂绿砖",
@@ -8465,9 +8519,11 @@
     "DeadCellsDisplayJar": "物品瓶",
     "DeadCellsPotionStation": "炼金瓶",
     "DefendersForge": "护卫熔炉",
+    "DemonAltar": "恶魔祭坛",
     "DemonAltarReplica": "复制恶魔祭坛",
     "Demonite": "魔矿",
     "DemoniteBrick": "魔矿砖",
+    "DesertFossil": "化石",
     "Detonator": "引爆器",
     "Diamond": "钻石石块",
     "DiamondBunnyCage": "钻石兔兔笼",
@@ -8495,10 +8551,13 @@
     "EmpressButterflyJar": "七彩草蛉罐",
     "Explosives": "炸药",
     "Extractinator": "提炼机",
+    "FallenLog": "倒木",
+    "FallenLogEcho": "倒木",
     "FallenStarBlock": "坠落之星块",
     "Feywood": "仙林",
     "FireflyinaBottle": "萤火虫瓶",
     "Fireplace": "壁炉",
+    "Firework": "火箭",
     "FireworkFountain": "烟花喷泉",
     "FireworksBox": "烟花盒",
     "FishBowl": "鱼缸",
@@ -8509,11 +8568,13 @@
     "FogMachine": "造雾机",
     "FoodPlatter": "盘子",
     "ForbiddenBlock": "禁戒块",
+    "FossilOre": "化石",
     "FrogCage": "蛙笼",
     "FrozenSlimeBlock": "冰冻史莱姆块",
     "Furnaces": "熔炉",
     "GardenGnome": "花园侏儒",
-    "GeyserTrap": "间歇泉",
+    "GemSaplings": "树苗",
+    "GeyserTrap": "热喷泉",
     "Ghoulder": "奇石",
     "GiantTiki": "巨型提基",
     "GlassKiln": "玻璃窑",
@@ -8552,6 +8613,7 @@
     "GreenStucco": "绿泥灰",
     "HallowedBrick": "神圣砖",
     "HallowedIce": "粉冰雪块",
+    "HangingLanterns": "灯笼",
     "HardenedSand": "硬化沙块",
     "HarpyBlock": "鹰身女妖块",
     "HatRack": "帽架",
@@ -8559,8 +8621,10 @@
     "HellButterflyJar": "地狱蝴蝶罐",
     "Hellforge": "地狱熔炉",
     "HellstoneBrick": "狱石砖",
+    "HolidayLights": "圣诞灯",
     "HoneyBlock": "蜂蜜块",
     "HoneyDispenser": "蜂蜜分配机",
+    "HoneyDrip": "滴落蜂蜜",
     "Honeyfall": "蜂蜜瀑布块",
     "IceBlock": "冰雪块",
     "IceBrick": "冰雪砖",
@@ -8575,14 +8639,18 @@
     "Jackolanterns": "杰克南瓜灯",
     "JellyfishBlock": "水母物块",
     "JuliaButterflyJar": "珠袖蝶罐",
+    "JungleThorns": "荆棘",
     "Kegs": "酒桶",
     "KryptonMossBlock": "氪苔藓砖",
     "KryptonMossBrick": "氪苔藓砖",
     "LadybugCage": "瓢虫笼",
     "Lampposts": "灯柱",
+    "Lamps": "落地灯",
     "LandMine": "地雷",
+    "Larva": "幼虫",
     "LavaBoulder": "熔岩巨石",
     "LavaCloud": "熔岩云",
+    "LavaDrip": "滴落熔岩",
     "LavaLamp": "熔岩灯",
     "LavaMoss": "熔岩苔藓",
     "LavaMossBlock": "熔岩苔藓砖",
@@ -8608,6 +8676,7 @@
     "LivingFrostFire": "寒霜活火块",
     "LivingLoom": "生命木织机",
     "LivingUltrabrightFire": "超亮活火块",
+    "LivingWood": "生命木",
     "Loom": "织布机",
     "LunarBlockNebula": "星云碎片块",
     "LunarBlockSolar": "日耀碎片块",
@@ -8623,8 +8692,10 @@
     "MarbleBlock": "光面大理石块",
     "MarbleColumn": "大理石柱",
     "MartianConduitPlating": "火星管道护板",
+    "MasterTrophyBase": "圣物",
     "MeatGrinder": "绞肉机",
     "MercuryBrick": "水星砖",
+    "MetalBars": "金属锭",
     "MeteoriteBrick": "陨石砖",
     "MinecartTrack": "矿车轨道",
     "MonarchButterflyJar": "帝王蝶罐",
@@ -8635,19 +8706,26 @@
     "Mudstone": "泥石砖",
     "MushroomBeam": "蘑菇梁",
     "MushroomStatue": "蘑菇雕像",
+    "MushroomTrees": "巨型蘑菇",
     "Mythril": "秘银矿",
     "MythrilBrick": "秘银砖",
     "NebulaBrick": "星云砖",
     "NoirMonolith": "电影放映机",
     "ObsidianBrick": "黑曜石砖",
     "OfficeBlock": "办公块",
+    "OpenDoor": "门",
     "OrangeDragonflyJar": "橙蜻蜓罐",
     "Orichalcum": "山铜矿",
     "OutletPump": "出水泵",
     "OwlCage": "猫头鹰笼",
     "PaintedArrowSign": "彩色箭头标牌",
+    "Painting2X3": "图片",
+    "Painting3X2": "图片",
+    "Painting3X3": "纪念章",
+    "Painting6X4": "绘画作品",
     "Palladium": "钯金矿",
     "PalladiumColumn": "钯金柱",
+    "PalmTree": "棕榈树",
     "PalmWood": "棕榈木",
     "PartyBundleOfBalloonTile": "呆萌丝带派对气球束",
     "PartyMonolith": "派对中心",
@@ -8667,12 +8745,15 @@
     "PinkJellyfishBowl": "粉水母罐",
     "PinkSlimeBlock": "粉史莱姆块",
     "PixelBox": "像素盒",
+    "PlanteraBulb": "世纪之花球茎",
     "PlasmaLamp": "等离子灯",
     "Platinum": "铂金矿",
     "PlatinumBrick": "铂金砖",
     "PlatinumCandelabra": "铂金烛台",
     "PlatinumCandle": "铂金蜡烛",
     "PoopBlock": "臭臭",
+    "Pots": "罐子",
+    "PotsEcho": "罐子",
     "PottedLavaPlantTendrils": "盆栽余烬卷须",
     "Poulder": "便便巨石",
     "ProjectilePressurePad": "青绿压力垫板",
@@ -8704,12 +8785,14 @@
     "RubySquirrelCage": "红玉松鼠笼",
     "Safes": "保险箱",
     "Sand": "沙块",
+    "SandDrip": "沙流",
     "SandFallBlock": "落沙块",
     "SandStoneSlab": "沙岩板",
     "Sandcastles": "沙堡桶",
     "Sandstone": "沙岩块",
     "SandstoneBrick": "沙岩砖",
     "SandstoneColumn": "沙岩柱",
+    "Saplings": "树苗",
     "Sapphire": "蓝玉石块",
     "SapphireBunnyCage": "蓝玉兔兔笼",
     "SapphireGemspark": "蓝玉晶莹宝石块",
@@ -8742,6 +8825,7 @@
     "Silt": "泥沙块",
     "Silver": "银矿",
     "SilverBrick": "银砖",
+    "Sinks": "水槽",
     "SkullLanterns": "骷髅头灯笼",
     "SkyMill": "天磨",
     "SliceOfCake": "蛋糕块",
@@ -8766,6 +8850,7 @@
     "StarCloud": "星云",
     "StarRoyaleBrick": "星星皇家砖",
     "StardustBrick": "星尘砖",
+    "Statues": "雕像",
     "SteampunkBoiler": "蒸汽朋克锅炉",
     "StinkbugCage": "臭虫笼",
     "StinkbugHousingBlocker": "臭虫拦截器",
@@ -8778,6 +8863,8 @@
     "Sunplate": "日盘块",
     "Switches": "开关",
     "TNTBarrel": "TNT桶",
+    "Tables": "桌子",
+    "Tables2": "桌子",
     "TargetDummy": "训练假人",
     "TatteredWoodSign": "破旧木标牌",
     "TeaKettle": "茶壶",
@@ -8801,28 +8888,42 @@
     "TeamBlockYellowVariant": "暗淡黄队块",
     "Teleporter": "传送机",
     "Thrones": "王座",
+    "Timers": "计时器",
     "Tin": "锡矿",
     "TinBrick": "锡砖",
     "TinPlating": "锡护板",
     "TinkerersWorkbench": "工匠作坊",
     "Titanium": "钛金矿",
     "Titanstone": "钛石块",
+    "Toilets": "马桶",
     "Topaz": "黄玉石块",
     "TopazBunnyCage": "黄玉兔兔笼",
     "TopazGemspark": "黄玉晶莹宝石块",
     "TopazSquirrelCage": "黄玉松鼠笼",
     "ToucanCage": "巨嘴鸟笼",
     "ToyBreakerBlock": "玩具毁灭者砖",
+    "Traps": "机关",
     "TrashCan": "垃圾桶",
+    "TreeAmber": "树",
+    "TreeAmethyst": "树",
+    "TreeAsh": "树",
+    "TreeDiamond": "树",
+    "TreeEmerald": "树",
     "TreeNymphButterflyJar": "帛斑蝶罐",
+    "TreeRuby": "树",
+    "TreeSapphire": "树",
+    "TreeTopaz": "树",
+    "Trees": "树",
     "TruffleWormCage": "松露虫笼",
     "Tungsten": "钨矿",
     "TungstenBrick": "钨砖",
     "TurtleCage": "龟笼",
     "TurtleJungleCage": "丛林龟笼",
     "UlyssesButterflyJar": "翠凤蝶罐",
+    "VanityTreeSakura": "树",
     "VanityTreeSakuraSaplings": "樱花树苗",
     "VanityTreeWillowSaplings": "黄柳树苗",
+    "VanityTreeYellowWillow": "树",
     "VineRope": "藤蔓绳",
     "VioletMossBlock": "氖苔藓砖",
     "VioletMossBrick": "氖苔藓砖",
@@ -8835,6 +8936,8 @@
     "WarTableBanner": "战争桌旗",
     "WaterBlock": "水族块",
     "WaterCandle": "水蜡烛",
+    "WaterDrip": "滴落的水",
+    "WaterFountain": "喷泉",
     "WaterStriderCage": "水黾笼",
     "Waterfall": "瀑布块",
     "WeaponsRack2": "武器架",
