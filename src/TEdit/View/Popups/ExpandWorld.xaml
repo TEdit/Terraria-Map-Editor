@@ -10,15 +10,27 @@
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
-        Height="140"
-        Width="390">
+        Height="184"
+        Width="414">
   <ui:FluentWindow.Resources>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
       <Setter Property="Margin" Value="2" />
       <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
   </ui:FluentWindow.Resources>
-  <StackPanel Orientation="Vertical">
+      <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.expand_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<StackPanel Orientation="Vertical" Grid.Row="1" Margin="12,0,12,12">
 
     <!-- Info Header -->
     <TextBlock Text="{x:Static p:Language.expand_description}" />
@@ -60,4 +72,5 @@
       <Button Content="{x:Static p:Language.common_ok}"     Click="OkClick"     Padding="4" Margin="2"/>
     </UniformGrid>
   </StackPanel>
+    </Grid>
 </ui:FluentWindow>

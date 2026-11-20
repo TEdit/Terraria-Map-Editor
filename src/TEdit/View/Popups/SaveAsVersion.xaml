@@ -14,7 +14,19 @@
         Icon="/TEdit;component/Images/tedit.ico"
         Title="{x:Static p:Language.saveas_title}" Height="470" Width="520"
         MinWidth="300" MinHeight="200">
-    <Grid Margin="10">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.saveas_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Margin="10" Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -53,5 +65,6 @@
             <CheckBox Content="{x:Static p:Language.saveas_preserve_all}"
                       IsChecked="{Binding PreserveAll}" />
         </DockPanel>
+    </Grid>
     </Grid>
 </ui:FluentWindow>

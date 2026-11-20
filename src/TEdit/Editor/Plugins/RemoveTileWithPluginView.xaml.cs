@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Wpf.Ui.Controls;
+using TEdit.UI;
 
 namespace TEdit.Editor.Plugins;
 
@@ -14,6 +16,7 @@ public partial class RemoveTileWithPluginView : FluentWindow
     public RemoveTileWithPluginView()
     {
         InitializeComponent();
+        WindowSizing.SizeFromContent(this);
     }
 
     private void CancelButtonClick(object sender, RoutedEventArgs e)

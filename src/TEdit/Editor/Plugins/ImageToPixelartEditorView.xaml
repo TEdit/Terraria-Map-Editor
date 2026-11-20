@@ -22,7 +22,19 @@
   </ui:FluentWindow.Resources>
 
   <!-- Main Container -->
-  <Grid x:Name="MainGrid" Background="{StaticResource ControlBackgroundBrush}">
+      <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_pixelart_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid x:Name="MainGrid" Background="{StaticResource ControlBackgroundBrush}" Grid.Row="1">
     <Grid.RowDefinitions>
       <RowDefinition Height="*" />
       <RowDefinition Height="Auto" />
@@ -306,4 +318,5 @@
 
     </StackPanel>
   </Grid>
+    </Grid>
 </ui:FluentWindow>

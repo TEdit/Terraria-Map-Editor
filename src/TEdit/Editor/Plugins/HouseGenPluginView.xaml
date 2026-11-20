@@ -3,15 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        SizeToContent="WidthAndHeight"
         Closing="WindowClosing"
         Title="{x:Static p:Language.plugin_housegen_title}"
-        ResizeMode="NoResize"
+        ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica">
-    <Grid>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_housegen_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Grid.Row="1" Margin="12,0,12,12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="160" />
@@ -79,5 +90,6 @@
                 </Grid>
             </StackPanel>
         </StackPanel>
+    </Grid>
     </Grid>
 </ui:FluentWindow>

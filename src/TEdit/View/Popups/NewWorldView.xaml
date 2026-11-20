@@ -10,12 +10,23 @@
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
-        SizeToContent="Height"
         Width="380"
         MinWidth="380"
         MaxHeight="700">
 
-    <Grid Background="{DynamicResource SidebarBackgroundBrush}">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.newworld_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Background="{DynamicResource SidebarBackgroundBrush}" Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>      <!-- Title -->
             <RowDefinition Height="Auto"/>      <!-- World Properties -->
@@ -360,5 +371,6 @@
                        HorizontalAlignment="Stretch"
                        Click="OkClick"/>
         </UniformGrid>
+    </Grid>
     </Grid>
 </ui:FluentWindow>

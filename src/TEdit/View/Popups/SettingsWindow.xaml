@@ -160,7 +160,19 @@
         </DataTemplate>
     </ui:FluentWindow.Resources>
 
-    <Grid Margin="10">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.menu_help_settings}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Margin="10" Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -288,5 +300,6 @@
             <Button x:Name="CancelSettings" Content="{x:Static p:Language.settings_cancel}" Width="80" Padding="4" Margin="0,0,8,0" Click="Cancel_Click" />
             <Button Content="{x:Static p:Language.settings_save}" Width="80" Padding="4" Click="Save_Click" />
         </StackPanel>
+    </Grid>
     </Grid>
 </ui:FluentWindow>

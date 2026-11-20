@@ -13,7 +13,19 @@
         Height="550"
         Width="350">
 
-    <Grid Margin="10">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.menu_uveditor_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Margin="10" Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -117,5 +129,6 @@
             <Button Content="{x:Static p:Language.menu_uveditor_restore}" Width="75" Margin="5" Click="RestoreButton_Click"/>
             <Button Content="{x:Static p:Language.menu_uveditor_ok}" Width="75" Margin="5" IsDefault="True" Click="OkButton_Click"/>
         </StackPanel>
+    </Grid>
     </Grid>
 </ui:FluentWindow>

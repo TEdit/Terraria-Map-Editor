@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Wpf.Ui.Controls;
+using TEdit.UI;
 
 namespace TEdit.Editor.Plugins;
 
@@ -20,6 +21,7 @@ public partial class RandomizerPluginView : FluentWindow
     public RandomizerPluginView(bool activeSelection)
     {
         InitializeComponent();
+        WindowSizing.SizeFromContent(this);
         if (!activeSelection)
         {
             OnlySelectionCheckBox.IsEnabled = false;

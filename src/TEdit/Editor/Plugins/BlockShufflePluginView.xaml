@@ -3,13 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+        xmlns:view="clr-namespace:TEdit.View" ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         Title="{x:Static p:Language.plugin_blockshuffle_title}">
-    <Grid>
-        <StackPanel Margin="5">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_blockshuffle_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Grid.Row="1">
+        <StackPanel Margin="12,8,12,14">
             <Label Content="{x:Static p:Language.plugin_seed_label}"/>
             <TextBox x:Name="SeedTextBox"/>
             <StackPanel Orientation="Horizontal">
@@ -26,7 +38,7 @@
                     <Grid Margin="0,0,0,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
                         <Slider x:Name="ReplaceEmptySlider" Minimum="5" Maximum="100" Value="100" SmallChange="5" LargeChange="10" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True"/>
                         <Label Content="{Binding Value, ElementName=ReplaceEmptySlider}" ContentStringFormat="{}{0}%" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
@@ -41,5 +53,6 @@
                 <Button Content="{x:Static p:Language.plugin_blockshuffle_shuffle_button}" HorizontalAlignment="Right" Padding="20,3" Click="OkButtonClick"/>
             </Grid>
         </StackPanel>
+    </Grid>
     </Grid>
 </ui:FluentWindow>

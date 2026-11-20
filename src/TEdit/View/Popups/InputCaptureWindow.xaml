@@ -15,7 +15,19 @@
         PreviewMouseDown="Window_PreviewMouseDown"
         PreviewMouseWheel="Window_PreviewMouseWheel">
 
-    <Grid Margin="10">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.keybind_capture_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+<Grid Margin="10" Grid.Row="1">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="{x:Static p:Language.keybind_capture_instruction}"
                        FontSize="14" Foreground="Snow" TextAlignment="Center" />
@@ -28,5 +40,6 @@
                 <Button Content="{x:Static p:Language.common_cancel}" Width="80" Padding="4" Click="Cancel_Click" />
             </StackPanel>
         </StackPanel>
+    </Grid>
     </Grid>
 </ui:FluentWindow>
