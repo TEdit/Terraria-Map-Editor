@@ -14,6 +14,9 @@ public partial class BannerItem : ReactiveObject
     /// <summary>Biome/event category from bestiaryNpcs.json.</summary>
     public string Category { get; set; } = "";
 
+    /// <summary>Localized category shown in group headers and the filter.</summary>
+    public string LocalizedCategory { get; set; } = "";
+
     /// <summary>First NPC ID with this banner, used for icon preview.</summary>
     public int NpcId { get; set; }
 

@@ -11,15 +11,18 @@ internal static class UiLabelResolver
     public static string? Resolve(string key)
     {
         if (key.StartsWith(TEdit.Terraria.LocalizationUiLabels.FrameTextPrefix, StringComparison.Ordinal))
-            return ResolveFrameText(key[TEdit.Terraria.LocalizationUiLabels.FrameTextPrefix.Length..]);
+            return ResolveSlug("frame_text_", key[TEdit.Terraria.LocalizationUiLabels.FrameTextPrefix.Length..]);
 
         return ResolveFixedUiLabel(key);
     }
 
-    /// <summary>Maps an English frame label to its "frame_text_{slug}" resource, e.g. "Stair Top Landing R" → frame_text_stair_top_landing_r.</summary>
-    private static string? ResolveFrameText(string english)
+    /// <summary>Maps a bestiary category ("Lunar Event") to bestiary_category_lunar_event.</summary>
+    public static string? ResolveBestiaryCategory(string category) => ResolveSlug("bestiary_category_", category);
+
+    /// <summary>Looks up "{prefix}{slug}"; the slug lowercases and collapses non-alphanumerics into one underscore.</summary>
+    private static string? ResolveSlug(string prefix, string english)
     {
-        var slug = new System.Text.StringBuilder("frame_text_", english.Length + 11);
+        var slug = new System.Text.StringBuilder(prefix, english.Length + prefix.Length);
         bool lastUnderscore = true;
         foreach (char ch in english.ToLowerInvariant())
         {

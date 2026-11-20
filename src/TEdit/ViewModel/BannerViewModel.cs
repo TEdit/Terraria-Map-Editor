@@ -23,11 +23,11 @@ public partial class BannerViewModel : ReactiveObject
         _wvm = ViewModelLocator.WorldViewModel;
 
         BannerData = new ObservableCollection<BannerItem>();
-        Categories = new ObservableCollection<string> { "All" };
+        Categories = new ObservableCollection<string> { AllCategories };
 
         BannersView = CollectionViewSource.GetDefaultView(BannerData);
         BannersView.Filter = FilterBanners;
-        BannersView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(BannerItem.Category)));
+        BannersView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(BannerItem.LocalizedCategory)));
 
         this.WhenAnyValue(x => x.FilterText, x => x.SelectedCategory)
             .Throttle(TimeSpan.FromMilliseconds(200))
@@ -57,20 +57,27 @@ public partial class BannerViewModel : ReactiveObject
     [Reactive]
     private string _filterText = "";
 
+    /// <summary>"All" filter label, localized like the categories.</summary>
+    private static readonly string AllCategories = LocalizeCategory("All");
+
     [Reactive]
-    private string _selectedCategory = "All";
+    private string _selectedCategory = AllCategories;
 
     public ObservableCollection<string> Categories { get; }
 
     public ICollectionView BannersView { get; }
+
+    /// <summary>Falls back to the raw value when the locale has no entry.</summary>
+    private static string LocalizeCategory(string category) =>
+        string.IsNullOrEmpty(category) ? category : UiLabelResolver.ResolveBestiaryCategory(category) ?? category;
 
     private bool FilterBanners(object obj)
     {
         if (obj is not BannerItem item) return false;
 
         if (!string.IsNullOrEmpty(SelectedCategory) &&
-            SelectedCategory != "All" &&
-            !string.Equals(item.Category, SelectedCategory, StringComparison.OrdinalIgnoreCase))
+            SelectedCategory != AllCategories &&
+            !string.Equals(item.LocalizedCategory, SelectedCategory, StringComparison.Ordinal))
         {
             return false;
         }
@@ -79,6 +86,7 @@ public partial class BannerViewModel : ReactiveObject
             !item.LocalizedName.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
             !item.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
             !item.Category.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
+            !item.LocalizedCategory.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
             !item.NpcId.ToString().Contains(FilterText, StringComparison.Ordinal) &&
             !item.BestiaryIndex.ToString().Contains(FilterText, StringComparison.Ordinal))
         {
@@ -116,7 +124,7 @@ public partial class BannerViewModel : ReactiveObject
 
         BannerData.Clear();
         Categories.Clear();
-        Categories.Add("All");
+        Categories.Add(AllCategories);
 
         // Build lookup: bannerId -> first NPC data
         var npcByBanner = WorldConfiguration.BestiaryData.NpcById.Values
@@ -160,6 +168,7 @@ public partial class BannerViewModel : ReactiveObject
                 Name = bannerName,
                 LocalizedName = displayName,
                 Category = string.IsNullOrEmpty(category) ? "Other" : category,
+                LocalizedCategory = LocalizeCategory(string.IsNullOrEmpty(category) ? "Other" : category),
                 NpcId = npcId,
                 BestiaryIndex = bestiaryIndex,
                 Kills = kills,
@@ -168,7 +177,7 @@ public partial class BannerViewModel : ReactiveObject
         }
 
         // Populate category filter list
-        foreach (var cat in BannerData.Select(b => b.Category).Distinct().OrderBy(c => c))
+        foreach (var cat in BannerData.Select(b => b.LocalizedCategory).Distinct().OrderBy(c => c))
         {
             if (!Categories.Contains(cat))
                 Categories.Add(cat);
