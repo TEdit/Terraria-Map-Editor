@@ -542,8 +542,12 @@ public class TerrariaDataStore
             // A tile's key matching an item key names the same thing (e.g. DirtBlock). Category tiles
             // (Platforms, Herbs, Gems, ...) are placed by many items, so "the first placing item" is not
             // a valid name for them; those keep their English name until the locale data names them.
+            // TEdit's frame_text_* resources are that naming data.
             if (tile.Key != null && data.Items.TryGetValue(tile.Key, out var tileName))
                 tile.LocalizedName = tileName;
+            else if (LocalizationUiLabels.Get(LocalizationUiLabels.FrameTextPrefix + tile.Name) is { } categoryName
+                     && categoryName != tile.Name)
+                tile.LocalizedName = categoryName;
         }
 
         // Apply wall names
@@ -598,7 +602,12 @@ public class TerrariaDataStore
         foreach (var paint in Paints)
         {
             if (paint.Key == null)
+            {
+                // Legacy Illuminant (PaintID 31): no item carries it, but old worlds still store it.
+                if (LocalizationUiLabels.Get(LocalizationUiLabels.FrameTextPrefix + paint.Name) is { } legacyPaint)
+                    paint.LocalizedName = legacyPaint;
                 continue;
+            }
 
             if (data.Items.TryGetValue(paint.Key, out var paintName))
                 paint.LocalizedName = paintName;
