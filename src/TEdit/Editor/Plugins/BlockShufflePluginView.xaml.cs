@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Wpf.Ui.Controls;
+using TEdit.UI;
 using MessageBox = System.Windows.MessageBox;
 using MessageBoxButton = System.Windows.MessageBoxButton;
 
@@ -21,6 +22,7 @@ public partial class BlockShufflePluginView : FluentWindow
     public BlockShufflePluginView(bool activeSelection)
     {
         InitializeComponent();
+        WindowSizing.SizeFromContent(this);
         if (activeSelection)
             SelectionRadio.IsChecked = true;
         else
