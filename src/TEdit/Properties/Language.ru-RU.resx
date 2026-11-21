@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -137,9 +137,6 @@
   </data>
   <data name="about_patreon" xml:space="preserve">
     <value>Поддержка на Patreon</value>
-  </data>
-  <data name="about_system" xml:space="preserve">
-    <value>Система</value>
   </data>
   <data name="about_terraria_not_found" xml:space="preserve">
     <value>Не найдено</value>
@@ -231,96 +228,6 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>Обновить</value>
   </data>
-  <data name="bg_cave_blue" xml:space="preserve">
-    <value>Синие</value>
-  </data>
-  <data name="bg_cave_blue_alt" xml:space="preserve">
-    <value>Синяя высота</value>
-  </data>
-  <data name="bg_cave_brown" xml:space="preserve">
-    <value>Коричневый</value>
-  </data>
-  <data name="bg_cave_gray" xml:space="preserve">
-    <value>Серый</value>
-  </data>
-  <data name="bg_cave_green" xml:space="preserve">
-    <value>Зелёные</value>
-  </data>
-  <data name="bg_cave_green_alt" xml:space="preserve">
-    <value>Зелёный режим высотных отметок</value>
-  </data>
-  <data name="bg_cave_purple" xml:space="preserve">
-    <value>Фиолетовый</value>
-  </data>
-  <data name="bg_cave_stone" xml:space="preserve">
-    <value>Камень</value>
-  </data>
-  <data name="bg_default" xml:space="preserve">
-    <value>По умолчанию</value>
-  </data>
-  <data name="bg_mnt_default_trees" xml:space="preserve">
-    <value>Горы {0} + стандартные деревья</value>
-  </data>
-  <data name="bg_mnt_trees" xml:space="preserve">
-    <value>Горы {0} + деревья</value>
-  </data>
-  <data name="bg_mountains_alt" xml:space="preserve">
-    <value>Альтернативная высота гор</value>
-  </data>
-  <data name="bg_mountains_only" xml:space="preserve">
-    <value>Только горы</value>
-  </data>
-  <data name="bg_mountains_only_a" xml:space="preserve">
-    <value>Только горы A</value>
-  </data>
-  <data name="bg_mountains_only_b" xml:space="preserve">
-    <value>Только горы B</value>
-  </data>
-  <data name="bg_mountains_only_c" xml:space="preserve">
-    <value>Только горы C</value>
-  </data>
-  <data name="bg_mountains_tree" xml:space="preserve">
-    <value>Горы и деревья</value>
-  </data>
-  <data name="bg_multibiome_format" xml:space="preserve">
-    <value>Мультибиом: {0}</value>
-  </data>
-  <data name="bg_remix_format" xml:space="preserve">
-    <value>Ремикс {0}</value>
-  </data>
-  <data name="bg_trees_only_a" xml:space="preserve">
-    <value>Только деревья A</value>
-  </data>
-  <data name="bg_trees_only_b" xml:space="preserve">
-    <value>Только деревья B</value>
-  </data>
-  <data name="bg_tree_boreal" xml:space="preserve">
-    <value>Бореальный лес</value>
-  </data>
-  <data name="bg_tree_jungle" xml:space="preserve">
-    <value>Похожий на джунгли</value>
-  </data>
-  <data name="bg_tree_oak" xml:space="preserve">
-    <value>Дуб</value>
-  </data>
-  <data name="bg_tree_palm" xml:space="preserve">
-    <value>Похожий на пальму</value>
-  </data>
-  <data name="bg_tree_sakura" xml:space="preserve">
-    <value>Сакура</value>
-  </data>
-  <data name="bg_tree_willow" xml:space="preserve">
-    <value>Ива</value>
-  </data>
-  <data name="bg_variant_alt" xml:space="preserve">
-    <value>Вариант {0}, альтернативный</value>
-  </data>
-  <data name="bg_variant_alt_letter" xml:space="preserve">
-    <value>Вариант {0} (альтернативный {1})</value>
-  </data>
-  <data name="bg_variant_format" xml:space="preserve">
-    <value>Вариант {0}</value>
-  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Заполнить блок</value>
   </data>
@@ -400,17 +307,11 @@
   <data name="common_close" xml:space="preserve">
     <value>Закрыть</value>
   </data>
-  <data name="common_delete" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
   <data name="common_edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>Включено</value>
-  </data>
-  <data name="common_error" xml:space="preserve">
-    <value>Ошибка</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>Генерировать</value>
@@ -418,14 +319,8 @@
   <data name="common_left" xml:space="preserve">
     <value>Слева</value>
   </data>
-  <data name="common_no" xml:space="preserve">
-    <value>Нет</value>
-  </data>
   <data name="common_none" xml:space="preserve">
     <value>Никто</value>
-  </data>
-  <data name="common_not_determined" xml:space="preserve">
-    <value>Не определено</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>ХОРОШО</value>
@@ -450,9 +345,6 @@
   </data>
   <data name="common_search" xml:space="preserve">
     <value>Поиск</value>
-  </data>
-  <data name="common_yes" xml:space="preserve">
-    <value>Да</value>
   </data>
   <data name="depth_center" xml:space="preserve">
     <value>Центр</value>
@@ -484,350 +376,12 @@
   <data name="depth_west" xml:space="preserve">
     <value>{0}' Запад</value>
   </data>
-  <data name="dialog_cache_cleared_failed" xml:space="preserve">
-    <value>Не удалось удалить файлов: {0:N0}; подробности см. в журнале.</value>
-  </data>
-  <data name="dialog_cache_cleared_result" xml:space="preserve">
-    <value>Удалено файлов: {0:N0}, освобождено места: {1}.</value>
-  </data>
-  <data name="dialog_cache_cleared_title" xml:space="preserve">
-    <value>Кэш очищен</value>
-  </data>
-  <data name="dialog_clear_cache_button" xml:space="preserve">
-    <value>Очистить кэш</value>
-  </data>
-  <data name="dialog_clear_cache_prompt" xml:space="preserve">
-    <value>Удалить кэшированные файлы: {0:N0} ({1})?
-
-Будут удалены резервные копии и файлы автосохранения TEdit, а также вся история отмены и повтора действий. Файлы миров Terraria и файлы .bak не затрагиваются.</value>
-  </data>
-  <data name="dialog_clear_cache_title" xml:space="preserve">
-    <value>Очистить кэш TEdit</value>
-  </data>
-  <data name="dialog_complete_bestiary_error" xml:space="preserve">
-    <value>Ошибка при завершении обработки данных бестиария. Текущие данные бестиария восстановлены.
-{0}</value>
-  </data>
-  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
-    <value>Текущие Бестиарий и счётчик убийств загруженного мира будут полностью заменены заполненным бестиарием. Продолжить?</value>
-  </data>
-  <data name="dialog_complete_bestiary_title" xml:space="preserve">
-    <value>Заполнить бестиарий?</value>
-  </data>
-  <data name="dialog_confirm_delete_title" xml:space="preserve">
-    <value>Подтвердить удаление</value>
-  </data>
-  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
-    <value>Добавить границы «края мира»?</value>
-  </data>
-  <data name="dialog_crop_world_borders_title" xml:space="preserve">
-    <value>Обрезать мир:</value>
-  </data>
-  <data name="dialog_crop_world_prompt" xml:space="preserve">
-    <value>В выбранной области будет создан новый мир.
-Весь прогресс за пределами обрезанной области будет потерян. Продолжить?</value>
-  </data>
-  <data name="dialog_crop_world_title" xml:space="preserve">
-    <value>Обрезать мир?</value>
-  </data>
-  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить все сундуки?</value>
-  </data>
-  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить все незапертые сундуки?</value>
-  </data>
-  <data name="dialog_delete_backup_prompt" xml:space="preserve">
-    <value>Удалить резервную копию?
-{0}</value>
-  </data>
-  <data name="dialog_delete_chests_title" xml:space="preserve">
-    <value>Удалить сундуки</value>
-  </data>
-  <data name="dialog_dont_save" xml:space="preserve">
-    <value>Не сохранять</value>
-  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>Эта папка не содержит контента Terraria.
 	Выберите другую папку, чтобы программа не считала {0} папкой игры.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Контент игры не найден</value>
-  </data>
-  <data name="dialog_export_schematic" xml:space="preserve">
-    <value>Экспортировать файл схемы</value>
-  </data>
-  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
-    <value>Текстуры ещё не загружены. Дождитесь завершения загрузки текстур.</value>
-  </data>
-  <data name="dialog_export_textures_title" xml:space="preserve">
-    <value>Экспорт текстур</value>
-  </data>
-  <data name="dialog_import_banners" xml:space="preserve">
-    <value>Импортировать знамёна из файла мира</value>
-  </data>
-  <data name="dialog_import_banners_error" xml:space="preserve">
-    <value>Ошибка при импорте данных о знамёнах из {0}. Текущие знамёна восстановлены.
-{1}</value>
-  </data>
-  <data name="dialog_import_banners_prompt" xml:space="preserve">
-    <value>Это заменит текущие значения счётчиков знамён данными из выбранного файла мира. Продолжить?</value>
-  </data>
-  <data name="dialog_import_banners_title" xml:space="preserve">
-    <value>Импортировать знамёна?</value>
-  </data>
-  <data name="dialog_import_bestiary" xml:space="preserve">
-    <value>Импортировать бестиарий и данные об убийствах из файла мира</value>
-  </data>
-  <data name="dialog_import_bestiary_error" xml:space="preserve">
-    <value>Ошибка импорта данных бестиария из {0}. Текущий бестиарий восстановлен.
-{1}</value>
-  </data>
-  <data name="dialog_import_error_title" xml:space="preserve">
-    <value>Ошибка импорта</value>
-  </data>
-  <data name="dialog_import_housegen_schematic" xml:space="preserve">
-    <value>Импортировать файл схемы дома TEdit House Gen</value>
-  </data>
-  <data name="dialog_import_schematic" xml:space="preserve">
-    <value>Импортировать файл схемы TEdit</value>
-  </data>
-  <data name="dialog_invalid_world_prompt" xml:space="preserve">
-    <value>Произошла ошибка при чтении файла мира.
-Обычно это вызвано повреждением файла сохранения или версией мира, которая новее поддерживаемой.
-
-TEdit v{0}
-Максимальная версия мира для TEdit: {1}
-Текущая версия мира: {2}
-
-Всё равно принудительно загрузить мир?
-
-ВНИМАНИЕ: Это может привести к непредвиденным последствиям, включая повреждение файлов мира и сбои программы.
-
-Ошибка:
-{3}</value>
-  </data>
-  <data name="dialog_invalid_world_title" xml:space="preserve">
-    <value>Загрузить некорректный мир?</value>
-  </data>
-  <data name="dialog_language_restart_prompt" xml:space="preserve">
-    <value>Язык изменён на {0}. Перезапустить сейчас?</value>
-  </data>
-  <data name="dialog_language_restart_title" xml:space="preserve">
-    <value>Перезапустите игру, чтобы изменить язык</value>
-  </data>
-  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
-    <value>Вы загружаете мир tModLoader старой версии: {0}.
-1. Редактирование файлов старых версий — это функция в бета-версии.
-2. Редактирование миров с модами не поддерживается.
-Создайте резервную копию: файл мира может быть повреждён.
-Продолжить?</value>
-  </data>
-  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
-    <value>Загрузить мир из старой версии tModLoader?</value>
-  </data>
-  <data name="dialog_legacy_world_prompt" xml:space="preserve">
-    <value>Вы загружаете мир старой версии: {0}.
-Редактирование старых файлов может привести к неожиданным результатам.
-Создайте резервную копию: файл мира может повредиться.
-Продолжить?</value>
-  </data>
-  <data name="dialog_legacy_world_title" xml:space="preserve">
-    <value>Загрузить мир старой версии?</value>
-  </data>
-  <data name="dialog_link_error_message" xml:space="preserve">
-    <value>Не удалось открыть внешний браузер. Скопировать в буфер обмена?</value>
-  </data>
-  <data name="dialog_link_error_title" xml:space="preserve">
-    <value>Ошибка ссылки</value>
-  </data>
-  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
-    <value>Это полностью заменит бестиарий и счётчик убийств текущего мира данными из выбранного файла. Продолжить?</value>
-  </data>
-  <data name="dialog_load_bestiary_title" xml:space="preserve">
-    <value>Загрузить бестиарий?</value>
-  </data>
-  <data name="dialog_locate_terraria_folder" xml:space="preserve">
-    <value>Укажите папку Terraria</value>
-  </data>
-  <data name="dialog_max_banners_prompt" xml:space="preserve">
-    <value>Установить для всех знамён максимальное количество (9999)?</value>
-  </data>
-  <data name="dialog_max_banners_title" xml:space="preserve">
-    <value>Максимизировать количество знамён?</value>
-  </data>
-  <data name="dialog_mod_world_prompt" xml:space="preserve">
-    <value>Вы загружаете мир TModLoader. Редактирование миров с модами не поддерживается.
-Создайте резервную копию: файл мира может повредиться.
-Продолжить?</value>
-  </data>
-  <data name="dialog_mod_world_title" xml:space="preserve">
-    <value>Загрузить мир с модами?</value>
-  </data>
-  <data name="dialog_newer_version_prompt" xml:space="preserve">
-    <value>Версия этого мира НОВЕЕ, чем поддерживаемая конфигурацией TEdit.
-
-Версия мира: {0}
-Максимальная поддерживаемая версия: {1}
-
-TEdit переключится на конфигурацию версии {1} (отсутствие новых плиток, стен и т. д. может вызвать проблемы).
-
-Всё равно попытаться загрузить мир?</value>
-  </data>
-  <data name="dialog_newer_version_title" xml:space="preserve">
-    <value>Более новая версия мира</value>
-  </data>
-  <data name="dialog_open_world_file" xml:space="preserve">
-    <value>Открыть файл мира</value>
-  </data>
-  <data name="dialog_player_modified_prompt" xml:space="preserve">
-    <value>Файл {0} был изменён извне после загрузки или последнего сохранения.
-Перезаписать его?</value>
-  </data>
-  <data name="dialog_player_modified_title" xml:space="preserve">
-    <value>Игрок изменён</value>
-  </data>
-  <data name="dialog_reload_no_world" xml:space="preserve">
-    <value>Нет открытого мира для повторной загрузки.</value>
-  </data>
-  <data name="dialog_reload_world_prompt" xml:space="preserve">
-    <value>Несохранённые изменения будут потеряны!</value>
-  </data>
-  <data name="dialog_reload_world_title" xml:space="preserve">
-    <value>Перезагрузить текущий мир?</value>
-  </data>
-  <data name="dialog_removetile_prompt" xml:space="preserve">
-    <value>Это полностью удалит из вашего мира все найденные блоки. Продолжить?</value>
-  </data>
-  <data name="dialog_removetile_result" xml:space="preserve">
-    <value>Найдено и удалено блоков: {0:N0}.</value>
-  </data>
-  <data name="dialog_replace_mask_warning" xml:space="preserve">
-    <value>Чтобы использовать замену, включите хотя бы одну маску. Маски определяют, какие блоки нужно найти.</value>
-  </data>
-  <data name="dialog_replace_title" xml:space="preserve">
-    <value>Заменить</value>
-  </data>
-  <data name="dialog_reset_banners_prompt" xml:space="preserve">
-    <value>Сбросить количество всех знамён до нуля?</value>
-  </data>
-  <data name="dialog_reset_banners_title" xml:space="preserve">
-    <value>Сбросить знамёна?</value>
-  </data>
-  <data name="dialog_reset_bestiary_error" xml:space="preserve">
-    <value>Ошибка сброса данных бестиария. Ваш текущий бестиарий восстановлен.
-{0}</value>
-  </data>
-  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
-    <value>Это полностью заменит бестиарий и счётчик убийств в загруженном мире на пустые. Продолжить?</value>
-  </data>
-  <data name="dialog_reset_bestiary_title" xml:space="preserve">
-    <value>Сбросить бестиарий?</value>
-  </data>
-  <data name="dialog_save_banners_error" xml:space="preserve">
-    <value>Ошибка при сохранении данных знамени. Изменения восстановлены.
-{0}</value>
-  </data>
-  <data name="dialog_save_banners_prompt" xml:space="preserve">
-    <value>Сохранить изменения баннера в мире?</value>
-  </data>
-  <data name="dialog_save_banners_title" xml:space="preserve">
-    <value>Сохранить знамёна?</value>
-  </data>
-  <data name="dialog_save_bestiary_error" xml:space="preserve">
-    <value>Ошибка при сохранении данных Бестиария. Ваш текущий Бестиарий восстановлен.
-{0}</value>
-  </data>
-  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
-    <value>Вы уверены, что хотите сохранить изменения в бестиарии?</value>
-  </data>
-  <data name="dialog_save_bestiary_title" xml:space="preserve">
-    <value>Сохранить бестиарий?</value>
-  </data>
-  <data name="dialog_save_pixelart" xml:space="preserve">
-    <value>Сохранить сгенерированный пиксель-арт</value>
-  </data>
-  <data name="dialog_save_world_analysis" xml:space="preserve">
-    <value>Сохранить анализ мира.</value>
-  </data>
-  <data name="dialog_save_world_as" xml:space="preserve">
-    <value>Сохранить мир как</value>
-  </data>
-  <data name="dialog_select_output_folder" xml:space="preserve">
-    <value>Выберите папку для сохранения тайлов карты</value>
-  </data>
-  <data name="dialog_select_player_file" xml:space="preserve">
-    <value>Выберите файл игрока</value>
-  </data>
-  <data name="dialog_unsaved_content" xml:space="preserve">
-    <value>Сохранить изменения перед закрытием TEdit?</value>
-  </data>
-  <data name="dialog_unsaved_title" xml:space="preserve">
-    <value>Несохранённые изменения</value>
-  </data>
-  <data name="dialog_world_corrupt_empty" xml:space="preserve">
-    <value>Похоже, файл мира пуст или повреждён (все байты равны нулю).
-Восстановить этот файл невозможно — данные отсутствуют.
-
-Что можно сделать?
-1. Восстановить ранее созданную резервную копию (.bak, .bak2).
-2. Восстановить ранее созданную вручную резервную копию.
-3. Восстановить ранее созданную контрольную точку TEdit (.TEdit).
-4. Восстановить резервную копию из истории файлов Windows (если эта функция была включена).</value>
-  </data>
-  <data name="dialog_world_modified_prompt" xml:space="preserve">
-    <value>Файл {0} был изменён извне после последнего сохранения.
-Перезаписать его?</value>
-  </data>
-  <data name="dialog_world_modified_title" xml:space="preserve">
-    <value>Мир изменён</value>
-  </data>
-  <data name="dialog_world_read_error" xml:space="preserve">
-    <value>Не удалось прочитать файл мира.
-Обычно это происходит из-за повреждённого файла сохранения или версии мира новее поддерживаемой.
-
-TEdit v{0}
-Максимальный размер мира в TEdit: {1}
-Текущий размер мира: {2}
-
-Ошибка:
-{3}</value>
-  </data>
-  <data name="dialog_world_save_failed" xml:space="preserve">
-    <value>Не удалось сохранить мир. Открытый мир был восстановлен, а ваши изменения не сохранены.
-{0}</value>
-  </data>
-  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
-    <value>Прыжки</value>
-  </data>
-  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
-    <value>Сидит</value>
-  </data>
-  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
-    <value>Стоящий</value>
-  </data>
-  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
-    <value>Использовать 1</value>
-  </data>
-  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
-    <value>Использовать 2</value>
-  </data>
-  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
-    <value>Использовать 3</value>
-  </data>
-  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
-    <value>Использовать 4</value>
-  </data>
-  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
-    <value>Использовать 5</value>
-  </data>
-  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
-    <value>Ходьба</value>
-  </data>
-  <data name="drawing_mode_bus" xml:space="preserve">
-    <value>Автобус</value>
-  </data>
-  <data name="drawing_mode_wire" xml:space="preserve">
-    <value>Провода</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
     <value>Wire 45°</value>
@@ -867,127 +421,6 @@ TEdit v{0}
   </data>
   <data name="editor_utilities_label" xml:space="preserve">
     <value>Инструменты</value>
-  </data>
-  <data name="enum_FilterMode_Darken" xml:space="preserve">
-    <value>Затемнять</value>
-  </data>
-  <data name="enum_FilterMode_Hide" xml:space="preserve">
-    <value>Скрывать</value>
-  </data>
-  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
-    <value>العربية</value>
-  </data>
-  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
-    <value>Автоматически (как в системе)</value>
-  </data>
-  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
-    <value>中文 (简体)</value>
-  </data>
-  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
-    <value>中文 (繁體)</value>
-  </data>
-  <data name="enum_LanguageSelection_English" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="enum_LanguageSelection_French" xml:space="preserve">
-    <value>Франсе</value>
-  </data>
-  <data name="enum_LanguageSelection_German" xml:space="preserve">
-    <value>Deutsch</value>
-  </data>
-  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
-    <value>Итальяно</value>
-  </data>
-  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
-    <value>日本語</value>
-  </data>
-  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
-    <value>한국어</value>
-  </data>
-  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
-    <value>Polski</value>
-  </data>
-  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
-    <value>Português</value>
-  </data>
-  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
-    <value>Русский</value>
-  </data>
-  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
-    <value>Español</value>
-  </data>
-  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
-    <value>По умолчанию</value>
-  </data>
-  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
-    <value>Мини-карта</value>
-  </data>
-  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
-    <value>Реалистичный</value>
-  </data>
-  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
-    <value>Альфа</value>
-  </data>
-  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
-    <value>Бета</value>
-  </data>
-  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
-    <value>Стабильная версия</value>
-  </data>
-  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
-    <value>Автоматическая загрузка</value>
-  </data>
-  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
-    <value>Автоматическая установка</value>
-  </data>
-  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
-    <value>Отключено</value>
-  </data>
-  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
-    <value>Только уведомлять</value>
-  </data>
-  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
-    <value>По центру экрана</value>
-  </data>
-  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
-    <value>По умолчанию</value>
-  </data>
-  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
-    <value>Развернуто на весь экран</value>
-  </data>
-  <data name="error_log_folder_exit" xml:space="preserve">
-    <value>Не удалось создать папку для журнала. Приложение будет закрыто.
-{0}
-{1}</value>
-  </data>
-  <data name="error_log_folder_title" xml:space="preserve">
-    <value>Не удалось создать папку для журнала.</value>
-  </data>
-  <data name="error_log_open_failed" xml:space="preserve">
-    <value>Не удалось открыть файл журнала: {0}</value>
-  </data>
-  <data name="error_texture_load" xml:space="preserve">
-    <value>Ошибка загрузки текстур из папки {0}.
-Убедитесь, что эта папка существует и у TEdit есть права на чтение.
-
-{1}</value>
-  </data>
-  <data name="error_texture_load_title" xml:space="preserve">
-    <value>Ошибка загрузки текстур</value>
-  </data>
-  <data name="error_undo_folder_exit" xml:space="preserve">
-    <value>Не удалось создать временную папку для отмены изменений. Приложение будет закрыто.
-{0}
-{1}</value>
-  </data>
-  <data name="error_undo_folder_title" xml:space="preserve">
-    <value>Не удалось создать папку для отмены действий.</value>
-  </data>
-  <data name="error_unhandled" xml:space="preserve">
-    <value>Произошла необработанная ошибка. Вы можете продолжить работу в TEdit, но приложение может работать нестабильно, пока вы его не перезапустите.</value>
-  </data>
-  <data name="error_unhandled_title" xml:space="preserve">
-    <value>Необработанное исключение</value>
   </data>
   <data name="expand_description" xml:space="preserve">
     <value>Мир будет сосредоточен вокруг этих новых измерений.</value>
@@ -1100,219 +533,6 @@ TEdit v{0}
   <data name="find_tab_chests" xml:space="preserve">
     <value>Предметы в сундуках</value>
   </data>
-  <data name="frame_anchor_bottom" xml:space="preserve">
-    <value>Снизу</value>
-  </data>
-  <data name="frame_anchor_center" xml:space="preserve">
-    <value>Центр</value>
-  </data>
-  <data name="frame_anchor_left" xml:space="preserve">
-    <value>Слева</value>
-  </data>
-  <data name="frame_anchor_none" xml:space="preserve">
-    <value>Никто</value>
-  </data>
-  <data name="frame_anchor_right" xml:space="preserve">
-    <value>Справа</value>
-  </data>
-  <data name="frame_anchor_top" xml:space="preserve">
-    <value>Верхняя часть</value>
-  </data>
-  <data name="frame_text_amber_tree" xml:space="preserve">
-    <value>Янтарное дерево</value>
-  </data>
-  <data name="frame_text_amethyst_tree" xml:space="preserve">
-    <value>Аметистовое дерево</value>
-  </data>
-  <data name="frame_text_ash_tree" xml:space="preserve">
-    <value>Ясень</value>
-  </data>
-  <data name="frame_text_attach_left" xml:space="preserve">
-    <value>Присоединить слева</value>
-  </data>
-  <data name="frame_text_attach_left_endcap" xml:space="preserve">
-    <value>Прикрепить левую торцевую часть</value>
-  </data>
-  <data name="frame_text_attach_right" xml:space="preserve">
-    <value>Прикрепить справа</value>
-  </data>
-  <data name="frame_text_attach_right_endcap" xml:space="preserve">
-    <value>Присоединить правую заглушку</value>
-  </data>
-  <data name="frame_text_boss_trophy" xml:space="preserve">
-    <value>Трофей босса</value>
-  </data>
-  <data name="frame_text_corruption_short_plants" xml:space="preserve">
-    <value>Низкорослые растения порчи</value>
-  </data>
-  <data name="frame_text_crimson_short_plants" xml:space="preserve">
-    <value>Низкие растения в багряном биоме</value>
-  </data>
-  <data name="frame_text_critter_anchor" xml:space="preserve">
-    <value>Точка привязки существа</value>
-  </data>
-  <data name="frame_text_decos_3x2" xml:space="preserve">
-    <value>Декорации (3×2)</value>
-  </data>
-  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
-    <value>Декорации (3×2) (группа 2)</value>
-  </data>
-  <data name="frame_text_diamond_tree" xml:space="preserve">
-    <value>Алмазное дерево</value>
-  </data>
-  <data name="frame_text_emerald_tree" xml:space="preserve">
-    <value>Изумрудное дерево</value>
-  </data>
-  <data name="frame_text_endcap_left" xml:space="preserve">
-    <value>Левый торцевой элемент</value>
-  </data>
-  <data name="frame_text_endcap_right" xml:space="preserve">
-    <value>Правая торцевая заглушка</value>
-  </data>
-  <data name="frame_text_flat" xml:space="preserve">
-    <value>Плоский</value>
-  </data>
-  <data name="frame_text_forest_pot" xml:space="preserve">
-    <value>Лесной горшок</value>
-  </data>
-  <data name="frame_text_forest_short_plants" xml:space="preserve">
-    <value>Низкие растения в лесу</value>
-  </data>
-  <data name="frame_text_forest_tall_plants" xml:space="preserve">
-    <value>Высокие лесные растения</value>
-  </data>
-  <data name="frame_text_forest_tree" xml:space="preserve">
-    <value>Лесное дерево</value>
-  </data>
-  <data name="frame_text_hallow_short_plants" xml:space="preserve">
-    <value>Низкие растения Освящения</value>
-  </data>
-  <data name="frame_text_jungle_large_plants" xml:space="preserve">
-    <value>Крупные растения джунглей</value>
-  </data>
-  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
-    <value>Эхо растений джунглей</value>
-  </data>
-  <data name="frame_text_jungle_short_plants" xml:space="preserve">
-    <value>Низкие растения джунглей</value>
-  </data>
-  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
-    <value>Крупные обломки (3×2)</value>
-  </data>
-  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
-    <value>Крупные обломки (3×2) (группа 2)</value>
-  </data>
-  <data name="frame_text_left" xml:space="preserve">
-    <value>Слева</value>
-  </data>
-  <data name="frame_text_locked" xml:space="preserve">
-    <value>Заблокировано</value>
-  </data>
-  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
-    <value>Средние обломки (2×1)</value>
-  </data>
-  <data name="frame_text_monster_banner" xml:space="preserve">
-    <value>Знамя монстра</value>
-  </data>
-  <data name="frame_text_off" xml:space="preserve">
-    <value>Выключение</value>
-  </data>
-  <data name="frame_text_on" xml:space="preserve">
-    <value>Вкл.</value>
-  </data>
-  <data name="frame_text_ore_bars" xml:space="preserve">
-    <value>Слитки руды</value>
-  </data>
-  <data name="frame_text_pumpkin_plant" xml:space="preserve">
-    <value>Тыква (растение)</value>
-  </data>
-  <data name="frame_text_right" xml:space="preserve">
-    <value>Справа</value>
-  </data>
-  <data name="frame_text_ruby_tree" xml:space="preserve">
-    <value>Рубиновое дерево</value>
-  </data>
-  <data name="frame_text_sapphire_tree" xml:space="preserve">
-    <value>Сапфировое дерево</value>
-  </data>
-  <data name="frame_text_single" xml:space="preserve">
-    <value>Один игрок</value>
-  </data>
-  <data name="frame_text_small_decos" xml:space="preserve">
-    <value>Мелкий декор</value>
-  </data>
-  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
-    <value>Мелкие обломки (1×1)</value>
-  </data>
-  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
-    <value>Левая нижняя площадка лестницы</value>
-  </data>
-  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
-    <value>Правая нижняя площадка лестницы</value>
-  </data>
-  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
-    <value>Лестничный выступ вверх-влево 1</value>
-  </data>
-  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
-    <value>Углублённая ступень вверх-влево 2</value>
-  </data>
-  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
-    <value>Внутренний уступ лестницы вверху слева 3</value>
-  </data>
-  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
-    <value>Ступень с вырезом вверх-вправо 1</value>
-  </data>
-  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
-    <value>Встроенная ступенька вверх-вправо 2</value>
-  </data>
-  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
-    <value>Внутренний угол лестницы вверх-вправо 3</value>
-  </data>
-  <data name="frame_text_stair_inverted_left" xml:space="preserve">
-    <value>Перевёрнутая лестница влево</value>
-  </data>
-  <data name="frame_text_stair_inverted_right" xml:space="preserve">
-    <value>Перевёрнутая правая лестница</value>
-  </data>
-  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
-    <value>Верхняя площадка лестницы слева</value>
-  </data>
-  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
-    <value>Левый торцевой элемент верхней площадки лестницы</value>
-  </data>
-  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
-    <value>Верхняя площадка лестницы слева направо</value>
-  </data>
-  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
-    <value>Правая площадка верхней ступени</value>
-  </data>
-  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
-    <value>Правый торцевой элемент верхней площадки лестницы</value>
-  </data>
-  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
-    <value>Подступенок лестницы вверх-влево</value>
-  </data>
-  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
-    <value>Тетива лестницы, идущей вверх-влево</value>
-  </data>
-  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
-    <value>Подъёмная ступень лестницы вверх-вправо</value>
-  </data>
-  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
-    <value>Тетива лестницы вверх-вправо</value>
-  </data>
-  <data name="frame_text_text_statue" xml:space="preserve">
-    <value>Текст статуи</value>
-  </data>
-  <data name="frame_text_topaz_tree" xml:space="preserve">
-    <value>Топазовое дерево</value>
-  </data>
-  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
-    <value>Декоративная сакура</value>
-  </data>
-  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
-    <value>Декоративная жёлтая ива</value>
-  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>Нравится TEdit? Поддержите нас!</value>
   </data>
@@ -1330,312 +550,6 @@ TEdit v{0}
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>Сделать твёрдым</value>
-  </data>
-  <data name="input_app_settings" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="input_category_editing" xml:space="preserve">
-    <value>Редактирование</value>
-  </data>
-  <data name="input_category_file" xml:space="preserve">
-    <value>Файл</value>
-  </data>
-  <data name="input_category_help" xml:space="preserve">
-    <value>Помощь</value>
-  </data>
-  <data name="input_category_navigation" xml:space="preserve">
-    <value>Навигация</value>
-  </data>
-  <data name="input_category_selection" xml:space="preserve">
-    <value>Выделение</value>
-  </data>
-  <data name="input_category_toggles" xml:space="preserve">
-    <value>Переключатели</value>
-  </data>
-  <data name="input_category_tooldrawing" xml:space="preserve">
-    <value>Инструмент рисования</value>
-  </data>
-  <data name="input_category_tools" xml:space="preserve">
-    <value>Инструменты</value>
-  </data>
-  <data name="input_category_view" xml:space="preserve">
-    <value>Вид</value>
-  </data>
-  <data name="input_editor_draw" xml:space="preserve">
-    <value>Рисование / Основное действие</value>
-  </data>
-  <data name="input_editor_draw_constrain" xml:space="preserve">
-    <value>Рисование с ограничением (по горизонтали/вертикали/под углом 45°)</value>
-  </data>
-  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
-    <value>Ограничить рисование горизонтальными, вертикальными или диагональными линиями под углом 45°</value>
-  </data>
-  <data name="input_editor_draw_desc" xml:space="preserve">
-    <value>Основное действие рисования в инструментах</value>
-  </data>
-  <data name="input_editor_draw_line" xml:space="preserve">
-    <value>Нарисовать линию по точкам</value>
-  </data>
-  <data name="input_editor_draw_line_desc" xml:space="preserve">
-    <value>Рисовать прямые линии между точками щелчка мышью</value>
-  </data>
-  <data name="input_editor_pan" xml:space="preserve">
-    <value>Перемещение области просмотра</value>
-  </data>
-  <data name="input_editor_pan_desc" xml:space="preserve">
-    <value>Перетащите, чтобы переместить область просмотра</value>
-  </data>
-  <data name="input_editor_secondary" xml:space="preserve">
-    <value>Дополнительное действие</value>
-  </data>
-  <data name="input_editor_secondary_desc" xml:space="preserve">
-    <value>Вторичное действие в инструментах (осмотр, снятие выделения, выбор маски и т. д.)</value>
-  </data>
-  <data name="input_editor_wire_color1" xml:space="preserve">
-    <value>Переключить красный провод</value>
-  </data>
-  <data name="input_editor_wire_color1_desc" xml:space="preserve">
-    <value>Включить/выключить красный провод</value>
-  </data>
-  <data name="input_editor_wire_color2" xml:space="preserve">
-    <value>Переключить синий провод</value>
-  </data>
-  <data name="input_editor_wire_color2_desc" xml:space="preserve">
-    <value>Включить или отключить синий провод</value>
-  </data>
-  <data name="input_editor_wire_color3" xml:space="preserve">
-    <value>Переключить зелёный провод</value>
-  </data>
-  <data name="input_editor_wire_color3_desc" xml:space="preserve">
-    <value>Переключить активацию зелёного провода</value>
-  </data>
-  <data name="input_editor_wire_color4" xml:space="preserve">
-    <value>Переключить жёлтый провод</value>
-  </data>
-  <data name="input_editor_wire_color4_desc" xml:space="preserve">
-    <value>Включить или выключить жёлтый провод</value>
-  </data>
-  <data name="input_editor_wire_modecycle" xml:space="preserve">
-    <value>Переключить режим отображения проводов</value>
-  </data>
-  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
-    <value>Переключить режим отрисовки проводов: выкл. → провод под углом 90° → провод под углом 45° → выкл.</value>
-  </data>
-  <data name="input_editor_wire_togglehv" xml:space="preserve">
-    <value>Переключить направление проводов по горизонтали/вертикали</value>
-  </data>
-  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
-    <value>Переключение между горизонтальной, вертикальной и автоматической прокладкой проводов</value>
-  </data>
-  <data name="input_editor_wire_trace" xml:space="preserve">
-    <value>Подсветка трассировки проводов</value>
-  </data>
-  <data name="input_editor_wire_trace_desc" xml:space="preserve">
-    <value>Alt+щелчок, чтобы выделить все провода, подключённые к выбранной плитке</value>
-  </data>
-  <data name="input_edit_copy" xml:space="preserve">
-    <value>Копировать</value>
-  </data>
-  <data name="input_edit_crop" xml:space="preserve">
-    <value>Обрезать мир</value>
-  </data>
-  <data name="input_edit_cut" xml:space="preserve">
-    <value>Вырезать</value>
-  </data>
-  <data name="input_edit_expand" xml:space="preserve">
-    <value>Расширить мир</value>
-  </data>
-  <data name="input_edit_paste" xml:space="preserve">
-    <value>Вставить</value>
-  </data>
-  <data name="input_edit_redo" xml:space="preserve">
-    <value>Восстановить</value>
-  </data>
-  <data name="input_edit_undo" xml:space="preserve">
-    <value>Отменить</value>
-  </data>
-  <data name="input_file_new" xml:space="preserve">
-    <value>Новый Свет</value>
-  </data>
-  <data name="input_file_open" xml:space="preserve">
-    <value>Открыть</value>
-  </data>
-  <data name="input_file_reload" xml:space="preserve">
-    <value>Перезагрузить мир</value>
-  </data>
-  <data name="input_file_save" xml:space="preserve">
-    <value>Сохранить</value>
-  </data>
-  <data name="input_file_saveas" xml:space="preserve">
-    <value>Сохранить как</value>
-  </data>
-  <data name="input_file_saveasversion" xml:space="preserve">
-    <value>Сохранить как версию</value>
-  </data>
-  <data name="input_help_wiki" xml:space="preserve">
-    <value>Вики / справка</value>
-  </data>
-  <data name="input_nav_pan" xml:space="preserve">
-    <value>Режим перемещения камеры</value>
-  </data>
-  <data name="input_nav_reset" xml:space="preserve">
-    <value>Сбросить инструмент / Снять выделение</value>
-  </data>
-  <data name="input_nav_scroll_down" xml:space="preserve">
-    <value>Прокрутить вниз</value>
-  </data>
-  <data name="input_nav_scroll_down_fast" xml:space="preserve">
-    <value>Быстрая прокрутка вниз</value>
-  </data>
-  <data name="input_nav_scroll_left" xml:space="preserve">
-    <value>Прокрутить влево</value>
-  </data>
-  <data name="input_nav_scroll_left_fast" xml:space="preserve">
-    <value>Быстрая прокрутка влево</value>
-  </data>
-  <data name="input_nav_scroll_right" xml:space="preserve">
-    <value>Прокрутить вправо</value>
-  </data>
-  <data name="input_nav_scroll_right_fast" xml:space="preserve">
-    <value>Быстро прокрутить вправо</value>
-  </data>
-  <data name="input_nav_scroll_up" xml:space="preserve">
-    <value>Прокрутить вверх</value>
-  </data>
-  <data name="input_nav_scroll_up_fast" xml:space="preserve">
-    <value>Быстрая прокрутка вверх</value>
-  </data>
-  <data name="input_nav_zoom_in" xml:space="preserve">
-    <value>Приблизить</value>
-  </data>
-  <data name="input_nav_zoom_out" xml:space="preserve">
-    <value>Отдалить</value>
-  </data>
-  <data name="input_paste_accept" xml:space="preserve">
-    <value>Подтвердить вставку</value>
-  </data>
-  <data name="input_paste_flip_h" xml:space="preserve">
-    <value>Отразить вставку по горизонтали</value>
-  </data>
-  <data name="input_paste_flip_v" xml:space="preserve">
-    <value>Отразить вставку по вертикали</value>
-  </data>
-  <data name="input_paste_rotate_ccw" xml:space="preserve">
-    <value>Повернуть вставляемое против часовой стрелки</value>
-  </data>
-  <data name="input_paste_rotate_cw" xml:space="preserve">
-    <value>Повернуть вставку по часовой стрелке</value>
-  </data>
-  <data name="input_selection_adjust_endpoint" xml:space="preserve">
-    <value>Переместить конечную точку выделения</value>
-  </data>
-  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
-    <value>Удерживайте Shift и щёлкните или перетащите, чтобы переместить нижний правый угол выделенной области</value>
-  </data>
-  <data name="input_selection_adjust_startpoint" xml:space="preserve">
-    <value>Переместить начальную точку выделения</value>
-  </data>
-  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
-    <value>Ctrl+щелчок/перетаскивание, чтобы переместить верхний левый угол выделения</value>
-  </data>
-  <data name="input_selection_all" xml:space="preserve">
-    <value>Выбрать всё</value>
-  </data>
-  <data name="input_selection_delete" xml:space="preserve">
-    <value>Удалить выделение</value>
-  </data>
-  <data name="input_selection_move_down" xml:space="preserve">
-    <value>Переместить выделение вниз</value>
-  </data>
-  <data name="input_selection_move_down_fast" xml:space="preserve">
-    <value>Быстро переместить выделение вниз</value>
-  </data>
-  <data name="input_selection_move_left" xml:space="preserve">
-    <value>Переместить выделенную область влево</value>
-  </data>
-  <data name="input_selection_move_left_fast" xml:space="preserve">
-    <value>Переместить выделение влево (быстро)</value>
-  </data>
-  <data name="input_selection_move_right" xml:space="preserve">
-    <value>Переместить выделение вправо</value>
-  </data>
-  <data name="input_selection_move_right_fast" xml:space="preserve">
-    <value>Переместить выделение вправо (быстро)</value>
-  </data>
-  <data name="input_selection_move_up" xml:space="preserve">
-    <value>Переместить выделение вверх</value>
-  </data>
-  <data name="input_selection_move_up_fast" xml:space="preserve">
-    <value>Переместить выделение вверх (быстро)</value>
-  </data>
-  <data name="input_selection_none" xml:space="preserve">
-    <value>Deselect</value>
-  </data>
-  <data name="input_selection_resize_down" xml:space="preserve">
-    <value>Увеличить высоту выделенной области</value>
-  </data>
-  <data name="input_selection_resize_down_fast" xml:space="preserve">
-    <value>Быстро увеличить высоту выделения</value>
-  </data>
-  <data name="input_selection_resize_left" xml:space="preserve">
-    <value>Уменьшить ширину выделения</value>
-  </data>
-  <data name="input_selection_resize_left_fast" xml:space="preserve">
-    <value>Уменьшить ширину выделения (быстро)</value>
-  </data>
-  <data name="input_selection_resize_right" xml:space="preserve">
-    <value>Увеличить ширину выделения</value>
-  </data>
-  <data name="input_selection_resize_right_fast" xml:space="preserve">
-    <value>Увеличить ширину выделения (быстро)</value>
-  </data>
-  <data name="input_selection_resize_up" xml:space="preserve">
-    <value>Уменьшить высоту выделенной области</value>
-  </data>
-  <data name="input_selection_resize_up_fast" xml:space="preserve">
-    <value>Быстро уменьшить высоту выделенной области</value>
-  </data>
-  <data name="input_toggle_eraser" xml:space="preserve">
-    <value>Включить/выключить ластик</value>
-  </data>
-  <data name="input_toggle_swap" xml:space="preserve">
-    <value>Поменять цвета местами</value>
-  </data>
-  <data name="input_toggle_tile" xml:space="preserve">
-    <value>Переключить стиль блока</value>
-  </data>
-  <data name="input_toggle_wall" xml:space="preserve">
-    <value>Переключить стиль стены</value>
-  </data>
-  <data name="input_tool_arrow" xml:space="preserve">
-    <value>Инструмент «Стрелка»</value>
-  </data>
-  <data name="input_tool_brush" xml:space="preserve">
-    <value>Инструмент кисти</value>
-  </data>
-  <data name="input_tool_fill" xml:space="preserve">
-    <value>Инструмент заливки</value>
-  </data>
-  <data name="input_tool_hammer" xml:space="preserve">
-    <value>Инструмент «Молоток»</value>
-  </data>
-  <data name="input_tool_morph" xml:space="preserve">
-    <value>Инструмент изменения формы</value>
-  </data>
-  <data name="input_tool_pencil" xml:space="preserve">
-    <value>Инструмент «Карандаш»</value>
-  </data>
-  <data name="input_tool_picker" xml:space="preserve">
-    <value>Инструмент выбора</value>
-  </data>
-  <data name="input_tool_point" xml:space="preserve">
-    <value>Инструмент «Точка»</value>
-  </data>
-  <data name="input_tool_selection" xml:space="preserve">
-    <value>Инструмент выделения</value>
-  </data>
-  <data name="input_tool_sprite" xml:space="preserve">
-    <value>Инструмент спрайтов</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Лицом влево</value>
@@ -1696,18 +610,6 @@ TEdit v{0}
   </data>
   <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
     <value>0%</value>
-  </data>
-  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
-    <value>Равный</value>
-  </data>
-  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
-    <value>Больше чем</value>
-  </data>
-  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
-    <value>Игнорировать</value>
-  </data>
-  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
-    <value>Меньше чем</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Мёд</value>
@@ -2028,7 +930,7 @@ TEdit v{0}
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文 (简体)</value>
+    <value>中文</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -2178,12 +1080,6 @@ TEdit v{0}
   <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
     <value>Изменяет рельеф и может удалять декорации. Используйте «Отменить», чтобы восстановить исходные блоки.</value>
   </data>
-  <data name="MorphBiome_Forest" xml:space="preserve">
-    <value>Лес</value>
-  </data>
-  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
-    <value>Светящийся гриб</value>
-  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>Святые земли</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -2204,48 +1100,6 @@ TEdit v{0}
   </data>
   <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
     <value>Преобразует подходящие блоки биома, а неподдерживаемые оставляет без изменений.</value>
-  </data>
-  <data name="MorphBiome_Snow" xml:space="preserve">
-    <value>Снег</value>
-  </data>
-  <data name="morph_moss_Argon" xml:space="preserve">
-    <value>Аргон</value>
-  </data>
-  <data name="morph_moss_Blue" xml:space="preserve">
-    <value>Синие</value>
-  </data>
-  <data name="morph_moss_Grass" xml:space="preserve">
-    <value>Трава</value>
-  </data>
-  <data name="morph_moss_Green" xml:space="preserve">
-    <value>Зелёные</value>
-  </data>
-  <data name="morph_moss_Helium" xml:space="preserve">
-    <value>Гелий</value>
-  </data>
-  <data name="morph_moss_Krypton" xml:space="preserve">
-    <value>Криптон</value>
-  </data>
-  <data name="morph_moss_Lava" xml:space="preserve">
-    <value>Лава</value>
-  </data>
-  <data name="morph_moss_Neon" xml:space="preserve">
-    <value>Неоновый</value>
-  </data>
-  <data name="morph_moss_None" xml:space="preserve">
-    <value>Нет (удалить)</value>
-  </data>
-  <data name="morph_moss_Purple" xml:space="preserve">
-    <value>Фиолетовый</value>
-  </data>
-  <data name="morph_moss_Red" xml:space="preserve">
-    <value>Красные</value>
-  </data>
-  <data name="morph_moss_Xenon" xml:space="preserve">
-    <value>Ксенон</value>
-  </data>
-  <data name="morph_moss_Yellow" xml:space="preserve">
-    <value>Жёлтые</value>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT Explorer</value>
@@ -2289,14 +1143,14 @@ TEdit v{0}
   <data name="newworld_cave_preset" xml:space="preserve">
     <value>Пресет пещеры</value>
   </data>
-  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
-    <value>Лабиринт</value>
+  <data name="newworld_cave_preset_normal" xml:space="preserve">
+    <value>Обычный</value>
   </data>
   <data name="newworld_cave_preset_large" xml:space="preserve">
     <value>Большой</value>
   </data>
-  <data name="newworld_cave_preset_normal" xml:space="preserve">
-    <value>Обычный</value>
+  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
+    <value>Лабиринт</value>
   </data>
   <data name="newworld_create" xml:space="preserve">
     <value>Create World</value>
@@ -2372,9 +1226,6 @@ TEdit v{0}
   </data>
   <data name="npc_search_placeholder" xml:space="preserve">
     <value>Поиски...</value>
-  </data>
-  <data name="overflow_more_panels" xml:space="preserve">
-    <value>Другие панели...</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Жидкость</value>
@@ -2517,14 +1368,6 @@ TEdit v{0}
   <data name="player_editor_equipment" xml:space="preserve">
     <value>Оборудование</value>
   </data>
-  <data name="player_editor_error_load" xml:space="preserve">
-    <value>Не удалось загрузить файл игрока:
-{0}</value>
-  </data>
-  <data name="player_editor_error_save" xml:space="preserve">
-    <value>Не удалось сохранить файл игрока:
-{0}</value>
-  </data>
   <data name="player_editor_eye_color" xml:space="preserve">
     <value>Цвет глаз</value>
   </data>
@@ -2558,9 +1401,6 @@ TEdit v{0}
   <data name="player_editor_save_as" xml:space="preserve">
     <value>Сохранить игрока как...</value>
   </data>
-  <data name="player_editor_save_canceled" xml:space="preserve">
-    <value>Сохранение отменено: файл игрока был изменён извне.</value>
-  </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
     <value>Цвет футболки</value>
   </data>
@@ -2575,12 +1415,6 @@ TEdit v{0}
   </data>
   <data name="player_editor_stats" xml:space="preserve">
     <value>Статистика</value>
-  </data>
-  <data name="player_editor_status_loaded" xml:space="preserve">
-    <value>Загружено: {0}</value>
-  </data>
-  <data name="player_editor_status_saved" xml:space="preserve">
-    <value>Сохранено: {0}</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
     <value>Редактор игроков</value>
@@ -2726,12 +1560,6 @@ TEdit v{0}
   <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
     <value>Включить отмену действий (медленно)</value>
   </data>
-  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
-    <value>Некоторые особые объекты, связанные с блоками (например, сундуки или таблички), по-прежнему защищены и не могут быть перемещены.</value>
-  </data>
-  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
-    <value>Включить информацию</value>
-  </data>
   <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
     <value>Включить сущности блоков</value>
   </data>
@@ -2753,23 +1581,11 @@ TEdit v{0}
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>Перемешать расположение блоков</value>
   </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>Очистить мир</value>
-  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>Добавить</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>Нажмите [...], чтобы импортировать схему шаблона.</value>
-  </data>
-  <data name="plugin_housegen_json_count_error" xml:space="preserve">
-    <value>{0} Проверьте значение «Count» в данных JSON и убедитесь, что оно соответствует связанной схеме.</value>
-  </data>
-  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
-    <value>Проверить данные JSON для {0} и {1}</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>Генератор домов по алгоритму</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>Предварительный просмотр</value>
@@ -2836,9 +1652,6 @@ TEdit v{0}
   </data>
   <data name="plugin_ore_mythril" xml:space="preserve">
     <value>Мифрил</value>
-  </data>
-  <data name="plugin_ore_none" xml:space="preserve">
-    <value>Н/Д</value>
   </data>
   <data name="plugin_ore_obsidian" xml:space="preserve">
     <value>Обсидиан</value>
@@ -2927,15 +1740,6 @@ TEdit v{0}
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>Безопасное строительство</value>
   </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>Вычисление...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>Вычисление...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>Отменить конвертацию</value>
-  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>Изменить A=.</value>
   </data>
@@ -2951,9 +1755,6 @@ TEdit v{0}
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>Инструменты цветовых фильтров:</value>
   </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>Преобразовать в пиксель-арт</value>
-  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>Преобразовать текущее изображение в пиксель-арт.</value>
   </data>
@@ -2966,47 +1767,11 @@ TEdit v{0}
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>Текущее изображение:</value>
   </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>По умолчанию</value>
-  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>Удалить пустые цвета</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>Удалить из фильтра цвета, отсутствующие в отрисованной пиксельной графике.</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>ОШИБКА: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>ОШИБКА: Неверный формат цветового фильтра! {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>Цветовой фильтр установлен на ноль. Измените настройки.</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>ОШИБКА: Сначала необходимо создать пиксель-арт!</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>Произошла ошибка: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>Ошибка при загрузке изображения: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>Для функции «Копировать в буфер обмена» необходимо загрузить мир!</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>Сначала необходимо сохранить схему!</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>Ошибка при сохранении изображения: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>Ошибка при сохранении схемы: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>Данные схемы пусты! Сначала создайте пиксель-арт!</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>Цвета после фильтрации:</value>
@@ -3050,23 +1815,14 @@ TEdit v{0}
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>Эрмит</value>
   </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>Обработка изображения завершена.</value>
-  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>Ланцош</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>Редактор преобразования изображений в пиксель-арт</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>Ближайший сосед</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>Новый коэффициент % уровня:</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>Никто</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>Без поворота</value>
@@ -3091,9 +1847,6 @@ TEdit v{0}
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>Показывать процесс отрисовки пиксельной графики (незначительно снижает производительность)</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>Рендеринг отменён.</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>Сбросить цвета</value>
@@ -3125,17 +1878,8 @@ TEdit v{0}
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>Режим масштабирования:</value>
   </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>Схема скопирована в буфер обмена.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>Схема была перезаписана.</value>
-  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>Поворот схемы:</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>Схема сохранена.</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>Задать новое соотношение</value>
@@ -3188,18 +1932,6 @@ TEdit v{0}
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>Ось Y</value>
   </data>
-  <data name="plugin_playermap_completed" xml:space="preserve">
-    <value>Карта сгенерирована!</value>
-  </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>Отобразить .map-файл игрока</value>
-  </data>
-  <data name="plugin_playermap_no_file" xml:space="preserve">
-    <value>Файл игрока не выбран.</value>
-  </data>
-  <data name="plugin_playermap_title" xml:space="preserve">
-    <value>Карта игрока</value>
-  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>Случайный выбор фоновых стен</value>
   </data>
@@ -3208,9 +1940,6 @@ TEdit v{0}
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>Поддержка блоков, подверженных гравитации (песок и т. д.)</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>Случайным образом распределить все блоки в мире</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>Не выбирать случайным образом блоки, которые мгновенно исчезают</value>
@@ -3227,34 +1956,17 @@ TEdit v{0}
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>Рандомизация мира</value>
   </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>Удалить все сундуки</value>
-  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>Введите название блока или спрайта, который хотите удалить.</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>Введите название стены, которую хотите удалить.</value>
   </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>Удалить спрайт, блок или стену</value>
-  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>Удалить блок</value>
   </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>Удалить все незапертые сундуки</value>
-  </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>Задержка</value>
-  </data>
-  <data name="plugin_replay_no_world" xml:space="preserve">
-    <value>Сначала откройте мир.</value>
-  </data>
-  <data name="plugin_replay_open_failed" xml:space="preserve">
-    <value>Не удалось открыть файл повтора.
-
-{0}</value>
   </data>
   <data name="plugin_replay_player_title" xml:space="preserve">
     <value>Проигрыватель повторов</value>
@@ -3268,14 +1980,8 @@ TEdit v{0}
   <data name="plugin_replay_title" xml:space="preserve">
     <value>Повторить воспроизведение</value>
   </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>Утрамбовать песок</value>
-  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>Сид: (оставьте пустым для случайного значения)</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>Создать отладочные спрайты</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>Добавить в буфер обмена</value>
@@ -3289,182 +1995,47 @@ TEdit v{0}
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>Максимальная длина линии</value>
   </data>
-  <data name="plugin_textstatue_menu" xml:space="preserve">
-    <value>Создать текстовые статуи</value>
-  </data>
   <data name="plugin_textstatue_title" xml:space="preserve">
     <value>Генератор статуй из текста</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>Очистить мир</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>Генератор домов по алгоритму</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>Редактор преобразования изображений в пиксель-арт</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>Отобразить .map-файл игрока</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>Случайным образом распределить все блоки в мире</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>Удалить все сундуки</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>Удалить спрайт, блок или стену</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>Удалить все незапертые сундуки</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>Утрамбовать песок</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>Создать отладочные спрайты</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>Создать текстовые статуи</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>Экспортировать текстуры (ОТЛАДКА)</value>
   </data>
   <data name="plugin_unlockallchests_menu" xml:space="preserve">
     <value>Разблокировать все сундуки</value>
-  </data>
-  <data name="progress_calculating_colors" xml:space="preserve">
-    <value>Вычисление цветов...</value>
-  </data>
-  <data name="progress_cloning_world" xml:space="preserve">
-    <value>Клонирование мира...</value>
-  </data>
-  <data name="progress_converting_to_windows_phone" xml:space="preserve">
-    <value>Преобразование мира для Windows Phone...</value>
-  </data>
-  <data name="progress_generating_caves" xml:space="preserve">
-    <value>Создание пещер...</value>
-  </data>
-  <data name="progress_generating_cave_noise" xml:space="preserve">
-    <value>Генерация шума для пещер...</value>
-  </data>
-  <data name="progress_generating_hills" xml:space="preserve">
-    <value>Создание холмов...</value>
-  </data>
-  <data name="progress_generating_underworld" xml:space="preserve">
-    <value>Создание Подземного мира...</value>
-  </data>
-  <data name="progress_generating_world" xml:space="preserve">
-    <value>Создание мира…</value>
-  </data>
-  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
-    <value>Заголовок мира Windows Phone загружен.</value>
-  </data>
-  <data name="progress_loading_chests" xml:space="preserve">
-    <value>Загрузка сундуков...</value>
-  </data>
-  <data name="progress_loading_file_header" xml:space="preserve">
-    <value>Загрузка заголовка файла...</value>
-  </data>
-  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
-    <value>Загрузка устаревших тайлов для Windows Phone...</value>
-  </data>
-  <data name="progress_loading_npcs" xml:space="preserve">
-    <value>Загрузка НИП...</value>
-  </data>
-  <data name="progress_loading_npc_data" xml:space="preserve">
-    <value>Загрузка данных о НИП...</value>
-  </data>
-  <data name="progress_loading_npc_names" xml:space="preserve">
-    <value>Загрузка имён NPC...</value>
-  </data>
-  <data name="progress_loading_signs" xml:space="preserve">
-    <value>Загрузка табличек...</value>
-  </data>
-  <data name="progress_loading_tiles" xml:space="preserve">
-    <value>Загрузка тайлов...</value>
-  </data>
-  <data name="progress_loading_tile_entities_section" xml:space="preserve">
-    <value>Загрузка раздела сущностей тайлов...</value>
-  </data>
-  <data name="progress_loading_tmodloader_data" xml:space="preserve">
-    <value>Загрузка данных tModLoader...</value>
-  </data>
-  <data name="progress_loading_winphone_tiles" xml:space="preserve">
-    <value>Загрузка плиток Windows Phone...</value>
-  </data>
-  <data name="progress_load_complete" xml:space="preserve">
-    <value>Загрузка завершена.</value>
-  </data>
-  <data name="progress_placing_caves" xml:space="preserve">
-    <value>Размещение пещер...</value>
-  </data>
-  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
-    <value>Подготовка данных tModLoader...</value>
-  </data>
-  <data name="progress_refining_caves" xml:space="preserve">
-    <value>Обрабатываем пещеры...</value>
-  </data>
-  <data name="progress_removing_future_tiles" xml:space="preserve">
-    <value>Удаление будущих блоков...</value>
-  </data>
-  <data name="progress_render_complete" xml:space="preserve">
-    <value>Отрисовка завершена</value>
-  </data>
-  <data name="progress_resetting_time" xml:space="preserve">
-    <value>Сброс времени...</value>
-  </data>
-  <data name="progress_save_bestiary" xml:space="preserve">
-    <value>Сохранить бестиарий...</value>
-  </data>
-  <data name="progress_save_chests" xml:space="preserve">
-    <value>Сохранить содержимое сундуков...</value>
-  </data>
-  <data name="progress_save_complete" xml:space="preserve">
-    <value>Сохранение завершено.</value>
-  </data>
-  <data name="progress_save_creative_powers" xml:space="preserve">
-    <value>Сохранить творческие способности...</value>
-  </data>
-  <data name="progress_save_footers" xml:space="preserve">
-    <value>Сохранить нижние колонтитулы...</value>
-  </data>
-  <data name="progress_save_headers" xml:space="preserve">
-    <value>Сохранить заголовки...</value>
-  </data>
-  <data name="progress_save_npcs" xml:space="preserve">
-    <value>Сохранить NPC...</value>
-  </data>
-  <data name="progress_save_signs" xml:space="preserve">
-    <value>Сохранить таблички...</value>
-  </data>
-  <data name="progress_save_tiles" xml:space="preserve">
-    <value>Сохранить плитки...</value>
-  </data>
-  <data name="progress_save_tile_entities_section" xml:space="preserve">
-    <value>Сохранить раздел тайловых сущностей…</value>
-  </data>
-  <data name="progress_save_town_manager" xml:space="preserve">
-    <value>Сохранить менеджер городов...</value>
-  </data>
-  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
-    <value>Сохранить взвешенные нажимные плиты...</value>
-  </data>
-  <data name="progress_saving_chests" xml:space="preserve">
-    <value>Сохранение содержимого сундуков...</value>
-  </data>
-  <data name="progress_saving_npc_data" xml:space="preserve">
-    <value>Сохранение данных о НИП...</value>
-  </data>
-  <data name="progress_saving_npc_names" xml:space="preserve">
-    <value>Сохранение имён NPC…</value>
-  </data>
-  <data name="progress_saving_signs" xml:space="preserve">
-    <value>Сохранение табличек...</value>
-  </data>
-  <data name="progress_saving_tiles" xml:space="preserve">
-    <value>Сохранение тайлов...</value>
-  </data>
-  <data name="progress_saving_tmodloader_data" xml:space="preserve">
-    <value>Сохранение данных tModLoader...</value>
-  </data>
-  <data name="progress_saving_validation_data" xml:space="preserve">
-    <value>Сохранение данных проверки...</value>
-  </data>
-  <data name="progress_saving_world" xml:space="preserve">
-    <value>Сохранение мира...</value>
-  </data>
-  <data name="progress_settling_sand" xml:space="preserve">
-    <value>Оседание песка...</value>
-  </data>
-  <data name="progress_validating_complete" xml:space="preserve">
-    <value>Проверка завершена...</value>
-  </data>
-  <data name="progress_validating_file" xml:space="preserve">
-    <value>Проверка файла...</value>
-  </data>
-  <data name="progress_validating_world" xml:space="preserve">
-    <value>Проверка мира...</value>
-  </data>
-  <data name="progress_verifying_file" xml:space="preserve">
-    <value>Проверка файла...</value>
-  </data>
-  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
-    <value>Мир загружен за {0} с.</value>
-  </data>
-  <data name="progress_world_load_complete" xml:space="preserve">
-    <value>Загрузка мира завершена.</value>
-  </data>
-  <data name="progress_world_save_complete" xml:space="preserve">
-    <value>Мир успешно сохранён.</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Выберите версию для сохранения как:</value>
@@ -3517,12 +2088,6 @@ TEdit v{0}
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>Периодически автоматически спасая мир</value>
   </data>
-  <data name="settings_brush_preview" xml:space="preserve">
-    <value>Предварительный просмотр кисти высокого качества</value>
-  </data>
-  <data name="settings_brush_preview_desc" xml:space="preserve">
-    <value>Показывать полную форму кисти при предварительном просмотре линии с Shift. Отключите эту настройку, чтобы линия отображалась одним пикселем.</value>
-  </data>
   <data name="settings_cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -3530,14 +2095,8 @@ TEdit v{0}
     <value>Экспериментальные особенности</value>
     <comment>Settings category for experimental/preview features</comment>
   </data>
-  <data name="settings_category_filter" xml:space="preserve">
-    <value>Фильтр и поиск</value>
-  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Общие заведения</value>
-  </data>
-  <data name="settings_category_keybindings_format" xml:space="preserve">
-    <value>Назначение клавиш — {0}</value>
   </data>
   <data name="settings_category_layers" xml:space="preserve">
     <value>Слои</value>
@@ -3560,12 +2119,6 @@ TEdit v{0}
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Цветовая палитра пиксельной карты: По умолчанию, Реалистичная (с текстурами) или Миникарта (цвета внутриигровой карты). Требуется перезагрузка.</value>
   </data>
-  <data name="settings_darken_amount" xml:space="preserve">
-    <value>Степень затемнения</value>
-  </data>
-  <data name="settings_darken_amount_desc" xml:space="preserve">
-    <value>Непрозрачность затемняющего слоя для невыбранных блоков (0–100%)</value>
-  </data>
   <data name="settings_enable_mica" xml:space="preserve">
     <value>Enable Mica backdrop</value>
   </data>
@@ -3583,12 +2136,6 @@ TEdit v{0}
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>Отправляйте анонимные отчёты об ошибках для повышения стабильности</value>
-  </data>
-  <data name="settings_filter_mode" xml:space="preserve">
-    <value>Режим фильтрации</value>
-  </data>
-  <data name="settings_filter_mode_desc" xml:space="preserve">
-    <value>Режим фильтра по умолчанию при применении фильтров для блоков, стен, жидкостей и проводов</value>
   </data>
   <data name="settings_keybind_add_tooltip" xml:space="preserve">
     <value>Добавьте новую клавиатуру</value>
@@ -3701,6 +2248,12 @@ TEdit v{0}
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Показывайте новости и объявления в редакторе</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Показать экран заставки</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Показать логотип TEdit во время запуска приложения</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Очки шоу</value>
   </data>
@@ -3712,12 +2265,6 @@ TEdit v{0}
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Переключение видимости красного провода</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>Показать экран заставки</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>Показать логотип TEdit во время запуска приложения</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>Текстуры шоу</value>
@@ -3918,6 +2465,33 @@ TEdit v{0}
   <data name="specialtile_label_pose" xml:space="preserve">
     <value>Поза</value>
   </data>
+  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
+    <value>Стоящий</value>
+  </data>
+  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
+    <value>Сидит</value>
+  </data>
+  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
+    <value>Прыжки</value>
+  </data>
+  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
+    <value>Ходьба</value>
+  </data>
+  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
+    <value>Использовать 1</value>
+  </data>
+  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
+    <value>Использовать 2</value>
+  </data>
+  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
+    <value>Использовать 3</value>
+  </data>
+  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
+    <value>Использовать 4</value>
+  </data>
+  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
+    <value>Использовать 5</value>
+  </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Текст таблички</value>
   </data>
@@ -4032,21 +2606,6 @@ TEdit v{0}
   <data name="spriteeditor_size_w" xml:space="preserve">
     <value>Size W:</value>
   </data>
-  <data name="spriteeditor_status_no_texture" xml:space="preserve">
-    <value>Текстура не загружена</value>
-  </data>
-  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
-    <value>Текстура не загружена — автоматическое определение невозможно</value>
-  </data>
-  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
-    <value>Загружено из пользовательского переопределения</value>
-  </data>
-  <data name="spriteeditor_status_ready" xml:space="preserve">
-    <value>Готово</value>
-  </data>
-  <data name="spriteeditor_status_reset_default" xml:space="preserve">
-    <value>Сбросить данные тайла до значений по умолчанию</value>
-  </data>
   <data name="spriteeditor_test" xml:space="preserve">
     <value>Test Value</value>
   </data>
@@ -4079,9 +2638,6 @@ TEdit v{0}
   </data>
   <data name="sprite_clear_selection_tooltip" xml:space="preserve">
     <value>Чистый выбор</value>
-  </data>
-  <data name="sprite_coords_format" xml:space="preserve">
-    <value>Пиксель: ({0}, {1})  Тайлы: [{2}, {3}]</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Фильтр</value>
@@ -4122,20 +2678,11 @@ TEdit v{0}
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>GPS</value>
   </data>
-  <data name="statusbar_empty_tile" xml:space="preserve">
-    <value>[пусто]</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Ещё</value>
   </data>
   <data name="statusbar_frame_label" xml:space="preserve">
     <value>Кадр</value>
-  </data>
-  <data name="statusbar_invalid_tile" xml:space="preserve">
-    <value>Недопустимый блок ({0})</value>
-  </data>
-  <data name="statusbar_invalid_wall" xml:space="preserve">
-    <value>Недопустимая стена ({0})</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
     <value>Краска</value>
@@ -4148,9 +2695,6 @@ TEdit v{0}
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
     <value>Блок</value>
-  </data>
-  <data name="statusbar_unknown_paint" xml:space="preserve">
-    <value>Неизвестная краска ({0})</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Стена</value>
@@ -4181,9 +2725,6 @@ TEdit v{0}
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Жёлтая команда появляется</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>Прочитать политику конфиденциальности полностью</value>
   </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit может отправлять анонимные отчеты об ошибках, чтобы помочь улучшить стабильность.
@@ -4406,17 +2947,11 @@ TEdit v{0}
   <data name="tool_fill_title" xml:space="preserve">
     <value>Заливка</value>
   </data>
-  <data name="tool_hammer_title" xml:space="preserve">
-    <value>Молот</value>
-  </data>
   <data name="tool_morph_base_tiles" xml:space="preserve">
     <value>Базовые плитки</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>Награды</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>Алтари/Сферы</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>Зло</value>
@@ -4562,20 +3097,17 @@ TEdit v{0}
   <data name="tool_picker_title" xml:space="preserve">
     <value>Пипетка - выбор цвета блока</value>
   </data>
-  <data name="tool_point_dungeon" xml:space="preserve">
-    <value>Подземелье</value>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>Специальные точки</value>
   </data>
   <data name="tool_point_spawn" xml:space="preserve">
     <value>Точка появления</value>
   </data>
+  <data name="tool_point_dungeon" xml:space="preserve">
+    <value>Подземелье</value>
+  </data>
   <data name="tool_point_team_format" xml:space="preserve">
     <value>Команда {0}</value>
-  </data>
-  <data name="tool_point_title" xml:space="preserve">
-    <value>Специальные точки</value>
-  </data>
-  <data name="tool_selection_title" xml:space="preserve">
-    <value>Выделение</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>Установка спрайтов</value>
@@ -4651,9 +3183,6 @@ TEdit v{0}
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>Фон преисподней</value>
-  </data>
-  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
-    <value>Мозг Ктулху</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Циклолень</value>
@@ -5240,18 +3769,6 @@ TEdit v{0}
     <value>TEdit обновлён.</value>
     <comment>Toast message when no updates are available</comment>
   </data>
-  <data name="wall_natural_format" xml:space="preserve">
-    <value>{0} (естественный)</value>
-  </data>
-  <data name="wall_sky" xml:space="preserve">
-    <value>Небо</value>
-  </data>
-  <data name="wall_unbreakable" xml:space="preserve">
-    <value>Неразрушаемая стена</value>
-  </data>
-  <data name="wall_unused_format" xml:space="preserve">
-    <value>{0} (не используется)</value>
-  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Синие</value>
   </data>
@@ -5288,6 +3805,21 @@ TEdit v{0}
   <data name="world_explorer_col_modified" xml:space="preserve">
     <value>Модифицированы</value>
   </data>
+  <data name="world_explorer_modified_missing" xml:space="preserve">
+    <value>Отсутствует</value>
+  </data>
+  <data name="world_explorer_modified_just_now" xml:space="preserve">
+    <value>только что</value>
+  </data>
+  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
+    <value>{0} мин. назад</value>
+  </data>
+  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
+    <value>{0} ч назад</value>
+  </data>
+  <data name="world_explorer_modified_days_ago" xml:space="preserve">
+    <value>{0} дн. назад</value>
+  </data>
   <data name="world_explorer_col_size" xml:space="preserve">
     <value>Размер</value>
   </data>
@@ -5305,21 +3837,6 @@ TEdit v{0}
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
     <value>Загрузка превью...</value>
-  </data>
-  <data name="world_explorer_modified_days_ago" xml:space="preserve">
-    <value>{0} дн. назад</value>
-  </data>
-  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
-    <value>{0} ч назад</value>
-  </data>
-  <data name="world_explorer_modified_just_now" xml:space="preserve">
-    <value>только что</value>
-  </data>
-  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
-    <value>{0} мин. назад</value>
-  </data>
-  <data name="world_explorer_modified_missing" xml:space="preserve">
-    <value>Отсутствует</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>Нет резервной копии — нажмите, чтобы создать .bak и TEdit резервную копию</value>
@@ -5363,213 +3880,1718 @@ TEdit v{0}
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Открепить</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Исправление фонового пробела</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Алтари/Сферы</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Прочитать политику конфиденциальности полностью</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>Вычисление...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>Вычисление...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>Отменить конвертацию</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>Преобразовать в пиксель-арт</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>ОШИБКА: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>ОШИБКА: Неверный формат цветового фильтра! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>Цветовой фильтр установлен на ноль. Измените настройки.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>ОШИБКА: Сначала необходимо создать пиксель-арт!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>Произошла ошибка: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>Ошибка при загрузке изображения: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>Для функции «Копировать в буфер обмена» необходимо загрузить мир!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>Сначала необходимо сохранить схему!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>Ошибка при сохранении изображения: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>Ошибка при сохранении схемы: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>Данные схемы пусты! Сначала создайте пиксель-арт!</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>Обработка изображения завершена.</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>Никто</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>Рендеринг отменён.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>Схема скопирована в буфер обмена.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>Схема была перезаписана.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>Схема сохранена.</value>
+  </data>
+  <data name="common_error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>Пиксель: ({0}, {1})  Тайлы: [{2}, {3}]</value>
+  </data>
+  <data name="common_no" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>Провода</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>Автобус</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>Н/Д</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>Сохранить мир как</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>Сохранить анализ мира.</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>Импортировать бестиарий и данные об убийствах из файла мира</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>Импортировать файл схемы TEdit</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>Экспортировать файл схемы</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>Импортировать знамёна из файла мира</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>Импортировать файл схемы дома TEdit House Gen</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>Сохранить сгенерированный пиксель-арт</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>Выберите файл игрока</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>Открыть файл мира</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>Несохранённые изменения</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>Сохранить изменения перед закрытием TEdit?</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>Не сохранять</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>Подтвердить удаление</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>Удалить резервную копию?
+{0}</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>Очистить кэш TEdit</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>Удалить кэшированные файлы: {0:N0} ({1})?
+
+Будут удалены резервные копии и файлы автосохранения TEdit, а также вся история отмены и повтора действий. Файлы миров Terraria и файлы .bak не затрагиваются.</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>Очистить кэш</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>Кэш очищен</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>Удалено файлов: {0:N0}, освобождено места: {1}.</value>
+  </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>Не удалось удалить файлов: {0:N0}; подробности см. в журнале.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>Некоторые особые объекты, связанные с блоками (например, сундуки или таблички), по-прежнему защищены и не могут быть перемещены.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>Включить информацию</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>Проверить данные JSON для {0} и {1}</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} Проверьте значение «Count» в данных JSON и убедитесь, что оно соответствует связанной схеме.</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>Сначала откройте мир.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>Не удалось открыть файл повтора.
+
+{0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>Ошибка загрузки текстур из папки {0}.
+Убедитесь, что эта папка существует и у TEdit есть права на чтение.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>Ошибка загрузки текстур</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>Не удалось открыть файл журнала: {0}</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>Не удалось создать папку для журнала. Приложение будет закрыто.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>Не удалось создать папку для журнала.</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>Не удалось создать временную папку для отмены изменений. Приложение будет закрыто.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>Не удалось создать папку для отмены действий.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>Произошла необработанная ошибка. Вы можете продолжить работу в TEdit, но приложение может работать нестабильно, пока вы его не перезапустите.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>Необработанное исключение</value>
+  </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>Предварительный просмотр кисти высокого качества</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>Показывать полную форму кисти при предварительном просмотре линии с Shift. Отключите эту настройку, чтобы линия отображалась одним пикселем.</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>Режим фильтрации</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>Режим фильтра по умолчанию при применении фильтров для блоков, стен, жидкостей и проводов</value>
+  </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>Степень затемнения</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>Непрозрачность затемняющего слоя для невыбранных блоков (0–100%)</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>Загружено из пользовательского переопределения</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>Сбросить данные тайла до значений по умолчанию</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>Текстура не загружена — автоматическое определение невозможно</value>
+  </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>Текстура не загружена</value>
+  </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>Сохранение отменено: файл игрока был изменён извне.</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>Выберите папку для сохранения тайлов карты</value>
+  </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>Молот</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>Выделение</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>Удалить сундуки</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить все сундуки?</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить все незапертые сундуки?</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>Карта игрока</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>Файл игрока не выбран.</value>
+  </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>Карта сгенерирована!</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>Это полностью удалит из вашего мира все найденные блоки. Продолжить?</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>Найдено и удалено блоков: {0:N0}.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>Экспорт текстур</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>Текстуры ещё не загружены. Дождитесь завершения загрузки текстур.</value>
+  </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>Новый Свет</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>Сохранить как</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>Сохранить как версию</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>Перезагрузить мир</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>Вырезать</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>Подтвердить вставку</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>Повернуть вставку по часовой стрелке</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>Повернуть вставляемое против часовой стрелки</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>Отразить вставку по горизонтали</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>Отразить вставку по вертикали</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>Выбрать всё</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>Удалить выделение</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>Переместить выделение вверх</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>Переместить выделение вниз</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>Переместить выделенную область влево</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>Переместить выделение вправо</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>Переместить выделение вверх (быстро)</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>Быстро переместить выделение вниз</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>Переместить выделение влево (быстро)</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>Переместить выделение вправо (быстро)</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>Уменьшить высоту выделенной области</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>Увеличить высоту выделенной области</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>Уменьшить ширину выделения</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>Увеличить ширину выделения</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>Быстро уменьшить высоту выделенной области</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>Быстро увеличить высоту выделения</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>Уменьшить ширину выделения (быстро)</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>Увеличить ширину выделения (быстро)</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>Переместить начальную точку выделения</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>Ctrl+щелчок/перетаскивание, чтобы переместить верхний левый угол выделения</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>Переместить конечную точку выделения</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>Удерживайте Shift и щёлкните или перетащите, чтобы переместить нижний правый угол выделенной области</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>Обрезать мир</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>Расширить мир</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>Прокрутить вверх</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>Прокрутить вниз</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>Прокрутить влево</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>Прокрутить вправо</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>Быстрая прокрутка вверх</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>Быстрая прокрутка вниз</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>Быстрая прокрутка влево</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>Быстро прокрутить вправо</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>Режим перемещения камеры</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>Приблизить</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>Отдалить</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>Сбросить инструмент / Снять выделение</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>Инструмент «Стрелка»</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>Инструмент кисти</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>Инструмент «Карандаш»</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>Инструмент заливки</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>Инструмент выбора</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>Инструмент «Точка»</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>Инструмент выделения</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>Инструмент спрайтов</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>Инструмент «Молоток»</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>Инструмент изменения формы</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>Включить/выключить ластик</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>Поменять цвета местами</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>Переключить режим отображения проводов</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>Переключить режим отрисовки проводов: выкл. → провод под углом 90° → провод под углом 45° → выкл.</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>Переключить направление проводов по горизонтали/вертикали</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>Переключение между горизонтальной, вертикальной и автоматической прокладкой проводов</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>Переключить красный провод</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>Включить/выключить красный провод</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>Переключить синий провод</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>Включить или отключить синий провод</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>Переключить зелёный провод</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>Переключить активацию зелёного провода</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>Переключить жёлтый провод</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>Включить или выключить жёлтый провод</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>Подсветка трассировки проводов</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>Alt+щелчок, чтобы выделить все провода, подключённые к выбранной плитке</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>Переключить стиль блока</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>Переключить стиль стены</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>Рисование / Основное действие</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>Основное действие рисования в инструментах</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>Дополнительное действие</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>Вторичное действие в инструментах (осмотр, снятие выделения, выбор маски и т. д.)</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>Рисование с ограничением (по горизонтали/вертикали/под углом 45°)</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>Ограничить рисование горизонтальными, вертикальными или диагональными линиями под углом 45°</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>Нарисовать линию по точкам</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>Рисовать прямые линии между точками щелчка мышью</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>Перемещение области просмотра</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>Перетащите, чтобы переместить область просмотра</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>Вики / справка</value>
+  </data>
+  <data name="about_system" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="dialog_complete_bestiary_error" xml:space="preserve">
+    <value>Ошибка при завершении обработки данных бестиария. Текущие данные бестиария восстановлены.
+{0}</value>
+  </data>
+  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
+    <value>Текущие Бестиарий и счётчик убийств загруженного мира будут полностью заменены заполненным бестиарием. Продолжить?</value>
+  </data>
+  <data name="dialog_complete_bestiary_title" xml:space="preserve">
+    <value>Заполнить бестиарий?</value>
+  </data>
+  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
+    <value>Добавить границы «края мира»?</value>
+  </data>
+  <data name="dialog_crop_world_borders_title" xml:space="preserve">
+    <value>Обрезать мир:</value>
+  </data>
+  <data name="dialog_crop_world_prompt" xml:space="preserve">
+    <value>В выбранной области будет создан новый мир.
+Весь прогресс за пределами обрезанной области будет потерян. Продолжить?</value>
+  </data>
+  <data name="dialog_crop_world_title" xml:space="preserve">
+    <value>Обрезать мир?</value>
+  </data>
+  <data name="dialog_import_banners_error" xml:space="preserve">
+    <value>Ошибка при импорте данных о знамёнах из {0}. Текущие знамёна восстановлены.
+{1}</value>
+  </data>
+  <data name="dialog_import_banners_prompt" xml:space="preserve">
+    <value>Это заменит текущие значения счётчиков знамён данными из выбранного файла мира. Продолжить?</value>
+  </data>
+  <data name="dialog_import_banners_title" xml:space="preserve">
+    <value>Импортировать знамёна?</value>
+  </data>
+  <data name="dialog_import_bestiary_error" xml:space="preserve">
+    <value>Ошибка импорта данных бестиария из {0}. Текущий бестиарий восстановлен.
+{1}</value>
+  </data>
+  <data name="dialog_import_error_title" xml:space="preserve">
+    <value>Ошибка импорта</value>
+  </data>
+  <data name="dialog_invalid_world_prompt" xml:space="preserve">
+    <value>Произошла ошибка при чтении файла мира.
+Обычно это вызвано повреждением файла сохранения или версией мира, которая новее поддерживаемой.
+
+TEdit v{0}
+Максимальная версия мира для TEdit: {1}
+Текущая версия мира: {2}
+
+Всё равно принудительно загрузить мир?
+
+ВНИМАНИЕ: Это может привести к непредвиденным последствиям, включая повреждение файлов мира и сбои программы.
+
+Ошибка:
+{3}</value>
+  </data>
+  <data name="dialog_invalid_world_title" xml:space="preserve">
+    <value>Загрузить некорректный мир?</value>
+  </data>
+  <data name="dialog_language_restart_prompt" xml:space="preserve">
+    <value>Язык изменён на {0}. Перезапустить сейчас?</value>
+  </data>
+  <data name="dialog_language_restart_title" xml:space="preserve">
+    <value>Перезапустите игру, чтобы изменить язык</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>Вы загружаете мир tModLoader старой версии: {0}.
+1. Редактирование файлов старых версий — это функция в бета-версии.
+2. Редактирование миров с модами не поддерживается.
+Создайте резервную копию: файл мира может быть повреждён.
+Продолжить?</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>Загрузить мир из старой версии tModLoader?</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>Вы загружаете мир старой версии: {0}.
+Редактирование старых файлов может привести к неожиданным результатам.
+Создайте резервную копию: файл мира может повредиться.
+Продолжить?</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>Загрузить мир старой версии?</value>
+  </data>
+  <data name="dialog_link_error_message" xml:space="preserve">
+    <value>Не удалось открыть внешний браузер. Скопировать в буфер обмена?</value>
+  </data>
+  <data name="dialog_link_error_title" xml:space="preserve">
+    <value>Ошибка ссылки</value>
+  </data>
+  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
+    <value>Это полностью заменит бестиарий и счётчик убийств текущего мира данными из выбранного файла. Продолжить?</value>
+  </data>
+  <data name="dialog_load_bestiary_title" xml:space="preserve">
+    <value>Загрузить бестиарий?</value>
+  </data>
+  <data name="dialog_locate_terraria_folder" xml:space="preserve">
+    <value>Укажите папку Terraria</value>
+  </data>
+  <data name="dialog_max_banners_prompt" xml:space="preserve">
+    <value>Установить для всех знамён максимальное количество (9999)?</value>
+  </data>
+  <data name="dialog_max_banners_title" xml:space="preserve">
+    <value>Максимизировать количество знамён?</value>
+  </data>
+  <data name="dialog_mod_world_prompt" xml:space="preserve">
+    <value>Вы загружаете мир TModLoader. Редактирование миров с модами не поддерживается.
+Создайте резервную копию: файл мира может повредиться.
+Продолжить?</value>
+  </data>
+  <data name="dialog_mod_world_title" xml:space="preserve">
+    <value>Загрузить мир с модами?</value>
+  </data>
+  <data name="dialog_newer_version_prompt" xml:space="preserve">
+    <value>Версия этого мира НОВЕЕ, чем поддерживаемая конфигурацией TEdit.
+
+Версия мира: {0}
+Максимальная поддерживаемая версия: {1}
+
+TEdit переключится на конфигурацию версии {1} (отсутствие новых плиток, стен и т. д. может вызвать проблемы).
+
+Всё равно попытаться загрузить мир?</value>
+  </data>
+  <data name="dialog_newer_version_title" xml:space="preserve">
+    <value>Более новая версия мира</value>
+  </data>
+  <data name="dialog_player_modified_prompt" xml:space="preserve">
+    <value>Файл {0} был изменён извне после загрузки или последнего сохранения.
+Перезаписать его?</value>
+  </data>
+  <data name="dialog_player_modified_title" xml:space="preserve">
+    <value>Игрок изменён</value>
+  </data>
+  <data name="dialog_reload_no_world" xml:space="preserve">
+    <value>Нет открытого мира для повторной загрузки.</value>
+  </data>
+  <data name="dialog_reload_world_prompt" xml:space="preserve">
+    <value>Несохранённые изменения будут потеряны!</value>
+  </data>
+  <data name="dialog_reload_world_title" xml:space="preserve">
+    <value>Перезагрузить текущий мир?</value>
+  </data>
+  <data name="dialog_replace_mask_warning" xml:space="preserve">
+    <value>Чтобы использовать замену, включите хотя бы одну маску. Маски определяют, какие блоки нужно найти.</value>
+  </data>
+  <data name="dialog_replace_title" xml:space="preserve">
+    <value>Заменить</value>
+  </data>
+  <data name="dialog_reset_banners_prompt" xml:space="preserve">
+    <value>Сбросить количество всех знамён до нуля?</value>
+  </data>
+  <data name="dialog_reset_banners_title" xml:space="preserve">
+    <value>Сбросить знамёна?</value>
+  </data>
+  <data name="dialog_reset_bestiary_error" xml:space="preserve">
+    <value>Ошибка сброса данных бестиария. Ваш текущий бестиарий восстановлен.
+{0}</value>
+  </data>
+  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
+    <value>Это полностью заменит бестиарий и счётчик убийств в загруженном мире на пустые. Продолжить?</value>
+  </data>
+  <data name="dialog_reset_bestiary_title" xml:space="preserve">
+    <value>Сбросить бестиарий?</value>
+  </data>
+  <data name="dialog_save_banners_error" xml:space="preserve">
+    <value>Ошибка при сохранении данных знамени. Изменения восстановлены.
+{0}</value>
+  </data>
+  <data name="dialog_save_banners_prompt" xml:space="preserve">
+    <value>Сохранить изменения баннера в мире?</value>
+  </data>
+  <data name="dialog_save_banners_title" xml:space="preserve">
+    <value>Сохранить знамёна?</value>
+  </data>
+  <data name="dialog_save_bestiary_error" xml:space="preserve">
+    <value>Ошибка при сохранении данных Бестиария. Ваш текущий Бестиарий восстановлен.
+{0}</value>
+  </data>
+  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
+    <value>Вы уверены, что хотите сохранить изменения в бестиарии?</value>
+  </data>
+  <data name="dialog_save_bestiary_title" xml:space="preserve">
+    <value>Сохранить бестиарий?</value>
+  </data>
+  <data name="dialog_world_corrupt_empty" xml:space="preserve">
+    <value>Похоже, файл мира пуст или повреждён (все байты равны нулю).
+Восстановить этот файл невозможно — данные отсутствуют.
+
+Что можно сделать?
+1. Восстановить ранее созданную резервную копию (.bak, .bak2).
+2. Восстановить ранее созданную вручную резервную копию.
+3. Восстановить ранее созданную контрольную точку TEdit (.TEdit).
+4. Восстановить резервную копию из истории файлов Windows (если эта функция была включена).</value>
+  </data>
+  <data name="dialog_world_modified_prompt" xml:space="preserve">
+    <value>Файл {0} был изменён извне после последнего сохранения.
+Перезаписать его?</value>
+  </data>
+  <data name="dialog_world_modified_title" xml:space="preserve">
+    <value>Мир изменён</value>
+  </data>
+  <data name="dialog_world_read_error" xml:space="preserve">
+    <value>Не удалось прочитать файл мира.
+Обычно это происходит из-за повреждённого файла сохранения или версии мира новее поддерживаемой.
+
+TEdit v{0}
+Максимальный размер мира в TEdit: {1}
+Текущий размер мира: {2}
+
+Ошибка:
+{3}</value>
+  </data>
+  <data name="dialog_world_save_failed" xml:space="preserve">
+    <value>Не удалось сохранить мир. Открытый мир был восстановлен, а ваши изменения не сохранены.
+{0}</value>
+  </data>
+  <data name="input_category_editing" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="input_category_file" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="input_category_help" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
+  <data name="input_category_navigation" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="input_category_selection" xml:space="preserve">
+    <value>Выделение</value>
+  </data>
+  <data name="input_category_toggles" xml:space="preserve">
+    <value>Переключатели</value>
+  </data>
+  <data name="input_category_tooldrawing" xml:space="preserve">
+    <value>Инструмент рисования</value>
+  </data>
+  <data name="input_category_tools" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="input_category_view" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="overflow_more_panels" xml:space="preserve">
+    <value>Другие панели...</value>
+  </data>
+  <data name="player_editor_error_load" xml:space="preserve">
+    <value>Не удалось загрузить файл игрока:
+{0}</value>
+  </data>
+  <data name="player_editor_error_save" xml:space="preserve">
+    <value>Не удалось сохранить файл игрока:
+{0}</value>
+  </data>
+  <data name="player_editor_status_loaded" xml:space="preserve">
+    <value>Загружено: {0}</value>
+  </data>
+  <data name="player_editor_status_saved" xml:space="preserve">
+    <value>Сохранено: {0}</value>
+  </data>
+  <data name="settings_category_filter" xml:space="preserve">
+    <value>Фильтр и поиск</value>
+  </data>
+  <data name="settings_category_keybindings_format" xml:space="preserve">
+    <value>Назначение клавиш — {0}</value>
+  </data>
+  <data name="common_not_determined" xml:space="preserve">
+    <value>Не определено</value>
+  </data>
+  <data name="world_invasion_goblin" xml:space="preserve">
+    <value>Вторжение гоблинов</value>
+  </data>
+  <data name="world_moon_grey" xml:space="preserve">
+    <value>Серый</value>
+  </data>
+  <data name="world_moon_brown" xml:space="preserve">
+    <value>Коричневый</value>
+  </data>
+  <data name="world_moon_ringed" xml:space="preserve">
+    <value>Окольцованное</value>
+  </data>
+  <data name="world_moon_blue_marble" xml:space="preserve">
+    <value>Голубой мрамор</value>
+  </data>
+  <data name="world_moon_white_ice" xml:space="preserve">
+    <value>Белый лёд</value>
+  </data>
+  <data name="world_moon_green_gas" xml:space="preserve">
+    <value>Зелёный газ</value>
+  </data>
+  <data name="world_moon_pink" xml:space="preserve">
+    <value>Розовый</value>
+  </data>
+  <data name="world_moon_orange_venus" xml:space="preserve">
+    <value>Оранжевая Венера</value>
+  </data>
+  <data name="world_moon_triple_purple" xml:space="preserve">
+    <value>Тройной фиолетовый</value>
+  </data>
   <data name="world_gamemode_expert" xml:space="preserve">
     <value>Эксперт</value>
   </data>
   <data name="world_gamemode_master" xml:space="preserve">
     <value>Главный</value>
   </data>
-  <data name="world_invasion_goblin" xml:space="preserve">
-    <value>Вторжение гоблинов</value>
+  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
+    <value>Мозг Ктулху</value>
   </data>
-  <data name="world_moon_blue_marble" xml:space="preserve">
-    <value>Голубой мрамор</value>
+  <data name="progress_verifying_file" xml:space="preserve">
+    <value>Проверка файла...</value>
   </data>
-  <data name="world_moon_brown" xml:space="preserve">
-    <value>Коричневый</value>
+  <data name="progress_load_complete" xml:space="preserve">
+    <value>Загрузка завершена.</value>
   </data>
-  <data name="world_moon_green_gas" xml:space="preserve">
-    <value>Зелёный газ</value>
+  <data name="progress_validating_complete" xml:space="preserve">
+    <value>Проверка завершена...</value>
   </data>
-  <data name="world_moon_grey" xml:space="preserve">
-    <value>Серый</value>
+  <data name="progress_resetting_time" xml:space="preserve">
+    <value>Сброс времени...</value>
   </data>
-  <data name="world_moon_orange_venus" xml:space="preserve">
-    <value>Оранжевая Венера</value>
+  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
+    <value>Подготовка данных tModLoader...</value>
   </data>
-  <data name="world_moon_pink" xml:space="preserve">
-    <value>Розовый</value>
+  <data name="progress_saving_tmodloader_data" xml:space="preserve">
+    <value>Сохранение данных tModLoader...</value>
   </data>
-  <data name="world_moon_ringed" xml:space="preserve">
-    <value>Окольцованное</value>
+  <data name="progress_loading_tmodloader_data" xml:space="preserve">
+    <value>Загрузка данных tModLoader...</value>
   </data>
-  <data name="world_moon_triple_purple" xml:space="preserve">
-    <value>Тройной фиолетовый</value>
+  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
+    <value>Заголовок мира Windows Phone загружен.</value>
   </data>
-  <data name="world_moon_white_ice" xml:space="preserve">
-    <value>Белый лёд</value>
+  <data name="progress_converting_to_windows_phone" xml:space="preserve">
+    <value>Преобразование мира для Windows Phone...</value>
   </data>
-  <data name="world_size_custom" xml:space="preserve">
-    <value>Обычай</value>
+  <data name="progress_world_save_complete" xml:space="preserve">
+    <value>Мир успешно сохранён.</value>
   </data>
-  <data name="world_size_large" xml:space="preserve">
-    <value>Большой</value>
+  <data name="progress_save_complete" xml:space="preserve">
+    <value>Сохранение завершено.</value>
   </data>
-  <data name="world_size_medium" xml:space="preserve">
-    <value>Средний</value>
+  <data name="progress_saving_world" xml:space="preserve">
+    <value>Сохранение мира...</value>
+  </data>
+  <data name="progress_save_headers" xml:space="preserve">
+    <value>Сохранить заголовки...</value>
+  </data>
+  <data name="progress_saving_tiles" xml:space="preserve">
+    <value>Сохранение тайлов...</value>
+  </data>
+  <data name="progress_save_tiles" xml:space="preserve">
+    <value>Сохранить плитки...</value>
+  </data>
+  <data name="progress_saving_chests" xml:space="preserve">
+    <value>Сохранение содержимого сундуков...</value>
+  </data>
+  <data name="progress_save_chests" xml:space="preserve">
+    <value>Сохранить содержимое сундуков...</value>
+  </data>
+  <data name="progress_saving_signs" xml:space="preserve">
+    <value>Сохранение табличек...</value>
+  </data>
+  <data name="progress_save_signs" xml:space="preserve">
+    <value>Сохранить таблички...</value>
+  </data>
+  <data name="progress_save_npcs" xml:space="preserve">
+    <value>Сохранить NPC...</value>
+  </data>
+  <data name="progress_saving_npc_data" xml:space="preserve">
+    <value>Сохранение данных о НИП...</value>
+  </data>
+  <data name="progress_saving_npc_names" xml:space="preserve">
+    <value>Сохранение имён NPC…</value>
+  </data>
+  <data name="progress_save_tile_entities_section" xml:space="preserve">
+    <value>Сохранить раздел тайловых сущностей…</value>
+  </data>
+  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
+    <value>Сохранить взвешенные нажимные плиты...</value>
+  </data>
+  <data name="progress_save_town_manager" xml:space="preserve">
+    <value>Сохранить менеджер городов...</value>
+  </data>
+  <data name="progress_save_bestiary" xml:space="preserve">
+    <value>Сохранить бестиарий...</value>
+  </data>
+  <data name="progress_save_creative_powers" xml:space="preserve">
+    <value>Сохранить творческие способности...</value>
+  </data>
+  <data name="progress_save_footers" xml:space="preserve">
+    <value>Сохранить нижние колонтитулы...</value>
+  </data>
+  <data name="progress_saving_validation_data" xml:space="preserve">
+    <value>Сохранение данных проверки...</value>
+  </data>
+  <data name="progress_validating_file" xml:space="preserve">
+    <value>Проверка файла...</value>
+  </data>
+  <data name="progress_world_load_complete" xml:space="preserve">
+    <value>Загрузка мира завершена.</value>
+  </data>
+  <data name="progress_loading_file_header" xml:space="preserve">
+    <value>Загрузка заголовка файла...</value>
+  </data>
+  <data name="progress_loading_tiles" xml:space="preserve">
+    <value>Загрузка тайлов...</value>
+  </data>
+  <data name="progress_loading_chests" xml:space="preserve">
+    <value>Загрузка сундуков...</value>
+  </data>
+  <data name="progress_loading_signs" xml:space="preserve">
+    <value>Загрузка табличек...</value>
+  </data>
+  <data name="progress_loading_npcs" xml:space="preserve">
+    <value>Загрузка НИП...</value>
+  </data>
+  <data name="progress_loading_npc_data" xml:space="preserve">
+    <value>Загрузка данных о НИП...</value>
+  </data>
+  <data name="progress_loading_npc_names" xml:space="preserve">
+    <value>Загрузка имён NPC...</value>
+  </data>
+  <data name="progress_loading_tile_entities_section" xml:space="preserve">
+    <value>Загрузка раздела сущностей тайлов...</value>
+  </data>
+  <data name="progress_render_complete" xml:space="preserve">
+    <value>Отрисовка завершена</value>
+  </data>
+  <data name="progress_calculating_colors" xml:space="preserve">
+    <value>Вычисление цветов...</value>
+  </data>
+  <data name="progress_cloning_world" xml:space="preserve">
+    <value>Клонирование мира...</value>
+  </data>
+  <data name="progress_generating_world" xml:space="preserve">
+    <value>Создание мира…</value>
+  </data>
+  <data name="progress_generating_hills" xml:space="preserve">
+    <value>Создание холмов...</value>
+  </data>
+  <data name="progress_generating_caves" xml:space="preserve">
+    <value>Создание пещер...</value>
+  </data>
+  <data name="progress_generating_cave_noise" xml:space="preserve">
+    <value>Генерация шума для пещер...</value>
+  </data>
+  <data name="progress_refining_caves" xml:space="preserve">
+    <value>Обрабатываем пещеры...</value>
+  </data>
+  <data name="progress_placing_caves" xml:space="preserve">
+    <value>Размещение пещер...</value>
+  </data>
+  <data name="progress_generating_underworld" xml:space="preserve">
+    <value>Создание Подземного мира...</value>
+  </data>
+  <data name="progress_settling_sand" xml:space="preserve">
+    <value>Оседание песка...</value>
+  </data>
+  <data name="progress_removing_future_tiles" xml:space="preserve">
+    <value>Удаление будущих блоков...</value>
+  </data>
+  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
+    <value>Мир загружен за {0} с.</value>
+  </data>
+  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
+    <value>Автоматически (как в системе)</value>
+  </data>
+  <data name="enum_LanguageSelection_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="enum_LanguageSelection_German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="enum_LanguageSelection_French" xml:space="preserve">
+    <value>Франсе</value>
+  </data>
+  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
+    <value>Итальяно</value>
+  </data>
+  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
+    <value>Отключено</value>
+  </data>
+  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
+    <value>Только уведомлять</value>
+  </data>
+  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
+    <value>Автоматическая загрузка</value>
+  </data>
+  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
+    <value>Автоматическая установка</value>
+  </data>
+  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
+    <value>Стабильная версия</value>
+  </data>
+  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
+    <value>Бета</value>
+  </data>
+  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
+    <value>Альфа</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
+    <value>По центру экрана</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
+    <value>Развернуто на весь экран</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
+    <value>Реалистичный</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
+    <value>Мини-карта</value>
+  </data>
+  <data name="enum_FilterMode_Hide" xml:space="preserve">
+    <value>Скрывать</value>
+  </data>
+  <data name="enum_FilterMode_Darken" xml:space="preserve">
+    <value>Затемнять</value>
   </data>
   <data name="world_size_small" xml:space="preserve">
     <value>Маленький</value>
   </data>
-  <data name="wp_fixbackground" xml:space="preserve">
-    <value>Исправление фонового пробела</value>
+  <data name="world_size_medium" xml:space="preserve">
+    <value>Средний</value>
+  </data>
+  <data name="world_size_large" xml:space="preserve">
+    <value>Большой</value>
+  </data>
+  <data name="world_size_custom" xml:space="preserve">
+    <value>Обычай</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
+    <value>Игнорировать</value>
+  </data>
+  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
+    <value>Больше чем</value>
+  </data>
+  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
+    <value>Меньше чем</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
+    <value>Равный</value>
+  </data>
+  <data name="bg_tree_oak" xml:space="preserve">
+    <value>Дуб</value>
+  </data>
+  <data name="bg_tree_boreal" xml:space="preserve">
+    <value>Бореальный лес</value>
+  </data>
+  <data name="bg_tree_jungle" xml:space="preserve">
+    <value>Похожий на джунгли</value>
+  </data>
+  <data name="bg_tree_sakura" xml:space="preserve">
+    <value>Сакура</value>
+  </data>
+  <data name="bg_tree_willow" xml:space="preserve">
+    <value>Ива</value>
+  </data>
+  <data name="bg_tree_palm" xml:space="preserve">
+    <value>Похожий на пальму</value>
+  </data>
+  <data name="bg_cave_stone" xml:space="preserve">
+    <value>Камень</value>
+  </data>
+  <data name="bg_cave_gray" xml:space="preserve">
+    <value>Серый</value>
+  </data>
+  <data name="bg_cave_brown" xml:space="preserve">
+    <value>Коричневый</value>
+  </data>
+  <data name="bg_cave_blue" xml:space="preserve">
+    <value>Синие</value>
+  </data>
+  <data name="bg_cave_blue_alt" xml:space="preserve">
+    <value>Синяя высота</value>
+  </data>
+  <data name="bg_cave_green" xml:space="preserve">
+    <value>Зелёные</value>
+  </data>
+  <data name="bg_cave_green_alt" xml:space="preserve">
+    <value>Зелёный режим высотных отметок</value>
+  </data>
+  <data name="bg_cave_purple" xml:space="preserve">
+    <value>Фиолетовый</value>
+  </data>
+  <data name="bg_default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="bg_mountains_only" xml:space="preserve">
+    <value>Только горы</value>
+  </data>
+  <data name="bg_mountains_alt" xml:space="preserve">
+    <value>Альтернативная высота гор</value>
+  </data>
+  <data name="bg_mountains_tree" xml:space="preserve">
+    <value>Горы и деревья</value>
+  </data>
+  <data name="bg_mountains_only_a" xml:space="preserve">
+    <value>Только горы A</value>
+  </data>
+  <data name="bg_mountains_only_b" xml:space="preserve">
+    <value>Только горы B</value>
+  </data>
+  <data name="bg_mountains_only_c" xml:space="preserve">
+    <value>Только горы C</value>
+  </data>
+  <data name="bg_trees_only_a" xml:space="preserve">
+    <value>Только деревья A</value>
+  </data>
+  <data name="bg_trees_only_b" xml:space="preserve">
+    <value>Только деревья B</value>
+  </data>
+  <data name="bg_variant_alt_letter" xml:space="preserve">
+    <value>Вариант {0} (альтернативный {1})</value>
+  </data>
+  <data name="bg_variant_alt" xml:space="preserve">
+    <value>Вариант {0}, альтернативный</value>
+  </data>
+  <data name="bg_variant_format" xml:space="preserve">
+    <value>Вариант {0}</value>
+  </data>
+  <data name="bg_remix_format" xml:space="preserve">
+    <value>Ремикс {0}</value>
+  </data>
+  <data name="bg_multibiome_format" xml:space="preserve">
+    <value>Мультибиом: {0}</value>
+  </data>
+  <data name="bg_mnt_default_trees" xml:space="preserve">
+    <value>Горы {0} + стандартные деревья</value>
+  </data>
+  <data name="bg_mnt_trees" xml:space="preserve">
+    <value>Горы {0} + деревья</value>
+  </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>Светящийся гриб</value>
+  </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>Лес</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>Снег</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>Нет (удалить)</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>Трава</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>Зелёные</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>Жёлтые</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>Красные</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>Синие</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>Фиолетовый</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>Лава</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>Криптон</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>Ксенон</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>Аргон</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>Неоновый</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>Гелий</value>
+  </data>
+  <data name="progress_validating_world" xml:space="preserve">
+    <value>Проверка мира...</value>
+  </data>
+  <data name="progress_loading_winphone_tiles" xml:space="preserve">
+    <value>Загрузка плиток Windows Phone...</value>
+  </data>
+  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
+    <value>Загрузка устаревших тайлов для Windows Phone...</value>
+  </data>
+  <data name="frame_anchor_none" xml:space="preserve">
+    <value>Никто</value>
+  </data>
+  <data name="frame_anchor_left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
+  <data name="frame_anchor_right" xml:space="preserve">
+    <value>Справа</value>
+  </data>
+  <data name="frame_anchor_top" xml:space="preserve">
+    <value>Верхняя часть</value>
+  </data>
+  <data name="frame_anchor_bottom" xml:space="preserve">
+    <value>Снизу</value>
+  </data>
+  <data name="frame_anchor_center" xml:space="preserve">
+    <value>Центр</value>
+  </data>
+  <data name="wall_natural_format" xml:space="preserve">
+    <value>{0} (естественный)</value>
+  </data>
+  <data name="wall_unused_format" xml:space="preserve">
+    <value>{0} (не используется)</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>Небо</value>
+  </data>
+  <data name="wall_unbreakable" xml:space="preserve">
+    <value>Неразрушаемая стена</value>
+  </data>
+  <data name="frame_text_off" xml:space="preserve">
+    <value>Выключение</value>
+  </data>
+  <data name="frame_text_on" xml:space="preserve">
+    <value>Вкл.</value>
+  </data>
+  <data name="frame_text_monster_banner" xml:space="preserve">
+    <value>Знамя монстра</value>
+  </data>
+  <data name="frame_text_left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
+  <data name="frame_text_right" xml:space="preserve">
+    <value>Справа</value>
+  </data>
+  <data name="frame_text_small_decos" xml:space="preserve">
+    <value>Мелкий декор</value>
+  </data>
+  <data name="frame_text_forest_tree" xml:space="preserve">
+    <value>Лесное дерево</value>
+  </data>
+  <data name="frame_text_topaz_tree" xml:space="preserve">
+    <value>Топазовое дерево</value>
+  </data>
+  <data name="frame_text_amethyst_tree" xml:space="preserve">
+    <value>Аметистовое дерево</value>
+  </data>
+  <data name="frame_text_sapphire_tree" xml:space="preserve">
+    <value>Сапфировое дерево</value>
+  </data>
+  <data name="frame_text_emerald_tree" xml:space="preserve">
+    <value>Изумрудное дерево</value>
+  </data>
+  <data name="frame_text_ruby_tree" xml:space="preserve">
+    <value>Рубиновое дерево</value>
+  </data>
+  <data name="frame_text_diamond_tree" xml:space="preserve">
+    <value>Алмазное дерево</value>
+  </data>
+  <data name="frame_text_amber_tree" xml:space="preserve">
+    <value>Янтарное дерево</value>
+  </data>
+  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
+    <value>Декоративная сакура</value>
+  </data>
+  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
+    <value>Декоративная жёлтая ива</value>
+  </data>
+  <data name="frame_text_ash_tree" xml:space="preserve">
+    <value>Ясень</value>
+  </data>
+  <data name="frame_text_single" xml:space="preserve">
+    <value>Один игрок</value>
+  </data>
+  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
+    <value>Мелкие обломки (1×1)</value>
+  </data>
+  <data name="frame_text_flat" xml:space="preserve">
+    <value>Плоский</value>
+  </data>
+  <data name="frame_text_endcap_right" xml:space="preserve">
+    <value>Правая торцевая заглушка</value>
+  </data>
+  <data name="frame_text_endcap_left" xml:space="preserve">
+    <value>Левый торцевой элемент</value>
+  </data>
+  <data name="frame_text_attach_left" xml:space="preserve">
+    <value>Присоединить слева</value>
+  </data>
+  <data name="frame_text_attach_right" xml:space="preserve">
+    <value>Прикрепить справа</value>
+  </data>
+  <data name="frame_text_attach_left_endcap" xml:space="preserve">
+    <value>Прикрепить левую торцевую часть</value>
+  </data>
+  <data name="frame_text_attach_right_endcap" xml:space="preserve">
+    <value>Присоединить правую заглушку</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
+    <value>Подъёмная ступень лестницы вверх-вправо</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
+    <value>Тетива лестницы вверх-вправо</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
+    <value>Подступенок лестницы вверх-влево</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
+    <value>Тетива лестницы, идущей вверх-влево</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
+    <value>Правая площадка верхней ступени</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
+    <value>Верхняя площадка лестницы слева</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
+    <value>Верхняя площадка лестницы слева направо</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
+    <value>Правый торцевой элемент верхней площадки лестницы</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
+    <value>Левый торцевой элемент верхней площадки лестницы</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
+    <value>Правая нижняя площадка лестницы</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
+    <value>Левая нижняя площадка лестницы</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
+    <value>Ступень с вырезом вверх-вправо 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
+    <value>Лестничный выступ вверх-влево 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
+    <value>Встроенная ступенька вверх-вправо 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
+    <value>Углублённая ступень вверх-влево 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
+    <value>Внутренний угол лестницы вверх-вправо 3</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
+    <value>Внутренний уступ лестницы вверху слева 3</value>
+  </data>
+  <data name="frame_text_stair_inverted_right" xml:space="preserve">
+    <value>Перевёрнутая правая лестница</value>
+  </data>
+  <data name="frame_text_stair_inverted_left" xml:space="preserve">
+    <value>Перевёрнутая лестница влево</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
+    <value>Средние обломки (2×1)</value>
+  </data>
+  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
+    <value>Декорации (3×2) (группа 2)</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
+    <value>Крупные обломки (3×2) (группа 2)</value>
+  </data>
+  <data name="frame_text_forest_short_plants" xml:space="preserve">
+    <value>Низкие растения в лесу</value>
+  </data>
+  <data name="frame_text_forest_tall_plants" xml:space="preserve">
+    <value>Высокие лесные растения</value>
+  </data>
+  <data name="frame_text_text_statue" xml:space="preserve">
+    <value>Текст статуи</value>
+  </data>
+  <data name="frame_text_decos_3x2" xml:space="preserve">
+    <value>Декорации (3×2)</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
+    <value>Крупные обломки (3×2)</value>
+  </data>
+  <data name="frame_text_pumpkin_plant" xml:space="preserve">
+    <value>Тыква (растение)</value>
+  </data>
+  <data name="frame_text_boss_trophy" xml:space="preserve">
+    <value>Трофей босса</value>
+  </data>
+  <data name="frame_text_critter_anchor" xml:space="preserve">
+    <value>Точка привязки существа</value>
+  </data>
+  <data name="frame_text_forest_pot" xml:space="preserve">
+    <value>Лесной горшок</value>
+  </data>
+  <data name="frame_text_corruption_short_plants" xml:space="preserve">
+    <value>Низкорослые растения порчи</value>
+  </data>
+  <data name="frame_text_jungle_short_plants" xml:space="preserve">
+    <value>Низкие растения джунглей</value>
+  </data>
+  <data name="frame_text_hallow_short_plants" xml:space="preserve">
+    <value>Низкие растения Освящения</value>
+  </data>
+  <data name="frame_text_crimson_short_plants" xml:space="preserve">
+    <value>Низкие растения в багряном биоме</value>
+  </data>
+  <data name="frame_text_ore_bars" xml:space="preserve">
+    <value>Слитки руды</value>
+  </data>
+  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
+    <value>Эхо растений джунглей</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>Заблокировано</value>
+  </data>
+  <data name="frame_text_jungle_large_plants" xml:space="preserve">
+    <value>Крупные растения джунглей</value>
+  </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[пусто]</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>Недопустимый блок ({0})</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>Недопустимая стена ({0})</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>Неизвестная краска ({0})</value>
   </data>
   <data name="scripting_profile" xml:space="preserve">
-    <value>Для запуска скрипта укажите профиль доступа.</value>
+    <value>Script execution requires an explicit access profile.</value>
   </data>
   <data name="scripting_inspect" xml:space="preserve">
-    <value>В режиме просмотра запуск скриптов недоступен.</value>
+    <value>Script execution is not available in inspect-only mode.</value>
   </data>
   <data name="scripting_mcp" xml:space="preserve">
-    <value>Скрипты MCP отключены до завершения проверок безопасности редактора.</value>
+    <value>MCP script execution is not available until the editor safety gates are complete.</value>
   </data>
   <data name="scripting_unknown" xml:space="preserve">
-    <value>Неизвестный профиль доступа.</value>
+    <value>Unknown script access profile.</value>
   </data>
   <data name="scripting_empty" xml:space="preserve">
-    <value>Нет кода для выполнения.</value>
+    <value>No script code to run.</value>
   </data>
   <data name="scripting_timeout_positive" xml:space="preserve">
-    <value>Время ожидания должно быть положительным.</value>
+    <value>Script timeout must be positive.</value>
   </data>
   <data name="scripting_start" xml:space="preserve">
-    <value>Скрипт не запустился.</value>
+    <value>Script did not start.</value>
   </data>
   <data name="scripting_busy" xml:space="preserve">
-    <value>Мир занят. Повторите попытку после завершения операции.</value>
+    <value>The world is busy. Try again after the active operation finishes.</value>
   </data>
   <data name="scripting_stale" xml:space="preserve">
-    <value>Мир изменился. Проверьте его перед запуском скрипта.</value>
+    <value>The world changed. Inspect it again before running this script.</value>
   </data>
   <data name="scripting_cancel" xml:space="preserve">
-    <value>Выполнение скрипта отменено</value>
+    <value>Script was cancelled</value>
   </data>
   <data name="scripting_timeout" xml:space="preserve">
-    <value>Превышено время ожидания ({0} мс)</value>
+    <value>Script timed out after {0}ms</value>
   </data>
   <data name="scripting_finalize" xml:space="preserve">
-    <value>{0} Ошибка завершения: {1}</value>
+    <value>{0} Finalization failed: {1}</value>
   </data>
   <data name="scripting_binding" xml:space="preserve">
-    <value>Не удалось инициализировать API скриптов.</value>
+    <value>Could not initialize the script API.</value>
   </data>
   <data name="scripting_running" xml:space="preserve">
-    <value>[{0}] Выполнение скрипта…</value>
+    <value>[{0}] Running script...</value>
   </data>
   <data name="scripting_warning" xml:space="preserve">
-    <value>[Предупреждение] {0}</value>
+    <value>[Warn] {0}</value>
   </data>
   <data name="scripting_error" xml:space="preserve">
-    <value>[Ошибка] {0}</value>
+    <value>[Error] {0}</value>
   </data>
   <data name="scripting_done" xml:space="preserve">
-    <value>[Готово] Выполнено за {0} мс</value>
+    <value>[Done] Completed in {0}ms</value>
   </data>
   <data name="scripting_elapsed" xml:space="preserve">
-    <value>[Ошибка] {0} ({1} мс)</value>
+    <value>[Error] {0} ({1}ms)</value>
   </data>
   <data name="scripting_saved" xml:space="preserve">
     <value>Сохранено: {0}</value>
   </data>
   <data name="scripting_generated" xml:space="preserve">
-    <value>Создано: {0}</value>
+    <value>Generated: {0}</value>
   </data>
   <data name="scripting_js_error" xml:space="preserve">
-    <value>Ошибка JavaScript: {0} (строка {1})</value>
+    <value>JavaScript error: {0} (line {1})</value>
   </data>
   <data name="scripting_lua_error" xml:space="preserve">
-    <value>Ошибка Lua: {0}</value>
+    <value>Lua error: {0}</value>
   </data>
   <data name="scripting_generic_error" xml:space="preserve">
-    <value>Ошибка: {0}</value>
+    <value>Error: {0}</value>
   </data>
   <data name="mcp_enable" xml:space="preserve">
-    <value>Включить локальный сервер MCP</value>
+    <value>Enable local MCP server</value>
   </data>
   <data name="mcp_edit" xml:space="preserve">
-    <value>Разрешить инструменты рисования</value>
+    <value>Allow drawing tools</value>
   </data>
   <data name="mcp_port" xml:space="preserve">
-    <value>Порт (1024–65535)</value>
+    <value>Port (1024–65535)</value>
   </data>
   <data name="mcp_profile" xml:space="preserve">
-    <value>Имя профиля клиента</value>
+    <value>Client profile name</value>
   </data>
   <data name="mcp_issue" xml:space="preserve">
-    <value>Создать токен доступа</value>
+    <value>Create bearer credential</value>
   </data>
   <data name="mcp_revoke" xml:space="preserve">
-    <value>Отозвать выбранный токен</value>
+    <value>Revoke selected credential</value>
   </data>
   <data name="mcp_history" xml:space="preserve">
-    <value>История операций</value>
+    <value>Operation history</value>
   </data>
   <data name="mcp_profile_error" xml:space="preserve">
-    <value>Проверьте имя профиля и доступ к хранилищу учётных данных.</value>
+    <value>Check the profile name and access to credential storage.</value>
   </data>
   <data name="mcp_host_Disabled" xml:space="preserve">
-    <value>Сервер выключен</value>
+    <value>Server off</value>
   </data>
   <data name="mcp_host_Running" xml:space="preserve">
-    <value>Активен · только чтение</value>
+    <value>Listening · inspection only</value>
   </data>
   <data name="mcp_host_OtherEditor" xml:space="preserve">
-    <value>MCP уже запущен в другом экземпляре TEdit.</value>
+    <value>Another TEdit instance is hosting MCP.</value>
   </data>
   <data name="mcp_host_PortBusy" xml:space="preserve">
-    <value>Порт занят. Выберите другой порт.</value>
+    <value>Port in use. Choose another port.</value>
   </data>
   <data name="mcp_host_Fault" xml:space="preserve">
-    <value>Не удалось запустить сервер. Проверьте настройки и хранилище пользователя.</value>
+    <value>Could not start the server. Check settings and user storage.</value>
   </data>
   <data name="mcp_running" xml:space="preserve">
-    <value>Выполняется</value>
+    <value>Running</value>
   </data>
   <data name="mcp_cancel_requested" xml:space="preserve">
-    <value>Запрошена отмена</value>
+    <value>Cancellation requested</value>
   </data>
   <data name="mcp_succeeded" xml:space="preserve">
-    <value>Завершено</value>
+    <value>Completed</value>
   </data>
   <data name="mcp_failed" xml:space="preserve">
-    <value>Ошибка</value>
+    <value>Failed</value>
   </data>
   <data name="mcp_canceled" xml:space="preserve">
-    <value>Отменено</value>
+    <value>Canceled</value>
   </data>
   <data name="mcp_copy_setup" xml:space="preserve">
-    <value>Скопировать инструкции для моего агента</value>
+    <value>Copy instructions for my agent</value>
   </data>
   <data name="mcp_setup_prompt" xml:space="preserve">
-    <value>Подключись к TEdit через Streamable HTTP по адресу {0}. Покажи, куда в закрытых настройках учётных данных клиента ввести полное значение Authorization из параметров TEdit. Не помещай его в чат или общие файлы. Проверь подключение с помощью get_status.</value>
+    <value>Connect to TEdit using Streamable HTTP at {0}. Guide me through entering the full Authorization value from TEdit Options in the client's private credential settings. Keep it out of chat and shared files. Call get_status to check the connection.</value>
   </data>
   <data name="scripting_drawing_rejected" xml:space="preserve">
-    <value>Не удалось выполнить запрос на рисование ({0}).</value>
+    <value>The drawing request could not be applied ({0}).</value>
   </data>
   <data name="mcp_scripts" xml:space="preserve">
-    <value>Также разрешить скрипты JavaScript и Lua</value>
+    <value>Also allow JavaScript and Lua scripts</value>
   </data>
   <data name="mcp_scripts_enabled" xml:space="preserve">
-    <value>Ожидание подключений · рисование и скрипты включены</value>
+    <value>Listening · drawing and scripts enabled</value>
   </data>
   <data name="mcp_shared" xml:space="preserve">
-    <value>Разрешить всем локальным клиентам доступ без токена</value>
+    <value>Share access with all local clients without a token</value>
   </data>
   <data name="mcp_shared_setup" xml:space="preserve">
-    <value>Подключись к TEdit по адресу {0} через Streamable HTTP без аутентификации. Проверь подключение с помощью get_status.</value>
+    <value>Connect to TEdit at {0} using Streamable HTTP without authentication. Call get_status to check the connection.</value>
   </data>
   <data name="mcp_drawing_enabled" xml:space="preserve">
-    <value>Активен · рисование разрешено</value>
+    <value>Listening · drawing enabled</value>
   </data>
-  <data name="agent_connect" xml:space="preserve"><value>Подключить агента</value></data>
-  <data name="agent_workspace" xml:space="preserve"><value>Использовать настройки рабочей области</value></data>
-  <data name="agent_stdio" xml:space="preserve"><value>Использовать мост stdio</value></data>
-  <data name="agent_merge" xml:space="preserve"><value>Добавьте запись TEdit в настройки клиента или выполните указанную команду.</value></data>
-  <data name="agent_check" xml:space="preserve"><value>Проверить подключение</value></data>
-  <data name="agent_ok" xml:space="preserve"><value>TEdit ответил на get_status.</value></data>
-  <data name="agent_failed" xml:space="preserve"><value>Не удалось подключиться. Проверьте настройки MCP, порт и профиль в TEdit.</value></data>
-  <data name="agent_refresh" xml:space="preserve"><value>Настройки относятся к другому сеансу. Скопируйте их из нужного окна TEdit.</value></data>
-  <data name="agent_missing" xml:space="preserve"><value>Откройте нужное окно TEdit и включите сервер MCP в настройках.</value></data>
-  <data name="agent_profile" xml:space="preserve"><value>Выберите или создайте профиль клиента выше.</value></data>
-  <data name="agent_export_error" xml:space="preserve"><value>Выберите новый файл в папке с правом записи.</value></data>
+  <data name="agent_connect" xml:space="preserve">
+    <value>Connect an agent</value>
+  </data>
+  <data name="agent_workspace" xml:space="preserve">
+    <value>Use workspace settings</value>
+  </data>
+  <data name="agent_stdio" xml:space="preserve">
+    <value>Use the stdio bridge</value>
+  </data>
+  <data name="agent_merge" xml:space="preserve">
+    <value>Add the TEdit entry to your client settings, or run the command shown.</value>
+  </data>
+  <data name="agent_check" xml:space="preserve">
+    <value>Check connection</value>
+  </data>
+  <data name="agent_ok" xml:space="preserve">
+    <value>TEdit answered get_status.</value>
+  </data>
+  <data name="agent_failed" xml:space="preserve">
+    <value>Connection failed. Check the MCP settings, port, and selected profile in TEdit.</value>
+  </data>
+  <data name="agent_refresh" xml:space="preserve">
+    <value>This setup belongs to a different editor session. Copy the setup again from the intended TEdit window.</value>
+  </data>
+  <data name="agent_missing" xml:space="preserve">
+    <value>Open the intended TEdit window and enable the MCP server in Settings.</value>
+  </data>
+  <data name="agent_profile" xml:space="preserve">
+    <value>Select or create a client profile above.</value>
+  </data>
+  <data name="agent_export_error" xml:space="preserve">
+    <value>Choose a new file in a writable folder.</value>
+  </data>
 </root>
