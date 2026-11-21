@@ -24,8 +24,8 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="ModelContextProtocol.AspNetCore" Version="2.4.0" />
-    <PackageReference Include="ReactiveUI.WPF" Version="24.3.0" />
-    <PackageReference Include="ReactiveUI.SourceGenerators" Version="3.2.0" PrivateAssets="all" />
+    <PackageReference Include="ReactiveUI.WPF" Version="27.0.1" />
+    <PackageReference Include="ReactiveUI.SourceGenerators" Version="7.0.0" PrivateAssets="all" />
     <PackageReference Include="System.Reactive" Version="7.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="3.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.15" />
