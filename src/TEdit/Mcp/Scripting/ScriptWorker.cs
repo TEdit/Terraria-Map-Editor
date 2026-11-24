@@ -19,7 +19,8 @@ internal static class ScriptWorker
     [
         ("tile", ["isActive", "getTileType", "getWall"]),
         ("draw", ["line", "rectangle", "ellipse", "fillRegion", "placeSprite"]),
-        ("log", ["print"])
+        ("log", ["print"]),
+        ("world", ["get", "set"])
     ];
 
     // This entry point runs before any editor, settings, updater or WPF initialization.
@@ -94,7 +95,12 @@ internal static class ScriptWorker
                         : v.IsBoolean() ? v.AsBoolean() : v.IsString() ? BoundedString(v.AsString())
                         : throw new ScriptLimitException("invalid_arguments");
                     var reply = invoke(method, args.Select(Value).ToArray());
-                    return reply.ValueKind == JsonValueKind.Number ? (JsValue)reply.GetInt32() : reply.GetBoolean();
+                    return reply.ValueKind switch
+                    {
+                        JsonValueKind.Number => (JsValue)reply.GetDouble(),
+                        JsonValueKind.String => reply.GetString()!,
+                        _ => reply.GetBoolean()
+                    };
                 }), true);
             }
             engine.SetValue(module, table);
@@ -141,7 +147,12 @@ internal static class ScriptWorker
                             };
                         }
                         var reply = invoke(method, args);
-                        LuaValue value = reply.ValueKind == JsonValueKind.Number ? (LuaValue)(double)reply.GetInt32() : reply.GetBoolean();
+                        LuaValue value = reply.ValueKind switch
+                        {
+                            JsonValueKind.Number => reply.GetDouble(),
+                            JsonValueKind.String => reply.GetString()!,
+                            _ => reply.GetBoolean()
+                        };
                         return new ValueTask<int>(ctx.Return(value));
                     }
                     catch (ScriptLimitException limit) { exhausted = limit; throw; }

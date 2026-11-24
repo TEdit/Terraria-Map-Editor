@@ -240,8 +240,8 @@ public class ScriptSessionTests(ITestOutputHelper output)
         await using var s = new McpEditorSession();
         await s.Open(scripts: true);
         string code = language == "lua"
-            ? "log.print(tools==nil and world==nil and io==nil and os==nil and chests==nil and package==nil and debug==nil and tile.setType==nil)"
-            : "log.print(typeof tools==='undefined' && typeof world==='undefined' && typeof System==='undefined' && typeof require==='undefined' && typeof chests==='undefined' && typeof tile.setType==='undefined')";
+            ? "log.print(tools==nil and world.title==nil and world.get~=nil and io==nil and os==nil and chests==nil and package==nil and debug==nil and tile.setType==nil)"
+            : "log.print(typeof tools==='undefined' && typeof world.title==='undefined' && typeof world.get==='function' && typeof System==='undefined' && typeof require==='undefined' && typeof chests==='undefined' && typeof tile.setType==='undefined')";
         var op = await s.Finish(await s.Start("execute_script", Args(language, code)));
         Assert.Equal("True", op.GetProperty("script").GetProperty("log")[0].GetString(), ignoreCase: true);
         var oversized = await s.Writer.CallToolAsync("execute_script", new Dictionary<string, object?>

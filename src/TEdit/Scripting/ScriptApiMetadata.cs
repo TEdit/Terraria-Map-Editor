@@ -131,6 +131,7 @@ public static class ScriptApiMetadata
             // World Metadata
             new("title",              "title ↔ string",     "World name"),
             new("worldId",            "worldId ↔ int",      "World ID"),
+            new("worldGuid",          "worldGuid ↔ string", "World GUID"),
             new("seed",               "seed ↔ string",      "World seed"),
             new("isFavorite",         "isFavorite ↔ bool",  "Favorite flag"),
             new("isChinese",          "isChinese ↔ bool",   "Chinese edition flag"),
@@ -213,6 +214,7 @@ public static class ScriptApiMetadata
             new("moreLightningSeed",        "moreLightningSeed ↔ bool",        "More Lightning seed"),
             new("noLightningSeed",          "noLightningSeed ↔ bool",          "No Lightning seed"),
             new("noSpidersSeed",            "noSpidersSeed ↔ bool",            "No Spiders seed"),
+            new("teamBasedSpawnsSeed",      "teamBasedSpawnsSeed ↔ bool",      "Team-based spawns seed"),
 
             // Ore Tiers
             new("isCrimson",               "isCrimson ↔ bool",   "World is Crimson (false = Corruption)"),
@@ -374,6 +376,10 @@ public static class ScriptApiMetadata
             new("cultistDelay", "cultistDelay ↔ int",   "Cultist spawn delay"),
             new("apocalypse",   "apocalypse ↔ bool",    "Apocalypse mode"),
             new("downedClown",  "downedClown ↔ bool",   "Clown defeated"),
+
+            // Access by name
+            new("get",          "get(name) → value",        "Read a property by name, e.g. get('hardMode')"),
+            new("set",          "set(name, value) → value", "Write a property by name; returns the stored value after clamping"),
         ]),
 
         new("metadata", "Lookup Terraria game data (tile/wall/item names and IDs)",

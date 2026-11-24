@@ -38,6 +38,13 @@ for (let x = 10; x <= 12; x++) log.print(tile.getWall(x, 10));
 for x = 10, 12 do log.print(tile.getWall(x, 10)) end
 ```
 
+Scripts can also read and change any field you can edit in the **World Properties** panel, using the same names as sidebar scripts. `world.set` returns the value TEdit stored, after the same limits the panel applies. Like edits in the panel, these changes are not part of **Undo**.
+
+```javascript
+log.print(world.get('hardMode'));
+world.set('hardMode', true);
+```
+
 Each drawing or script request returns an operation ID. The agent can use `get_operation` to follow it or `cancel_operation` to stop it. Wait for the final result before asking for another edit. If a script fails or you cancel it, completed changes stay in the open world as one undo step. Use **Undo** to reverse those changes. Review the world and choose **Save** when you want to write it to your world file.
 
 ## Troubleshoot a connection or edit

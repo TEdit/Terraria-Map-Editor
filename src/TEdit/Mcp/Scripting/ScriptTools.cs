@@ -44,6 +44,11 @@ internal sealed class ScriptTools(McpServerService server, ScriptHost host, IHtt
         {
             functions,
             partialEdits = "Changes made before failure or cancellation remain in one undo step. Poll until terminal, then call get_status before another edit.",
+            worldProperties = new
+            {
+                note = "world.get and world.set accept the fields the World Properties sidebar can edit. Property changes apply immediately and, as in the sidebar, are not part of undo.",
+                names = McpWorldProperties.ScriptNames
+            },
             limits = new { startupMs = ScriptProtocol.StartupMs, recursionDepth = ScriptProtocol.RecursionLimit,
                 instructionsOrStatements = ScriptProtocol.InstructionLimit, allocationBytes = ScriptProtocol.EngineMemoryBytes,
                 workerCommitBytes = ScriptProtocol.ProcessMemoryBytes, sourceBytes = ScriptProtocol.SourceBytes, timeoutMs = ScriptProtocol.TimeoutMs,
@@ -54,6 +59,7 @@ internal sealed class ScriptTools(McpServerService server, ScriptHost host, IHtt
                     ? "for x = 10, 12 do log.print(tile.getWall(x, 10)) end"
                     : "for (let x = 10; x <= 12; x++) log.print(tile.getWall(x, 10));",
                 draw = "draw.rectangle(10,10,14,14,false,1,'tile',1,false,-1)",
+                worldProperties = "log.print(world.get('hardMode'))\nworld.set('hardMode', true)\nworld.set('moonPhase', 4)",
                 compose = "draw.rectangle(10,10,14,14,false,1,'tile',1,false,-1)\ndraw.fillRegion(11,11,13,13,'wall',1,false,-1)\nlog.print(tile.getWall(12,12))"
             }
         }).ToProtocol();

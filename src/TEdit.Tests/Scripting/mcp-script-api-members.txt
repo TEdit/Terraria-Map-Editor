@@ -339,6 +339,7 @@ BLOCKED | World | Boolean SavedWizard
 BLOCKED | World | Boolean ShadowOrbSmashed
 BLOCKED | World | Boolean SkyblockWorld
 BLOCKED | World | Boolean SpawnMeteor
+BLOCKED | World | Boolean TeamBasedSpawnsSeed
 BLOCKED | World | Boolean TenthAnniversaryWorld
 BLOCKED | World | Boolean UnlockedArmsDealerSpawn
 BLOCKED | World | Boolean UnlockedDemolitionistSpawn
@@ -448,6 +449,7 @@ BLOCKED | World | Boolean get_SavedWizard()
 BLOCKED | World | Boolean get_ShadowOrbSmashed()
 BLOCKED | World | Boolean get_SkyblockWorld()
 BLOCKED | World | Boolean get_SpawnMeteor()
+BLOCKED | World | Boolean get_TeamBasedSpawnsSeed()
 BLOCKED | World | Boolean get_TenthAnniversaryWorld()
 BLOCKED | World | Boolean get_UnlockedArmsDealerSpawn()
 BLOCKED | World | Boolean get_UnlockedDemolitionistSpawn()
@@ -631,10 +633,14 @@ BLOCKED | World | Single get_SandStormSeverity()
 BLOCKED | World | Single get_TempMaxRain()
 BLOCKED | World | Single get_TopWorld()
 BLOCKED | World | Single get_WindSpeedSet()
+BLOCKED | World | System.Object Get(System.String)
+BLOCKED | World | System.Object Set(System.String, System.Object)
 BLOCKED | World | System.String Seed
 BLOCKED | World | System.String Title
+BLOCKED | World | System.String WorldGuid
 BLOCKED | World | System.String get_Seed()
 BLOCKED | World | System.String get_Title()
+BLOCKED | World | System.String get_WorldGuid()
 BLOCKED | World | UInt32 FileRevision
 BLOCKED | World | UInt32 get_FileRevision()
 BLOCKED | World | UInt64 WorldGenVersion
@@ -790,6 +796,7 @@ BLOCKED | World | Void set_SpawnX(Int32)
 BLOCKED | World | Void set_SpawnY(Int32)
 BLOCKED | World | Void set_SundialCooldown(Byte)
 BLOCKED | World | Void set_SurfaceLevel(Double)
+BLOCKED | World | Void set_TeamBasedSpawnsSeed(Boolean)
 BLOCKED | World | Void set_TempCoinRain(Int32)
 BLOCKED | World | Void set_TempMaxRain(Single)
 BLOCKED | World | Void set_TempMeteorShowerCount(Int32)
@@ -829,5 +836,6 @@ BLOCKED | World | Void set_UnlockedTruffleSpawn(Boolean)
 BLOCKED | World | Void set_VampireSeed(Boolean)
 BLOCKED | World | Void set_WindSpeedSet(Single)
 BLOCKED | World | Void set_WorldGenVersion(UInt64)
+BLOCKED | World | Void set_WorldGuid(System.String)
 BLOCKED | World | Void set_WorldId(Int32)
 BLOCKED | World | Void set_ZenithWorld(Boolean)

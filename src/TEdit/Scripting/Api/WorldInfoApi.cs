@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
 using TEdit.Terraria;
 
 namespace TEdit.Scripting.Api;
@@ -18,6 +23,7 @@ public class WorldInfoApi
     // ── World Metadata ──────────────────────────────────────────────
     public string Title { get => _world.Title ?? ""; set => _world.Title = value; }
     public int WorldId { get => _world.WorldId; set => _world.WorldId = value; }
+    public string WorldGuid { get => _world.WorldGUID.ToString(); set => _world.WorldGUID = Guid.Parse(value); }
     public string Seed { get => _world.Seed ?? ""; set => _world.Seed = value; }
     public bool IsFavorite { get => _world.IsFavorite; set => _world.IsFavorite = value; }
     public bool IsChinese { get => _world.IsChinese; set => _world.IsChinese = value; }
@@ -100,6 +106,7 @@ public class WorldInfoApi
     public bool MoreLightningSeed { get => _world.MoreLightningSeed; set => _world.MoreLightningSeed = value; }
     public bool NoLightningSeed { get => _world.NoLightningSeed; set => _world.NoLightningSeed = value; }
     public bool NoSpidersSeed { get => _world.NoSpidersSeed; set => _world.NoSpidersSeed = value; }
+    public bool TeamBasedSpawnsSeed { get => _world.TeamBasedSpawnsSeed; set => _world.TeamBasedSpawnsSeed = value; }
 
     // ── Ore Tiers ───────────────────────────────────────────────────
     public bool IsCrimson { get => _world.IsCrimson; set => _world.IsCrimson = value; }
@@ -261,4 +268,51 @@ public class WorldInfoApi
     public int CultistDelay { get => _world.CultistDelay; set => _world.CultistDelay = value; }
     public bool Apocalypse { get => _world.Apocalypse; set => _world.Apocalypse = value; }
     public bool DownedClown { get => _world.DownedClown; set => _world.DownedClown = value; }
+
+    // ── Access by name ──────────────────────────────────────────────
+
+    /// <summary>Reads a property by its script name, e.g. "hardMode".</summary>
+    public object? Get(string name) => Find(name).GetValue(this);
+
+    /// <summary>
+    /// Writes a property by its script name and returns the stored value, which setters may clamp.
+    /// Numbers must fit the property's type exactly (no rounding or wrapping).
+    /// Throws ArgumentException with an error code as the message.
+    /// </summary>
+    public object? Set(string name, object value)
+    {
+        var property = Find(name);
+        if (property.SetMethod is not { IsPublic: true }) throw new ArgumentException("read_only_property");
+        try { property.SetValue(this, ConvertValue(property.PropertyType, value)); }
+        catch (TargetInvocationException e) when (e.InnerException is FormatException or ArgumentException)
+        {
+            throw new ArgumentException("invalid_value");
+        }
+        return property.GetValue(this);
+    }
+
+    private static readonly Dictionary<string, PropertyInfo> ByName = typeof(WorldInfoApi)
+        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+        .ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
+
+    private static PropertyInfo Find(string name) =>
+        name != null && ByName.TryGetValue(name, out var property) ? property : throw new ArgumentException("unknown_property");
+
+    internal static object ConvertValue(Type type, object value)
+    {
+        static ArgumentException Invalid() => new("invalid_value");
+        if (type == typeof(bool)) return value is bool b ? b : throw Invalid();
+        if (type == typeof(string)) return value as string ?? throw Invalid();
+        double number = value switch
+        {
+            double d => d, float f => f, int i => i, long l => l, short s => s, byte b8 => b8,
+            _ => throw Invalid()
+        };
+        if (!double.IsFinite(number)) throw Invalid();
+        if (type == typeof(double)) return number;
+        if (type == typeof(float)) return number is >= float.MinValue and <= float.MaxValue ? (float)number : throw Invalid();
+        if (number != Math.Floor(number)) throw Invalid();
+        try { return Convert.ChangeType((decimal)number, type, CultureInfo.InvariantCulture); }
+        catch (Exception e) when (e is OverflowException or InvalidCastException) { throw Invalid(); }
+    }
 }

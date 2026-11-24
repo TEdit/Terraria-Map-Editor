@@ -84,6 +84,7 @@ internal sealed class ScriptHost(WorldViewModel vm, Dispatcher dispatcher, strin
 internal sealed class ScriptSession(World world, IUndoManager undo, RectangleInt32? selection)
 {
     private readonly HashSet<Vector2Int32> _changed = [];
+    private readonly WorldInfoApi _info = new(world);
     private int _work, _logChars;
     internal bool SpriteUndoPending { get; private set; }
     internal int ChangedTiles => _changed.Count;
@@ -124,9 +125,37 @@ internal sealed class ScriptSession(World world, IUndoManager undo, RectangleInt
                 return await Draw(new("sprite", I(0), I(1), I(0), I(1), true, 1, "tile", I(2), B(4), -1, I(3)), token);
             case "draw.fillRegion" when args.Length == 8:
                 return await Draw(new("fill", I(0), I(1), I(2), I(3), true, 1, S(4), I(5), B(6), I(7)), token);
+            case "world.get" when args.Length == 1:
+                return WorldProperty(S(0), null);
+            case "world.set" when args.Length == 2:
+                return WorldProperty(S(0), args[1]);
             default:
                 throw new ScriptLimitException("invalid_arguments");
         }
+    }
+
+    // Only fields the World Properties sidebar can edit are reachable. Setters apply the same clamping
+    // as the sidebar, so set returns the value actually stored.
+    private JsonElement WorldProperty(string name, JsonElement? value)
+    {
+        if (!McpWorldProperties.IsExposed(name)) throw new ScriptLimitException("unknown_property");
+        try
+        {
+            if (value is { } v)
+            {
+                object input = v.ValueKind switch
+                {
+                    JsonValueKind.Number => v.GetDouble(),
+                    JsonValueKind.True => true,
+                    JsonValueKind.False => false,
+                    JsonValueKind.String => v.GetString()!,
+                    _ => throw new ScriptLimitException("invalid_value")
+                };
+                return JsonSerializer.SerializeToElement(_info.Set(name, input));
+            }
+            return JsonSerializer.SerializeToElement(_info.Get(name));
+        }
+        catch (ArgumentException e) { throw new ScriptLimitException(e.Message); }
     }
 
     private async Task<JsonElement> Draw(DrawingSpec spec, CancellationToken token)
