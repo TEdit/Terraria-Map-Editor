@@ -639,6 +639,8 @@ public class WorldConfiguration
 
     public static Dictionary<int, DyeProperty> DyeColorById => TerrariaDataStore.Instance.DyeColorById;
 
+    public static Dictionary<string, SecretSeedProperty> SecretSeedByCode => TerrariaDataStore.Instance.SecretSeedByCode;
+
     public static Dictionary<int, int> TileItemLookup => TerrariaDataStore.Instance.TileItemLookup;
     public static Dictionary<int, int> WallItemLookup => TerrariaDataStore.Instance.WallItemLookup;
 

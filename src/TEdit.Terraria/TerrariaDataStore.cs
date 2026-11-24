@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TEdit.Common;
 using TEdit.Terraria.DataModel;
 using TEdit.Terraria.Loaders;
@@ -42,6 +43,7 @@ public class TerrariaDataStore
     public Dictionary<int, NpcData> NpcById { get; } = new();
     public Dictionary<byte, string> PrefixById { get; } = new();
     public Dictionary<string, TEditColor> GlobalColors { get; } = new();
+    public Dictionary<string, SecretSeedProperty> SecretSeedByCode { get; } = new();
 
     // Category dictionaries (for UI dropdowns)
     public Dictionary<int, ItemProperty> ArmorHeadItems { get; } = new();
@@ -264,6 +266,14 @@ public class TerrariaDataStore
         }
         catch (FileNotFoundException) { }
 
+        // Load secret seed codes
+        try
+        {
+            var secretSeeds = JsonDataLoader.LoadListFromResource<SecretSeedProperty>("secretSeeds.json", dataPath);
+            PopulateSecretSeeds(secretSeeds);
+        }
+        catch (FileNotFoundException) { }
+
         ResolveRarityColors();
         RebuildFrameImportant();
     }
@@ -370,6 +380,13 @@ public class TerrariaDataStore
         DyeItems.Clear();
         foreach (var item in Items)
             if (DyeColorById.ContainsKey(item.Id)) DyeItems[item.Id] = item;
+    }
+
+    internal void PopulateSecretSeeds(List<SecretSeedProperty> secretSeeds)
+    {
+        SecretSeedByCode.Clear();
+        foreach (var seed in secretSeeds)
+            SecretSeedByCode[Regex.Replace(seed.Code.ToLower(), "[^a-z0-9]+", "")] = seed;
     }
 
     /// <summary>

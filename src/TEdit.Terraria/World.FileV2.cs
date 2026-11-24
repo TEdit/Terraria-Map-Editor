@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TEdit.Common.Exceptions;
 using TEdit.Helper;
 using TEdit.Terraria.TModLoader;
@@ -2487,6 +2488,39 @@ public partial class World
         if (w.Version >= 328)
         {
             w.NoSpidersSeed = r.ReadBoolean();
+        }
+
+        if (w.Version <= 328 && !string.IsNullOrWhiteSpace(w.Seed))
+        {
+            var secretSeeds = WorldConfiguration.SecretSeedByCode;
+            var codes = w.Seed.Split('|');
+            int secretSeedCount = 0;
+            bool hasNoSpiderCaves = false;
+            for (int i = 0; i < codes.Length; i++)
+            {
+                var code = Regex.Replace(codes[i].ToLower(), "[^a-z0-9]+", "");
+                if (code.Length == 0 || !secretSeeds.TryGetValue(code, out var seed))
+                    continue;
+
+                secretSeedCount++;
+                if (seed.Id == "noSpiderCaves")
+                {
+                    hasNoSpiderCaves = true;
+                    codes[i] = "creepy crawlies";
+                }
+            }
+
+            if (hasNoSpiderCaves)
+            {
+                if (secretSeedCount < 4)
+                {
+                    w.NoSpidersSeed = true;
+                }
+                else
+                {
+                    w.Seed = string.Join("|", codes);
+                }
+            }
         }
 
         if (w.Version >= 299 && w.Version < 313)
