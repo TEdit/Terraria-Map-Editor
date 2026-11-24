@@ -3,43 +3,56 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+        xmlns:view="clr-namespace:TEdit.View" ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         Title="{x:Static p:Language.plugin_blockshuffle_title}">
     <Grid>
-        <StackPanel Margin="5">
-            <Label Content="{x:Static p:Language.plugin_seed_label}"/>
-            <TextBox x:Name="SeedTextBox"/>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="{x:Static p:Language.plugin_blockshuffle_shuffle_label}" Margin="0,0,5,0"/>
-                <RadioButton x:Name="SelectionRadio" Content="{x:Static p:Language.plugin_blockshuffle_scope_selection}" Margin="5,0"/>
-                <RadioButton x:Name="WorldRadio" Content="{x:Static p:Language.plugin_blockshuffle_scope_world}" Margin="5,0"/>
-            </StackPanel>
-            <CheckBox x:Name="IncludeTileEntitiesCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_include_entities}" Checked="IncludeTileEntitiesCheckBox_Checked"/>
-            <CheckBox x:Name="SensitivePlatformCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_keep_below_entities}" IsChecked="True"/>
-            <CheckBox x:Name="UndoCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_enable_undo}" IsChecked="True"/>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3" Margin="0,5">
-                <StackPanel Margin="2,0,2,2">
-                    <Label Content="{x:Static p:Language.plugin_blockshuffle_empty_percent}"/>
-                    <Grid Margin="0,0,0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
-                        <Slider x:Name="ReplaceEmptySlider" Minimum="5" Maximum="100" Value="100" SmallChange="5" LargeChange="10" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True"/>
-                        <Label Content="{Binding Value, ElementName=ReplaceEmptySlider}" ContentStringFormat="{}{0}%" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
-                    </Grid>
-                    <CheckBox x:Name="ReplaceWallCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_count_walls}" IsChecked="True"/>
-                    <CheckBox x:Name="ReplaceLiquidCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_count_liquids}"/>
-                    <CheckBox x:Name="ReplaceEverythingCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_apply_chance_all}" Checked="ReplaceEverythingCheckBox_Checked" Unchecked="ReplaceEverythingCheckBox_Unchecked"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_blockshuffle_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
+
+        <Grid Grid.Row="1">
+            <StackPanel Margin="12,8,12,14">
+                <Label Content="{x:Static p:Language.plugin_seed_label}"/>
+                <TextBox x:Name="SeedTextBox"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{x:Static p:Language.plugin_blockshuffle_shuffle_label}" Margin="0,0,5,0"/>
+                    <RadioButton x:Name="SelectionRadio" Content="{x:Static p:Language.plugin_blockshuffle_scope_selection}" Margin="5,0"/>
+                    <RadioButton x:Name="WorldRadio" Content="{x:Static p:Language.plugin_blockshuffle_scope_world}" Margin="5,0"/>
                 </StackPanel>
-            </Border>
-            <Grid>
-                <Button Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20,3" Click="CancelButtonClick"/>
-                <Button Content="{x:Static p:Language.plugin_blockshuffle_shuffle_button}" HorizontalAlignment="Right" Padding="20,3" Click="OkButtonClick"/>
-            </Grid>
-        </StackPanel>
+                <CheckBox x:Name="IncludeTileEntitiesCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_include_entities}" Checked="IncludeTileEntitiesCheckBox_Checked"/>
+                <CheckBox x:Name="SensitivePlatformCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_keep_below_entities}" IsChecked="True"/>
+                <CheckBox x:Name="UndoCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_enable_undo}" IsChecked="True"/>
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3" Margin="0,5">
+                    <StackPanel Margin="2,0,2,2">
+                        <Label Content="{x:Static p:Language.plugin_blockshuffle_empty_percent}"/>
+                        <Grid Margin="0,0,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <Slider x:Name="ReplaceEmptySlider" Minimum="5" Maximum="100" Value="100" SmallChange="5" LargeChange="10" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True"/>
+                            <Label Content="{Binding Value, ElementName=ReplaceEmptySlider}" ContentStringFormat="{}{0}%" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                        </Grid>
+                        <CheckBox x:Name="ReplaceWallCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_count_walls}" IsChecked="True"/>
+                        <CheckBox x:Name="ReplaceLiquidCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_count_liquids}"/>
+                        <CheckBox x:Name="ReplaceEverythingCheckBox" Content="{x:Static p:Language.plugin_blockshuffle_apply_chance_all}" Checked="ReplaceEverythingCheckBox_Checked" Unchecked="ReplaceEverythingCheckBox_Unchecked"/>
+                    </StackPanel>
+                </Border>
+                <Grid>
+                    <Button Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20,3" Click="CancelButtonClick"/>
+                    <Button Content="{x:Static p:Language.plugin_blockshuffle_shuffle_button}" HorizontalAlignment="Right" Padding="20,3" Click="OkButtonClick"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </ui:FluentWindow>

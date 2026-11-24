@@ -160,133 +160,146 @@
         </DataTemplate>
     </ui:FluentWindow.Resources>
 
-    <Grid Margin="10">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Search Box -->
-        <Grid Grid.Row="0" Margin="0,0,0,8">
-            <TextBox x:Name="SearchBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                     Padding="4" VerticalContentAlignment="Center" />
-            <TextBlock Text="{x:Static p:Language.settings_search_placeholder}" IsHitTestVisible="False" Foreground="Gray"
-                       VerticalAlignment="Center" Margin="6,0,0,0">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Visibility" Value="Visible" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=SearchBox, Converter={x:Static vm:StringNotEmptyConverter.Instance}}" Value="True">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-        </Grid>
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.menu_help_settings}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
 
-        <!-- Settings List -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl ItemsSource="{Binding SettingsView}">
-                <ItemsControl.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.ContainerStyle>
-                            <Style TargetType="{x:Type GroupItem}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <Expander Margin="0,4,0,0"
-                                                      Expanded="CategoryExpander_Expanded"
-                                                      Collapsed="CategoryExpander_Collapsed">
-                                                <Expander.IsExpanded>
-                                                    <MultiBinding Converter="{x:Static vm:CategoryExpandedConverter.Instance}" Mode="OneWay">
-                                                        <Binding Path="Name" Mode="OneWay" />
-                                                        <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="DataContext" Mode="OneWay" />
-                                                    </MultiBinding>
-                                                </Expander.IsExpanded>
-                                                <Expander.Header>
-                                                    <TextBlock Text="{Binding Name}"
-                                                               FontSize="14" FontWeight="Bold"
-                                                               Foreground="{DynamicResource TextBrush}" />
-                                                </Expander.Header>
-                                                <!-- Darker background for settings items -->
-                                                <Border Background="#1A1A1A"
-                                                        CornerRadius="4"
-                                                        Margin="0,4,0,8"
-                                                        Padding="4">
-                                                    <ItemsPresenter />
-                                                </Border>
-                                            </Expander>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </GroupStyle.ContainerStyle>
-                    </GroupStyle>
-                </ItemsControl.GroupStyle>
-                <ItemsControl.ItemTemplateSelector>
-                    <vm:SettingEditorTemplateSelector
-                        SettingCheckBoxTemplate="{StaticResource SettingCheckBoxTemplate}"
-                        SettingSliderTemplate="{StaticResource SettingSliderTemplate}"
-                        SettingComboBoxTemplate="{StaticResource SettingComboBoxTemplate}"
-                        SettingPathTemplate="{StaticResource SettingPathTemplate}"
-                        SettingKeybindingTemplate="{StaticResource SettingKeybindingTemplate}"
-                        SettingTextBoxTemplate="{StaticResource SettingTextBoxTemplate}" />
-                </ItemsControl.ItemTemplateSelector>
-            </ItemsControl>
-        </ScrollViewer>
+        <Grid Margin="10" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <!-- MCP preferences are drafts until Save. Profile actions apply to the running host. -->
-        <Expander Grid.Row="2" Header="MCP" VerticalAlignment="Top" Margin="0,4">
-          <ScrollViewer MaxHeight="290" VerticalScrollBarVisibility="Auto"><StackPanel Margin="8">
-            <CheckBox x:Name="McpEnabled" Content="{x:Static p:Language.mcp_enable}" />
-            <CheckBox x:Name="McpShared" Content="{x:Static p:Language.mcp_shared}" />
-            <CheckBox x:Name="McpEdit" Content="{x:Static p:Language.mcp_edit}" />
-            <CheckBox x:Name="McpScripts" Margin="16,0,0,0" IsEnabled="{Binding IsChecked, ElementName=McpEdit}" Content="{x:Static p:Language.mcp_scripts}" />
-            <Label Content="{x:Static p:Language.mcp_port}" Target="{Binding ElementName=McpPort}" />
-            <TextBox x:Name="McpPort" MaxLength="5" />
-            <TextBlock x:Name="McpStatus" TextWrapping="Wrap" />
-            <TextBox x:Name="McpEndpoint" IsReadOnly="True" />
-            <StackPanel x:Name="McpManagement">
-              <StackPanel x:Name="McpProfilesPanel">
-              <Label Content="{x:Static p:Language.mcp_profile}" Target="{Binding ElementName=McpName}" />
-              <TextBox x:Name="McpName" MaxLength="64" />
-              <Button Content="{x:Static p:Language.mcp_issue}" Click="IssueProfile" />
-              <TextBox x:Name="McpCredential" IsReadOnly="True" />
-              <ComboBox x:Name="McpClients" SelectionChanged="UpdateAgentSetup" DisplayMemberPath="Value" SelectedValuePath="Key" />
-              <Button Content="{x:Static p:Language.mcp_revoke}" Click="RevokeProfile" />
-              </StackPanel>
-              <TextBox x:Name="McpSetup" IsReadOnly="True" TextWrapping="Wrap" AutomationProperties.Name="{x:Static p:Language.mcp_copy_setup}" />
-              <Button Content="{x:Static p:Language.mcp_copy_setup}" Click="CopyMcpSetup" />
-              <Expander Header="{x:Static p:Language.agent_connect}">
-                <StackPanel Margin="6">
-                  <ComboBox x:Name="AgentClient" AutomationProperties.Name="{x:Static p:Language.agent_connect}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="UpdateAgentSetup"/>
-                  <CheckBox x:Name="AgentWorkspace" Content="{x:Static p:Language.agent_workspace}" Click="UpdateAgentSetup"/>
-                  <CheckBox x:Name="AgentStdio" Content="{x:Static p:Language.agent_stdio}" Click="UpdateAgentSetup"/>
-                  <TextBlock Text="{x:Static p:Language.agent_merge}" TextWrapping="Wrap"/>
-                  <TextBlock x:Name="AgentTarget" TextWrapping="Wrap"/>
-                  <TextBox x:Name="AgentPreview" IsReadOnly="True" TextWrapping="Wrap" MaxHeight="130" VerticalScrollBarVisibility="Auto" AutomationProperties.Name="{x:Static p:Language.mcp_copy_setup}"/>
-                  <WrapPanel x:Name="AgentActions">
-                    <Button Content="{x:Static p:Language.menu_edit_copy}" Click="CopyAgent"/>
-                    <Button Content="{x:Static p:Language.toolbar_export}" Click="ExportAgent"/>
-                    <Button Content="{x:Static p:Language.agent_check}" Click="CheckAgent"/>
-                  </WrapPanel>
-                  <TextBlock x:Name="AgentResult" TextWrapping="Wrap"/>
+            <!-- Search Box -->
+            <Grid Grid.Row="0" Margin="0,0,0,8">
+                <TextBox x:Name="SearchBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="4" VerticalContentAlignment="Center" />
+                <TextBlock Text="{x:Static p:Language.settings_search_placeholder}" IsHitTestVisible="False" Foreground="Gray"
+                           VerticalAlignment="Center" Margin="6,0,0,0">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=SearchBox, Converter={x:Static vm:StringNotEmptyConverter.Instance}}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+
+            <!-- Settings List -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding SettingsView}">
+                    <ItemsControl.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                <Expander Margin="0,4,0,0"
+                                                          Expanded="CategoryExpander_Expanded"
+                                                          Collapsed="CategoryExpander_Collapsed">
+                                                    <Expander.IsExpanded>
+                                                        <MultiBinding Converter="{x:Static vm:CategoryExpandedConverter.Instance}" Mode="OneWay">
+                                                            <Binding Path="Name" Mode="OneWay" />
+                                                            <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="DataContext" Mode="OneWay" />
+                                                        </MultiBinding>
+                                                    </Expander.IsExpanded>
+                                                    <Expander.Header>
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   FontSize="14" FontWeight="Bold"
+                                                                   Foreground="{DynamicResource TextBrush}" />
+                                                    </Expander.Header>
+                                                    <!-- Darker background for settings items -->
+                                                    <Border Background="#1A1A1A"
+                                                            CornerRadius="4"
+                                                            Margin="0,4,0,8"
+                                                            Padding="4">
+                                                        <ItemsPresenter />
+                                                    </Border>
+                                                </Expander>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </ItemsControl.GroupStyle>
+                    <ItemsControl.ItemTemplateSelector>
+                        <vm:SettingEditorTemplateSelector
+                            SettingCheckBoxTemplate="{StaticResource SettingCheckBoxTemplate}"
+                            SettingSliderTemplate="{StaticResource SettingSliderTemplate}"
+                            SettingComboBoxTemplate="{StaticResource SettingComboBoxTemplate}"
+                            SettingPathTemplate="{StaticResource SettingPathTemplate}"
+                            SettingKeybindingTemplate="{StaticResource SettingKeybindingTemplate}"
+                            SettingTextBoxTemplate="{StaticResource SettingTextBoxTemplate}" />
+                    </ItemsControl.ItemTemplateSelector>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- MCP preferences are drafts until Save. Profile actions apply to the running host. -->
+            <Expander Grid.Row="2" Header="MCP" VerticalAlignment="Top" Margin="0,4">
+              <ScrollViewer MaxHeight="290" VerticalScrollBarVisibility="Auto"><StackPanel Margin="8">
+                <CheckBox x:Name="McpEnabled" Content="{x:Static p:Language.mcp_enable}" />
+                <CheckBox x:Name="McpShared" Content="{x:Static p:Language.mcp_shared}" />
+                <CheckBox x:Name="McpEdit" Content="{x:Static p:Language.mcp_edit}" />
+                <CheckBox x:Name="McpScripts" Margin="16,0,0,0" IsEnabled="{Binding IsChecked, ElementName=McpEdit}" Content="{x:Static p:Language.mcp_scripts}" />
+                <Label Content="{x:Static p:Language.mcp_port}" Target="{Binding ElementName=McpPort}" />
+                <TextBox x:Name="McpPort" MaxLength="5" />
+                <TextBlock x:Name="McpStatus" TextWrapping="Wrap" />
+                <TextBox x:Name="McpEndpoint" IsReadOnly="True" />
+                <StackPanel x:Name="McpManagement">
+                  <StackPanel x:Name="McpProfilesPanel">
+                  <Label Content="{x:Static p:Language.mcp_profile}" Target="{Binding ElementName=McpName}" />
+                  <TextBox x:Name="McpName" MaxLength="64" />
+                  <Button Content="{x:Static p:Language.mcp_issue}" Click="IssueProfile" />
+                  <TextBox x:Name="McpCredential" IsReadOnly="True" />
+                  <ComboBox x:Name="McpClients" SelectionChanged="UpdateAgentSetup" DisplayMemberPath="Value" SelectedValuePath="Key" />
+                  <Button Content="{x:Static p:Language.mcp_revoke}" Click="RevokeProfile" />
+                  </StackPanel>
+                  <TextBox x:Name="McpSetup" IsReadOnly="True" TextWrapping="Wrap" AutomationProperties.Name="{x:Static p:Language.mcp_copy_setup}" />
+                  <Button Content="{x:Static p:Language.mcp_copy_setup}" Click="CopyMcpSetup" />
+                  <Expander Header="{x:Static p:Language.agent_connect}">
+                    <StackPanel Margin="6">
+                      <ComboBox x:Name="AgentClient" AutomationProperties.Name="{x:Static p:Language.agent_connect}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="UpdateAgentSetup"/>
+                      <CheckBox x:Name="AgentWorkspace" Content="{x:Static p:Language.agent_workspace}" Click="UpdateAgentSetup"/>
+                      <CheckBox x:Name="AgentStdio" Content="{x:Static p:Language.agent_stdio}" Click="UpdateAgentSetup"/>
+                      <TextBlock Text="{x:Static p:Language.agent_merge}" TextWrapping="Wrap"/>
+                      <TextBlock x:Name="AgentTarget" TextWrapping="Wrap"/>
+                      <TextBox x:Name="AgentPreview" IsReadOnly="True" TextWrapping="Wrap" MaxHeight="130" VerticalScrollBarVisibility="Auto" AutomationProperties.Name="{x:Static p:Language.mcp_copy_setup}"/>
+                      <WrapPanel x:Name="AgentActions">
+                        <Button Content="{x:Static p:Language.menu_edit_copy}" Click="CopyAgent"/>
+                        <Button Content="{x:Static p:Language.toolbar_export}" Click="ExportAgent"/>
+                        <Button Content="{x:Static p:Language.agent_check}" Click="CheckAgent"/>
+                      </WrapPanel>
+                      <TextBlock x:Name="AgentResult" TextWrapping="Wrap"/>
+                    </StackPanel>
+                  </Expander>
+                  <Label Content="{x:Static p:Language.mcp_history}" Target="{Binding ElementName=McpHistory}" />
+                  <ComboBox x:Name="McpHistory" DisplayMemberPath="Value" SelectedValuePath="Key" />
+                  <StackPanel Orientation="Horizontal"><Button Content="{x:Static p:Language.common_refresh}" Click="RefreshHost" />
+                  <Button Content="{x:Static p:Language.common_cancel}" Click="CancelOperation" /></StackPanel>
                 </StackPanel>
-              </Expander>
-              <Label Content="{x:Static p:Language.mcp_history}" Target="{Binding ElementName=McpHistory}" />
-              <ComboBox x:Name="McpHistory" DisplayMemberPath="Value" SelectedValuePath="Key" />
-              <StackPanel Orientation="Horizontal"><Button Content="{x:Static p:Language.common_refresh}" Click="RefreshHost" />
-              <Button Content="{x:Static p:Language.common_cancel}" Click="CancelOperation" /></StackPanel>
+              </StackPanel></ScrollViewer>
+            </Expander>
+            <!-- Save/Cancel Buttons -->
+            <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+                <Button x:Name="CancelSettings" Content="{x:Static p:Language.settings_cancel}" Width="80" Padding="4" Margin="0,0,8,0" Click="Cancel_Click" />
+                <Button Content="{x:Static p:Language.settings_save}" Width="80" Padding="4" Click="Save_Click" />
             </StackPanel>
-          </StackPanel></ScrollViewer>
-        </Expander>
-        <!-- Save/Cancel Buttons -->
-        <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-            <Button x:Name="CancelSettings" Content="{x:Static p:Language.settings_cancel}" Width="80" Padding="4" Margin="0,0,8,0" Click="Cancel_Click" />
-            <Button Content="{x:Static p:Language.settings_save}" Width="80" Padding="4" Click="Save_Click" />
-        </StackPanel>
+        </Grid>
     </Grid>
 </ui:FluentWindow>

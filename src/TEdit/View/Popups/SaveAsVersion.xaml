@@ -14,44 +14,57 @@
         Icon="/TEdit;component/Images/tedit.ico"
         Title="{x:Static p:Language.saveas_title}" Height="470" Width="520"
         MinWidth="300" MinHeight="200">
-    <Grid Margin="10">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{x:Static p:Language.saveas_instruction}"
-                   FontSize="14" FontWeight="SemiBold"
-                   Foreground="{DynamicResource TextBrush}"
-                   Margin="0,0,0,10" />
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.saveas_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding SortedVersions}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding}"
-                                Command="{Binding DataContext.SaveAsVersionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                CommandParameter="{Binding}"
-                                Width="70" Padding="4,2" Margin="5" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <Grid Margin="10" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="2" Margin="0,10,0,0">
-            <ui:Button Content="{x:Static p:Language.common_cancel}"
-                    IsCancel="True"
-                    Appearance="Danger"
-                    DockPanel.Dock="Right"
-                    Padding="12,4" />
-            <CheckBox Content="{x:Static p:Language.saveas_preserve_all}"
-                      IsChecked="{Binding PreserveAll}" />
-        </DockPanel>
+            <TextBlock Grid.Row="0" Text="{x:Static p:Language.saveas_instruction}"
+                       FontSize="14" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextBrush}"
+                       Margin="0,0,0,10" />
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding SortedVersions}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding}"
+                                    Command="{Binding DataContext.SaveAsVersionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    Width="70" Padding="4,2" Margin="5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <DockPanel Grid.Row="2" Margin="0,10,0,0">
+                <ui:Button Content="{x:Static p:Language.common_cancel}"
+                        IsCancel="True"
+                        Appearance="Danger"
+                        DockPanel.Dock="Right"
+                        Padding="12,4" />
+                <CheckBox Content="{x:Static p:Language.saveas_preserve_all}"
+                          IsChecked="{Binding PreserveAll}" />
+            </DockPanel>
+        </Grid>
     </Grid>
 </ui:FluentWindow>

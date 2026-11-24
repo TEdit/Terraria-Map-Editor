@@ -12,6 +12,7 @@ WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 
 using System.Windows;
 using Wpf.Ui.Controls;
+using TEdit.UI;
 
 namespace TEdit.Editor.Plugins;
 
@@ -23,6 +24,7 @@ public partial class HouseGenPluginView : FluentWindow
     public HouseGenPluginView()
     {
         InitializeComponent();
+        WindowSizing.SizeFromContent(this);
    }
 
     private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)

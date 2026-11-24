@@ -10,355 +10,367 @@
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
-        SizeToContent="Height"
         Width="380"
         MinWidth="380"
         MaxHeight="700">
 
-    <Grid Background="{DynamicResource SidebarBackgroundBrush}">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>      <!-- Title -->
-            <RowDefinition Height="Auto"/>      <!-- World Properties -->
-            <RowDefinition Height="Auto"/>      <!-- World Generation (Expander) -->
-            <RowDefinition Height="Auto"/>      <!-- Bottom Buttons -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title -->
-        <TextBlock Grid.Row="0"
-                   Text="{x:Static p:Language.newworld_heading}"
-                   Style="{DynamicResource SidebarPanelTitle}"/>
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.newworld_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
 
-        <!-- World Properties Section -->
-        <StackPanel Grid.Row="1" Margin="8,0,8,8">
-            <TextBlock Text="{x:Static p:Language.newworld_properties}"
-                       Margin="0,0,0,8"
-                       FontWeight="SemiBold"
-                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+        <Grid Background="{DynamicResource SidebarBackgroundBrush}" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>      <!-- Title -->
+                <RowDefinition Height="Auto"/>      <!-- World Properties -->
+                <RowDefinition Height="Auto"/>      <!-- World Generation (Expander) -->
+                <RowDefinition Height="Auto"/>      <!-- Bottom Buttons -->
+            </Grid.RowDefinitions>
 
-            <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <tedit:AutoGrid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </tedit:AutoGrid.ColumnDefinitions>
+            <!-- Title -->
+            <TextBlock Grid.Row="0"
+                       Text="{x:Static p:Language.newworld_heading}"
+                       Style="{DynamicResource SidebarPanelTitle}"/>
 
-                <TextBlock Text="{x:Static p:Language.newworld_name}"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,8,0"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,2"/>
-
-                <TextBlock Text="{x:Static p:Language.newworld_seed}"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,8,0"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <TextBox Text="{Binding WorldId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,2"/>
-
-                <TextBlock Text="{x:Static p:Language.newworld_width}"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,8,0"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <DockPanel Margin="0,2">
-                    <TextBlock Text="{Binding TilesWide, StringFormat={}{0:0}}"
-                               Width="40"
-                               DockPanel.Dock="Right"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                    <Slider Value="{Binding TilesWide, Mode=TwoWay}"
-                            VerticalAlignment="Center"
-                            Minimum="200" Maximum="8400"
-                            SmallChange="200" LargeChange="600"
-                            TickFrequency="200" IsSnapToTickEnabled="True"/>
-                </DockPanel>
-
-                <TextBlock Text="{x:Static p:Language.newworld_height}"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,8,0"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <DockPanel Margin="0,2">
-                    <TextBlock Text="{Binding TilesHighReactive, StringFormat={}{0:0}}"
-                               Width="40"
-                               DockPanel.Dock="Right"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                    <Slider Value="{Binding TilesHigh, Mode=TwoWay}"
-                            VerticalAlignment="Center"
-                            Minimum="150" Maximum="2400"
-                            SmallChange="150" LargeChange="450"
-                            TickFrequency="150" IsSnapToTickEnabled="True"/>
-                </DockPanel>
-
-                <TextBlock Text="{x:Static p:Language.newworld_surface}"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,8,0"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <DockPanel Margin="0,2">
-                    <TextBlock Text="{Binding GroundLevel, StringFormat={}{0:0}}"
-                               Width="40"
-                               DockPanel.Dock="Right"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                    <Slider Value="{Binding GroundLevel, Mode=TwoWay}"
-                            VerticalAlignment="Center"
-                            Minimum="0" Maximum="{Binding Path=MaxGroundLevel}"
-                            SmallChange="1"/>
-                </DockPanel>
-
-                <TextBlock Text="{x:Static p:Language.newworld_cavern}"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,8,0"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <DockPanel Margin="0,2">
-                    <TextBlock Text="{Binding RockLevel, StringFormat={}{0:0}}"
-                               Width="40"
-                               DockPanel.Dock="Right"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                    <Slider Value="{Binding RockLevel, Mode=TwoWay}"
-                            VerticalAlignment="Center"
-                            Minimum="0" Maximum="{Binding Path=MaxCavernLevel}"
-                            SmallChange="1"/>
-                </DockPanel>
-            </tedit:AutoGrid>
-        </StackPanel>
-
-        <!-- World Generation Section (Expander) -->
-        <Expander Grid.Row="2"
-                  Header="{x:Static p:Language.newworld_generation}"
-                  Margin="8,0,8,8"
-                  IsExpanded="False">
-            <ScrollViewer MaxHeight="350" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                <!-- Hills Section -->
-                <TextBlock Text="{x:Static p:Language.newworld_hills}"
-                           Margin="0,8,0,4"
+            <!-- World Properties Section -->
+            <StackPanel Grid.Row="1" Margin="8,0,8,8">
+                <TextBlock Text="{x:Static p:Language.newworld_properties}"
+                           Margin="0,0,0,8"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <tedit:AutoGrid HorizontalAlignment="Stretch">
+
+                <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top">
                     <tedit:AutoGrid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </tedit:AutoGrid.ColumnDefinitions>
 
-                    <TextBlock Text="{x:Static p:Language.newworld_hill_size}"
+                    <TextBlock Text="{x:Static p:Language.newworld_name}"
+                               HorizontalAlignment="Right"
+                               Margin="0,0,8,0"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                    <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,2"/>
+
+                    <TextBlock Text="{x:Static p:Language.newworld_seed}"
+                               HorizontalAlignment="Right"
+                               Margin="0,0,8,0"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                    <TextBox Text="{Binding WorldId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,2"/>
+
+                    <TextBlock Text="{x:Static p:Language.newworld_width}"
                                HorizontalAlignment="Right"
                                Margin="0,0,8,0"
                                Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
                     <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding HillSize, StringFormat={}{0:0}}"
+                        <TextBlock Text="{Binding TilesWide, StringFormat={}{0:0}}"
                                    Width="40"
                                    DockPanel.Dock="Right"
                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding HillSize, Mode=TwoWay}"
+                        <Slider Value="{Binding TilesWide, Mode=TwoWay}"
                                 VerticalAlignment="Center"
-                                Minimum="0" Maximum="500"
-                                SmallChange="1" LargeChange="10"
-                                TickFrequency="1" IsSnapToTickEnabled="True"/>
+                                Minimum="200" Maximum="8400"
+                                SmallChange="200" LargeChange="600"
+                                TickFrequency="200" IsSnapToTickEnabled="True"/>
                     </DockPanel>
 
-                    <TextBlock Text="{x:Static p:Language.newworld_add_grass}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateGrass, Mode=TwoWay}" Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_add_walls}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateWalls, Mode=TwoWay}" Margin="0,2"/>
-                </tedit:AutoGrid>
-
-                <!-- Caves Section -->
-                <TextBlock Text="{x:Static p:Language.newworld_caves}"
-                           Margin="0,12,0,4"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <tedit:AutoGrid HorizontalAlignment="Stretch">
-                    <tedit:AutoGrid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </tedit:AutoGrid.ColumnDefinitions>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_generate_caves}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateCaves, Mode=TwoWay}" Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_cave_preset}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <ComboBox ItemsSource="{Binding CavePresets}"
-                              SelectedIndex="{Binding CavePresetIndex, Mode=TwoWay}"
-                              SelectionChanged="ComboBox_SelectionChanged"
-                              Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_include_surface}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding SurfaceCaves, Mode=TwoWay}" Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_cave_noise}"
+                    <TextBlock Text="{x:Static p:Language.newworld_height}"
                                HorizontalAlignment="Right"
                                Margin="0,0,8,0"
                                Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
                     <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding CaveNoise, StringFormat={}{0:0.00}}"
+                        <TextBlock Text="{Binding TilesHighReactive, StringFormat={}{0:0}}"
                                    Width="40"
                                    DockPanel.Dock="Right"
                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding CaveNoise, Mode=TwoWay}"
+                        <Slider Value="{Binding TilesHigh, Mode=TwoWay}"
                                 VerticalAlignment="Center"
-                                Minimum="0.01" Maximum="0.5"
-                                SmallChange="0.01" LargeChange="0.1"
-                                TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                                Minimum="150" Maximum="2400"
+                                SmallChange="150" LargeChange="450"
+                                TickFrequency="150" IsSnapToTickEnabled="True"/>
                     </DockPanel>
 
-                    <TextBlock Text="{x:Static p:Language.newworld_cave_multiplier}"
+                    <TextBlock Text="{x:Static p:Language.newworld_surface}"
                                HorizontalAlignment="Right"
                                Margin="0,0,8,0"
                                Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
                     <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding CaveMultiplier, StringFormat={}{0:0.00}}"
+                        <TextBlock Text="{Binding GroundLevel, StringFormat={}{0:0}}"
                                    Width="40"
                                    DockPanel.Dock="Right"
                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding CaveMultiplier, Mode=TwoWay}"
+                        <Slider Value="{Binding GroundLevel, Mode=TwoWay}"
                                 VerticalAlignment="Center"
-                                Minimum="0.00" Maximum="0.05"
-                                SmallChange="0.01" LargeChange="0.05"
-                                TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                                Minimum="0" Maximum="{Binding Path=MaxGroundLevel}"
+                                SmallChange="1"/>
                     </DockPanel>
 
-                    <TextBlock Text="{x:Static p:Language.newworld_cave_density}"
+                    <TextBlock Text="{x:Static p:Language.newworld_cavern}"
                                HorizontalAlignment="Right"
                                Margin="0,0,8,0"
                                Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
                     <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding CaveDensity, StringFormat={}{0:0.00}}"
+                        <TextBlock Text="{Binding RockLevel, StringFormat={}{0:0}}"
                                    Width="40"
                                    DockPanel.Dock="Right"
                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding CaveDensity, Mode=TwoWay}"
+                        <Slider Value="{Binding RockLevel, Mode=TwoWay}"
                                 VerticalAlignment="Center"
-                                Minimum="0.1" Maximum="10.0"
-                                SmallChange="0.1" LargeChange="1"
-                                TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                                Minimum="0" Maximum="{Binding Path=MaxCavernLevel}"
+                                SmallChange="1"/>
                     </DockPanel>
-                </tedit:AutoGrid>
-
-                <!-- Underworld Section -->
-                <TextBlock Text="{x:Static p:Language.newworld_underworld}"
-                           Margin="0,12,0,4"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <tedit:AutoGrid HorizontalAlignment="Stretch">
-                    <tedit:AutoGrid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </tedit:AutoGrid.ColumnDefinitions>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_generate_underworld}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateUnderworld, Mode=TwoWay}" Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_add_ash}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateAsh, Mode=TwoWay}" Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_add_lava}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateLava, Mode=TwoWay}" Margin="0,2"/>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_roof_noise}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding UnderworldRoofNoise, StringFormat={}{0:0.00}}"
-                                   Width="40"
-                                   DockPanel.Dock="Right"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding UnderworldRoofNoise, Mode=TwoWay}"
-                                VerticalAlignment="Center"
-                                Minimum="0.01" Maximum="0.3"
-                                SmallChange="0.01" LargeChange="0.1"
-                                TickFrequency="0.01" IsSnapToTickEnabled="True"/>
-                    </DockPanel>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_floor_noise}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding UnderworldFloorNoise, StringFormat={}{0:0.00}}"
-                                   Width="40"
-                                   DockPanel.Dock="Right"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding UnderworldFloorNoise, Mode=TwoWay}"
-                                VerticalAlignment="Center"
-                                Minimum="0.01" Maximum="0.3"
-                                SmallChange="0.01" LargeChange="0.1"
-                                TickFrequency="0.01" IsSnapToTickEnabled="True"/>
-                    </DockPanel>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_lava_noise}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <DockPanel Margin="0,2">
-                        <TextBlock Text="{Binding UnderworldLavaNoise, StringFormat={}{0:0.00}}"
-                                   Width="40"
-                                   DockPanel.Dock="Right"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                        <Slider Value="{Binding UnderworldLavaNoise, Mode=TwoWay}"
-                                VerticalAlignment="Center"
-                                Minimum="0.01" Maximum="0.3"
-                                SmallChange="0.01" LargeChange="0.1"
-                                TickFrequency="0.01" IsSnapToTickEnabled="True"/>
-                    </DockPanel>
-                </tedit:AutoGrid>
-
-                <!-- Ores Section -->
-                <TextBlock Text="{x:Static p:Language.newworld_ores}"
-                           Margin="0,12,0,4"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                <tedit:AutoGrid HorizontalAlignment="Stretch">
-                    <tedit:AutoGrid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </tedit:AutoGrid.ColumnDefinitions>
-
-                    <TextBlock Text="{x:Static p:Language.newworld_generate_ores}"
-                               HorizontalAlignment="Right"
-                               Margin="0,0,8,0"
-                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
-                    <CheckBox IsChecked="{Binding GenerateOres, Mode=TwoWay}"
-                              Content="{x:Static p:Language.newworld_ore_gen_plugin}"
-                              Margin="0,2"/>
                 </tedit:AutoGrid>
             </StackPanel>
-            </ScrollViewer>
-        </Expander>
 
-        <!-- Bottom Buttons -->
-        <UniformGrid Grid.Row="3" Columns="2" Margin="8" Style="{DynamicResource SidebarButtonRow}">
-            <ui:Button Content="{x:Static p:Language.common_cancel}"
-                       Padding="8,6"
-                       Margin="0,0,4,0"
-                       HorizontalAlignment="Stretch"
-                       Click="CancelClick"/>
-            <ui:Button Content="{x:Static p:Language.newworld_create}"
-                       Appearance="Primary"
-                       Padding="8,6"
-                       Margin="4,0,0,0"
-                       HorizontalAlignment="Stretch"
-                       Click="OkClick"/>
-        </UniformGrid>
+            <!-- World Generation Section (Expander) -->
+            <Expander Grid.Row="2"
+                      Header="{x:Static p:Language.newworld_generation}"
+                      Margin="8,0,8,8"
+                      IsExpanded="False">
+                <ScrollViewer MaxHeight="350" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                    <!-- Hills Section -->
+                    <TextBlock Text="{x:Static p:Language.newworld_hills}"
+                               Margin="0,8,0,4"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                    <tedit:AutoGrid HorizontalAlignment="Stretch">
+                        <tedit:AutoGrid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </tedit:AutoGrid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_hill_size}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding HillSize, StringFormat={}{0:0}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding HillSize, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0" Maximum="500"
+                                    SmallChange="1" LargeChange="10"
+                                    TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_add_grass}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateGrass, Mode=TwoWay}" Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_add_walls}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateWalls, Mode=TwoWay}" Margin="0,2"/>
+                    </tedit:AutoGrid>
+
+                    <!-- Caves Section -->
+                    <TextBlock Text="{x:Static p:Language.newworld_caves}"
+                               Margin="0,12,0,4"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                    <tedit:AutoGrid HorizontalAlignment="Stretch">
+                        <tedit:AutoGrid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </tedit:AutoGrid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_generate_caves}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateCaves, Mode=TwoWay}" Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_cave_preset}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <ComboBox ItemsSource="{Binding CavePresets}"
+                                  SelectedIndex="{Binding CavePresetIndex, Mode=TwoWay}"
+                                  SelectionChanged="ComboBox_SelectionChanged"
+                                  Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_include_surface}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding SurfaceCaves, Mode=TwoWay}" Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_cave_noise}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding CaveNoise, StringFormat={}{0:0.00}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding CaveNoise, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0.01" Maximum="0.5"
+                                    SmallChange="0.01" LargeChange="0.1"
+                                    TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_cave_multiplier}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding CaveMultiplier, StringFormat={}{0:0.00}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding CaveMultiplier, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0.00" Maximum="0.05"
+                                    SmallChange="0.01" LargeChange="0.05"
+                                    TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_cave_density}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding CaveDensity, StringFormat={}{0:0.00}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding CaveDensity, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0.1" Maximum="10.0"
+                                    SmallChange="0.1" LargeChange="1"
+                                    TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+                    </tedit:AutoGrid>
+
+                    <!-- Underworld Section -->
+                    <TextBlock Text="{x:Static p:Language.newworld_underworld}"
+                               Margin="0,12,0,4"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                    <tedit:AutoGrid HorizontalAlignment="Stretch">
+                        <tedit:AutoGrid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </tedit:AutoGrid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_generate_underworld}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateUnderworld, Mode=TwoWay}" Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_add_ash}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateAsh, Mode=TwoWay}" Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_add_lava}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateLava, Mode=TwoWay}" Margin="0,2"/>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_roof_noise}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding UnderworldRoofNoise, StringFormat={}{0:0.00}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding UnderworldRoofNoise, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0.01" Maximum="0.3"
+                                    SmallChange="0.01" LargeChange="0.1"
+                                    TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_floor_noise}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding UnderworldFloorNoise, StringFormat={}{0:0.00}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding UnderworldFloorNoise, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0.01" Maximum="0.3"
+                                    SmallChange="0.01" LargeChange="0.1"
+                                    TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_lava_noise}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <DockPanel Margin="0,2">
+                            <TextBlock Text="{Binding UnderworldLavaNoise, StringFormat={}{0:0.00}}"
+                                       Width="40"
+                                       DockPanel.Dock="Right"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <Slider Value="{Binding UnderworldLavaNoise, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    Minimum="0.01" Maximum="0.3"
+                                    SmallChange="0.01" LargeChange="0.1"
+                                    TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+                        </DockPanel>
+                    </tedit:AutoGrid>
+
+                    <!-- Ores Section -->
+                    <TextBlock Text="{x:Static p:Language.newworld_ores}"
+                               Margin="0,12,0,4"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                    <tedit:AutoGrid HorizontalAlignment="Stretch">
+                        <tedit:AutoGrid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </tedit:AutoGrid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static p:Language.newworld_generate_ores}"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,8,0"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        <CheckBox IsChecked="{Binding GenerateOres, Mode=TwoWay}"
+                                  Content="{x:Static p:Language.newworld_ore_gen_plugin}"
+                                  Margin="0,2"/>
+                    </tedit:AutoGrid>
+                </StackPanel>
+                </ScrollViewer>
+            </Expander>
+
+            <!-- Bottom Buttons -->
+            <UniformGrid Grid.Row="3" Columns="2" Margin="8" Style="{DynamicResource SidebarButtonRow}">
+                <ui:Button Content="{x:Static p:Language.common_cancel}"
+                           Padding="8,6"
+                           Margin="0,0,4,0"
+                           HorizontalAlignment="Stretch"
+                           Click="CancelClick"/>
+                <ui:Button Content="{x:Static p:Language.newworld_create}"
+                           Appearance="Primary"
+                           Padding="8,6"
+                           Margin="4,0,0,0"
+                           HorizontalAlignment="Stretch"
+                           Click="OkClick"/>
+            </UniformGrid>
+        </Grid>
     </Grid>
 </ui:FluentWindow>

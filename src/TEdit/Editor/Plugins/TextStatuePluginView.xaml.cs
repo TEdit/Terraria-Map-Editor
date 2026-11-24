@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Wpf.Ui.Controls;
+using TEdit.UI;
 
 namespace TEdit.Editor.Plugins;
 
@@ -14,6 +15,7 @@ public partial class TextStatuePluginView : FluentWindow
         InitializeComponent();
         ViewModel = new TextStatusPluginViewModel();
         this.DataContext = ViewModel;
+        WindowSizing.SizeFromContent(this);
     }
 
     private void Ok(object sender, RoutedEventArgs e)

@@ -10,54 +10,67 @@
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
-        Height="140"
-        Width="390">
+        Height="184"
+        Width="414">
   <ui:FluentWindow.Resources>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
       <Setter Property="Margin" Value="2" />
       <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
   </ui:FluentWindow.Resources>
-  <StackPanel Orientation="Vertical">
+  <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
 
-    <!-- Info Header -->
-    <TextBlock Text="{x:Static p:Language.expand_description}" />
-    <Separator Grid.ColumnSpan="2" />
+    <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.expand_title}"
+                 Padding="8,0,0,0" Margin="0"
+                 FontSize="12" Height="32"
+                 ShowMinimize="False"
+                 ShowMaximize="False"/>
+
+    <StackPanel Orientation="Vertical" Grid.Row="1" Margin="12,0,12,12">
+
+      <!-- Info Header -->
+      <TextBlock Text="{x:Static p:Language.expand_description}" />
+      <Separator Grid.ColumnSpan="2" />
     
-    <tedit:AutoGrid x:Name="WorldProperties" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
-      <tedit:AutoGrid.ColumnDefinitions>
-        <ColumnDefinition Width="1*" />
-        <ColumnDefinition Width="1.6*" />
-      </tedit:AutoGrid.ColumnDefinitions>
+      <tedit:AutoGrid x:Name="WorldProperties" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
+        <tedit:AutoGrid.ColumnDefinitions>
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="1.6*" />
+        </tedit:AutoGrid.ColumnDefinitions>
       
-      <!-- World Properties -->
-      <TextBlock Text="{x:Static p:Language.expand_new_width}" HorizontalAlignment="Right" />
-      <DockPanel>
-        <TextBlock Width="50" DockPanel.Dock="Right" Text="{Binding Value, ElementName=WidthSlider, StringFormat={}{0:0}}" />
-        <Slider x:Name="WidthSlider"
-                Minimum="{Binding _minWidth}"
-                Maximum="{Binding _maxWidth}"
-                Value="{Binding _newWidth, Mode=TwoWay}"
-                SmallChange="50" LargeChange="500" Interval="50"
-                IsSnapToTickEnabled="True" TickFrequency="50" />
-      </DockPanel>
-      <TextBlock Text="{x:Static p:Language.expand_new_height}" HorizontalAlignment="Right" />
-      <DockPanel>
-        <TextBlock Width="50" DockPanel.Dock="Right" Text="{Binding Value, ElementName=HeightSlider, StringFormat={}{0:0}}" />
-        <Slider x:Name="HeightSlider"
-                Minimum="{Binding _minHeight}"
-                Maximum="{Binding _maxHeight}"
-                Value="{Binding _newHeight, Mode=TwoWay}"
-                SmallChange="50" LargeChange="500" Interval="50"
-                IsSnapToTickEnabled="True" TickFrequency="50" />
-      </DockPanel>
-    </tedit:AutoGrid>
+        <!-- World Properties -->
+        <TextBlock Text="{x:Static p:Language.expand_new_width}" HorizontalAlignment="Right" />
+        <DockPanel>
+          <TextBlock Width="50" DockPanel.Dock="Right" Text="{Binding Value, ElementName=WidthSlider, StringFormat={}{0:0}}" />
+          <Slider x:Name="WidthSlider"
+                  Minimum="{Binding _minWidth}"
+                  Maximum="{Binding _maxWidth}"
+                  Value="{Binding _newWidth, Mode=TwoWay}"
+                  SmallChange="50" LargeChange="500" Interval="50"
+                  IsSnapToTickEnabled="True" TickFrequency="50" />
+        </DockPanel>
+        <TextBlock Text="{x:Static p:Language.expand_new_height}" HorizontalAlignment="Right" />
+        <DockPanel>
+          <TextBlock Width="50" DockPanel.Dock="Right" Text="{Binding Value, ElementName=HeightSlider, StringFormat={}{0:0}}" />
+          <Slider x:Name="HeightSlider"
+                  Minimum="{Binding _minHeight}"
+                  Maximum="{Binding _maxHeight}"
+                  Value="{Binding _newHeight, Mode=TwoWay}"
+                  SmallChange="50" LargeChange="500" Interval="50"
+                  IsSnapToTickEnabled="True" TickFrequency="50" />
+        </DockPanel>
+      </tedit:AutoGrid>
 
-    <!-- Bottom Buttons -->
-    <Separator Grid.ColumnSpan="2" />
-    <UniformGrid Columns="2" Margin="1">
-      <Button Content="{x:Static p:Language.common_cancel}" Click="CancelClick" Padding="4" Margin="2"/>
-      <Button Content="{x:Static p:Language.common_ok}"     Click="OkClick"     Padding="4" Margin="2"/>
-    </UniformGrid>
-  </StackPanel>
+      <!-- Bottom Buttons -->
+      <Separator Grid.ColumnSpan="2" />
+      <UniformGrid Columns="2" Margin="1">
+        <Button Content="{x:Static p:Language.common_cancel}" Click="CancelClick" Padding="4" Margin="2"/>
+        <Button Content="{x:Static p:Language.common_ok}"     Click="OkClick"     Padding="4" Margin="2"/>
+      </UniformGrid>
+    </StackPanel>
+  </Grid>
 </ui:FluentWindow>

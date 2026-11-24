@@ -42,6 +42,7 @@ namespace TEdit.View.Popups
             _newWorld.CreationTime = System.DateTime.Now.ToBinary();
             AddCharNames();
             DataContext = NewWorld;
+            TEdit.UI.WindowSizing.SizeFromContent(this, heightOnly: true);
         }
 
         private void AddCharNames()

@@ -15,7 +15,11 @@
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
-        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_replay_recorder_title}" ShowMaximize="False"/>
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_replay_recorder_title}"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="8">
             <Button x:Name="RecordButton" Width="48" Height="36"
