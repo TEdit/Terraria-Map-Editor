@@ -18,7 +18,7 @@
         MinWidth="440" MinHeight="420"
         WindowBackdropType="Mica"
         d:DataContext="{d:DesignInstance Type=plugins:TextStatusPluginViewModel}">
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -30,31 +30,31 @@
                      ShowMinimize="False"
                      ShowMaximize="False"/>
 
-<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Margin="12,0,12,12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="150"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBox Name="tbStatue" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MinWidth="400" MaxWidth="400" MinLines="10" TextWrapping="Wrap" Text="{Binding TextValue, Mode=TwoWay}"/>
-        <StackPanel Grid.Row ="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-            <Button Content="{x:Static p:Language.common_left}" Width="60" Click="SetLeft"/>
-            <Button Content="{x:Static p:Language.common_center}" Width="60" Click="SetCenter"/>
-            <Button Content="{x:Static p:Language.common_right}" Width="60" Click="SetRight"/>
-        </StackPanel>
-        <UniformGrid Rows="3" Columns="2" Grid.Row="2">
-            <TextBlock Text="{x:Static p:Language.plugin_textstatue_line_spacing}" Foreground="White"/>
-            <TextBox x:Name="tbLineSpacing"  Text="{Binding LineSpacing, Mode=TwoWay}" />
-            <TextBlock Text="{x:Static p:Language.plugin_textstatue_letter_spacing}" Foreground="White"/>
-            <TextBox x:Name="tbLetterSpacing"  Text="{Binding LetterSpacing, Mode=TwoWay}"/>
-            <TextBlock Text="{x:Static p:Language.plugin_textstatue_max_line_length}" Foreground="White"/>
-            <TextBox x:Name="tbLineLength"  Text="{Binding LineLength, Mode=TwoWay}"/>
-        </UniformGrid>
-        <Grid Grid.Row="3" Margin="0,8,0,0">
-            <Button Margin="5" Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="Cancel" />
-            <Button Margin="5" Content="{x:Static p:Language.plugin_textstatue_add_to_clipboard}" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="Ok" />
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Margin="12,0,12,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="150"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Name="tbStatue" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MinWidth="400" MaxWidth="400" MinLines="10" TextWrapping="Wrap" Text="{Binding TextValue, Mode=TwoWay}"/>
+            <StackPanel Grid.Row ="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                <Button Content="{x:Static p:Language.common_left}" Width="60" Click="SetLeft"/>
+                <Button Content="{x:Static p:Language.common_center}" Width="60" Click="SetCenter"/>
+                <Button Content="{x:Static p:Language.common_right}" Width="60" Click="SetRight"/>
+            </StackPanel>
+            <UniformGrid Rows="3" Columns="2" Grid.Row="2">
+                <TextBlock Text="{x:Static p:Language.plugin_textstatue_line_spacing}" Foreground="White"/>
+                <TextBox x:Name="tbLineSpacing"  Text="{Binding LineSpacing, Mode=TwoWay}" />
+                <TextBlock Text="{x:Static p:Language.plugin_textstatue_letter_spacing}" Foreground="White"/>
+                <TextBox x:Name="tbLetterSpacing"  Text="{Binding LetterSpacing, Mode=TwoWay}"/>
+                <TextBlock Text="{x:Static p:Language.plugin_textstatue_max_line_length}" Foreground="White"/>
+                <TextBox x:Name="tbLineLength"  Text="{Binding LineLength, Mode=TwoWay}"/>
+            </UniformGrid>
+            <Grid Grid.Row="3" Margin="0,8,0,0">
+                <Button Margin="5" Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="Cancel" />
+                <Button Margin="5" Content="{x:Static p:Language.plugin_textstatue_add_to_clipboard}" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="Ok" />
+            </Grid>
         </Grid>
-    </Grid>
     </Grid>
 </ui:FluentWindow>

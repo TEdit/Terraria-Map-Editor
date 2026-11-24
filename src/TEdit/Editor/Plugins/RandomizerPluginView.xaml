@@ -8,7 +8,7 @@
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
     MinWidth="500" MinHeight="200">
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -20,23 +20,23 @@
                      ShowMinimize="False"
                      ShowMaximize="False"/>
 
-<StackPanel Grid.Row="1" Margin="12,0,12,12">
-        <Label Content="{x:Static p:Language.plugin_seed_label}"></Label>
-        <TextBox x:Name="SeedTextBox"></TextBox>
-        <CheckBox x:Name="OnlySelectionCheckBox" Content="{x:Static p:Language.plugin_randomizer_only_selection}" HorizontalAlignment="Center" />
-        <CheckBox x:Name="UndoCheckBox" Content="{x:Static p:Language.plugin_randomizer_enable_undo}" HorizontalAlignment="Center" />
-        <CheckBox x:Name="RandomizeWallsCheckBox" Content="{x:Static p:Language.plugin_randomizer_bg_walls}" HorizontalAlignment="Center" />
-        <CheckBox x:Name="NoDisappearingBlocksCheckBox" Content="{x:Static p:Language.plugin_randomizer_no_disappearing}" HorizontalAlignment="Center" />
-        <CheckBox x:Name="SupportDependentBlocksCheckBox" Content="{x:Static p:Language.plugin_randomizer_satisfy_conditions}" HorizontalAlignment="Center" />
-        <CheckBox x:Name="SupportGravityBlocksCheckBox" Content="{x:Static p:Language.plugin_randomizer_gravity_blocks}" HorizontalAlignment="Center" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
-                <ColumnDefinition Width="250" />
-            </Grid.ColumnDefinitions>
-            <Button Margin="5,5,0,5" Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
-            <Button Margin="0,5,5,5" Content="{x:Static p:Language.plugin_randomizer_randomize}" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="OkButtonClick" Grid.Column="1" />
-        </Grid>
-    </StackPanel>
+        <StackPanel Grid.Row="1" Margin="12,0,12,12">
+            <Label Content="{x:Static p:Language.plugin_seed_label}"></Label>
+            <TextBox x:Name="SeedTextBox"></TextBox>
+            <CheckBox x:Name="OnlySelectionCheckBox" Content="{x:Static p:Language.plugin_randomizer_only_selection}" HorizontalAlignment="Center" />
+            <CheckBox x:Name="UndoCheckBox" Content="{x:Static p:Language.plugin_randomizer_enable_undo}" HorizontalAlignment="Center" />
+            <CheckBox x:Name="RandomizeWallsCheckBox" Content="{x:Static p:Language.plugin_randomizer_bg_walls}" HorizontalAlignment="Center" />
+            <CheckBox x:Name="NoDisappearingBlocksCheckBox" Content="{x:Static p:Language.plugin_randomizer_no_disappearing}" HorizontalAlignment="Center" />
+            <CheckBox x:Name="SupportDependentBlocksCheckBox" Content="{x:Static p:Language.plugin_randomizer_satisfy_conditions}" HorizontalAlignment="Center" />
+            <CheckBox x:Name="SupportGravityBlocksCheckBox" Content="{x:Static p:Language.plugin_randomizer_gravity_blocks}" HorizontalAlignment="Center" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                </Grid.ColumnDefinitions>
+                <Button Margin="5,5,0,5" Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
+                <Button Margin="0,5,5,5" Content="{x:Static p:Language.plugin_randomizer_randomize}" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="OkButtonClick" Grid.Column="1" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </ui:FluentWindow>

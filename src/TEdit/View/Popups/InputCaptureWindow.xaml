@@ -15,7 +15,7 @@
         PreviewMouseDown="Window_PreviewMouseDown"
         PreviewMouseWheel="Window_PreviewMouseWheel">
 
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -27,19 +27,19 @@
                      ShowMinimize="False"
                      ShowMaximize="False"/>
 
-<Grid Margin="10" Grid.Row="1">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="{x:Static p:Language.keybind_capture_instruction}"
-                       FontSize="14" Foreground="Snow" TextAlignment="Center" />
-            <TextBlock Text="{x:Static p:Language.keybind_capture_modifiers}"
-                       FontSize="11" Foreground="Gray" TextAlignment="Center" Margin="0,4,0,0" />
-            <TextBlock x:Name="CapturedText" Text=""
-                       FontSize="16" Foreground="LightGreen" FontWeight="Bold"
-                       TextAlignment="Center" Margin="0,12,0,0" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
-                <Button Content="{x:Static p:Language.common_cancel}" Width="80" Padding="4" Click="Cancel_Click" />
+        <Grid Margin="10" Grid.Row="1">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{x:Static p:Language.keybind_capture_instruction}"
+                           FontSize="14" Foreground="Snow" TextAlignment="Center" />
+                <TextBlock Text="{x:Static p:Language.keybind_capture_modifiers}"
+                           FontSize="11" Foreground="Gray" TextAlignment="Center" Margin="0,4,0,0" />
+                <TextBlock x:Name="CapturedText" Text=""
+                           FontSize="16" Foreground="LightGreen" FontWeight="Bold"
+                           TextAlignment="Center" Margin="0,12,0,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+                    <Button Content="{x:Static p:Language.common_cancel}" Width="80" Padding="4" Click="Cancel_Click" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </Grid>
     </Grid>
 </ui:FluentWindow>

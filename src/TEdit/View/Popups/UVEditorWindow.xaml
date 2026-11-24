@@ -13,7 +13,7 @@
         Height="550"
         Width="350">
 
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -25,110 +25,110 @@
                      ShowMinimize="False"
                      ShowMaximize="False"/>
 
-<Grid Margin="10" Grid.Row="1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid Margin="10" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- Move All Frames Section -->
-        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
-            <TextBlock Text="{x:Static p:Language.menu_uveditor_moveallframes}" FontWeight="Bold" Margin="0,0,0,5"/>
-            <Grid HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- Move All Frames Section -->
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
+                <TextBlock Text="{x:Static p:Language.menu_uveditor_moveallframes}" FontWeight="Bold" Margin="0,0,0,5"/>
+                <Grid HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Arrows -->
+                    <Button x:Name="UpButton" Content="^" Width="32" Height="32" Grid.Row="0" Grid.Column="1" Click="Button_Click"/>
+                    <Button x:Name="LeftButton" Content="&lt;" Width="32" Height="32" Grid.Row="1" Grid.Column="0" Click="Button_Click"/>
+                    <Button x:Name="RightButton" Content="&gt;" Width="32" Height="32" Grid.Row="1" Grid.Column="2" Click="Button_Click"/>
+                    <Button x:Name="DownButton" Content="v" Width="32" Height="32" Grid.Row="2" Grid.Column="1" Click="Button_Click"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Move Amount Section -->
+            <Grid Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>   <!-- Spacer -->
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
                 </Grid.ColumnDefinitions>
-
-                <!-- Arrows -->
-                <Button x:Name="UpButton" Content="^" Width="32" Height="32" Grid.Row="0" Grid.Column="1" Click="Button_Click"/>
-                <Button x:Name="LeftButton" Content="&lt;" Width="32" Height="32" Grid.Row="1" Grid.Column="0" Click="Button_Click"/>
-                <Button x:Name="RightButton" Content="&gt;" Width="32" Height="32" Grid.Row="1" Grid.Column="2" Click="Button_Click"/>
-                <Button x:Name="DownButton" Content="v" Width="32" Height="32" Grid.Row="2" Grid.Column="1" Click="Button_Click"/>
+                <TextBlock Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center">
+                    <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_uveditor_moveamount)" /></MultiBinding></TextBlock.Text>
+                </TextBlock>
+                <!-- Spacer -->
+                <TextBlock Grid.Column="1"/>
+                <TextBlock Grid.Column="2" Text="U:" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="3" x:Name="UTextBox" Width="50" Margin="5,0" Text="18"/>
+                <TextBlock Grid.Column="4" Text="V:" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="5" x:Name="VTextBox" Width="50" Margin="5,0" Text="18"/>
             </Grid>
-        </StackPanel>
 
-        <!-- Move Amount Section -->
-        <Grid Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="10"/>   <!-- Spacer -->
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center">
-                <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_uveditor_moveamount)" /></MultiBinding></TextBlock.Text>
-            </TextBlock>
-            <!-- Spacer -->
-            <TextBlock Grid.Column="1"/>
-            <TextBlock Grid.Column="2" Text="U:" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="3" x:Name="UTextBox" Width="50" Margin="5,0" Text="18"/>
-            <TextBlock Grid.Column="4" Text="V:" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="5" x:Name="VTextBox" Width="50" Margin="5,0" Text="18"/>
+            <!-- Separator -->
+            <Separator Grid.Row="2" Grid.Column="0" Margin="0,10,0,5"/>
+
+            <!-- Manual Frames -->
+            <Grid Grid.Row="3" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="16.5"/>   <!-- Spacer -->
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center">
+                    <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_uveditor_setmanualuv)" /></MultiBinding></TextBlock.Text>
+                </TextBlock>
+                <!-- Spacer -->
+                <TextBlock Grid.Column="1"/>
+                <TextBlock Grid.Column="2" Text="U:" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="3" x:Name="UTextBoxManual" Width="50" Margin="5,0" Text="0"/>
+                <TextBlock Grid.Column="4" Text="V:" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="5" x:Name="VTextBoxManual" Width="50" Margin="5,0" Text="0"/>
+            </Grid>
+
+            <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
+                <Button Content="{x:Static p:Language.menu_uveditor_setvalues}" Width="95" IsDefault="True" Click="SetValuesButton_Click"/>
+            </StackPanel>
+
+            <!-- Separator -->
+            <Separator Grid.Row="5" Grid.Column="0" Margin="0,10,0,0"/>
+
+            <!-- Selected Frames Section -->
+            <StackPanel Grid.Row="6" Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock FontWeight="Bold" Margin="0,10,0,5">
+                    <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_uveditor_selectedframes)" /></MultiBinding></TextBlock.Text>
+                </TextBlock>
+                <TextBox x:Name="SelectedFramesTextBox" Height="170" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            </StackPanel>
+
+            <!-- Ok/Cancel Buttons -->
+            <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                <Button Content="{x:Static p:Language.menu_uveditor_cancel}" Width="75" Margin="5" Click="CancelButton_Click"/>
+                <Button Content="{x:Static p:Language.menu_uveditor_restore}" Width="75" Margin="5" Click="RestoreButton_Click"/>
+                <Button Content="{x:Static p:Language.menu_uveditor_ok}" Width="75" Margin="5" IsDefault="True" Click="OkButton_Click"/>
+            </StackPanel>
         </Grid>
-
-        <!-- Separator -->
-        <Separator Grid.Row="2" Grid.Column="0" Margin="0,10,0,5"/>
-
-        <!-- Manual Frames -->
-        <Grid Grid.Row="3" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="16.5"/>   <!-- Spacer -->
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center">
-                <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_uveditor_setmanualuv)" /></MultiBinding></TextBlock.Text>
-            </TextBlock>
-            <!-- Spacer -->
-            <TextBlock Grid.Column="1"/>
-            <TextBlock Grid.Column="2" Text="U:" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="3" x:Name="UTextBoxManual" Width="50" Margin="5,0" Text="0"/>
-            <TextBlock Grid.Column="4" Text="V:" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="5" x:Name="VTextBoxManual" Width="50" Margin="5,0" Text="0"/>
-        </Grid>
-
-        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
-            <Button Content="{x:Static p:Language.menu_uveditor_setvalues}" Width="95" IsDefault="True" Click="SetValuesButton_Click"/>
-        </StackPanel>
-
-        <!-- Separator -->
-        <Separator Grid.Row="5" Grid.Column="0" Margin="0,10,0,0"/>
-
-        <!-- Selected Frames Section -->
-        <StackPanel Grid.Row="6" Grid.Column="0" VerticalAlignment="Center">
-            <TextBlock FontWeight="Bold" Margin="0,10,0,5">
-                <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_uveditor_selectedframes)" /></MultiBinding></TextBlock.Text>
-            </TextBlock>
-            <TextBox x:Name="SelectedFramesTextBox" Height="170" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
-        </StackPanel>
-
-        <!-- Ok/Cancel Buttons -->
-        <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-            <Button Content="{x:Static p:Language.menu_uveditor_cancel}" Width="75" Margin="5" Click="CancelButton_Click"/>
-            <Button Content="{x:Static p:Language.menu_uveditor_restore}" Width="75" Margin="5" Click="RestoreButton_Click"/>
-            <Button Content="{x:Static p:Language.menu_uveditor_ok}" Width="75" Margin="5" IsDefault="True" Click="OkButton_Click"/>
-        </StackPanel>
-    </Grid>
     </Grid>
 </ui:FluentWindow>

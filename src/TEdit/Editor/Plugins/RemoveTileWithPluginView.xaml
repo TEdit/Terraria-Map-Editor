@@ -9,7 +9,7 @@
         Background="{DynamicResource ControlBackgroundBrush}"
         WindowBackdropType="Mica"
         MinHeight="142.905">
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -21,19 +21,19 @@
                      ShowMinimize="False"
                      ShowMaximize="False"/>
 
-<StackPanel Grid.Row="1" Margin="12,0,12,12">
-        <TextBlock Text="{x:Static p:Language.plugin_removetile_hint_blocks}" Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
-        <TextBox x:Name="BlockRemove"></TextBox>
-        <TextBlock Text="{x:Static p:Language.plugin_removetile_hint_walls}" Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
-        <TextBox x:Name="WallRemove"></TextBox>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="74*"/>
-                <ColumnDefinition Width="187*"/>
-            </Grid.ColumnDefinitions>
-            <Button Margin="5,5,0,5" Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
-            <Button Margin="0,5,5,5" Content="{x:Static p:Language.common_remove}" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="RemoveButtonClick" Grid.Column="1" />
-        </Grid>
-    </StackPanel>
+        <StackPanel Grid.Row="1" Margin="12,0,12,12">
+            <TextBlock Text="{x:Static p:Language.plugin_removetile_hint_blocks}" Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+            <TextBox x:Name="BlockRemove"></TextBox>
+            <TextBlock Text="{x:Static p:Language.plugin_removetile_hint_walls}" Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+            <TextBox x:Name="WallRemove"></TextBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="74*"/>
+                    <ColumnDefinition Width="187*"/>
+                </Grid.ColumnDefinitions>
+                <Button Margin="5,5,0,5" Content="{x:Static p:Language.common_cancel}" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
+                <Button Margin="0,5,5,5" Content="{x:Static p:Language.common_remove}" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="RemoveButtonClick" Grid.Column="1" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </ui:FluentWindow>

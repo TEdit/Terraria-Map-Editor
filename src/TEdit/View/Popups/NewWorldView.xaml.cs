@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using TEdit.Terraria;
@@ -43,10 +42,7 @@ namespace TEdit.View.Popups
             _newWorld.CreationTime = System.DateTime.Now.ToBinary();
             AddCharNames();
             DataContext = NewWorld;
-            // SizeToContent leaves an unpainted bottom border; size from measured content.
-            var root = (FrameworkElement)Content;
-            root.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            Height = Math.Min(Math.Max(root.DesiredSize.Height, MinHeight), SystemParameters.WorkArea.Height);
+            TEdit.UI.WindowSizing.SizeFromContent(this, heightOnly: true);
         }
 
         private void AddCharNames()
