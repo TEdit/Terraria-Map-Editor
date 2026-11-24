@@ -1353,6 +1353,11 @@ public partial class World
             bw.Write(world.NoLightningSeed);
         }
 
+        if (world.Version >= 328)
+        {
+            bw.Write(world.NoSpidersSeed);
+        }
+
         if (world.Version >= 299 && world.Version < 313)
         {
             bw.Write(0u); // deprecated uint
@@ -2478,6 +2483,8 @@ public partial class World
             w.MoreLightningSeed = r.ReadBoolean();
             w.NoLightningSeed = r.ReadBoolean();
         }
+
+        w.NoSpidersSeed = w.Version >= 328 && r.ReadBoolean();
 
         if (w.Version >= 299 && w.Version < 313)
         {
