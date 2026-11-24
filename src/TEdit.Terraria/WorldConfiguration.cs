@@ -11,8 +11,8 @@ namespace TEdit.Terraria;
 public class WorldConfiguration
 {
     // Baseline fallbacks ONLY (used if config files are missing/broken).
-    // v1.4.5.8 only increments the world version; its configuration payload is unchanged from v1.4.5.7.
-    private const uint  DefaultCompatibleVersion = 326;
+    // v1.4.6.0 uses world version 329; its configuration payload is unchanged from v1.4.5.8.
+    private const uint  DefaultCompatibleVersion = 329;
     private const short DefaultTileCount         = 754;  // MaxTileId (753) + 1
     private const short DefaultWallCount         = 367;  // MaxWallId (366) + 1
     private const short DefaultMaxNpcId          = 697;  // MaxNpcId  (696) + 1
