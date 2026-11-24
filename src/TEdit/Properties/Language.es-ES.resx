@@ -5109,6 +5109,9 @@ Qué NO se recolecta:
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
     <value>Desactiva los relámpagos</value>
   </data>
+  <data name="tool_wp_seed_nospiders" xml:space="preserve">
+    <value>Sin arañas</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>notraps (sin trampas)</value>
   </data>

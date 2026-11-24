@@ -5108,6 +5108,9 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
     <value>Brak uderzeń piorunów</value>
   </data>
+  <data name="tool_wp_seed_nospiders" xml:space="preserve">
+    <value>Bez pająków</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Bez pułapek</value>
   </data>

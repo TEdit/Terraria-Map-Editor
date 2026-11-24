@@ -5108,6 +5108,9 @@ TEdit の最大ワールドサイズ: {1}
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
     <value>落雷が発生しない</value>
   </data>
+  <data name="tool_wp_seed_nospiders" xml:space="preserve">
+    <value>クモなし</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>罠はなし</value>
   </data>
