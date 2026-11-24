@@ -318,6 +318,7 @@ BLOCKED | World | Boolean LanternNightManual
 BLOCKED | World | Boolean LanternNightNextNightIsGenuine
 BLOCKED | World | Boolean MoreLightningSeed
 BLOCKED | World | Boolean NoLightningSeed
+BLOCKED | World | Boolean NoSpidersSeed
 BLOCKED | World | Boolean NoTrapsWorld
 BLOCKED | World | Boolean NotTheBeesWorld
 BLOCKED | World | Boolean PartyGenuine
@@ -426,6 +427,7 @@ BLOCKED | World | Boolean get_LanternNightManual()
 BLOCKED | World | Boolean get_LanternNightNextNightIsGenuine()
 BLOCKED | World | Boolean get_MoreLightningSeed()
 BLOCKED | World | Boolean get_NoLightningSeed()
+BLOCKED | World | Boolean get_NoSpidersSeed()
 BLOCKED | World | Boolean get_NoTrapsWorld()
 BLOCKED | World | Boolean get_NotTheBeesWorld()
 BLOCKED | World | Boolean get_PartyGenuine()
@@ -746,6 +748,7 @@ BLOCKED | World | Void set_MoondialCooldown(Byte)
 BLOCKED | World | Void set_MoreLightningSeed(Boolean)
 BLOCKED | World | Void set_MushroomBg(Byte)
 BLOCKED | World | Void set_NoLightningSeed(Boolean)
+BLOCKED | World | Void set_NoSpidersSeed(Boolean)
 BLOCKED | World | Void set_NoTrapsWorld(Boolean)
 BLOCKED | World | Void set_NotTheBeesWorld(Boolean)
 BLOCKED | World | Void set_NumClouds(Int16)
