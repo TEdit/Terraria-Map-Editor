@@ -411,6 +411,9 @@ public partial class World : ReactiveObject, ITileData
     [property: Category("Seed")]
     [Reactive] private bool _noLightningSeed;
 
+    [property: Category("Seed")]
+    [Reactive] private bool _noSpidersSeed;
+
     #endregion Seed
 
     #region Ore Tier

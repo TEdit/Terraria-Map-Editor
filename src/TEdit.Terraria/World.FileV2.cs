@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TEdit.Common.Exceptions;
 using TEdit.Helper;
 using TEdit.Terraria.TModLoader;
@@ -776,7 +777,7 @@ public partial class World
             bw.Write((Int32)0);
         }
 
-        // write bitpacked tile frame importance           
+        // write bitpacked tile frame importance
         WriteBitArray(bw, tileFrameImportant);
 
 
@@ -1353,6 +1354,11 @@ public partial class World
             bw.Write(world.NoLightningSeed);
         }
 
+        if (world.Version >= 328)
+        {
+            bw.Write(world.NoSpidersSeed);
+        }
+
         if (world.Version >= 299 && world.Version < 313)
         {
             bw.Write(0u); // deprecated uint
@@ -1582,7 +1588,7 @@ public partial class World
             header3 = r.ReadByte();
         }
 
-        if (version >= 269) // 1.4.4+ 
+        if (version >= 269) // 1.4.4+
         {
             // check bit[0] to see if header4 has data
             if (hasHeader3 && (header3 & 0b_0000_0001) == 0b_0000_0001)
@@ -2477,6 +2483,44 @@ public partial class World
         {
             w.MoreLightningSeed = r.ReadBoolean();
             w.NoLightningSeed = r.ReadBoolean();
+        }
+
+        if (w.Version >= 328)
+        {
+            w.NoSpidersSeed = r.ReadBoolean();
+        }
+
+        if (w.Version <= 328 && !string.IsNullOrWhiteSpace(w.Seed))
+        {
+            var secretSeeds = WorldConfiguration.SecretSeedByCode;
+            var codes = w.Seed.Split('|');
+            int secretSeedCount = 0;
+            bool hasNoSpiderCaves = false;
+            for (int i = 0; i < codes.Length; i++)
+            {
+                var code = Regex.Replace(codes[i].ToLower(), "[^a-z0-9]+", "");
+                if (code.Length == 0 || !secretSeeds.TryGetValue(code, out var seed))
+                    continue;
+
+                secretSeedCount++;
+                if (seed.Id == "noSpiderCaves")
+                {
+                    hasNoSpiderCaves = true;
+                    codes[i] = "creepy crawlies";
+                }
+            }
+
+            if (hasNoSpiderCaves)
+            {
+                if (secretSeedCount < 4)
+                {
+                    w.NoSpidersSeed = true;
+                }
+                else
+                {
+                    w.Seed = string.Join("|", codes);
+                }
+            }
         }
 
         if (w.Version >= 299 && w.Version < 313)

@@ -380,6 +380,7 @@ declare const world: {
     dualDungeonsSeed: boolean;
     moreLightningSeed: boolean;
     noLightningSeed: boolean;
+    noSpidersSeed: boolean;
 
     // Ore Tiers
     isCrimson: boolean;

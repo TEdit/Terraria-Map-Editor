@@ -212,6 +212,7 @@ public static class ScriptApiMetadata
             new("dualDungeonsSeed",        "dualDungeonsSeed ↔ bool",        "Dual Dungeons seed"),
             new("moreLightningSeed",        "moreLightningSeed ↔ bool",        "More Lightning seed"),
             new("noLightningSeed",          "noLightningSeed ↔ bool",          "No Lightning seed"),
+            new("noSpidersSeed",            "noSpidersSeed ↔ bool",            "No Spiders seed"),
 
             // Ore Tiers
             new("isCrimson",               "isCrimson ↔ bool",   "World is Crimson (false = Corruption)"),

@@ -5108,6 +5108,9 @@ TEdit الإصدار {0}
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
     <value>لا برق</value>
   </data>
+  <data name="tool_wp_seed_nospiders" xml:space="preserve">
+    <value>بلا عناكب</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>لا الفخاخ</value>
   </data>

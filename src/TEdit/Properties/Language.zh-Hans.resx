@@ -5108,6 +5108,9 @@ TEdit 最大世界尺寸：{1}
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
     <value>禁用雷击（Calm before the storm）</value>
   </data>
+  <data name="tool_wp_seed_nospiders" xml:space="preserve">
+    <value>无蜘蛛（Arachnophobia）</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>无陷阱（No Traps）</value>
   </data>

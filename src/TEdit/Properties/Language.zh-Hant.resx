@@ -5108,6 +5108,9 @@ TEdit 最大世界尺寸：{1}
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
     <value>停用雷擊</value>
   </data>
+  <data name="tool_wp_seed_nospiders" xml:space="preserve">
+    <value>無蜘蛛</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>禁止陷阱</value>
   </data>
