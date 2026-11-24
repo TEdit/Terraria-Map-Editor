@@ -574,6 +574,8 @@
     <CheckBox IsChecked="{Binding CurrentWorld.MoreLightningSeed}" Content="{x:Static p:Language.tool_wp_seed_morelightning}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.NoLightningSeed}" Content="{x:Static p:Language.tool_wp_seed_nolightning}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+    <TextBlock />
+    <CheckBox IsChecked="{Binding CurrentWorld.NoSpidersSeed}" Content="{x:Static p:Language.tool_wp_seed_nospiders}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_crimson}" HorizontalAlignment="Right" />
     <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />

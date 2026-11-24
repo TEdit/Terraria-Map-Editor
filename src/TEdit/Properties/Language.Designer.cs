@@ -14810,6 +14810,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Spiders.
+        /// </summary>
+        public static string tool_wp_seed_nospiders {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_nospiders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Traps.
         /// </summary>
         public static string tool_wp_seed_notraps {
