@@ -776,7 +776,7 @@ public partial class World
             bw.Write((Int32)0);
         }
 
-        // write bitpacked tile frame importance           
+        // write bitpacked tile frame importance
         WriteBitArray(bw, tileFrameImportant);
 
 
@@ -1587,7 +1587,7 @@ public partial class World
             header3 = r.ReadByte();
         }
 
-        if (version >= 269) // 1.4.4+ 
+        if (version >= 269) // 1.4.4+
         {
             // check bit[0] to see if header4 has data
             if (hasHeader3 && (header3 & 0b_0000_0001) == 0b_0000_0001)
@@ -2484,7 +2484,10 @@ public partial class World
             w.NoLightningSeed = r.ReadBoolean();
         }
 
-        w.NoSpidersSeed = w.Version >= 328 && r.ReadBoolean();
+        if (w.Version >= 328)
+        {
+            w.NoSpidersSeed = r.ReadBoolean();
+        }
 
         if (w.Version >= 299 && w.Version < 313)
         {
