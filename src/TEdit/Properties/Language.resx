@@ -5558,17 +5558,39 @@ The error is :
   <data name="mcp_drawing_enabled" xml:space="preserve">
     <value>Listening · drawing enabled</value>
   </data>
-  <data name="agent_connect" xml:space="preserve"><value>Connect an agent</value></data>
-  <data name="agent_workspace" xml:space="preserve"><value>Use workspace settings</value></data>
-  <data name="agent_stdio" xml:space="preserve"><value>Use the stdio bridge</value></data>
-  <data name="agent_merge" xml:space="preserve"><value>Add the TEdit entry to your client settings, or run the command shown.</value></data>
-  <data name="agent_check" xml:space="preserve"><value>Check connection</value></data>
-  <data name="agent_ok" xml:space="preserve"><value>TEdit answered get_status.</value></data>
-  <data name="agent_failed" xml:space="preserve"><value>Connection failed. Check the MCP settings, port, and selected profile in TEdit.</value></data>
-  <data name="agent_refresh" xml:space="preserve"><value>This setup belongs to a different editor session. Copy the setup again from the intended TEdit window.</value></data>
-  <data name="agent_missing" xml:space="preserve"><value>Open the intended TEdit window and enable the MCP server in Settings.</value></data>
-  <data name="agent_profile" xml:space="preserve"><value>Select or create a client profile above.</value></data>
-  <data name="agent_export_error" xml:space="preserve"><value>Choose a new file in a writable folder.</value></data>
+  <data name="agent_connect" xml:space="preserve">
+    <value>Connect an agent</value>
+  </data>
+  <data name="agent_workspace" xml:space="preserve">
+    <value>Use workspace settings</value>
+  </data>
+  <data name="agent_stdio" xml:space="preserve">
+    <value>Use the stdio bridge</value>
+  </data>
+  <data name="agent_merge" xml:space="preserve">
+    <value>Add the TEdit entry to your client settings, or run the command shown.</value>
+  </data>
+  <data name="agent_check" xml:space="preserve">
+    <value>Check connection</value>
+  </data>
+  <data name="agent_ok" xml:space="preserve">
+    <value>TEdit answered get_status.</value>
+  </data>
+  <data name="agent_failed" xml:space="preserve">
+    <value>Connection failed. Check the MCP settings, port, and selected profile in TEdit.</value>
+  </data>
+  <data name="agent_refresh" xml:space="preserve">
+    <value>This setup belongs to a different editor session. Copy the setup again from the intended TEdit window.</value>
+  </data>
+  <data name="agent_missing" xml:space="preserve">
+    <value>Open the intended TEdit window and enable the MCP server in Settings.</value>
+  </data>
+  <data name="agent_profile" xml:space="preserve">
+    <value>Select or create a client profile above.</value>
+  </data>
+  <data name="agent_export_error" xml:space="preserve">
+    <value>Choose a new file in a writable folder.</value>
+  </data>
   <data name="frame_text_abigails_flower_replica" xml:space="preserve">
     <value>Abigails Flower Replica</value>
   </data>
@@ -6984,5 +7006,8 @@ The error is :
   </data>
   <data name="frame_text_illuminant_paint" xml:space="preserve">
     <value>Illuminant Paint (legacy)</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>Locked</value>
   </data>
 </root>
