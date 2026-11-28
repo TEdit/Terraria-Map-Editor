@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -137,9 +137,6 @@
   </data>
   <data name="about_patreon" xml:space="preserve">
     <value>在Patreon上支持我</value>
-  </data>
-  <data name="about_system" xml:space="preserve">
-    <value>系统</value>
   </data>
   <data name="about_terraria_not_found" xml:space="preserve">
     <value>未找到</value>
@@ -231,96 +228,6 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>更新</value>
   </data>
-  <data name="bg_cave_blue" xml:space="preserve">
-    <value>蓝线</value>
-  </data>
-  <data name="bg_cave_blue_alt" xml:space="preserve">
-    <value>蓝色替代块</value>
-  </data>
-  <data name="bg_cave_brown" xml:space="preserve">
-    <value>棕色</value>
-  </data>
-  <data name="bg_cave_gray" xml:space="preserve">
-    <value>灰色</value>
-  </data>
-  <data name="bg_cave_green" xml:space="preserve">
-    <value>绿线</value>
-  </data>
-  <data name="bg_cave_green_alt" xml:space="preserve">
-    <value>绿色备用综合色</value>
-  </data>
-  <data name="bg_cave_purple" xml:space="preserve">
-    <value>紫色</value>
-  </data>
-  <data name="bg_cave_stone" xml:space="preserve">
-    <value>石头</value>
-  </data>
-  <data name="bg_default" xml:space="preserve">
-    <value>默认值</value>
-  </data>
-  <data name="bg_mnt_default_trees" xml:space="preserve">
-    <value>山地 {0} + 默认树木</value>
-  </data>
-  <data name="bg_mnt_trees" xml:space="preserve">
-    <value>山脉 {0} + 树木</value>
-  </data>
-  <data name="bg_mountains_alt" xml:space="preserve">
-    <value>山脉（替代）</value>
-  </data>
-  <data name="bg_mountains_only" xml:space="preserve">
-    <value>仅山地</value>
-  </data>
-  <data name="bg_mountains_only_a" xml:space="preserve">
-    <value>仅生成山脉 A</value>
-  </data>
-  <data name="bg_mountains_only_b" xml:space="preserve">
-    <value>仅山地 B</value>
-  </data>
-  <data name="bg_mountains_only_c" xml:space="preserve">
-    <value>仅山脉 C</value>
-  </data>
-  <data name="bg_mountains_tree" xml:space="preserve">
-    <value>山脉 + 树木</value>
-  </data>
-  <data name="bg_multibiome_format" xml:space="preserve">
-    <value>多生物群系 {0}</value>
-  </data>
-  <data name="bg_remix_format" xml:space="preserve">
-    <value>混合重制 {0}</value>
-  </data>
-  <data name="bg_trees_only_a" xml:space="preserve">
-    <value>仅树木 A</value>
-  </data>
-  <data name="bg_trees_only_b" xml:space="preserve">
-    <value>仅树木 B</value>
-  </data>
-  <data name="bg_tree_boreal" xml:space="preserve">
-    <value>针叶林</value>
-  </data>
-  <data name="bg_tree_jungle" xml:space="preserve">
-    <value>类似丛林的</value>
-  </data>
-  <data name="bg_tree_oak" xml:space="preserve">
-    <value>橡木</value>
-  </data>
-  <data name="bg_tree_palm" xml:space="preserve">
-    <value>类似棕榈树的</value>
-  </data>
-  <data name="bg_tree_sakura" xml:space="preserve">
-    <value>樱花</value>
-  </data>
-  <data name="bg_tree_willow" xml:space="preserve">
-    <value>柳树</value>
-  </data>
-  <data name="bg_variant_alt" xml:space="preserve">
-    <value>变体 {0}（备选）</value>
-  </data>
-  <data name="bg_variant_alt_letter" xml:space="preserve">
-    <value>变体 {0} 替代项 {1}</value>
-  </data>
-  <data name="bg_variant_format" xml:space="preserve">
-    <value>变体 {0}</value>
-  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>全砖</value>
   </data>
@@ -386,7 +293,7 @@
     <value>两者</value>
   </data>
   <data name="common_browse" xml:space="preserve">
-    <value>浏览……</value>
+    <value>浏览...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
@@ -400,17 +307,11 @@
   <data name="common_close" xml:space="preserve">
     <value>关闭</value>
   </data>
-  <data name="common_delete" xml:space="preserve">
-    <value>删除</value>
-  </data>
   <data name="common_edit" xml:space="preserve">
     <value>编辑</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>启用</value>
-  </data>
-  <data name="common_error" xml:space="preserve">
-    <value>错误</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>生成</value>
@@ -418,14 +319,8 @@
   <data name="common_left" xml:space="preserve">
     <value>左侧</value>
   </data>
-  <data name="common_no" xml:space="preserve">
-    <value>否</value>
-  </data>
   <data name="common_none" xml:space="preserve">
     <value>无</value>
-  </data>
-  <data name="common_not_determined" xml:space="preserve">
-    <value>未确定</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>确认</value>
@@ -451,9 +346,6 @@
   <data name="common_search" xml:space="preserve">
     <value>搜索</value>
   </data>
-  <data name="common_yes" xml:space="preserve">
-    <value>是</value>
-  </data>
   <data name="depth_center" xml:space="preserve">
     <value>中心</value>
   </data>
@@ -461,7 +353,7 @@
     <value>{0} 东</value>
   </data>
   <data name="depth_feet" xml:space="preserve">
-    <value>{0} 度</value>
+    <value>{0} 英尺</value>
   </data>
   <data name="depth_layer_caverns" xml:space="preserve">
     <value>洞穴</value>
@@ -484,350 +376,12 @@
   <data name="depth_west" xml:space="preserve">
     <value>{0} 西</value>
   </data>
-  <data name="dialog_cache_cleared_failed" xml:space="preserve">
-    <value>无法删除 {0:N0} 个文件；请查看日志了解详情。</value>
-  </data>
-  <data name="dialog_cache_cleared_result" xml:space="preserve">
-    <value>已删除 {0:N0} 个文件，释放了 {1} 空间。</value>
-  </data>
-  <data name="dialog_cache_cleared_title" xml:space="preserve">
-    <value>缓存已清除</value>
-  </data>
-  <data name="dialog_clear_cache_button" xml:space="preserve">
-    <value>清除缓存</value>
-  </data>
-  <data name="dialog_clear_cache_prompt" xml:space="preserve">
-    <value>删除 {0:N0} 个缓存文件（{1}）？
-
-这将删除 TEdit 备份、自动保存文件以及所有撤销/重做历史记录。Terraria 世界文件和 .bak 文件不受影响。</value>
-  </data>
-  <data name="dialog_clear_cache_title" xml:space="preserve">
-    <value>清除 TEdit 缓存</value>
-  </data>
-  <data name="dialog_complete_bestiary_error" xml:space="preserve">
-    <value>完成怪物图鉴数据时出错。已恢复当前怪物图鉴。
-{0}</value>
-  </data>
-  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
-    <value>这将完全用已完成的图鉴替换当前已加载世界的图鉴和击杀计数。是否继续？</value>
-  </data>
-  <data name="dialog_complete_bestiary_title" xml:space="preserve">
-    <value>完成怪物图鉴？</value>
-  </data>
-  <data name="dialog_confirm_delete_title" xml:space="preserve">
-    <value>确认删除</value>
-  </data>
-  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
-    <value>要添加“世界边缘”边界吗？</value>
-  </data>
-  <data name="dialog_crop_world_borders_title" xml:space="preserve">
-    <value>裁剪世界：</value>
-  </data>
-  <data name="dialog_crop_world_prompt" xml:space="preserve">
-    <value>这将在所选区域内生成一个新世界。
-裁剪区域之外的所有进度都将丢失。要继续吗？</value>
-  </data>
-  <data name="dialog_crop_world_title" xml:space="preserve">
-    <value>裁剪世界？</value>
-  </data>
-  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
-    <value>确定要删除所有宝箱吗？</value>
-  </data>
-  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
-    <value>确定要删除所有未上锁的宝箱吗？</value>
-  </data>
-  <data name="dialog_delete_backup_prompt" xml:space="preserve">
-    <value>删除备份？
-{0}</value>
-  </data>
-  <data name="dialog_delete_chests_title" xml:space="preserve">
-    <value>删除宝箱</value>
-  </data>
-  <data name="dialog_dont_save" xml:space="preserve">
-    <value>不保存</value>
-  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>当前路径下未找到泰拉瑞亚的Content文件夹。
 点击“重试”以选择一个新的文件夹，或点击“取消”以使用“{0}”作为泰拉瑞亚的路径。</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>未找到泰拉瑞亚Content文件夹</value>
-  </data>
-  <data name="dialog_export_schematic" xml:space="preserve">
-    <value>导出蓝图文件</value>
-  </data>
-  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
-    <value>纹理尚未加载完成。请等待纹理加载完毕。</value>
-  </data>
-  <data name="dialog_export_textures_title" xml:space="preserve">
-    <value>导出纹理</value>
-  </data>
-  <data name="dialog_import_banners" xml:space="preserve">
-    <value>从世界文件导入旗帜</value>
-  </data>
-  <data name="dialog_import_banners_error" xml:space="preserve">
-    <value>从 {0} 导入旗帜数据时出错。已恢复当前旗帜。
-{1}</value>
-  </data>
-  <data name="dialog_import_banners_prompt" xml:space="preserve">
-    <value>这将使用所选世界文件中的数据替换当前的旗帜计数。是否继续？</value>
-  </data>
-  <data name="dialog_import_banners_title" xml:space="preserve">
-    <value>导入旗帜？</value>
-  </data>
-  <data name="dialog_import_bestiary" xml:space="preserve">
-    <value>从世界文件导入怪物图鉴和击杀记录</value>
-  </data>
-  <data name="dialog_import_bestiary_error" xml:space="preserve">
-    <value>从 {0} 导入怪物图鉴数据时出错。已恢复当前怪物图鉴。
-{1}</value>
-  </data>
-  <data name="dialog_import_error_title" xml:space="preserve">
-    <value>导入错误</value>
-  </data>
-  <data name="dialog_import_housegen_schematic" xml:space="preserve">
-    <value>导入 TEdit 房屋生成器示意图文件</value>
-  </data>
-  <data name="dialog_import_schematic" xml:space="preserve">
-    <value>导入 TEdit 蓝图文件</value>
-  </data>
-  <data name="dialog_invalid_world_prompt" xml:space="preserve">
-    <value>读取世界文件时出错。
-这通常是由存档文件损坏或世界版本高于当前支持的版本导致的。
-
-TEdit v{0}
-TEdit 支持的最大世界：{1}
-当前世界：{2}
-
-是否仍要强制加载？
-
-警告：这可能会导致意外后果，包括世界文件损坏和程序崩溃。
-
-错误信息：
-{3}</value>
-  </data>
-  <data name="dialog_invalid_world_title" xml:space="preserve">
-    <value>要加载无效的世界吗？</value>
-  </data>
-  <data name="dialog_language_restart_prompt" xml:space="preserve">
-    <value>语言已更改为 {0}。现在要重新启动吗？</value>
-  </data>
-  <data name="dialog_language_restart_title" xml:space="preserve">
-    <value>重新启动以更改语言</value>
-  </data>
-  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
-    <value>你正在加载旧版 tModLoader 世界：{0}。
-1. 编辑旧版文件是一项测试版功能。
-2. 不支持编辑模组世界。
-请先备份，世界文件可能会损坏。
-是否继续？</value>
-  </data>
-  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
-    <value>加载旧版 tModLoader 世界？</value>
-  </data>
-  <data name="dialog_legacy_world_prompt" xml:space="preserve">
-    <value>你正在加载旧版世界：{0}。
-编辑旧版文件可能导致意外结果。
-请先备份，世界文件可能会损坏。
-是否继续？</value>
-  </data>
-  <data name="dialog_legacy_world_title" xml:space="preserve">
-    <value>加载旧版世界？</value>
-  </data>
-  <data name="dialog_link_error_message" xml:space="preserve">
-    <value>无法打开外部浏览器。要复制到剪贴板吗？</value>
-  </data>
-  <data name="dialog_link_error_title" xml:space="preserve">
-    <value>链接错误</value>
-  </data>
-  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
-    <value>这将用所选文件中的内容完全替换当前已加载世界的怪物图鉴和击杀计数。是否继续？</value>
-  </data>
-  <data name="dialog_load_bestiary_title" xml:space="preserve">
-    <value>要加载怪物图鉴吗？</value>
-  </data>
-  <data name="dialog_locate_terraria_folder" xml:space="preserve">
-    <value>定位 Terraria 文件夹</value>
-  </data>
-  <data name="dialog_max_banners_prompt" xml:space="preserve">
-    <value>将所有旗帜数量设为最大值（9999）？</value>
-  </data>
-  <data name="dialog_max_banners_title" xml:space="preserve">
-    <value>将旗帜数量设为最大值？</value>
-  </data>
-  <data name="dialog_mod_world_prompt" xml:space="preserve">
-    <value>你正在加载一个 TModLoader 世界。暂不支持编辑安装了模组的世界。
-请先创建备份，因为世界文件可能会损坏。
-是否继续？</value>
-  </data>
-  <data name="dialog_mod_world_title" xml:space="preserve">
-    <value>要加载模组世界吗？</value>
-  </data>
-  <data name="dialog_newer_version_prompt" xml:space="preserve">
-    <value>此世界的版本比 TEdit 配置支持的版本更新。
-
-世界版本：{0}
-最高支持版本：{1}
-
-TEdit 将回退到配置版本 {1}（缺少较新的图块、墙壁等可能会导致问题）。
-
-仍要尝试加载吗？</value>
-  </data>
-  <data name="dialog_newer_version_title" xml:space="preserve">
-    <value>世界版本较新</value>
-  </data>
-  <data name="dialog_open_world_file" xml:space="preserve">
-    <value>打开世界文件</value>
-  </data>
-  <data name="dialog_player_modified_prompt" xml:space="preserve">
-    <value>{0} 自加载或上次保存后已被外部修改。
-要覆盖它吗？</value>
-  </data>
-  <data name="dialog_player_modified_title" xml:space="preserve">
-    <value>玩家已修改</value>
-  </data>
-  <data name="dialog_reload_no_world" xml:space="preserve">
-    <value>没有已加载的开放世界可供重新加载。</value>
-  </data>
-  <data name="dialog_reload_world_prompt" xml:space="preserve">
-    <value>未保存的更改将会丢失！</value>
-  </data>
-  <data name="dialog_reload_world_title" xml:space="preserve">
-    <value>重新加载当前世界？</value>
-  </data>
-  <data name="dialog_removetile_prompt" xml:space="preserve">
-    <value>这将从你的世界中彻底移除所有找到的图格。是否继续？</value>
-  </data>
-  <data name="dialog_removetile_result" xml:space="preserve">
-    <value>已找到并移除 {0:N0} 个图格。</value>
-  </data>
-  <data name="dialog_replace_mask_warning" xml:space="preserve">
-    <value>启用至少一个遮罩才能使用替换功能。遮罩用于指定要匹配的图块。</value>
-  </data>
-  <data name="dialog_replace_title" xml:space="preserve">
-    <value>替换</value>
-  </data>
-  <data name="dialog_reset_banners_prompt" xml:space="preserve">
-    <value>要将所有旗帜数量重置为零吗？</value>
-  </data>
-  <data name="dialog_reset_banners_title" xml:space="preserve">
-    <value>重置旗帜？</value>
-  </data>
-  <data name="dialog_reset_bestiary_error" xml:space="preserve">
-    <value>重置怪物图鉴数据时出错。已恢复当前怪物图鉴。
-{0}</value>
-  </data>
-  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
-    <value>此操作将用重置后的生物图鉴，彻底替换当前已加载世界的生物图鉴和击杀计数。是否继续？</value>
-  </data>
-  <data name="dialog_reset_bestiary_title" xml:space="preserve">
-    <value>要重置怪物图鉴吗？</value>
-  </data>
-  <data name="dialog_save_banners_error" xml:space="preserve">
-    <value>保存横幅数据时出错。已恢复更改。
-{0}</value>
-  </data>
-  <data name="dialog_save_banners_prompt" xml:space="preserve">
-    <value>要将旗帜更改保存到世界中吗？</value>
-  </data>
-  <data name="dialog_save_banners_title" xml:space="preserve">
-    <value>保存旗帜？</value>
-  </data>
-  <data name="dialog_save_bestiary_error" xml:space="preserve">
-    <value>保存生物图鉴数据时出错。已恢复当前生物图鉴。
-{0}</value>
-  </data>
-  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
-    <value>确定要保存怪物图鉴的更改吗？</value>
-  </data>
-  <data name="dialog_save_bestiary_title" xml:space="preserve">
-    <value>保存生物图鉴？</value>
-  </data>
-  <data name="dialog_save_pixelart" xml:space="preserve">
-    <value>保存生成的像素画</value>
-  </data>
-  <data name="dialog_save_world_analysis" xml:space="preserve">
-    <value>保存世界分析。</value>
-  </data>
-  <data name="dialog_save_world_as" xml:space="preserve">
-    <value>将世界另存为</value>
-  </data>
-  <data name="dialog_select_output_folder" xml:space="preserve">
-    <value>选择地图瓦片的输出文件夹</value>
-  </data>
-  <data name="dialog_select_player_file" xml:space="preserve">
-    <value>选择玩家文件</value>
-  </data>
-  <data name="dialog_unsaved_content" xml:space="preserve">
-    <value>关闭 TEdit 前要保存更改吗？</value>
-  </data>
-  <data name="dialog_unsaved_title" xml:space="preserve">
-    <value>未保存的更改</value>
-  </data>
-  <data name="dialog_world_corrupt_empty" xml:space="preserve">
-    <value>世界文件似乎为空或已损坏（所有字节均为零）。
-由于没有任何数据，无法恢复此文件。
-
-我该怎么办？
-1. 恢复之前创建的备份（.bak、.bak2）。
-2. 恢复之前手动创建的备份。
-3. 恢复之前创建的 TEdit 检查点（.TEdit）。
-4. 通过 Windows 文件历史记录恢复备份（如果之前已启用）。</value>
-  </data>
-  <data name="dialog_world_modified_prompt" xml:space="preserve">
-    <value>自上次保存后，{0} 已在外部被修改。
-要覆盖吗？</value>
-  </data>
-  <data name="dialog_world_modified_title" xml:space="preserve">
-    <value>世界已修改</value>
-  </data>
-  <data name="dialog_world_read_error" xml:space="preserve">
-    <value>读取世界文件时出错。
-这通常是由存档文件损坏或世界版本高于支持的版本导致的。
-
-TEdit v{0}
-TEdit 最大世界尺寸：{1}
-当前世界：{2}
-
-错误信息：
-{3}</value>
-  </data>
-  <data name="dialog_world_save_failed" xml:space="preserve">
-    <value>保存世界失败。已恢复打开的世界，您的编辑内容仍未保存。
-{0}</value>
-  </data>
-  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
-    <value>跳跃</value>
-  </data>
-  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
-    <value>坐着</value>
-  </data>
-  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
-    <value>站立中</value>
-  </data>
-  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
-    <value>使用 1</value>
-  </data>
-  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
-    <value>使用 2</value>
-  </data>
-  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
-    <value>使用 3</value>
-  </data>
-  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
-    <value>使用 4</value>
-  </data>
-  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
-    <value>使用 5</value>
-  </data>
-  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
-    <value>步行</value>
-  </data>
-  <data name="drawing_mode_bus" xml:space="preserve">
-    <value>公交车</value>
-  </data>
-  <data name="drawing_mode_wire" xml:space="preserve">
-    <value>电线</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
     <value>电线45°</value>
@@ -868,127 +422,6 @@ TEdit 最大世界尺寸：{1}
   <data name="editor_utilities_label" xml:space="preserve">
     <value>实用工具</value>
   </data>
-  <data name="enum_FilterMode_Darken" xml:space="preserve">
-    <value>变暗</value>
-  </data>
-  <data name="enum_FilterMode_Hide" xml:space="preserve">
-    <value>隐藏</value>
-  </data>
-  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
-    <value>العربية（阿拉伯语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
-    <value>自动（跟随系统设置）</value>
-  </data>
-  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
-    <value>中文（简体）</value>
-  </data>
-  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
-    <value>中文（繁體）</value>
-  </data>
-  <data name="enum_LanguageSelection_English" xml:space="preserve">
-    <value>English（英语）</value>
-  </data>
-  <data name="enum_LanguageSelection_French" xml:space="preserve">
-    <value>Français（法语）</value>
-  </data>
-  <data name="enum_LanguageSelection_German" xml:space="preserve">
-    <value>Deutsch（德语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
-    <value>Italiano（意大利语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
-    <value>日本語（日语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
-    <value>한국어（韩语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
-    <value>Polski（波兰语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
-    <value>Português（葡萄牙语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
-    <value>Русский（俄语）</value>
-  </data>
-  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
-    <value>Español（西班牙语）</value>
-  </data>
-  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
-    <value>默认值</value>
-  </data>
-  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
-    <value>小地图</value>
-  </data>
-  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
-    <value>写实风格</value>
-  </data>
-  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
-    <value>阿尔法</value>
-  </data>
-  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
-    <value>测试版</value>
-  </data>
-  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
-    <value>稳定版</value>
-  </data>
-  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
-    <value>自动下载</value>
-  </data>
-  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
-    <value>自动安装</value>
-  </data>
-  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
-    <value>已禁用</value>
-  </data>
-  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
-    <value>仅通知</value>
-  </data>
-  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
-    <value>屏幕居中</value>
-  </data>
-  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
-    <value>默认值</value>
-  </data>
-  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
-    <value>已最大化</value>
-  </data>
-  <data name="error_log_folder_exit" xml:space="preserve">
-    <value>无法创建日志文件夹。应用程序将退出。
-{0}
-{1}</value>
-  </data>
-  <data name="error_log_folder_title" xml:space="preserve">
-    <value>无法创建日志文件夹。</value>
-  </data>
-  <data name="error_log_open_failed" xml:space="preserve">
-    <value>无法打开日志文件：{0}</value>
-  </data>
-  <data name="error_texture_load" xml:space="preserve">
-    <value>从 {0} 加载纹理时出错。
-请检查此文件夹是否存在，以及 TEdit 是否具有读取权限。
-
-{1}</value>
-  </data>
-  <data name="error_texture_load_title" xml:space="preserve">
-    <value>加载纹理时出错</value>
-  </data>
-  <data name="error_undo_folder_exit" xml:space="preserve">
-    <value>无法创建用于撤销操作的临时文件夹。应用程序将退出。
-{0}
-{1}</value>
-  </data>
-  <data name="error_undo_folder_title" xml:space="preserve">
-    <value>无法创建撤销文件夹。</value>
-  </data>
-  <data name="error_unhandled" xml:space="preserve">
-    <value>发生了未处理的异常。您可以继续使用 TEdit，但在重新启动应用程序之前，程序运行可能不稳定。</value>
-  </data>
-  <data name="error_unhandled_title" xml:space="preserve">
-    <value>未处理的异常</value>
-  </data>
   <data name="expand_description" xml:space="preserve">
     <value>世界将被居中放置在新尺寸下。</value>
   </data>
@@ -1005,10 +438,10 @@ TEdit 最大世界尺寸：{1}
     <value>选区已导出至{0}</value>
   </data>
   <data name="export_size_limit_exceeded" xml:space="preserve">
-    <value>导出大小为{0}×{1}像素（{2}Megapixel），超过{3}Megapixel的限制。</value>
+    <value>导出大小为{0}×{1}像素（{2} 百万像素），超过 {3} 百万像素的限制。</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>导出大小将为{0}×{1}像素（{2}Megapixel，预计为{3}）。这可能需要一段时间。是否继续？</value>
+    <value>导出大小将为{0}×{1}像素（{2} 百万像素，预计为{3}）。这可能需要一段时间。是否继续？</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>大型导出警告</value>
@@ -1100,219 +533,6 @@ TEdit 最大世界尺寸：{1}
   <data name="find_tab_chests" xml:space="preserve">
     <value>宝箱里的物品</value>
   </data>
-  <data name="frame_anchor_bottom" xml:space="preserve">
-    <value>底部</value>
-  </data>
-  <data name="frame_anchor_center" xml:space="preserve">
-    <value>中心</value>
-  </data>
-  <data name="frame_anchor_left" xml:space="preserve">
-    <value>左侧</value>
-  </data>
-  <data name="frame_anchor_none" xml:space="preserve">
-    <value>无</value>
-  </data>
-  <data name="frame_anchor_right" xml:space="preserve">
-    <value>右侧</value>
-  </data>
-  <data name="frame_anchor_top" xml:space="preserve">
-    <value>顶部</value>
-  </data>
-  <data name="frame_text_amber_tree" xml:space="preserve">
-    <value>琥珀树</value>
-  </data>
-  <data name="frame_text_amethyst_tree" xml:space="preserve">
-    <value>紫晶树</value>
-  </data>
-  <data name="frame_text_ash_tree" xml:space="preserve">
-    <value>白蜡树</value>
-  </data>
-  <data name="frame_text_attach_left" xml:space="preserve">
-    <value>向左附加</value>
-  </data>
-  <data name="frame_text_attach_left_endcap" xml:space="preserve">
-    <value>附加左端端盖</value>
-  </data>
-  <data name="frame_text_attach_right" xml:space="preserve">
-    <value>向右侧附加</value>
-  </data>
-  <data name="frame_text_attach_right_endcap" xml:space="preserve">
-    <value>连接右端端盖</value>
-  </data>
-  <data name="frame_text_boss_trophy" xml:space="preserve">
-    <value>Boss奖杯</value>
-  </data>
-  <data name="frame_text_corruption_short_plants" xml:space="preserve">
-    <value>腐化之地矮小植物</value>
-  </data>
-  <data name="frame_text_crimson_short_plants" xml:space="preserve">
-    <value>猩红色矮小植物</value>
-  </data>
-  <data name="frame_text_critter_anchor" xml:space="preserve">
-    <value>小动物锚点</value>
-  </data>
-  <data name="frame_text_decos_3x2" xml:space="preserve">
-    <value>装饰（3×2）</value>
-  </data>
-  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
-    <value>装饰（3×2）（组 2）</value>
-  </data>
-  <data name="frame_text_diamond_tree" xml:space="preserve">
-    <value>钻石树</value>
-  </data>
-  <data name="frame_text_emerald_tree" xml:space="preserve">
-    <value>翡翠树</value>
-  </data>
-  <data name="frame_text_endcap_left" xml:space="preserve">
-    <value>左侧端盖</value>
-  </data>
-  <data name="frame_text_endcap_right" xml:space="preserve">
-    <value>右端封盖</value>
-  </data>
-  <data name="frame_text_flat" xml:space="preserve">
-    <value>平坦化</value>
-  </data>
-  <data name="frame_text_forest_pot" xml:space="preserve">
-    <value>森林花盆</value>
-  </data>
-  <data name="frame_text_forest_short_plants" xml:space="preserve">
-    <value>森林矮生植物</value>
-  </data>
-  <data name="frame_text_forest_tall_plants" xml:space="preserve">
-    <value>森林高大植物</value>
-  </data>
-  <data name="frame_text_forest_tree" xml:space="preserve">
-    <value>森林树木</value>
-  </data>
-  <data name="frame_text_hallow_short_plants" xml:space="preserve">
-    <value>神圣之地的矮小植物</value>
-  </data>
-  <data name="frame_text_jungle_large_plants" xml:space="preserve">
-    <value>丛林大型植物</value>
-  </data>
-  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
-    <value>丛林植物回响</value>
-  </data>
-  <data name="frame_text_jungle_short_plants" xml:space="preserve">
-    <value>丛林矮生植物</value>
-  </data>
-  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
-    <value>大型碎石堆（3×2）</value>
-  </data>
-  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
-    <value>大型瓦砾（3×2）（组 2）</value>
-  </data>
-  <data name="frame_text_left" xml:space="preserve">
-    <value>左侧</value>
-  </data>
-  <data name="frame_text_locked" xml:space="preserve">
-    <value>已锁定</value>
-  </data>
-  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
-    <value>中型废墟（2×1）</value>
-  </data>
-  <data name="frame_text_monster_banner" xml:space="preserve">
-    <value>怪物旗帜</value>
-  </data>
-  <data name="frame_text_off" xml:space="preserve">
-    <value>关闭</value>
-  </data>
-  <data name="frame_text_on" xml:space="preserve">
-    <value>开启</value>
-  </data>
-  <data name="frame_text_ore_bars" xml:space="preserve">
-    <value>矿石锭</value>
-  </data>
-  <data name="frame_text_pumpkin_plant" xml:space="preserve">
-    <value>南瓜植株</value>
-  </data>
-  <data name="frame_text_right" xml:space="preserve">
-    <value>右侧</value>
-  </data>
-  <data name="frame_text_ruby_tree" xml:space="preserve">
-    <value>红玉树</value>
-  </data>
-  <data name="frame_text_sapphire_tree" xml:space="preserve">
-    <value>蓝宝石树</value>
-  </data>
-  <data name="frame_text_single" xml:space="preserve">
-    <value>单人</value>
-  </data>
-  <data name="frame_text_small_decos" xml:space="preserve">
-    <value>小型装饰物</value>
-  </data>
-  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
-    <value>小型碎石（1×1）</value>
-  </data>
-  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
-    <value>楼梯底部左侧平台</value>
-  </data>
-  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
-    <value>楼梯底部右侧平台</value>
-  </data>
-  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
-    <value>楼梯向左上内凹 1</value>
-  </data>
-  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
-    <value>阶梯向左上内凹 2</value>
-  </data>
-  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
-    <value>左上内凹楼梯 3</value>
-  </data>
-  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
-    <value>右上凹入楼梯 1</value>
-  </data>
-  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
-    <value>右上内凹楼梯 2</value>
-  </data>
-  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
-    <value>向右上凹入的楼梯 3</value>
-  </data>
-  <data name="frame_text_stair_inverted_left" xml:space="preserve">
-    <value>向左倒置楼梯</value>
-  </data>
-  <data name="frame_text_stair_inverted_right" xml:space="preserve">
-    <value>向右反转楼梯</value>
-  </data>
-  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
-    <value>楼梯顶部左侧平台</value>
-  </data>
-  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
-    <value>楼梯顶部平台左端封边蓋</value>
-  </data>
-  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
-    <value>楼梯顶部平台（左–右）</value>
-  </data>
-  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
-    <value>楼梯顶部平台右侧</value>
-  </data>
-  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
-    <value>楼梯顶部平台右端封板</value>
-  </data>
-  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
-    <value>左上楼梯立板</value>
-  </data>
-  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
-    <value>左上行楼梯侧梁</value>
-  </data>
-  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
-    <value>向右上楼梯立板</value>
-  </data>
-  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
-    <value>右上楼梯侧梁</value>
-  </data>
-  <data name="frame_text_text_statue" xml:space="preserve">
-    <value>文字雕像</value>
-  </data>
-  <data name="frame_text_topaz_tree" xml:space="preserve">
-    <value>黄玉树</value>
-  </data>
-  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
-    <value>樱花装饰树</value>
-  </data>
-  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
-    <value>装饰树：黄柳</value>
-  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>喜欢TEdit？支持我们！</value>
   </data>
@@ -1330,312 +550,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>设为实心</value>
-  </data>
-  <data name="input_app_settings" xml:space="preserve">
-    <value>设置</value>
-  </data>
-  <data name="input_category_editing" xml:space="preserve">
-    <value>编辑中</value>
-  </data>
-  <data name="input_category_file" xml:space="preserve">
-    <value>文件</value>
-  </data>
-  <data name="input_category_help" xml:space="preserve">
-    <value>帮助</value>
-  </data>
-  <data name="input_category_navigation" xml:space="preserve">
-    <value>导航</value>
-  </data>
-  <data name="input_category_selection" xml:space="preserve">
-    <value>选区</value>
-  </data>
-  <data name="input_category_toggles" xml:space="preserve">
-    <value>切换选项</value>
-  </data>
-  <data name="input_category_tooldrawing" xml:space="preserve">
-    <value>绘图工具</value>
-  </data>
-  <data name="input_category_tools" xml:space="preserve">
-    <value>工具</value>
-  </data>
-  <data name="input_category_view" xml:space="preserve">
-    <value>视图</value>
-  </data>
-  <data name="input_editor_draw" xml:space="preserve">
-    <value>绘制 / 主要操作</value>
-  </data>
-  <data name="input_editor_draw_constrain" xml:space="preserve">
-    <value>约束绘制（水平/垂直/45°）</value>
-  </data>
-  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
-    <value>将绘制限制为水平线、垂直线或 45° 斜线</value>
-  </data>
-  <data name="input_editor_draw_desc" xml:space="preserve">
-    <value>工具的主要绘制操作</value>
-  </data>
-  <data name="input_editor_draw_line" xml:space="preserve">
-    <value>绘制点到点直线</value>
-  </data>
-  <data name="input_editor_draw_line_desc" xml:space="preserve">
-    <value>在点击的点之间绘制直线</value>
-  </data>
-  <data name="input_editor_pan" xml:space="preserve">
-    <value>平移视图窗口</value>
-  </data>
-  <data name="input_editor_pan_desc" xml:space="preserve">
-    <value>拖动以平移视口</value>
-  </data>
-  <data name="input_editor_secondary" xml:space="preserve">
-    <value>次要操作</value>
-  </data>
-  <data name="input_editor_secondary_desc" xml:space="preserve">
-    <value>工具中的次要操作（检查、取消选择、选取蒙版等）</value>
-  </data>
-  <data name="input_editor_wire_color1" xml:space="preserve">
-    <value>切换红色导线显示</value>
-  </data>
-  <data name="input_editor_wire_color1_desc" xml:space="preserve">
-    <value>切换红色电线的启用状态</value>
-  </data>
-  <data name="input_editor_wire_color2" xml:space="preserve">
-    <value>切换蓝色电线显示</value>
-  </data>
-  <data name="input_editor_wire_color2_desc" xml:space="preserve">
-    <value>切换蓝色电线的启用状态</value>
-  </data>
-  <data name="input_editor_wire_color3" xml:space="preserve">
-    <value>切换绿线</value>
-  </data>
-  <data name="input_editor_wire_color3_desc" xml:space="preserve">
-    <value>切换绿色电线的启用状态</value>
-  </data>
-  <data name="input_editor_wire_color4" xml:space="preserve">
-    <value>切换黄色电线显示</value>
-  </data>
-  <data name="input_editor_wire_color4_desc" xml:space="preserve">
-    <value>切换黄色电线的启用状态</value>
-  </data>
-  <data name="input_editor_wire_modecycle" xml:space="preserve">
-    <value>切换电线绘制模式</value>
-  </data>
-  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
-    <value>切换电线绘制模式：关闭 → 90°电线 → 45°电线 → 关闭</value>
-  </data>
-  <data name="input_editor_wire_togglehv" xml:space="preserve">
-    <value>切换导线水平/垂直方向</value>
-  </data>
-  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
-    <value>切换电线布线模式：水平优先、垂直优先或自动检测</value>
-  </data>
-  <data name="input_editor_wire_trace" xml:space="preserve">
-    <value>电线追踪高亮</value>
-  </data>
-  <data name="input_editor_wire_trace_desc" xml:space="preserve">
-    <value>按住 Alt 并单击，可高亮显示与所点击图块相连的所有电线。</value>
-  </data>
-  <data name="input_edit_copy" xml:space="preserve">
-    <value>复制</value>
-  </data>
-  <data name="input_edit_crop" xml:space="preserve">
-    <value>裁剪世界</value>
-  </data>
-  <data name="input_edit_cut" xml:space="preserve">
-    <value>剪切</value>
-  </data>
-  <data name="input_edit_expand" xml:space="preserve">
-    <value>拓展世界</value>
-  </data>
-  <data name="input_edit_paste" xml:space="preserve">
-    <value>粘贴</value>
-  </data>
-  <data name="input_edit_redo" xml:space="preserve">
-    <value>重做</value>
-  </data>
-  <data name="input_edit_undo" xml:space="preserve">
-    <value>撤销</value>
-  </data>
-  <data name="input_file_new" xml:space="preserve">
-    <value>新建世界</value>
-  </data>
-  <data name="input_file_open" xml:space="preserve">
-    <value>打开</value>
-  </data>
-  <data name="input_file_reload" xml:space="preserve">
-    <value>重新加载世界</value>
-  </data>
-  <data name="input_file_save" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="input_file_saveas" xml:space="preserve">
-    <value>另存为</value>
-  </data>
-  <data name="input_file_saveasversion" xml:space="preserve">
-    <value>另存为版本</value>
-  </data>
-  <data name="input_help_wiki" xml:space="preserve">
-    <value>维基 / 帮助</value>
-  </data>
-  <data name="input_nav_pan" xml:space="preserve">
-    <value>平移模式</value>
-  </data>
-  <data name="input_nav_reset" xml:space="preserve">
-    <value>重置工具 / 取消选择</value>
-  </data>
-  <data name="input_nav_scroll_down" xml:space="preserve">
-    <value>向下滚动</value>
-  </data>
-  <data name="input_nav_scroll_down_fast" xml:space="preserve">
-    <value>快速向下滚动</value>
-  </data>
-  <data name="input_nav_scroll_left" xml:space="preserve">
-    <value>向左滚动</value>
-  </data>
-  <data name="input_nav_scroll_left_fast" xml:space="preserve">
-    <value>快速向左滚动</value>
-  </data>
-  <data name="input_nav_scroll_right" xml:space="preserve">
-    <value>向右滚动</value>
-  </data>
-  <data name="input_nav_scroll_right_fast" xml:space="preserve">
-    <value>快速向右滚动</value>
-  </data>
-  <data name="input_nav_scroll_up" xml:space="preserve">
-    <value>向上滚动</value>
-  </data>
-  <data name="input_nav_scroll_up_fast" xml:space="preserve">
-    <value>快速向上滚动</value>
-  </data>
-  <data name="input_nav_zoom_in" xml:space="preserve">
-    <value>放大</value>
-  </data>
-  <data name="input_nav_zoom_out" xml:space="preserve">
-    <value>缩小</value>
-  </data>
-  <data name="input_paste_accept" xml:space="preserve">
-    <value>确认粘贴</value>
-  </data>
-  <data name="input_paste_flip_h" xml:space="preserve">
-    <value>水平翻转粘贴</value>
-  </data>
-  <data name="input_paste_flip_v" xml:space="preserve">
-    <value>垂直翻转粘贴内容</value>
-  </data>
-  <data name="input_paste_rotate_ccw" xml:space="preserve">
-    <value>逆时针旋转粘贴内容</value>
-  </data>
-  <data name="input_paste_rotate_cw" xml:space="preserve">
-    <value>顺时针旋转粘贴内容</value>
-  </data>
-  <data name="input_selection_adjust_endpoint" xml:space="preserve">
-    <value>移动选区终点</value>
-  </data>
-  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
-    <value>按住 Shift 并单击/拖动以移动选区的右下角</value>
-  </data>
-  <data name="input_selection_adjust_startpoint" xml:space="preserve">
-    <value>移动选区起点</value>
-  </data>
-  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
-    <value>按住 Ctrl 并单击/拖动以移动选区的左上角</value>
-  </data>
-  <data name="input_selection_all" xml:space="preserve">
-    <value>全选</value>
-  </data>
-  <data name="input_selection_delete" xml:space="preserve">
-    <value>删除选区内容</value>
-  </data>
-  <data name="input_selection_move_down" xml:space="preserve">
-    <value>将选区下移</value>
-  </data>
-  <data name="input_selection_move_down_fast" xml:space="preserve">
-    <value>快速向下移动选区</value>
-  </data>
-  <data name="input_selection_move_left" xml:space="preserve">
-    <value>将选区向左移动</value>
-  </data>
-  <data name="input_selection_move_left_fast" xml:space="preserve">
-    <value>快速向左移动选区</value>
-  </data>
-  <data name="input_selection_move_right" xml:space="preserve">
-    <value>向右移动选区</value>
-  </data>
-  <data name="input_selection_move_right_fast" xml:space="preserve">
-    <value>快速向右移动选区</value>
-  </data>
-  <data name="input_selection_move_up" xml:space="preserve">
-    <value>将选区上移</value>
-  </data>
-  <data name="input_selection_move_up_fast" xml:space="preserve">
-    <value>快速向上移动选区</value>
-  </data>
-  <data name="input_selection_none" xml:space="preserve">
-    <value>取消选择</value>
-  </data>
-  <data name="input_selection_resize_down" xml:space="preserve">
-    <value>增加选区高度</value>
-  </data>
-  <data name="input_selection_resize_down_fast" xml:space="preserve">
-    <value>快速增加选区高度</value>
-  </data>
-  <data name="input_selection_resize_left" xml:space="preserve">
-    <value>缩小选区宽度</value>
-  </data>
-  <data name="input_selection_resize_left_fast" xml:space="preserve">
-    <value>缩小选区宽度（快速）</value>
-  </data>
-  <data name="input_selection_resize_right" xml:space="preserve">
-    <value>增大选区宽度</value>
-  </data>
-  <data name="input_selection_resize_right_fast" xml:space="preserve">
-    <value>增大选区宽度（快速）</value>
-  </data>
-  <data name="input_selection_resize_up" xml:space="preserve">
-    <value>缩小选区高度</value>
-  </data>
-  <data name="input_selection_resize_up_fast" xml:space="preserve">
-    <value>快速缩小选区高度</value>
-  </data>
-  <data name="input_toggle_eraser" xml:space="preserve">
-    <value>切换橡皮擦工具</value>
-  </data>
-  <data name="input_toggle_swap" xml:space="preserve">
-    <value>交换颜色</value>
-  </data>
-  <data name="input_toggle_tile" xml:space="preserve">
-    <value>切换图块样式</value>
-  </data>
-  <data name="input_toggle_wall" xml:space="preserve">
-    <value>切换墙壁样式</value>
-  </data>
-  <data name="input_tool_arrow" xml:space="preserve">
-    <value>箭头工具</value>
-  </data>
-  <data name="input_tool_brush" xml:space="preserve">
-    <value>画笔工具</value>
-  </data>
-  <data name="input_tool_fill" xml:space="preserve">
-    <value>填充工具</value>
-  </data>
-  <data name="input_tool_hammer" xml:space="preserve">
-    <value>锤子工具</value>
-  </data>
-  <data name="input_tool_morph" xml:space="preserve">
-    <value>地形变形工具</value>
-  </data>
-  <data name="input_tool_pencil" xml:space="preserve">
-    <value>铅笔工具</value>
-  </data>
-  <data name="input_tool_picker" xml:space="preserve">
-    <value>取色工具</value>
-  </data>
-  <data name="input_tool_point" xml:space="preserve">
-    <value>点工具</value>
-  </data>
-  <data name="input_tool_selection" xml:space="preserve">
-    <value>选择工具</value>
-  </data>
-  <data name="input_tool_sprite" xml:space="preserve">
-    <value>精灵工具</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>朝左</value>
@@ -1695,19 +609,7 @@ TEdit 最大世界尺寸：{1}
     <value>20%</value>
   </data>
   <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
-    <value>0 %</value>
-  </data>
-  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
-    <value>相等</value>
-  </data>
-  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
-    <value>大于</value>
-  </data>
-  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
-    <value>忽略</value>
-  </data>
-  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
-    <value>小于</value>
+    <value>0%</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>蜂蜜</value>
@@ -2178,12 +1080,6 @@ TEdit 最大世界尺寸：{1}
   <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
     <value>更改地形时可能会移除装饰。使用“撤销”恢复原始图块。</value>
   </data>
-  <data name="MorphBiome_Forest" xml:space="preserve">
-    <value>森林</value>
-  </data>
-  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
-    <value>发光蘑菇</value>
-  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>神圣</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -2204,48 +1100,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
     <value>转换匹配的生物群系图块，并保持不支持的图块不变。</value>
-  </data>
-  <data name="MorphBiome_Snow" xml:space="preserve">
-    <value>雪</value>
-  </data>
-  <data name="morph_moss_Argon" xml:space="preserve">
-    <value>氩</value>
-  </data>
-  <data name="morph_moss_Blue" xml:space="preserve">
-    <value>蓝线</value>
-  </data>
-  <data name="morph_moss_Grass" xml:space="preserve">
-    <value>草地</value>
-  </data>
-  <data name="morph_moss_Green" xml:space="preserve">
-    <value>绿线</value>
-  </data>
-  <data name="morph_moss_Helium" xml:space="preserve">
-    <value>氦气</value>
-  </data>
-  <data name="morph_moss_Krypton" xml:space="preserve">
-    <value>氪元素</value>
-  </data>
-  <data name="morph_moss_Lava" xml:space="preserve">
-    <value>熔岩</value>
-  </data>
-  <data name="morph_moss_Neon" xml:space="preserve">
-    <value>霓虹灯</value>
-  </data>
-  <data name="morph_moss_None" xml:space="preserve">
-    <value>无（移除）</value>
-  </data>
-  <data name="morph_moss_Purple" xml:space="preserve">
-    <value>紫色</value>
-  </data>
-  <data name="morph_moss_Red" xml:space="preserve">
-    <value>红线</value>
-  </data>
-  <data name="morph_moss_Xenon" xml:space="preserve">
-    <value>氙</value>
-  </data>
-  <data name="morph_moss_Yellow" xml:space="preserve">
-    <value>黄线</value>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT浏览器</value>
@@ -2289,14 +1143,14 @@ TEdit 最大世界尺寸：{1}
   <data name="newworld_cave_preset" xml:space="preserve">
     <value>洞穴预设</value>
   </data>
-  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
-    <value>迷宫</value>
+  <data name="newworld_cave_preset_normal" xml:space="preserve">
+    <value>普通</value>
   </data>
   <data name="newworld_cave_preset_large" xml:space="preserve">
     <value>大号</value>
   </data>
-  <data name="newworld_cave_preset_normal" xml:space="preserve">
-    <value>普通</value>
+  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
+    <value>迷宫</value>
   </data>
   <data name="newworld_create" xml:space="preserve">
     <value>创造世界</value>
@@ -2372,9 +1226,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="npc_search_placeholder" xml:space="preserve">
     <value>搜索……</value>
-  </data>
-  <data name="overflow_more_panels" xml:space="preserve">
-    <value>更多面板……</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
@@ -2517,14 +1368,6 @@ TEdit 最大世界尺寸：{1}
   <data name="player_editor_equipment" xml:space="preserve">
     <value>装备</value>
   </data>
-  <data name="player_editor_error_load" xml:space="preserve">
-    <value>无法加载玩家文件：
-{0}</value>
-  </data>
-  <data name="player_editor_error_save" xml:space="preserve">
-    <value>无法保存玩家文件：
-{0}</value>
-  </data>
   <data name="player_editor_eye_color" xml:space="preserve">
     <value>眼睛颜色</value>
   </data>
@@ -2558,9 +1401,6 @@ TEdit 最大世界尺寸：{1}
   <data name="player_editor_save_as" xml:space="preserve">
     <value>另存为玩家……</value>
   </data>
-  <data name="player_editor_save_canceled" xml:space="preserve">
-    <value>保存已取消：玩家文件已被外部修改。</value>
-  </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
     <value>上衣颜色</value>
   </data>
@@ -2575,12 +1415,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="player_editor_stats" xml:space="preserve">
     <value>统计数据</value>
-  </data>
-  <data name="player_editor_status_loaded" xml:space="preserve">
-    <value>已加载：{0}</value>
-  </data>
-  <data name="player_editor_status_saved" xml:space="preserve">
-    <value>已保存：{0}</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
     <value>玩家编辑器</value>
@@ -2685,7 +1519,7 @@ TEdit 最大世界尺寸：{1}
     <value>红队</value>
   </data>
   <data name="player_stats_team_white" xml:space="preserve">
-    <value>白色</value>
+    <value>白队</value>
   </data>
   <data name="player_stats_team_yellow" xml:space="preserve">
     <value>黄队</value>
@@ -2726,12 +1560,6 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
     <value>启用撤销（速度较慢）</value>
   </data>
-  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
-    <value>某些特殊图格实体（如宝箱或告示牌）仍受保护，无法打乱。</value>
-  </data>
-  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
-    <value>包含信息</value>
-  </data>
   <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
     <value>包含图块实体</value>
   </data>
@@ -2753,23 +1581,11 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>随机打乱方块位置</value>
   </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>净化世界</value>
-  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>添加</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>点击 [...] 导入模板结构图</value>
-  </data>
-  <data name="plugin_housegen_json_count_error" xml:space="preserve">
-    <value>{0} 检查 JSON 数据，确保“Count”值与关联的蓝图一致。</value>
-  </data>
-  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
-    <value>{0} 检查 {1} 的 JSON 数据</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>程序化房屋生成器</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>预览</value>
@@ -2836,9 +1652,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="plugin_ore_mythril" xml:space="preserve">
     <value>秘银</value>
-  </data>
-  <data name="plugin_ore_none" xml:space="preserve">
-    <value>不适用</value>
   </data>
   <data name="plugin_ore_obsidian" xml:space="preserve">
     <value>黑曜石</value>
@@ -2927,15 +1740,6 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>安全建造</value>
   </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>计算中……</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>正在计算……</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>取消转换</value>
-  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>更改 A 值。</value>
   </data>
@@ -2951,9 +1755,6 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>颜色筛选工具：</value>
   </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>转换为像素艺术</value>
-  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>将当前图像转换为像素画。</value>
   </data>
@@ -2966,47 +1767,11 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>当前图像：</value>
   </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>默认值</value>
-  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>删除未使用的颜色</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>从筛选器中移除渲染后的像素画中不存在的颜色。</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>错误：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>错误：颜色筛选器格式无效！{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>颜色筛选器值为零。请调整设置。</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>错误：你需要先生成像素画！</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>发生错误：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>加载图像时出错：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>“复制到剪贴板”功能需要先加载一个世界！</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>你必须先保存一个结构文件！</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>保存图像时出错：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>保存结构图时出错：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>结构图数据为空！请先生成像素画！</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>已筛选的颜色：</value>
@@ -3050,23 +1815,14 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>Hermite（埃尔米特）</value>
   </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>图像处理完成。</value>
-  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>Lanczos（兰索斯）</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>图像转像素画编辑器</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>最近邻</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>新比例 (%)：</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>无</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>不旋转</value>
@@ -3091,9 +1847,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>显示像素画绘制进度（对速度略有影响）。</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>渲染已取消。</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>重置颜色</value>
@@ -3125,17 +1878,8 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>缩放模式：</value>
   </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>已将结构图复制到剪贴板。</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>结构图已被覆盖。</value>
-  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
-    <value>蓝图旋转：</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>已保存结构图。</value>
+    <value>结构图旋转：</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>设置新比例</value>
@@ -3188,18 +1932,6 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>Y 轴</value>
   </data>
-  <data name="plugin_playermap_completed" xml:space="preserve">
-    <value>地图已生成！</value>
-  </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>渲染玩家 .map 文件</value>
-  </data>
-  <data name="plugin_playermap_no_file" xml:space="preserve">
-    <value>未选择玩家文件。</value>
-  </data>
-  <data name="plugin_playermap_title" xml:space="preserve">
-    <value>玩家地图</value>
-  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>随机生成背景墙</value>
   </data>
@@ -3208,9 +1940,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>支持受重力影响的方块（如沙子等）</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>随机化世界中的所有方块</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>不要随机生成会立即消失的方块</value>
@@ -3227,34 +1956,17 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>随机化世界</value>
   </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>移除所有宝箱</value>
-  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>输入要移除的方块或物体名称。</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>输入要移除的墙壁名称。</value>
   </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>移除物体、方块或墙壁</value>
-  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>移除图块</value>
   </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>移除所有未上锁的宝箱</value>
-  </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>延迟</value>
-  </data>
-  <data name="plugin_replay_no_world" xml:space="preserve">
-    <value>请先打开一个世界。</value>
-  </data>
-  <data name="plugin_replay_open_failed" xml:space="preserve">
-    <value>无法打开回放文件。
-
-{0}</value>
   </data>
   <data name="plugin_replay_player_title" xml:space="preserve">
     <value>回放播放器</value>
@@ -3268,14 +1980,8 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_replay_title" xml:space="preserve">
     <value>回放</value>
   </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>让沙块自然下落</value>
-  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>种子：（留空以随机生成）</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>生成调试物体</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>添加到剪贴板</value>
@@ -3289,182 +1995,47 @@ TEdit 最大世界尺寸：{1}
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>每行最大字符数</value>
   </data>
-  <data name="plugin_textstatue_menu" xml:space="preserve">
-    <value>生成文字雕像</value>
-  </data>
   <data name="plugin_textstatue_title" xml:space="preserve">
     <value>文字雕像生成器</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>净化世界</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>程序化房屋生成器</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>图像转像素画编辑器</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>渲染玩家 .map 文件</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>随机化世界中的所有方块</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>移除所有宝箱</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>移除物体、方块或墙壁</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>移除所有未上锁的宝箱</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>让沙块自然下落</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>生成调试物体</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>生成文字雕像</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>导出纹理（调试）</value>
   </data>
   <data name="plugin_unlockallchests_menu" xml:space="preserve">
     <value>解锁所有宝箱</value>
-  </data>
-  <data name="progress_calculating_colors" xml:space="preserve">
-    <value>正在计算颜色……</value>
-  </data>
-  <data name="progress_cloning_world" xml:space="preserve">
-    <value>正在克隆世界……</value>
-  </data>
-  <data name="progress_converting_to_windows_phone" xml:space="preserve">
-    <value>正在将世界转换为 Windows Phone 格式……</value>
-  </data>
-  <data name="progress_generating_caves" xml:space="preserve">
-    <value>正在生成洞穴……</value>
-  </data>
-  <data name="progress_generating_cave_noise" xml:space="preserve">
-    <value>正在生成洞穴噪声……</value>
-  </data>
-  <data name="progress_generating_hills" xml:space="preserve">
-    <value>正在生成丘陵……</value>
-  </data>
-  <data name="progress_generating_underworld" xml:space="preserve">
-    <value>正在生成地狱……</value>
-  </data>
-  <data name="progress_generating_world" xml:space="preserve">
-    <value>正在生成世界……</value>
-  </data>
-  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
-    <value>已加载 Windows Phone 世界头部。</value>
-  </data>
-  <data name="progress_loading_chests" xml:space="preserve">
-    <value>正在加载宝箱……</value>
-  </data>
-  <data name="progress_loading_file_header" xml:space="preserve">
-    <value>正在加载文件头……</value>
-  </data>
-  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
-    <value>正在加载旧版 Windows Phone 磁贴……</value>
-  </data>
-  <data name="progress_loading_npcs" xml:space="preserve">
-    <value>正在加载 NPC……</value>
-  </data>
-  <data name="progress_loading_npc_data" xml:space="preserve">
-    <value>正在加载 NPC 数据……</value>
-  </data>
-  <data name="progress_loading_npc_names" xml:space="preserve">
-    <value>正在加载 NPC 名称……</value>
-  </data>
-  <data name="progress_loading_signs" xml:space="preserve">
-    <value>正在加载告示牌……</value>
-  </data>
-  <data name="progress_loading_tiles" xml:space="preserve">
-    <value>正在加载图块……</value>
-  </data>
-  <data name="progress_loading_tile_entities_section" xml:space="preserve">
-    <value>正在加载图块实体区域……</value>
-  </data>
-  <data name="progress_loading_tmodloader_data" xml:space="preserve">
-    <value>正在加载 tModLoader 数据……</value>
-  </data>
-  <data name="progress_loading_winphone_tiles" xml:space="preserve">
-    <value>正在加载 Windows Phone 磁贴……</value>
-  </data>
-  <data name="progress_load_complete" xml:space="preserve">
-    <value>加载完成。</value>
-  </data>
-  <data name="progress_placing_caves" xml:space="preserve">
-    <value>正在放置洞穴……</value>
-  </data>
-  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
-    <value>正在准备 tModLoader 数据……</value>
-  </data>
-  <data name="progress_refining_caves" xml:space="preserve">
-    <value>正在优化洞穴……</value>
-  </data>
-  <data name="progress_removing_future_tiles" xml:space="preserve">
-    <value>正在移除未来的图块……</value>
-  </data>
-  <data name="progress_render_complete" xml:space="preserve">
-    <value>渲染完成</value>
-  </data>
-  <data name="progress_resetting_time" xml:space="preserve">
-    <value>正在重置时间……</value>
-  </data>
-  <data name="progress_save_bestiary" xml:space="preserve">
-    <value>保存图鉴……</value>
-  </data>
-  <data name="progress_save_chests" xml:space="preserve">
-    <value>保存箱子……</value>
-  </data>
-  <data name="progress_save_complete" xml:space="preserve">
-    <value>保存完成。</value>
-  </data>
-  <data name="progress_save_creative_powers" xml:space="preserve">
-    <value>保存创意能力……</value>
-  </data>
-  <data name="progress_save_footers" xml:space="preserve">
-    <value>保存页脚……</value>
-  </data>
-  <data name="progress_save_headers" xml:space="preserve">
-    <value>保存文件头……</value>
-  </data>
-  <data name="progress_save_npcs" xml:space="preserve">
-    <value>保存 NPC……</value>
-  </data>
-  <data name="progress_save_signs" xml:space="preserve">
-    <value>保存告示牌……</value>
-  </data>
-  <data name="progress_save_tiles" xml:space="preserve">
-    <value>保存图块……</value>
-  </data>
-  <data name="progress_save_tile_entities_section" xml:space="preserve">
-    <value>保存图块实体区域……</value>
-  </data>
-  <data name="progress_save_town_manager" xml:space="preserve">
-    <value>保存城镇管理器……</value>
-  </data>
-  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
-    <value>保存加重压力板……</value>
-  </data>
-  <data name="progress_saving_chests" xml:space="preserve">
-    <value>正在保存宝箱……</value>
-  </data>
-  <data name="progress_saving_npc_data" xml:space="preserve">
-    <value>正在保存 NPC 数据……</value>
-  </data>
-  <data name="progress_saving_npc_names" xml:space="preserve">
-    <value>正在保存 NPC 名称……</value>
-  </data>
-  <data name="progress_saving_signs" xml:space="preserve">
-    <value>正在保存告示牌……</value>
-  </data>
-  <data name="progress_saving_tiles" xml:space="preserve">
-    <value>正在保存图块……</value>
-  </data>
-  <data name="progress_saving_tmodloader_data" xml:space="preserve">
-    <value>正在保存 tModLoader 数据……</value>
-  </data>
-  <data name="progress_saving_validation_data" xml:space="preserve">
-    <value>正在保存验证数据……</value>
-  </data>
-  <data name="progress_saving_world" xml:space="preserve">
-    <value>正在保存世界……</value>
-  </data>
-  <data name="progress_settling_sand" xml:space="preserve">
-    <value>沙子沉积中……</value>
-  </data>
-  <data name="progress_validating_complete" xml:space="preserve">
-    <value>验证完成……</value>
-  </data>
-  <data name="progress_validating_file" xml:space="preserve">
-    <value>正在验证文件……</value>
-  </data>
-  <data name="progress_validating_world" xml:space="preserve">
-    <value>正在验证世界……</value>
-  </data>
-  <data name="progress_verifying_file" xml:space="preserve">
-    <value>正在验证文件……</value>
-  </data>
-  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
-    <value>世界已在 {0} 秒内加载完成。</value>
-  </data>
-  <data name="progress_world_load_complete" xml:space="preserve">
-    <value>世界加载完成。</value>
-  </data>
-  <data name="progress_world_save_complete" xml:space="preserve">
-    <value>世界保存完成。</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>选择另存为的版本：</value>
@@ -3517,12 +2088,6 @@ TEdit 最大世界尺寸：{1}
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>定时自动保存世界</value>
   </data>
-  <data name="settings_brush_preview" xml:space="preserve">
-    <value>高质量画笔预览</value>
-  </data>
-  <data name="settings_brush_preview_desc" xml:space="preserve">
-    <value>在按住 Shift 预览直线时显示完整的笔刷形状。关闭此选项可简化预览，仅显示单像素宽的直线。</value>
-  </data>
   <data name="settings_cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -3530,14 +2095,8 @@ TEdit 最大世界尺寸：{1}
     <value>实验性功能</value>
     <comment>Settings category for experimental/preview features</comment>
   </data>
-  <data name="settings_category_filter" xml:space="preserve">
-    <value>筛选与搜索</value>
-  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>概述</value>
-  </data>
-  <data name="settings_category_keybindings_format" xml:space="preserve">
-    <value>按键绑定 - {0}</value>
   </data>
   <data name="settings_category_layers" xml:space="preserve">
     <value>图层</value>
@@ -3560,12 +2119,6 @@ TEdit 最大世界尺寸：{1}
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>像素地图色彩调色板：默认、纹理采样色或小地图（游戏内地图颜色）。需要重启。</value>
   </data>
-  <data name="settings_darken_amount" xml:space="preserve">
-    <value>变暗程度</value>
-  </data>
-  <data name="settings_darken_amount_desc" xml:space="preserve">
-    <value>未选中图块的暗化叠加层不透明度（0–100%）</value>
-  </data>
   <data name="settings_enable_mica" xml:space="preserve">
     <value>启用云母（Mica）背景</value>
   </data>
@@ -3583,12 +2136,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>发送匿名错误报告以帮助提升稳定性</value>
-  </data>
-  <data name="settings_filter_mode" xml:space="preserve">
-    <value>筛选模式</value>
-  </data>
-  <data name="settings_filter_mode_desc" xml:space="preserve">
-    <value>应用方块、墙壁、液体和电线筛选器时的默认筛选模式</value>
   </data>
   <data name="settings_keybind_add_tooltip" xml:space="preserve">
     <value>添加新的按键绑定</value>
@@ -3701,6 +2248,12 @@ TEdit 最大世界尺寸：{1}
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>在编辑器中显示新闻和公告</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>显示介绍启动画面</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>在应用程序启动时显示 TEdit 标志</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>显示地点</value>
   </data>
@@ -3712,12 +2265,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>切换红电线可见性</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>显示介绍启动画面</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>在应用程序启动时显示 TEdit 标志</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>显示纹理</value>
@@ -3918,6 +2465,33 @@ TEdit 最大世界尺寸：{1}
   <data name="specialtile_label_pose" xml:space="preserve">
     <value>姿势</value>
   </data>
+  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
+    <value>站立中</value>
+  </data>
+  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
+    <value>坐着</value>
+  </data>
+  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
+    <value>跳跃</value>
+  </data>
+  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
+    <value>步行</value>
+  </data>
+  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
+    <value>使用 1</value>
+  </data>
+  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
+    <value>使用 2</value>
+  </data>
+  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
+    <value>使用 3</value>
+  </data>
+  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
+    <value>使用 4</value>
+  </data>
+  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
+    <value>使用 5</value>
+  </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>标牌文字</value>
   </data>
@@ -4032,21 +2606,6 @@ TEdit 最大世界尺寸：{1}
   <data name="spriteeditor_size_w" xml:space="preserve">
     <value>尺寸宽度：</value>
   </data>
-  <data name="spriteeditor_status_no_texture" xml:space="preserve">
-    <value>未加载纹理</value>
-  </data>
-  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
-    <value>未加载纹理，无法自动检测</value>
-  </data>
-  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
-    <value>从用户自定义覆盖项加载</value>
-  </data>
-  <data name="spriteeditor_status_ready" xml:space="preserve">
-    <value>就绪</value>
-  </data>
-  <data name="spriteeditor_status_reset_default" xml:space="preserve">
-    <value>重置为默认图块数据</value>
-  </data>
   <data name="spriteeditor_test" xml:space="preserve">
     <value>测试值</value>
   </data>
@@ -4079,9 +2638,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="sprite_clear_selection_tooltip" xml:space="preserve">
     <value>清除选择</value>
-  </data>
-  <data name="sprite_coords_format" xml:space="preserve">
-    <value>像素：({0}, {1})  图格：[{2}, {3}]</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>筛选</value>
@@ -4122,20 +2678,11 @@ TEdit 最大世界尺寸：{1}
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>全球定位系统</value>
   </data>
-  <data name="statusbar_empty_tile" xml:space="preserve">
-    <value>[空]</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>附加</value>
   </data>
   <data name="statusbar_frame_label" xml:space="preserve">
-    <value>框</value>
-  </data>
-  <data name="statusbar_invalid_tile" xml:space="preserve">
-    <value>无效物块（{0}）</value>
-  </data>
-  <data name="statusbar_invalid_wall" xml:space="preserve">
-    <value>无效墙壁（{0}）</value>
+    <value>帧</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
     <value>油漆</value>
@@ -4148,9 +2695,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
     <value>物块</value>
-  </data>
-  <data name="statusbar_unknown_paint" xml:space="preserve">
-    <value>未知油漆（{0}）</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>墙</value>
@@ -4181,9 +2725,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>黄队生成点</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>阅读完整的隐私政策</value>
   </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit 可以发送匿名错误报告以帮助提高稳定性。
@@ -4406,17 +2947,11 @@ TEdit 最大世界尺寸：{1}
   <data name="tool_fill_title" xml:space="preserve">
     <value>填充</value>
   </data>
-  <data name="tool_hammer_title" xml:space="preserve">
-    <value>轨道锤</value>
-  </data>
   <data name="tool_morph_base_tiles" xml:space="preserve">
     <value>基础物块</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>装饰物</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>祭坛/暗影珠与猩红之心</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>邪恶</value>
@@ -4562,20 +3097,17 @@ TEdit 最大世界尺寸：{1}
   <data name="tool_picker_title" xml:space="preserve">
     <value>吸管工具 - 选择物块颜色</value>
   </data>
-  <data name="tool_point_dungeon" xml:space="preserve">
-    <value>地牢</value>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>特殊地点</value>
   </data>
   <data name="tool_point_spawn" xml:space="preserve">
     <value>出生点</value>
   </data>
+  <data name="tool_point_dungeon" xml:space="preserve">
+    <value>地牢</value>
+  </data>
   <data name="tool_point_team_format" xml:space="preserve">
     <value>队伍 {0}</value>
-  </data>
-  <data name="tool_point_title" xml:space="preserve">
-    <value>特殊地点</value>
-  </data>
-  <data name="tool_selection_title" xml:space="preserve">
-    <value>选区</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>物体放置器</value>
@@ -4650,10 +3182,7 @@ TEdit 最大世界尺寸：{1}
     <value>树背景4</value>
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
-    <value>地下背景</value>
-  </data>
-  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
-    <value>克苏鲁之脑</value>
+    <value>地狱背景</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>独眼巨鹿</value>
@@ -4746,7 +3275,7 @@ TEdit 最大世界尺寸：{1}
     <value>中国版世界</value>
   </data>
   <data name="tool_wp_cloud_bg_active" xml:space="preserve">
-    <value>云BG活跃</value>
+    <value>启用云层背景</value>
   </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>钴矿</value>
@@ -5224,7 +3753,7 @@ TEdit 最大世界尺寸：{1}
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
   <data name="update_checking" xml:space="preserve">
-    <value>正在检查更新……</value>
+    <value>正在检查更新...</value>
   </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>更新检查失败。</value>
@@ -5242,18 +3771,6 @@ TEdit 最大世界尺寸：{1}
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit为最新版本。</value>
     <comment>Toast message when no updates are available</comment>
-  </data>
-  <data name="wall_natural_format" xml:space="preserve">
-    <value>{0}（自然）</value>
-  </data>
-  <data name="wall_sky" xml:space="preserve">
-    <value>天空</value>
-  </data>
-  <data name="wall_unbreakable" xml:space="preserve">
-    <value>不可破坏的墙壁</value>
-  </data>
-  <data name="wall_unused_format" xml:space="preserve">
-    <value>{0}（未使用）</value>
   </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>蓝线</value>
@@ -5274,7 +3791,7 @@ TEdit 最大世界尺寸：{1}
     <value>有备份存在</value>
   </data>
   <data name="world_explorer_browse" xml:space="preserve">
-    <value>浏览……</value>
+    <value>浏览...</value>
   </data>
   <data name="world_explorer_clear_cache" xml:space="preserve">
     <value>清除缓存</value>
@@ -5290,6 +3807,21 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="world_explorer_col_modified" xml:space="preserve">
     <value>修改时间</value>
+  </data>
+  <data name="world_explorer_modified_missing" xml:space="preserve">
+    <value>缺失</value>
+  </data>
+  <data name="world_explorer_modified_just_now" xml:space="preserve">
+    <value>刚刚</value>
+  </data>
+  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
+    <value>{0}分钟前</value>
+  </data>
+  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
+    <value>{0}小时前</value>
+  </data>
+  <data name="world_explorer_modified_days_ago" xml:space="preserve">
+    <value>{0}天前</value>
   </data>
   <data name="world_explorer_col_size" xml:space="preserve">
     <value>大小</value>
@@ -5308,21 +3840,6 @@ TEdit 最大世界尺寸：{1}
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
     <value>加载预览……</value>
-  </data>
-  <data name="world_explorer_modified_days_ago" xml:space="preserve">
-    <value>{0}天前</value>
-  </data>
-  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
-    <value>{0}小时前</value>
-  </data>
-  <data name="world_explorer_modified_just_now" xml:space="preserve">
-    <value>刚刚</value>
-  </data>
-  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
-    <value>{0}分钟前</value>
-  </data>
-  <data name="world_explorer_modified_missing" xml:space="preserve">
-    <value>缺失</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>无备份——点击创建.bak和TEdit备份</value>
@@ -5366,56 +3883,1536 @@ TEdit 最大世界尺寸：{1}
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>取消标记</value>
   </data>
-  <data name="world_gamemode_expert" xml:space="preserve">
-    <value>专家</value>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>修复背景间隙</value>
   </data>
-  <data name="world_gamemode_master" xml:space="preserve">
-    <value>主控</value>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>祭坛/暗影珠与猩红之心</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>阅读完整的隐私政策</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>计算中……</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>正在计算……</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>取消转换</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>转换为像素画</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>默认值</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>错误：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>错误：颜色筛选器格式无效！{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>颜色筛选器值为零。请调整设置。</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>错误：你需要先生成像素画！</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>发生错误：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>加载图像时出错：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>“复制到剪贴板”功能需要先加载一个世界！</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>你必须先保存一个结构文件！</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>保存图像时出错：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>保存结构图时出错：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>结构图数据为空！请先生成像素画！</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>图像处理完成。</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>渲染已取消。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>已将结构图复制到剪贴板。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>结构图已被覆盖。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>已保存结构图。</value>
+  </data>
+  <data name="common_error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>像素：({0}, {1})  图格：[{2}, {3}]</value>
+  </data>
+  <data name="common_no" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>电线</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>公交车</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>不适用</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>将世界另存为</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>保存世界分析。</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>从世界文件导入怪物图鉴和击杀记录</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>导入 TEdit 蓝图文件</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>导出蓝图文件</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>从世界文件导入旗帜</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>导入 TEdit 房屋生成器示意图文件</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>保存生成的像素画</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>选择玩家文件</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>打开世界文件</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>未保存的更改</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>关闭 TEdit 前要保存更改吗？</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>不保存</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>确认删除</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>删除备份？
+{0}</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>清除 TEdit 缓存</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>删除 {0:N0} 个缓存文件（{1}）？
+
+这将删除 TEdit 备份、自动保存文件以及所有撤销/重做历史记录。Terraria 世界文件和 .bak 文件不受影响。</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>清除缓存</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>缓存已清除</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>已删除 {0:N0} 个文件，释放了 {1} 空间。</value>
+  </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>无法删除 {0:N0} 个文件；请查看日志了解详情。</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>某些特殊图格实体（如宝箱或告示牌）仍受保护，无法打乱。</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>包含信息</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>{0} 检查 {1} 的 JSON 数据</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} 检查 JSON 数据，确保“Count”值与关联的蓝图一致。</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>请先打开一个世界。</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>无法打开回放文件。
+
+{0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>从 {0} 加载纹理时出错。
+请检查此文件夹是否存在，以及 TEdit 是否具有读取权限。
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>加载纹理时出错</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>无法打开日志文件：{0}</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>无法创建日志文件夹。应用程序将退出。
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>无法创建日志文件夹。</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>无法创建用于撤销操作的临时文件夹。应用程序将退出。
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>无法创建撤销文件夹。</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>发生了未处理的异常。您可以继续使用 TEdit，但在重新启动应用程序之前，程序运行可能不稳定。</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>未处理的异常</value>
+  </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>高质量画笔预览</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>在按住 Shift 预览直线时显示完整的笔刷形状。关闭此选项可简化预览，仅显示单像素宽的直线。</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>筛选模式</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>应用方块、墙壁、液体和电线筛选器时的默认筛选模式</value>
+  </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>变暗程度</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>未选中图块的暗化叠加层不透明度（0–100%）</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>就绪</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>从用户自定义覆盖项加载</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>重置为默认图块数据</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>未加载纹理，无法自动检测</value>
+  </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>未加载纹理</value>
+  </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>保存已取消：玩家文件已被外部修改。</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>选择地图瓦片的输出文件夹</value>
+  </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>轨道锤</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>选区</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>删除宝箱</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>确定要删除所有宝箱吗？</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>确定要删除所有未上锁的宝箱吗？</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>玩家地图</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>未选择玩家文件。</value>
+  </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>地图已生成！</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>这将从你的世界中彻底移除所有找到的图格。是否继续？</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>已找到并移除 {0:N0} 个图格。</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>导出纹理</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>纹理尚未加载完成。请等待纹理加载完毕。</value>
+  </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>新建世界</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>另存为</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>另存为版本</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>重新加载世界</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>剪切</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>重做</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>确认粘贴</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>顺时针旋转粘贴内容</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>逆时针旋转粘贴内容</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>水平翻转粘贴</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>垂直翻转粘贴内容</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>取消选择</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>删除选区内容</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>将选区上移</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>将选区下移</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>将选区向左移动</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>向右移动选区</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>快速向上移动选区</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>快速向下移动选区</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>快速向左移动选区</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>快速向右移动选区</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>缩小选区高度</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>增加选区高度</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>缩小选区宽度</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>增大选区宽度</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>快速缩小选区高度</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>快速增加选区高度</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>缩小选区宽度（快速）</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>增大选区宽度（快速）</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>移动选区起点</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>按住 Ctrl 并单击/拖动以移动选区的左上角</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>移动选区终点</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>按住 Shift 并单击/拖动以移动选区的右下角</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>裁剪世界</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>拓展世界</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>向上滚动</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>向下滚动</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>向左滚动</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>向右滚动</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>快速向上滚动</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>快速向下滚动</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>快速向左滚动</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>快速向右滚动</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>平移模式</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>放大</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>缩小</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>重置工具 / 取消选择</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>箭头工具</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>画笔工具</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>铅笔工具</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>填充工具</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>取色工具</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>点工具</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>选择工具</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>精灵工具</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>锤子工具</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>地形变形工具</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>切换橡皮擦工具</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>交换颜色</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>切换电线绘制模式</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>切换电线绘制模式：关闭 → 90°电线 → 45°电线 → 关闭</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>切换导线水平/垂直方向</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>切换电线布线模式：水平优先、垂直优先或自动检测</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>切换红色导线显示</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>切换红色电线的启用状态</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>切换蓝色电线显示</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>切换蓝色电线的启用状态</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>切换绿线</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>切换绿色电线的启用状态</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>切换黄色电线显示</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>切换黄色电线的启用状态</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>电线追踪高亮</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>按住 Alt 并单击，可高亮显示与所点击图块相连的所有电线。</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>切换图块样式</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>切换墙壁样式</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>绘制 / 主要操作</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>工具的主要绘制操作</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>次要操作</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>工具中的次要操作（检查、取消选择、选取蒙版等）</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>约束绘制（水平/垂直/45°）</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>将绘制限制为水平线、垂直线或 45° 斜线</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>绘制点到点直线</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>在点击的点之间绘制直线</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>平移视图窗口</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>拖动以平移视口</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>维基 / 帮助</value>
+  </data>
+  <data name="about_system" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="dialog_complete_bestiary_error" xml:space="preserve">
+    <value>完成怪物图鉴数据时出错。已恢复当前怪物图鉴。
+{0}</value>
+  </data>
+  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
+    <value>这将完全用已完成的图鉴替换当前已加载世界的图鉴和击杀计数。是否继续？</value>
+  </data>
+  <data name="dialog_complete_bestiary_title" xml:space="preserve">
+    <value>完成怪物图鉴？</value>
+  </data>
+  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
+    <value>要添加“世界边缘”边界吗？</value>
+  </data>
+  <data name="dialog_crop_world_borders_title" xml:space="preserve">
+    <value>裁剪世界：</value>
+  </data>
+  <data name="dialog_crop_world_prompt" xml:space="preserve">
+    <value>这将在所选区域内生成一个新世界。
+裁剪区域之外的所有进度都将丢失。要继续吗？</value>
+  </data>
+  <data name="dialog_crop_world_title" xml:space="preserve">
+    <value>裁剪世界？</value>
+  </data>
+  <data name="dialog_import_banners_error" xml:space="preserve">
+    <value>从 {0} 导入旗帜数据时出错。已恢复当前旗帜。
+{1}</value>
+  </data>
+  <data name="dialog_import_banners_prompt" xml:space="preserve">
+    <value>这将使用所选世界文件中的数据替换当前的旗帜计数。是否继续？</value>
+  </data>
+  <data name="dialog_import_banners_title" xml:space="preserve">
+    <value>导入旗帜？</value>
+  </data>
+  <data name="dialog_import_bestiary_error" xml:space="preserve">
+    <value>从 {0} 导入怪物图鉴数据时出错。已恢复当前怪物图鉴。
+{1}</value>
+  </data>
+  <data name="dialog_import_error_title" xml:space="preserve">
+    <value>导入错误</value>
+  </data>
+  <data name="dialog_invalid_world_prompt" xml:space="preserve">
+    <value>读取世界文件时出错。
+这通常是由存档文件损坏或世界版本高于当前支持的版本导致的。
+
+TEdit v{0}
+TEdit 支持的最大世界：{1}
+当前世界：{2}
+
+是否仍要强制加载？
+
+警告：这可能会导致意外后果，包括世界文件损坏和程序崩溃。
+
+错误信息：
+{3}</value>
+  </data>
+  <data name="dialog_invalid_world_title" xml:space="preserve">
+    <value>要加载无效的世界吗？</value>
+  </data>
+  <data name="dialog_language_restart_prompt" xml:space="preserve">
+    <value>语言已更改为 {0}。现在要重新启动吗？</value>
+  </data>
+  <data name="dialog_language_restart_title" xml:space="preserve">
+    <value>重新启动以更改语言</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>你正在加载旧版 tModLoader 世界：{0}。
+1. 编辑旧版文件是一项测试版功能。
+2. 不支持编辑模组世界。
+请先备份，世界文件可能会损坏。
+是否继续？</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>加载旧版 tModLoader 世界？</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>你正在加载旧版世界：{0}。
+编辑旧版文件可能导致意外结果。
+请先备份，世界文件可能会损坏。
+是否继续？</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>加载旧版世界？</value>
+  </data>
+  <data name="dialog_link_error_message" xml:space="preserve">
+    <value>无法打开外部浏览器。要复制到剪贴板吗？</value>
+  </data>
+  <data name="dialog_link_error_title" xml:space="preserve">
+    <value>链接错误</value>
+  </data>
+  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
+    <value>这将用所选文件中的内容完全替换当前已加载世界的怪物图鉴和击杀计数。是否继续？</value>
+  </data>
+  <data name="dialog_load_bestiary_title" xml:space="preserve">
+    <value>要加载怪物图鉴吗？</value>
+  </data>
+  <data name="dialog_locate_terraria_folder" xml:space="preserve">
+    <value>定位 Terraria 文件夹</value>
+  </data>
+  <data name="dialog_max_banners_prompt" xml:space="preserve">
+    <value>将所有旗帜数量设为最大值（9999）？</value>
+  </data>
+  <data name="dialog_max_banners_title" xml:space="preserve">
+    <value>将旗帜数量设为最大值？</value>
+  </data>
+  <data name="dialog_mod_world_prompt" xml:space="preserve">
+    <value>你正在加载一个 TModLoader 世界。暂不支持编辑安装了模组的世界。
+请先创建备份，因为世界文件可能会损坏。
+是否继续？</value>
+  </data>
+  <data name="dialog_mod_world_title" xml:space="preserve">
+    <value>要加载模组世界吗？</value>
+  </data>
+  <data name="dialog_newer_version_prompt" xml:space="preserve">
+    <value>此世界的版本比 TEdit 配置支持的版本更新。
+
+世界版本：{0}
+最高支持版本：{1}
+
+TEdit 将回退到配置版本 {1}（缺少较新的图块、墙壁等可能会导致问题）。
+
+仍要尝试加载吗？</value>
+  </data>
+  <data name="dialog_newer_version_title" xml:space="preserve">
+    <value>世界版本较新</value>
+  </data>
+  <data name="dialog_player_modified_prompt" xml:space="preserve">
+    <value>{0} 自加载或上次保存后已被外部修改。
+要覆盖它吗？</value>
+  </data>
+  <data name="dialog_player_modified_title" xml:space="preserve">
+    <value>玩家已修改</value>
+  </data>
+  <data name="dialog_reload_no_world" xml:space="preserve">
+    <value>没有已加载的开放世界可供重新加载。</value>
+  </data>
+  <data name="dialog_reload_world_prompt" xml:space="preserve">
+    <value>未保存的更改将会丢失！</value>
+  </data>
+  <data name="dialog_reload_world_title" xml:space="preserve">
+    <value>重新加载当前世界？</value>
+  </data>
+  <data name="dialog_replace_mask_warning" xml:space="preserve">
+    <value>启用至少一个遮罩才能使用替换功能。遮罩用于指定要匹配的图块。</value>
+  </data>
+  <data name="dialog_replace_title" xml:space="preserve">
+    <value>替换</value>
+  </data>
+  <data name="dialog_reset_banners_prompt" xml:space="preserve">
+    <value>要将所有旗帜数量重置为零吗？</value>
+  </data>
+  <data name="dialog_reset_banners_title" xml:space="preserve">
+    <value>重置旗帜？</value>
+  </data>
+  <data name="dialog_reset_bestiary_error" xml:space="preserve">
+    <value>重置怪物图鉴数据时出错。已恢复当前怪物图鉴。
+{0}</value>
+  </data>
+  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
+    <value>此操作将用重置后的生物图鉴，彻底替换当前已加载世界的生物图鉴和击杀计数。是否继续？</value>
+  </data>
+  <data name="dialog_reset_bestiary_title" xml:space="preserve">
+    <value>要重置怪物图鉴吗？</value>
+  </data>
+  <data name="dialog_save_banners_error" xml:space="preserve">
+    <value>保存横幅数据时出错。已恢复更改。
+{0}</value>
+  </data>
+  <data name="dialog_save_banners_prompt" xml:space="preserve">
+    <value>要将旗帜更改保存到世界中吗？</value>
+  </data>
+  <data name="dialog_save_banners_title" xml:space="preserve">
+    <value>保存旗帜？</value>
+  </data>
+  <data name="dialog_save_bestiary_error" xml:space="preserve">
+    <value>保存生物图鉴数据时出错。已恢复当前生物图鉴。
+{0}</value>
+  </data>
+  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
+    <value>确定要保存怪物图鉴的更改吗？</value>
+  </data>
+  <data name="dialog_save_bestiary_title" xml:space="preserve">
+    <value>保存生物图鉴？</value>
+  </data>
+  <data name="dialog_world_corrupt_empty" xml:space="preserve">
+    <value>世界文件似乎为空或已损坏（所有字节均为零）。
+由于没有任何数据，无法恢复此文件。
+
+我该怎么办？
+1. 恢复之前创建的备份（.bak、.bak2）。
+2. 恢复之前手动创建的备份。
+3. 恢复之前创建的 TEdit 检查点（.TEdit）。
+4. 通过 Windows 文件历史记录恢复备份（如果之前已启用）。</value>
+  </data>
+  <data name="dialog_world_modified_prompt" xml:space="preserve">
+    <value>自上次保存后，{0} 已在外部被修改。
+要覆盖吗？</value>
+  </data>
+  <data name="dialog_world_modified_title" xml:space="preserve">
+    <value>世界已修改</value>
+  </data>
+  <data name="dialog_world_read_error" xml:space="preserve">
+    <value>读取世界文件时出错。
+这通常是由存档文件损坏或世界版本高于支持的版本导致的。
+
+TEdit v{0}
+TEdit 最大世界尺寸：{1}
+当前世界：{2}
+
+错误信息：
+{3}</value>
+  </data>
+  <data name="dialog_world_save_failed" xml:space="preserve">
+    <value>保存世界失败。已恢复打开的世界，您的编辑内容仍未保存。
+{0}</value>
+  </data>
+  <data name="input_category_editing" xml:space="preserve">
+    <value>编辑中</value>
+  </data>
+  <data name="input_category_file" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="input_category_help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="input_category_navigation" xml:space="preserve">
+    <value>导航</value>
+  </data>
+  <data name="input_category_selection" xml:space="preserve">
+    <value>选区</value>
+  </data>
+  <data name="input_category_toggles" xml:space="preserve">
+    <value>切换选项</value>
+  </data>
+  <data name="input_category_tooldrawing" xml:space="preserve">
+    <value>绘图工具</value>
+  </data>
+  <data name="input_category_tools" xml:space="preserve">
+    <value>工具</value>
+  </data>
+  <data name="input_category_view" xml:space="preserve">
+    <value>视图</value>
+  </data>
+  <data name="overflow_more_panels" xml:space="preserve">
+    <value>更多面板……</value>
+  </data>
+  <data name="player_editor_error_load" xml:space="preserve">
+    <value>无法加载玩家文件：
+{0}</value>
+  </data>
+  <data name="player_editor_error_save" xml:space="preserve">
+    <value>无法保存玩家文件：
+{0}</value>
+  </data>
+  <data name="player_editor_status_loaded" xml:space="preserve">
+    <value>已加载：{0}</value>
+  </data>
+  <data name="player_editor_status_saved" xml:space="preserve">
+    <value>已保存：{0}</value>
+  </data>
+  <data name="settings_category_filter" xml:space="preserve">
+    <value>筛选与搜索</value>
+  </data>
+  <data name="settings_category_keybindings_format" xml:space="preserve">
+    <value>按键绑定 - {0}</value>
+  </data>
+  <data name="common_not_determined" xml:space="preserve">
+    <value>未确定</value>
   </data>
   <data name="world_invasion_goblin" xml:space="preserve">
     <value>哥布林入侵</value>
   </data>
-  <data name="world_moon_blue_marble" xml:space="preserve">
-    <value>蓝色大理石</value>
+  <data name="world_moon_grey" xml:space="preserve">
+    <value>灰色</value>
   </data>
   <data name="world_moon_brown" xml:space="preserve">
     <value>棕色</value>
   </data>
-  <data name="world_moon_green_gas" xml:space="preserve">
-    <value>绿色气体</value>
-  </data>
-  <data name="world_moon_grey" xml:space="preserve">
-    <value>灰色</value>
-  </data>
-  <data name="world_moon_orange_venus" xml:space="preserve">
-    <value>橙色金星</value>
-  </data>
-  <data name="world_moon_pink" xml:space="preserve">
-    <value>粉队</value>
-  </data>
   <data name="world_moon_ringed" xml:space="preserve">
-    <value>环绕状</value>
+    <value>带环</value>
   </data>
-  <data name="world_moon_triple_purple" xml:space="preserve">
-    <value>三重紫色</value>
+  <data name="world_moon_blue_marble" xml:space="preserve">
+    <value>蓝色大理石</value>
   </data>
   <data name="world_moon_white_ice" xml:space="preserve">
     <value>白色冰块</value>
   </data>
-  <data name="world_size_custom" xml:space="preserve">
-    <value>自定义</value>
+  <data name="world_moon_green_gas" xml:space="preserve">
+    <value>绿色气体</value>
   </data>
-  <data name="world_size_large" xml:space="preserve">
-    <value>大型</value>
+  <data name="world_moon_pink" xml:space="preserve">
+    <value>粉色</value>
   </data>
-  <data name="world_size_medium" xml:space="preserve">
-    <value>中等</value>
+  <data name="world_moon_orange_venus" xml:space="preserve">
+    <value>橙色金星</value>
+  </data>
+  <data name="world_moon_triple_purple" xml:space="preserve">
+    <value>三重紫色</value>
+  </data>
+  <data name="world_gamemode_expert" xml:space="preserve">
+    <value>专家</value>
+  </data>
+  <data name="world_gamemode_master" xml:space="preserve">
+    <value>大师</value>
+  </data>
+  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
+    <value>克苏鲁之脑</value>
+  </data>
+  <data name="progress_verifying_file" xml:space="preserve">
+    <value>正在验证文件……</value>
+  </data>
+  <data name="progress_load_complete" xml:space="preserve">
+    <value>加载完成。</value>
+  </data>
+  <data name="progress_validating_complete" xml:space="preserve">
+    <value>验证完成……</value>
+  </data>
+  <data name="progress_resetting_time" xml:space="preserve">
+    <value>正在重置时间……</value>
+  </data>
+  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
+    <value>正在准备 tModLoader 数据……</value>
+  </data>
+  <data name="progress_saving_tmodloader_data" xml:space="preserve">
+    <value>正在保存 tModLoader 数据……</value>
+  </data>
+  <data name="progress_loading_tmodloader_data" xml:space="preserve">
+    <value>正在加载 tModLoader 数据……</value>
+  </data>
+  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
+    <value>已加载 Windows Phone 世界头部。</value>
+  </data>
+  <data name="progress_converting_to_windows_phone" xml:space="preserve">
+    <value>正在将世界转换为 Windows Phone 格式……</value>
+  </data>
+  <data name="progress_world_save_complete" xml:space="preserve">
+    <value>世界保存完成。</value>
+  </data>
+  <data name="progress_save_complete" xml:space="preserve">
+    <value>保存完成。</value>
+  </data>
+  <data name="progress_saving_world" xml:space="preserve">
+    <value>正在保存世界……</value>
+  </data>
+  <data name="progress_save_headers" xml:space="preserve">
+    <value>保存文件头……</value>
+  </data>
+  <data name="progress_saving_tiles" xml:space="preserve">
+    <value>正在保存图块……</value>
+  </data>
+  <data name="progress_save_tiles" xml:space="preserve">
+    <value>保存图块……</value>
+  </data>
+  <data name="progress_saving_chests" xml:space="preserve">
+    <value>正在保存宝箱……</value>
+  </data>
+  <data name="progress_save_chests" xml:space="preserve">
+    <value>保存箱子……</value>
+  </data>
+  <data name="progress_saving_signs" xml:space="preserve">
+    <value>正在保存告示牌……</value>
+  </data>
+  <data name="progress_save_signs" xml:space="preserve">
+    <value>保存告示牌……</value>
+  </data>
+  <data name="progress_save_npcs" xml:space="preserve">
+    <value>保存 NPC……</value>
+  </data>
+  <data name="progress_saving_npc_data" xml:space="preserve">
+    <value>正在保存 NPC 数据……</value>
+  </data>
+  <data name="progress_saving_npc_names" xml:space="preserve">
+    <value>正在保存 NPC 名称……</value>
+  </data>
+  <data name="progress_save_tile_entities_section" xml:space="preserve">
+    <value>保存图块实体区域……</value>
+  </data>
+  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
+    <value>保存测重压力板……</value>
+  </data>
+  <data name="progress_save_town_manager" xml:space="preserve">
+    <value>保存城镇管理器……</value>
+  </data>
+  <data name="progress_save_bestiary" xml:space="preserve">
+    <value>保存图鉴……</value>
+  </data>
+  <data name="progress_save_creative_powers" xml:space="preserve">
+    <value>保存创意能力……</value>
+  </data>
+  <data name="progress_save_footers" xml:space="preserve">
+    <value>保存页脚……</value>
+  </data>
+  <data name="progress_saving_validation_data" xml:space="preserve">
+    <value>正在保存验证数据……</value>
+  </data>
+  <data name="progress_validating_file" xml:space="preserve">
+    <value>正在验证文件……</value>
+  </data>
+  <data name="progress_world_load_complete" xml:space="preserve">
+    <value>世界加载完成。</value>
+  </data>
+  <data name="progress_loading_file_header" xml:space="preserve">
+    <value>正在加载文件头……</value>
+  </data>
+  <data name="progress_loading_tiles" xml:space="preserve">
+    <value>正在加载图块……</value>
+  </data>
+  <data name="progress_loading_chests" xml:space="preserve">
+    <value>正在加载宝箱……</value>
+  </data>
+  <data name="progress_loading_signs" xml:space="preserve">
+    <value>正在加载告示牌……</value>
+  </data>
+  <data name="progress_loading_npcs" xml:space="preserve">
+    <value>正在加载 NPC……</value>
+  </data>
+  <data name="progress_loading_npc_data" xml:space="preserve">
+    <value>正在加载 NPC 数据……</value>
+  </data>
+  <data name="progress_loading_npc_names" xml:space="preserve">
+    <value>正在加载 NPC 名称……</value>
+  </data>
+  <data name="progress_loading_tile_entities_section" xml:space="preserve">
+    <value>正在加载图块实体区域……</value>
+  </data>
+  <data name="progress_render_complete" xml:space="preserve">
+    <value>渲染完成</value>
+  </data>
+  <data name="progress_calculating_colors" xml:space="preserve">
+    <value>正在计算颜色……</value>
+  </data>
+  <data name="progress_cloning_world" xml:space="preserve">
+    <value>正在克隆世界……</value>
+  </data>
+  <data name="progress_generating_world" xml:space="preserve">
+    <value>正在生成世界……</value>
+  </data>
+  <data name="progress_generating_hills" xml:space="preserve">
+    <value>正在生成丘陵……</value>
+  </data>
+  <data name="progress_generating_caves" xml:space="preserve">
+    <value>正在生成洞穴……</value>
+  </data>
+  <data name="progress_generating_cave_noise" xml:space="preserve">
+    <value>正在生成洞穴噪声……</value>
+  </data>
+  <data name="progress_refining_caves" xml:space="preserve">
+    <value>正在优化洞穴……</value>
+  </data>
+  <data name="progress_placing_caves" xml:space="preserve">
+    <value>正在放置洞穴……</value>
+  </data>
+  <data name="progress_generating_underworld" xml:space="preserve">
+    <value>正在生成地狱……</value>
+  </data>
+  <data name="progress_settling_sand" xml:space="preserve">
+    <value>沙子沉积中……</value>
+  </data>
+  <data name="progress_removing_future_tiles" xml:space="preserve">
+    <value>正在移除未来的图块……</value>
+  </data>
+  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
+    <value>世界已在 {0} 秒内加载完成。</value>
+  </data>
+  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
+    <value>自动（跟随系统设置）</value>
+  </data>
+  <data name="enum_LanguageSelection_English" xml:space="preserve">
+    <value>English（英语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
+    <value>Русский（俄语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
+    <value>العربية（阿拉伯语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
+    <value>中文（简体）</value>
+  </data>
+  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
+    <value>中文（繁體）</value>
+  </data>
+  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
+    <value>Polski（波兰语）</value>
+  </data>
+  <data name="enum_LanguageSelection_German" xml:space="preserve">
+    <value>Deutsch（德语）</value>
+  </data>
+  <data name="enum_LanguageSelection_French" xml:space="preserve">
+    <value>Français（法语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
+    <value>Italiano（意大利语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
+    <value>日本語（日语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
+    <value>한국어（韩语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
+    <value>Português（葡萄牙语）</value>
+  </data>
+  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
+    <value>Español（西班牙语）</value>
+  </data>
+  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
+    <value>仅通知</value>
+  </data>
+  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
+    <value>自动下载</value>
+  </data>
+  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
+    <value>自动安装</value>
+  </data>
+  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
+    <value>稳定版</value>
+  </data>
+  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
+    <value>测试版</value>
+  </data>
+  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
+    <value>Alpha 版</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
+    <value>默认值</value>
+  </data>
+  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
+    <value>屏幕居中</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
+    <value>已最大化</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
+    <value>默认值</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
+    <value>写实风格</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
+    <value>小地图</value>
+  </data>
+  <data name="enum_FilterMode_Hide" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="enum_FilterMode_Darken" xml:space="preserve">
+    <value>变暗</value>
   </data>
   <data name="world_size_small" xml:space="preserve">
     <value>小型</value>
   </data>
-  <data name="wp_fixbackground" xml:space="preserve">
-    <value>修复背景间隙</value>
+  <data name="world_size_medium" xml:space="preserve">
+    <value>中等</value>
+  </data>
+  <data name="world_size_large" xml:space="preserve">
+    <value>大型</value>
+  </data>
+  <data name="world_size_custom" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Ignore" xml:space="preserve">
+    <value>忽略</value>
+  </data>
+  <data name="LiquidLevelMaskMode_GreaterThan" xml:space="preserve">
+    <value>大于</value>
+  </data>
+  <data name="LiquidLevelMaskMode_LessThan" xml:space="preserve">
+    <value>小于</value>
+  </data>
+  <data name="LiquidLevelMaskMode_Equal" xml:space="preserve">
+    <value>相等</value>
+  </data>
+  <data name="bg_tree_oak" xml:space="preserve">
+    <value>橡木</value>
+  </data>
+  <data name="bg_tree_boreal" xml:space="preserve">
+    <value>针叶林</value>
+  </data>
+  <data name="bg_tree_jungle" xml:space="preserve">
+    <value>类似丛林的</value>
+  </data>
+  <data name="bg_tree_sakura" xml:space="preserve">
+    <value>樱花</value>
+  </data>
+  <data name="bg_tree_willow" xml:space="preserve">
+    <value>柳树</value>
+  </data>
+  <data name="bg_tree_palm" xml:space="preserve">
+    <value>类似棕榈树的</value>
+  </data>
+  <data name="bg_cave_stone" xml:space="preserve">
+    <value>石头</value>
+  </data>
+  <data name="bg_cave_gray" xml:space="preserve">
+    <value>灰色</value>
+  </data>
+  <data name="bg_cave_brown" xml:space="preserve">
+    <value>棕色</value>
+  </data>
+  <data name="bg_cave_blue" xml:space="preserve">
+    <value>蓝色</value>
+  </data>
+  <data name="bg_cave_blue_alt" xml:space="preserve">
+    <value>蓝色（备选）</value>
+  </data>
+  <data name="bg_cave_green" xml:space="preserve">
+    <value>绿色</value>
+  </data>
+  <data name="bg_cave_green_alt" xml:space="preserve">
+    <value>绿色（备选）</value>
+  </data>
+  <data name="bg_cave_purple" xml:space="preserve">
+    <value>紫色</value>
+  </data>
+  <data name="bg_default" xml:space="preserve">
+    <value>默认值</value>
+  </data>
+  <data name="bg_mountains_only" xml:space="preserve">
+    <value>仅山地</value>
+  </data>
+  <data name="bg_mountains_alt" xml:space="preserve">
+    <value>山脉（替代）</value>
+  </data>
+  <data name="bg_mountains_tree" xml:space="preserve">
+    <value>山脉 + 树木</value>
+  </data>
+  <data name="bg_mountains_only_a" xml:space="preserve">
+    <value>仅生成山脉 A</value>
+  </data>
+  <data name="bg_mountains_only_b" xml:space="preserve">
+    <value>仅山地 B</value>
+  </data>
+  <data name="bg_mountains_only_c" xml:space="preserve">
+    <value>仅山脉 C</value>
+  </data>
+  <data name="bg_trees_only_a" xml:space="preserve">
+    <value>仅树木 A</value>
+  </data>
+  <data name="bg_trees_only_b" xml:space="preserve">
+    <value>仅树木 B</value>
+  </data>
+  <data name="bg_variant_alt_letter" xml:space="preserve">
+    <value>变体 {0} 替代项 {1}</value>
+  </data>
+  <data name="bg_variant_alt" xml:space="preserve">
+    <value>变体 {0}（备选）</value>
+  </data>
+  <data name="bg_variant_format" xml:space="preserve">
+    <value>变体 {0}</value>
+  </data>
+  <data name="bg_remix_format" xml:space="preserve">
+    <value>混合重制 {0}</value>
+  </data>
+  <data name="bg_multibiome_format" xml:space="preserve">
+    <value>多生物群系 {0}</value>
+  </data>
+  <data name="bg_mnt_default_trees" xml:space="preserve">
+    <value>山地 {0} + 默认树木</value>
+  </data>
+  <data name="bg_mnt_trees" xml:space="preserve">
+    <value>山脉 {0} + 树木</value>
+  </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>发光蘑菇</value>
+  </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>森林</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>雪</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>无（移除）</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>草地</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>绿色</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>黄色</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>红色</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>蓝色</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>紫色</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>熔岩</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>氪</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>氙</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>氩</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>氖</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>氦</value>
+  </data>
+  <data name="progress_validating_world" xml:space="preserve">
+    <value>正在验证世界……</value>
+  </data>
+  <data name="progress_loading_winphone_tiles" xml:space="preserve">
+    <value>正在加载 Windows Phone 图格……</value>
+  </data>
+  <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
+    <value>正在加载旧版 Windows Phone 图格……</value>
+  </data>
+  <data name="frame_anchor_none" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="frame_anchor_left" xml:space="preserve">
+    <value>左侧</value>
+  </data>
+  <data name="frame_anchor_right" xml:space="preserve">
+    <value>右侧</value>
+  </data>
+  <data name="frame_anchor_top" xml:space="preserve">
+    <value>顶部</value>
+  </data>
+  <data name="frame_anchor_bottom" xml:space="preserve">
+    <value>底部</value>
+  </data>
+  <data name="frame_anchor_center" xml:space="preserve">
+    <value>中心</value>
+  </data>
+  <data name="wall_natural_format" xml:space="preserve">
+    <value>{0}（天然）</value>
+  </data>
+  <data name="wall_unused_format" xml:space="preserve">
+    <value>{0}（未使用）</value>
+  </data>
+  <data name="wall_sky" xml:space="preserve">
+    <value>天空</value>
+  </data>
+  <data name="wall_unbreakable" xml:space="preserve">
+    <value>不可破坏的墙壁</value>
+  </data>
+  <data name="frame_text_off" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="frame_text_on" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="frame_text_monster_banner" xml:space="preserve">
+    <value>怪物旗帜</value>
+  </data>
+  <data name="frame_text_left" xml:space="preserve">
+    <value>左侧</value>
+  </data>
+  <data name="frame_text_right" xml:space="preserve">
+    <value>右侧</value>
+  </data>
+  <data name="frame_text_small_decos" xml:space="preserve">
+    <value>小型装饰物</value>
+  </data>
+  <data name="frame_text_forest_tree" xml:space="preserve">
+    <value>森林树木</value>
+  </data>
+  <data name="frame_text_topaz_tree" xml:space="preserve">
+    <value>黄玉树</value>
+  </data>
+  <data name="frame_text_amethyst_tree" xml:space="preserve">
+    <value>紫晶树</value>
+  </data>
+  <data name="frame_text_sapphire_tree" xml:space="preserve">
+    <value>蓝玉树</value>
+  </data>
+  <data name="frame_text_emerald_tree" xml:space="preserve">
+    <value>翡翠树</value>
+  </data>
+  <data name="frame_text_ruby_tree" xml:space="preserve">
+    <value>红玉树</value>
+  </data>
+  <data name="frame_text_diamond_tree" xml:space="preserve">
+    <value>钻石树</value>
+  </data>
+  <data name="frame_text_amber_tree" xml:space="preserve">
+    <value>琥珀树</value>
+  </data>
+  <data name="frame_text_vanity_tree_sakura" xml:space="preserve">
+    <value>樱花装饰树</value>
+  </data>
+  <data name="frame_text_vanity_tree_yellow_willow" xml:space="preserve">
+    <value>装饰树：黄柳</value>
+  </data>
+  <data name="frame_text_ash_tree" xml:space="preserve">
+    <value>灰烬树</value>
+  </data>
+  <data name="frame_text_single" xml:space="preserve">
+    <value>单个</value>
+  </data>
+  <data name="frame_text_small_rubble_1x1" xml:space="preserve">
+    <value>小型碎石（1×1）</value>
+  </data>
+  <data name="frame_text_flat" xml:space="preserve">
+    <value>平铺</value>
+  </data>
+  <data name="frame_text_endcap_right" xml:space="preserve">
+    <value>右端盖</value>
+  </data>
+  <data name="frame_text_endcap_left" xml:space="preserve">
+    <value>左端盖</value>
+  </data>
+  <data name="frame_text_attach_left" xml:space="preserve">
+    <value>向左附加</value>
+  </data>
+  <data name="frame_text_attach_right" xml:space="preserve">
+    <value>向右附加</value>
+  </data>
+  <data name="frame_text_attach_left_endcap" xml:space="preserve">
+    <value>向左附加端盖</value>
+  </data>
+  <data name="frame_text_attach_right_endcap" xml:space="preserve">
+    <value>向右附加端盖</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser" xml:space="preserve">
+    <value>楼梯 右上梯级</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer" xml:space="preserve">
+    <value>楼梯 右上梯梁</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser" xml:space="preserve">
+    <value>楼梯 左上梯级</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer" xml:space="preserve">
+    <value>楼梯 左上梯梁</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r" xml:space="preserve">
+    <value>楼梯 顶部平台 右</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l" xml:space="preserve">
+    <value>楼梯 顶部平台 左</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r" xml:space="preserve">
+    <value>楼梯 顶部平台 左-右</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap" xml:space="preserve">
+    <value>楼梯 顶部平台 右端盖</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap" xml:space="preserve">
+    <value>楼梯 顶部平台 左端盖</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r" xml:space="preserve">
+    <value>楼梯 底部平台 右</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l" xml:space="preserve">
+    <value>楼梯 底部平台 左</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1" xml:space="preserve">
+    <value>楼梯 内嵌右上 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1" xml:space="preserve">
+    <value>楼梯 内嵌左上 1</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2" xml:space="preserve">
+    <value>楼梯 内嵌右上 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2" xml:space="preserve">
+    <value>楼梯 内嵌左上 2</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3" xml:space="preserve">
+    <value>楼梯 内嵌右上 3</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3" xml:space="preserve">
+    <value>楼梯 内嵌左上 3</value>
+  </data>
+  <data name="frame_text_stair_inverted_right" xml:space="preserve">
+    <value>楼梯 反向右</value>
+  </data>
+  <data name="frame_text_stair_inverted_left" xml:space="preserve">
+    <value>楼梯 反向左</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x1" xml:space="preserve">
+    <value>中型碎石（2×1）</value>
+  </data>
+  <data name="frame_text_decos_3x2_group_2" xml:space="preserve">
+    <value>装饰（3×2）（组 2）</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_2" xml:space="preserve">
+    <value>大型碎石（3×2）（组 2）</value>
+  </data>
+  <data name="frame_text_forest_short_plants" xml:space="preserve">
+    <value>森林矮生植物</value>
+  </data>
+  <data name="frame_text_forest_tall_plants" xml:space="preserve">
+    <value>森林高大植物</value>
+  </data>
+  <data name="frame_text_text_statue" xml:space="preserve">
+    <value>文字雕像</value>
+  </data>
+  <data name="frame_text_decos_3x2" xml:space="preserve">
+    <value>装饰（3×2）</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2" xml:space="preserve">
+    <value>大型碎石（3×2）</value>
+  </data>
+  <data name="frame_text_pumpkin_plant" xml:space="preserve">
+    <value>南瓜植株</value>
+  </data>
+  <data name="frame_text_boss_trophy" xml:space="preserve">
+    <value>Boss 纪念章</value>
+  </data>
+  <data name="frame_text_critter_anchor" xml:space="preserve">
+    <value>小动物锚点</value>
+  </data>
+  <data name="frame_text_forest_pot" xml:space="preserve">
+    <value>森林罐</value>
+  </data>
+  <data name="frame_text_corruption_short_plants" xml:space="preserve">
+    <value>腐化之地矮小植物</value>
+  </data>
+  <data name="frame_text_jungle_short_plants" xml:space="preserve">
+    <value>丛林矮生植物</value>
+  </data>
+  <data name="frame_text_hallow_short_plants" xml:space="preserve">
+    <value>神圣之地的矮小植物</value>
+  </data>
+  <data name="frame_text_crimson_short_plants" xml:space="preserve">
+    <value>猩红色矮小植物</value>
+  </data>
+  <data name="frame_text_ore_bars" xml:space="preserve">
+    <value>矿石锭</value>
+  </data>
+  <data name="frame_text_jungle_plants_echo" xml:space="preserve">
+    <value>丛林植物（回声）</value>
+  </data>
+  <data name="frame_text_jungle_large_plants" xml:space="preserve">
+    <value>丛林大型植物</value>
+  </data>
+  <data name="statusbar_empty_tile" xml:space="preserve">
+    <value>[空]</value>
+  </data>
+  <data name="statusbar_invalid_tile" xml:space="preserve">
+    <value>无效物块（{0}）</value>
+  </data>
+  <data name="statusbar_invalid_wall" xml:space="preserve">
+    <value>无效墙壁（{0}）</value>
+  </data>
+  <data name="statusbar_unknown_paint" xml:space="preserve">
+    <value>未知油漆（{0}）</value>
   </data>
   <data name="scripting_profile" xml:space="preserve">
     <value>运行脚本需要明确指定访问配置。</value>
@@ -5564,15 +5561,1456 @@ TEdit 最大世界尺寸：{1}
   <data name="mcp_drawing_enabled" xml:space="preserve">
     <value>正在监听 · 允许绘图</value>
   </data>
-  <data name="agent_connect" xml:space="preserve"><value>连接智能体</value></data>
-  <data name="agent_workspace" xml:space="preserve"><value>使用工作区设置</value></data>
-  <data name="agent_stdio" xml:space="preserve"><value>使用 stdio 桥接</value></data>
-  <data name="agent_merge" xml:space="preserve"><value>将 TEdit 条目添加到客户端设置，或运行所示命令。</value></data>
-  <data name="agent_check" xml:space="preserve"><value>检查连接</value></data>
-  <data name="agent_ok" xml:space="preserve"><value>TEdit 已响应 get_status。</value></data>
-  <data name="agent_failed" xml:space="preserve"><value>连接失败。请检查 TEdit 中的 MCP 设置、端口和配置文件。</value></data>
-  <data name="agent_refresh" xml:space="preserve"><value>此配置属于另一个会话。请从目标 TEdit 窗口重新复制配置。</value></data>
-  <data name="agent_missing" xml:space="preserve"><value>打开目标 TEdit 窗口，在设置中启用 MCP 服务器。</value></data>
-  <data name="agent_profile" xml:space="preserve"><value>请在上方选择或创建客户端配置文件。</value></data>
-  <data name="agent_export_error" xml:space="preserve"><value>请在可写入的文件夹中选择一个新文件。</value></data>
+  <data name="agent_connect" xml:space="preserve">
+    <value>连接智能体</value>
+  </data>
+  <data name="agent_workspace" xml:space="preserve">
+    <value>使用工作区设置</value>
+  </data>
+  <data name="agent_stdio" xml:space="preserve">
+    <value>使用 stdio 桥接</value>
+  </data>
+  <data name="agent_merge" xml:space="preserve">
+    <value>将 TEdit 条目添加到客户端设置，或运行所示命令。</value>
+  </data>
+  <data name="agent_check" xml:space="preserve">
+    <value>检查连接</value>
+  </data>
+  <data name="agent_ok" xml:space="preserve">
+    <value>TEdit 已响应 get_status。</value>
+  </data>
+  <data name="agent_failed" xml:space="preserve">
+    <value>连接失败。请检查 TEdit 中的 MCP 设置、端口和配置文件。</value>
+  </data>
+  <data name="agent_refresh" xml:space="preserve">
+    <value>此配置属于另一个会话。请从目标 TEdit 窗口重新复制配置。</value>
+  </data>
+  <data name="agent_missing" xml:space="preserve">
+    <value>打开目标 TEdit 窗口，在设置中启用 MCP 服务器。</value>
+  </data>
+  <data name="agent_profile" xml:space="preserve">
+    <value>请在上方选择或创建客户端配置文件。</value>
+  </data>
+  <data name="agent_export_error" xml:space="preserve">
+    <value>请在可写入的文件夹中选择一个新文件。</value>
+  </data>
+  <data name="frame_text_abigails_flower_replica" xml:space="preserve">
+    <value>阿比盖尔的花复制品</value>
+  </data>
+  <data name="frame_text_altars" xml:space="preserve">
+    <value>祭坛</value>
+  </data>
+  <data name="frame_text_amber_gemspark_block_offline" xml:space="preserve">
+    <value>琥珀晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_amber_sapling" xml:space="preserve">
+    <value>琥珀宝石树苗</value>
+  </data>
+  <data name="frame_text_amethyst_gemspark_block_offline" xml:space="preserve">
+    <value>紫晶晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_amethyst_sapling" xml:space="preserve">
+    <value>紫晶宝石树苗</value>
+  </data>
+  <data name="frame_text_antlion_larva" xml:space="preserve">
+    <value>蚁狮幼虫</value>
+  </data>
+  <data name="frame_text_anvils_hardmode" xml:space="preserve">
+    <value>砧（困难模式）</value>
+  </data>
+  <data name="frame_text_argon_moss_block" xml:space="preserve">
+    <value>氩苔藓块</value>
+  </data>
+  <data name="frame_text_ash_grass_block" xml:space="preserve">
+    <value>灰烬草块</value>
+  </data>
+  <data name="frame_text_ash_short_plants" xml:space="preserve">
+    <value>灰烬矮植物</value>
+  </data>
+  <data name="frame_text_ash_tree_sapling" xml:space="preserve">
+    <value>灰烬树苗</value>
+  </data>
+  <data name="frame_text_ash_vines" xml:space="preserve">
+    <value>灰烬藤蔓</value>
+  </data>
+  <data name="frame_text_attach_left_a" xml:space="preserve">
+    <value>向左附加 A</value>
+  </data>
+  <data name="frame_text_attach_left_b" xml:space="preserve">
+    <value>向左附加 B</value>
+  </data>
+  <data name="frame_text_attach_left_endcap_a" xml:space="preserve">
+    <value>向左附加端盖 A</value>
+  </data>
+  <data name="frame_text_attach_left_endcap_b" xml:space="preserve">
+    <value>向左附加端盖 B</value>
+  </data>
+  <data name="frame_text_attach_right_a" xml:space="preserve">
+    <value>向右附加 A</value>
+  </data>
+  <data name="frame_text_attach_right_b" xml:space="preserve">
+    <value>向右附加 B</value>
+  </data>
+  <data name="frame_text_attach_right_endcap_a" xml:space="preserve">
+    <value>向右附加端盖 A</value>
+  </data>
+  <data name="frame_text_attach_right_endcap_b" xml:space="preserve">
+    <value>向右附加端盖 B</value>
+  </data>
+  <data name="frame_text_bamboo_block" xml:space="preserve">
+    <value>竹子块</value>
+  </data>
+  <data name="frame_text_barstool" xml:space="preserve">
+    <value>高脚凳</value>
+  </data>
+  <data name="frame_text_bathtubs" xml:space="preserve">
+    <value>浴缸</value>
+  </data>
+  <data name="frame_text_beds" xml:space="preserve">
+    <value>床</value>
+  </data>
+  <data name="frame_text_benches" xml:space="preserve">
+    <value>长椅</value>
+  </data>
+  <data name="frame_text_blinkroot_planter" xml:space="preserve">
+    <value>闪耀根种植盆</value>
+  </data>
+  <data name="frame_text_blue_moss_block" xml:space="preserve">
+    <value>蓝苔藓块</value>
+  </data>
+  <data name="frame_text_blue_moss_brick" xml:space="preserve">
+    <value>蓝苔藓砖</value>
+  </data>
+  <data name="frame_text_bookcases" xml:space="preserve">
+    <value>书架</value>
+  </data>
+  <data name="frame_text_books" xml:space="preserve">
+    <value>书</value>
+  </data>
+  <data name="frame_text_books_echo" xml:space="preserve">
+    <value>书（回声）</value>
+  </data>
+  <data name="frame_text_boreal_sapling" xml:space="preserve">
+    <value>针叶树苗</value>
+  </data>
+  <data name="frame_text_boreal_work_bench" xml:space="preserve">
+    <value>针叶木工作台</value>
+  </data>
+  <data name="frame_text_bowls" xml:space="preserve">
+    <value>碗</value>
+  </data>
+  <data name="frame_text_brown_moss_brick" xml:space="preserve">
+    <value>棕苔藓砖</value>
+  </data>
+  <data name="frame_text_cactus_block" xml:space="preserve">
+    <value>仙人掌块</value>
+  </data>
+  <data name="frame_text_cactus_plant" xml:space="preserve">
+    <value>仙人掌植物</value>
+  </data>
+  <data name="frame_text_cage_enchanted_nightcrawler" xml:space="preserve">
+    <value>附魔夜行者笼</value>
+  </data>
+  <data name="frame_text_campfires" xml:space="preserve">
+    <value>篝火</value>
+  </data>
+  <data name="frame_text_candelabras" xml:space="preserve">
+    <value>烛台</value>
+  </data>
+  <data name="frame_text_candles" xml:space="preserve">
+    <value>蜡烛</value>
+  </data>
+  <data name="frame_text_cannons" xml:space="preserve">
+    <value>大炮</value>
+  </data>
+  <data name="frame_text_catacombs" xml:space="preserve">
+    <value>地下墓穴</value>
+  </data>
+  <data name="frame_text_cattails" xml:space="preserve">
+    <value>香蒲</value>
+  </data>
+  <data name="frame_text_cave_decos" xml:space="preserve">
+    <value>洞穴装饰</value>
+  </data>
+  <data name="frame_text_chests" xml:space="preserve">
+    <value>宝箱</value>
+  </data>
+  <data name="frame_text_chests_group_2" xml:space="preserve">
+    <value>宝箱（组 2）</value>
+  </data>
+  <data name="frame_text_chillet_egg" xml:space="preserve">
+    <value>疾旋鼬蛋</value>
+  </data>
+  <data name="frame_text_clocks" xml:space="preserve">
+    <value>落地大摆钟</value>
+  </data>
+  <data name="frame_text_cloud_block" xml:space="preserve">
+    <value>云块</value>
+  </data>
+  <data name="frame_text_cog_block" xml:space="preserve">
+    <value>齿轮块</value>
+  </data>
+  <data name="frame_text_conveyor_belt_ccw" xml:space="preserve">
+    <value>传送带（逆时针）</value>
+  </data>
+  <data name="frame_text_conveyor_belt_cw" xml:space="preserve">
+    <value>传送带（顺时针）</value>
+  </data>
+  <data name="frame_text_cooking_pots" xml:space="preserve">
+    <value>烹饪锅</value>
+  </data>
+  <data name="frame_text_copper_coin_pile" xml:space="preserve">
+    <value>铜币堆</value>
+  </data>
+  <data name="frame_text_corrupt_grass_block" xml:space="preserve">
+    <value>腐化草块</value>
+  </data>
+  <data name="frame_text_corrupt_hardened_sand_block" xml:space="preserve">
+    <value>腐化硬化沙块</value>
+  </data>
+  <data name="frame_text_corrupt_jungle_grass_block" xml:space="preserve">
+    <value>腐化丛林草块</value>
+  </data>
+  <data name="frame_text_corrupt_palm_sapling" xml:space="preserve">
+    <value>腐化棕榈树苗</value>
+  </data>
+  <data name="frame_text_corrupt_pink_prickly_pear_use_pure_pear_do_not_use" xml:space="preserve">
+    <value>腐化粉仙人掌果（请使用纯净仙人掌果 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_corrupt_sandstone_block" xml:space="preserve">
+    <value>腐化沙岩块</value>
+  </data>
+  <data name="frame_text_corrupt_sapling" xml:space="preserve">
+    <value>腐化树苗</value>
+  </data>
+  <data name="frame_text_corrupt_vines" xml:space="preserve">
+    <value>腐化藤蔓</value>
+  </data>
+  <data name="frame_text_corruption_cattail" xml:space="preserve">
+    <value>腐化香蒲</value>
+  </data>
+  <data name="frame_text_corruption_lily_pad" xml:space="preserve">
+    <value>腐化睡莲叶</value>
+  </data>
+  <data name="frame_text_corruption_oasis_plants" xml:space="preserve">
+    <value>腐化绿洲植物</value>
+  </data>
+  <data name="frame_text_corruption_oasis_plants_echo" xml:space="preserve">
+    <value>腐化绿洲植物（回声）</value>
+  </data>
+  <data name="frame_text_corruption_pot" xml:space="preserve">
+    <value>腐化罐</value>
+  </data>
+  <data name="frame_text_corruption_sea_oats" xml:space="preserve">
+    <value>腐化海燕麦</value>
+  </data>
+  <data name="frame_text_corruption_thorns" xml:space="preserve">
+    <value>腐化荆棘</value>
+  </data>
+  <data name="frame_text_craftable_banner" xml:space="preserve">
+    <value>可制作旗帜</value>
+  </data>
+  <data name="frame_text_crimson_cattail" xml:space="preserve">
+    <value>猩红香蒲</value>
+  </data>
+  <data name="frame_text_crimson_grass_block" xml:space="preserve">
+    <value>猩红草块</value>
+  </data>
+  <data name="frame_text_crimson_hardened_sand_block" xml:space="preserve">
+    <value>猩红硬化沙块</value>
+  </data>
+  <data name="frame_text_crimson_jungle_grass_block" xml:space="preserve">
+    <value>猩红丛林草块</value>
+  </data>
+  <data name="frame_text_crimson_lily_pad" xml:space="preserve">
+    <value>猩红睡莲叶</value>
+  </data>
+  <data name="frame_text_crimson_oasis_plants" xml:space="preserve">
+    <value>猩红绿洲植物</value>
+  </data>
+  <data name="frame_text_crimson_oasis_plants_echo" xml:space="preserve">
+    <value>猩红绿洲植物（回声）</value>
+  </data>
+  <data name="frame_text_crimson_palm_sapling" xml:space="preserve">
+    <value>猩红棕榈树苗</value>
+  </data>
+  <data name="frame_text_crimson_pink_prickly_pear_use_pure_pear_do_not_use" xml:space="preserve">
+    <value>猩红粉仙人掌果（请使用纯净仙人掌果 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_crimson_pot" xml:space="preserve">
+    <value>猩红罐</value>
+  </data>
+  <data name="frame_text_crimson_sandstone_block" xml:space="preserve">
+    <value>猩红沙岩块</value>
+  </data>
+  <data name="frame_text_crimson_sapling" xml:space="preserve">
+    <value>猩红树苗</value>
+  </data>
+  <data name="frame_text_crimson_sea_oats" xml:space="preserve">
+    <value>猩红海燕麦</value>
+  </data>
+  <data name="frame_text_crimson_vines" xml:space="preserve">
+    <value>猩红藤蔓</value>
+  </data>
+  <data name="frame_text_crimsonweed_planter" xml:space="preserve">
+    <value>死亡草种植盆</value>
+  </data>
+  <data name="frame_text_crimstone_stalactite_1x1" xml:space="preserve">
+    <value>猩红石钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_crimstone_stalactite_1x2" xml:space="preserve">
+    <value>猩红石钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_crimstone_stalagmite_1x1" xml:space="preserve">
+    <value>猩红石石笋 1×1</value>
+  </data>
+  <data name="frame_text_crimstone_stalagmite_1x2" xml:space="preserve">
+    <value>猩红石石笋 1×2</value>
+  </data>
+  <data name="frame_text_crimtane_thorns" xml:space="preserve">
+    <value>猩红荆棘</value>
+  </data>
+  <data name="frame_text_crystal_chest_unused_do_not_use" xml:space="preserve">
+    <value>水晶箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_crystal_heart" xml:space="preserve">
+    <value>水晶之心</value>
+  </data>
+  <data name="frame_text_daybloom_planter" xml:space="preserve">
+    <value>太阳花种植盆</value>
+  </data>
+  <data name="frame_text_deathweed_planter" xml:space="preserve">
+    <value>死亡草种植盆</value>
+  </data>
+  <data name="frame_text_desert_fossil_block" xml:space="preserve">
+    <value>沙漠化石块</value>
+  </data>
+  <data name="frame_text_diablost_lamp" xml:space="preserve">
+    <value>魔教徒灯</value>
+  </data>
+  <data name="frame_text_diamond_gemspark_block_offline" xml:space="preserve">
+    <value>钻石晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_diamond_sapling" xml:space="preserve">
+    <value>钻石宝石树苗</value>
+  </data>
+  <data name="frame_text_doors_closed" xml:space="preserve">
+    <value>门（关闭）</value>
+  </data>
+  <data name="frame_text_doors_open" xml:space="preserve">
+    <value>门（打开）</value>
+  </data>
+  <data name="frame_text_down" xml:space="preserve">
+    <value>下</value>
+  </data>
+  <data name="frame_text_down_left" xml:space="preserve">
+    <value>左下</value>
+  </data>
+  <data name="frame_text_down_right" xml:space="preserve">
+    <value>右下</value>
+  </data>
+  <data name="frame_text_dressers" xml:space="preserve">
+    <value>梳妆台</value>
+  </data>
+  <data name="frame_text_dungeon_pot" xml:space="preserve">
+    <value>地牢罐</value>
+  </data>
+  <data name="frame_text_dye_plants" xml:space="preserve">
+    <value>染料植物</value>
+  </data>
+  <data name="frame_text_ebonstone_stalactite_1x1" xml:space="preserve">
+    <value>黑檀石钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_ebonstone_stalactite_1x2" xml:space="preserve">
+    <value>黑檀石钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_ebonstone_stalagmite_1x1" xml:space="preserve">
+    <value>黑檀石石笋 1×1</value>
+  </data>
+  <data name="frame_text_ebonstone_stalagmite_1x2" xml:space="preserve">
+    <value>黑檀石石笋 1×2</value>
+  </data>
+  <data name="frame_text_elder_cystal_stand" xml:space="preserve">
+    <value>永恒水晶座</value>
+  </data>
+  <data name="frame_text_emerald_gemspark_block_offline" xml:space="preserve">
+    <value>翡翠晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_emerald_sapling" xml:space="preserve">
+    <value>翡翠宝石树苗</value>
+  </data>
+  <data name="frame_text_endcap_left_a" xml:space="preserve">
+    <value>左端盖 A</value>
+  </data>
+  <data name="frame_text_endcap_left_b" xml:space="preserve">
+    <value>左端盖 B</value>
+  </data>
+  <data name="frame_text_endcap_right_a" xml:space="preserve">
+    <value>右端盖 A</value>
+  </data>
+  <data name="frame_text_endcap_right_b" xml:space="preserve">
+    <value>右端盖 B</value>
+  </data>
+  <data name="frame_text_faction_banner" xml:space="preserve">
+    <value>阵营旗帜</value>
+  </data>
+  <data name="frame_text_fallen_log_echo" xml:space="preserve">
+    <value>倒木（回声）</value>
+  </data>
+  <data name="frame_text_fireblossom_planter" xml:space="preserve">
+    <value>火焰花种植盆</value>
+  </data>
+  <data name="frame_text_fishing_crates" xml:space="preserve">
+    <value>宝匣</value>
+  </data>
+  <data name="frame_text_fishing_trophy" xml:space="preserve">
+    <value>钓鱼奖杯</value>
+  </data>
+  <data name="frame_text_flat_a" xml:space="preserve">
+    <value>平铺 A</value>
+  </data>
+  <data name="frame_text_flat_b" xml:space="preserve">
+    <value>平铺 B</value>
+  </data>
+  <data name="frame_text_flower_vines" xml:space="preserve">
+    <value>花藤蔓</value>
+  </data>
+  <data name="frame_text_forest_cattail" xml:space="preserve">
+    <value>森林香蒲</value>
+  </data>
+  <data name="frame_text_forest_lily_pad" xml:space="preserve">
+    <value>森林睡莲叶</value>
+  </data>
+  <data name="frame_text_forest_sapling" xml:space="preserve">
+    <value>森林树苗</value>
+  </data>
+  <data name="frame_text_forges" xml:space="preserve">
+    <value>熔炉</value>
+  </data>
+  <data name="frame_text_gem_locks" xml:space="preserve">
+    <value>宝石锁</value>
+  </data>
+  <data name="frame_text_gem_saplings" xml:space="preserve">
+    <value>宝石树苗</value>
+  </data>
+  <data name="frame_text_gems" xml:space="preserve">
+    <value>宝石</value>
+  </data>
+  <data name="frame_text_giant_glowing_mushroom_underground" xml:space="preserve">
+    <value>巨型发光蘑菇（地下）</value>
+  </data>
+  <data name="frame_text_glass_block" xml:space="preserve">
+    <value>玻璃块</value>
+  </data>
+  <data name="frame_text_glow_tulip_replica" xml:space="preserve">
+    <value>发光郁金香复制品</value>
+  </data>
+  <data name="frame_text_glowing_mushroom_block" xml:space="preserve">
+    <value>发光蘑菇块</value>
+  </data>
+  <data name="frame_text_gold_butterfly_cage" xml:space="preserve">
+    <value>金蝴蝶笼</value>
+  </data>
+  <data name="frame_text_gold_coin_pile" xml:space="preserve">
+    <value>金币堆</value>
+  </data>
+  <data name="frame_text_gold_crate" xml:space="preserve">
+    <value>金匣</value>
+  </data>
+  <data name="frame_text_golden_chest_unused_do_not_use" xml:space="preserve">
+    <value>金宝箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_golf_trophies" xml:space="preserve">
+    <value>高尔夫奖杯</value>
+  </data>
+  <data name="frame_text_granite_stalactite_1x1" xml:space="preserve">
+    <value>花岗岩钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_granite_stalactite_1x2" xml:space="preserve">
+    <value>花岗岩钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_granite_stalagmite_1x1" xml:space="preserve">
+    <value>花岗岩石笋 1×1</value>
+  </data>
+  <data name="frame_text_granite_stalagmite_1x2" xml:space="preserve">
+    <value>花岗岩石笋 1×2</value>
+  </data>
+  <data name="frame_text_grass_block" xml:space="preserve">
+    <value>草块</value>
+  </data>
+  <data name="frame_text_grate_block" xml:space="preserve">
+    <value>格栅</value>
+  </data>
+  <data name="frame_text_grate_block_closed" xml:space="preserve">
+    <value>格栅（关闭）</value>
+  </data>
+  <data name="frame_text_green_moss_block" xml:space="preserve">
+    <value>绿苔藓块</value>
+  </data>
+  <data name="frame_text_green_moss_brick" xml:space="preserve">
+    <value>绿苔藓砖</value>
+  </data>
+  <data name="frame_text_hallow_hardened_sand_block" xml:space="preserve">
+    <value>神圣硬化沙块</value>
+  </data>
+  <data name="frame_text_hallow_pink_prickly_pear_use_pure_pear_do_not_use" xml:space="preserve">
+    <value>神圣粉仙人掌果（请使用纯净仙人掌果 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_hallow_sandstone_block" xml:space="preserve">
+    <value>神圣沙岩块</value>
+  </data>
+  <data name="frame_text_hallow_tall_plants" xml:space="preserve">
+    <value>神圣高植物</value>
+  </data>
+  <data name="frame_text_hallowed_cattail" xml:space="preserve">
+    <value>神圣香蒲</value>
+  </data>
+  <data name="frame_text_hallowed_grass_block" xml:space="preserve">
+    <value>神圣草块</value>
+  </data>
+  <data name="frame_text_hallowed_lily_pad" xml:space="preserve">
+    <value>神圣睡莲叶</value>
+  </data>
+  <data name="frame_text_hallowed_mowed_grass_block" xml:space="preserve">
+    <value>神圣修剪草块</value>
+  </data>
+  <data name="frame_text_hallowed_oasis_plants" xml:space="preserve">
+    <value>神圣绿洲植物</value>
+  </data>
+  <data name="frame_text_hallowed_oasis_plants_echo" xml:space="preserve">
+    <value>神圣绿洲植物（回声）</value>
+  </data>
+  <data name="frame_text_hallowed_palm_sapling" xml:space="preserve">
+    <value>神圣棕榈树苗</value>
+  </data>
+  <data name="frame_text_hallowed_palm_tree" xml:space="preserve">
+    <value>神圣棕榈树</value>
+  </data>
+  <data name="frame_text_hallowed_sapling" xml:space="preserve">
+    <value>神圣树苗</value>
+  </data>
+  <data name="frame_text_hallowed_sea_oats" xml:space="preserve">
+    <value>神圣海燕麦</value>
+  </data>
+  <data name="frame_text_hallowed_vines" xml:space="preserve">
+    <value>神圣藤蔓</value>
+  </data>
+  <data name="frame_text_hanging_pots" xml:space="preserve">
+    <value>吊挂盆</value>
+  </data>
+  <data name="frame_text_hay_block" xml:space="preserve">
+    <value>干草块</value>
+  </data>
+  <data name="frame_text_heavy_work_bench" xml:space="preserve">
+    <value>重型工作台</value>
+  </data>
+  <data name="frame_text_helium_moss_block" xml:space="preserve">
+    <value>氦苔藓块</value>
+  </data>
+  <data name="frame_text_hellstone_ore" xml:space="preserve">
+    <value>狱石矿</value>
+  </data>
+  <data name="frame_text_herbs_bloom" xml:space="preserve">
+    <value>草药（开花）</value>
+  </data>
+  <data name="frame_text_herbs_mature" xml:space="preserve">
+    <value>草药（成熟）</value>
+  </data>
+  <data name="frame_text_herbs_sprout" xml:space="preserve">
+    <value>草药（发芽）</value>
+  </data>
+  <data name="frame_text_hive_block" xml:space="preserve">
+    <value>蜂巢块</value>
+  </data>
+  <data name="frame_text_hive_stalactite_1x1" xml:space="preserve">
+    <value>蜂巢钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_hive_stalagmite_1x1" xml:space="preserve">
+    <value>蜂巢石笋 1×1</value>
+  </data>
+  <data name="frame_text_holiday_lights" xml:space="preserve">
+    <value>节日彩灯</value>
+  </data>
+  <data name="frame_text_honey_drip" xml:space="preserve">
+    <value>蜂蜜滴</value>
+  </data>
+  <data name="frame_text_ice_ice_rod" xml:space="preserve">
+    <value>冰（冰雪魔杖）</value>
+  </data>
+  <data name="frame_text_icicle_1x1" xml:space="preserve">
+    <value>冰锥 1×1</value>
+  </data>
+  <data name="frame_text_icicle_1x2" xml:space="preserve">
+    <value>冰锥 1×2</value>
+  </data>
+  <data name="frame_text_jungle_cattail" xml:space="preserve">
+    <value>丛林香蒲</value>
+  </data>
+  <data name="frame_text_jungle_grass_block" xml:space="preserve">
+    <value>丛林草块</value>
+  </data>
+  <data name="frame_text_jungle_lily_pad" xml:space="preserve">
+    <value>丛林睡莲叶</value>
+  </data>
+  <data name="frame_text_jungle_pot" xml:space="preserve">
+    <value>丛林罐</value>
+  </data>
+  <data name="frame_text_jungle_sapling" xml:space="preserve">
+    <value>丛林树苗</value>
+  </data>
+  <data name="frame_text_jungle_tall_plants" xml:space="preserve">
+    <value>丛林高植物</value>
+  </data>
+  <data name="frame_text_jungle_thorns" xml:space="preserve">
+    <value>丛林荆棘</value>
+  </data>
+  <data name="frame_text_jungle_vines" xml:space="preserve">
+    <value>丛林藤蔓</value>
+  </data>
+  <data name="frame_text_kite_anchor" xml:space="preserve">
+    <value>风筝锚点</value>
+  </data>
+  <data name="frame_text_krypton_moss_block" xml:space="preserve">
+    <value>氪苔藓块</value>
+  </data>
+  <data name="frame_text_lanterns" xml:space="preserve">
+    <value>灯笼</value>
+  </data>
+  <data name="frame_text_large_bamboo_block" xml:space="preserve">
+    <value>大竹子</value>
+  </data>
+  <data name="frame_text_large_dynasty_candelabra" xml:space="preserve">
+    <value>大王朝烛台</value>
+  </data>
+  <data name="frame_text_large_rubble_3x2_group_3" xml:space="preserve">
+    <value>大型碎石（3×2）（组 3）</value>
+  </data>
+  <data name="frame_text_lava_drip" xml:space="preserve">
+    <value>熔岩滴</value>
+  </data>
+  <data name="frame_text_left_off" xml:space="preserve">
+    <value>左关</value>
+  </data>
+  <data name="frame_text_left_on" xml:space="preserve">
+    <value>左开</value>
+  </data>
+  <data name="frame_text_left_side" xml:space="preserve">
+    <value>左侧</value>
+  </data>
+  <data name="frame_text_leg_down" xml:space="preserve">
+    <value>支脚向下</value>
+  </data>
+  <data name="frame_text_leg_up" xml:space="preserve">
+    <value>支脚向上</value>
+  </data>
+  <data name="frame_text_life_fruit_plant" xml:space="preserve">
+    <value>生命果植株</value>
+  </data>
+  <data name="frame_text_life_fruit_replica" xml:space="preserve">
+    <value>生命果复制品</value>
+  </data>
+  <data name="frame_text_lihzahrd_locked_door" xml:space="preserve">
+    <value>上锁的丛林蜥蜴门</value>
+  </data>
+  <data name="frame_text_lihzahrd_pot" xml:space="preserve">
+    <value>丛林蜥蜴罐</value>
+  </data>
+  <data name="frame_text_lihzahrd_statue_a" xml:space="preserve">
+    <value>丛林蜥蜴雕像 A</value>
+  </data>
+  <data name="frame_text_lihzahrd_statue_b" xml:space="preserve">
+    <value>丛林蜥蜴雕像 B</value>
+  </data>
+  <data name="frame_text_lihzahrd_statue_c" xml:space="preserve">
+    <value>丛林蜥蜴雕像 C</value>
+  </data>
+  <data name="frame_text_lily_pads" xml:space="preserve">
+    <value>睡莲叶</value>
+  </data>
+  <data name="frame_text_living_ichor_fire_block" xml:space="preserve">
+    <value>灵液活火块</value>
+  </data>
+  <data name="frame_text_living_leaf_block" xml:space="preserve">
+    <value>生命树叶块</value>
+  </data>
+  <data name="frame_text_living_mahogany_block" xml:space="preserve">
+    <value>生命红木块</value>
+  </data>
+  <data name="frame_text_living_mahogany_leaves_block" xml:space="preserve">
+    <value>生命红木叶块</value>
+  </data>
+  <data name="frame_text_living_wood_block" xml:space="preserve">
+    <value>生命木块</value>
+  </data>
+  <data name="frame_text_logic_gate_nxor" xml:space="preserve">
+    <value>逻辑门（同或）</value>
+  </data>
+  <data name="frame_text_logic_gates" xml:space="preserve">
+    <value>逻辑门</value>
+  </data>
+  <data name="frame_text_logic_lamp" xml:space="preserve">
+    <value>逻辑门灯</value>
+  </data>
+  <data name="frame_text_logic_sensor" xml:space="preserve">
+    <value>逻辑感应器</value>
+  </data>
+  <data name="frame_text_luminite_ore" xml:space="preserve">
+    <value>夜明矿</value>
+  </data>
+  <data name="frame_text_lunar_crafting_station" xml:space="preserve">
+    <value>远古操纵机</value>
+  </data>
+  <data name="frame_text_lunar_monoliths" xml:space="preserve">
+    <value>天界柱</value>
+  </data>
+  <data name="frame_text_mannequin_legacy" xml:space="preserve">
+    <value>人体模型（旧版）</value>
+  </data>
+  <data name="frame_text_mannequins" xml:space="preserve">
+    <value>人体模型</value>
+  </data>
+  <data name="frame_text_marble_cave_pot" xml:space="preserve">
+    <value>大理石洞罐</value>
+  </data>
+  <data name="frame_text_marble_stalactite_1x1" xml:space="preserve">
+    <value>大理石钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_marble_stalactite_1x2" xml:space="preserve">
+    <value>大理石钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_marble_stalagmite_1x1" xml:space="preserve">
+    <value>大理石石笋 1×1</value>
+  </data>
+  <data name="frame_text_marble_stalagmite_1x2" xml:space="preserve">
+    <value>大理石石笋 1×2</value>
+  </data>
+  <data name="frame_text_martian_candelabra" xml:space="preserve">
+    <value>火星烛台</value>
+  </data>
+  <data name="frame_text_medium_rubble_2x2" xml:space="preserve">
+    <value>中型碎石（2×2）</value>
+  </data>
+  <data name="frame_text_metal_bathtub" xml:space="preserve">
+    <value>金属浴缸</value>
+  </data>
+  <data name="frame_text_meteor_toilet" xml:space="preserve">
+    <value>陨石马桶</value>
+  </data>
+  <data name="frame_text_meteorite_ore" xml:space="preserve">
+    <value>陨石矿</value>
+  </data>
+  <data name="frame_text_middle" xml:space="preserve">
+    <value>中间</value>
+  </data>
+  <data name="frame_text_moonglow_planter" xml:space="preserve">
+    <value>月光草种植盆</value>
+  </data>
+  <data name="frame_text_moss_plants" xml:space="preserve">
+    <value>苔藓植物</value>
+  </data>
+  <data name="frame_text_mowed_grass_block" xml:space="preserve">
+    <value>修剪草块</value>
+  </data>
+  <data name="frame_text_mushroom_cattail" xml:space="preserve">
+    <value>蘑菇香蒲</value>
+  </data>
+  <data name="frame_text_mushroom_grass_block" xml:space="preserve">
+    <value>蘑菇草块</value>
+  </data>
+  <data name="frame_text_mushroom_plant" xml:space="preserve">
+    <value>蘑菇植物</value>
+  </data>
+  <data name="frame_text_mushroom_vines" xml:space="preserve">
+    <value>蘑菇藤蔓</value>
+  </data>
+  <data name="frame_text_music_box_ocean" xml:space="preserve">
+    <value>八音盒（海洋）</value>
+  </data>
+  <data name="frame_text_music_box_space" xml:space="preserve">
+    <value>八音盒（太空）</value>
+  </data>
+  <data name="frame_text_music_boxes" xml:space="preserve">
+    <value>八音盒</value>
+  </data>
+  <data name="frame_text_mystic_snake_rope" xml:space="preserve">
+    <value>神秘蛇绳</value>
+  </data>
+  <data name="frame_text_neon_moss_block" xml:space="preserve">
+    <value>氖苔藓块</value>
+  </data>
+  <data name="frame_text_oasis_plants" xml:space="preserve">
+    <value>绿洲植物</value>
+  </data>
+  <data name="frame_text_oasis_plants_echo" xml:space="preserve">
+    <value>绿洲植物（回声）</value>
+  </data>
+  <data name="frame_text_oasis_sea_oats" xml:space="preserve">
+    <value>绿洲海燕麦</value>
+  </data>
+  <data name="frame_text_obsidian_block" xml:space="preserve">
+    <value>黑曜石块</value>
+  </data>
+  <data name="frame_text_ocean_sea_oats" xml:space="preserve">
+    <value>海洋海燕麦</value>
+  </data>
+  <data name="frame_text_oil_rag_sconse" xml:space="preserve">
+    <value>油布烛台</value>
+  </data>
+  <data name="frame_text_on_a" xml:space="preserve">
+    <value>开启 A</value>
+  </data>
+  <data name="frame_text_on_b" xml:space="preserve">
+    <value>开启 B</value>
+  </data>
+  <data name="frame_text_orb_heart" xml:space="preserve">
+    <value>暗影珠/猩红之心</value>
+  </data>
+  <data name="frame_text_paintings_2x3" xml:space="preserve">
+    <value>画作 2×3</value>
+  </data>
+  <data name="frame_text_paintings_3x2" xml:space="preserve">
+    <value>画作 3×2</value>
+  </data>
+  <data name="frame_text_paintings_6x4" xml:space="preserve">
+    <value>画作 6×4</value>
+  </data>
+  <data name="frame_text_palm_sapling" xml:space="preserve">
+    <value>棕榈树苗</value>
+  </data>
+  <data name="frame_text_palm_trees" xml:space="preserve">
+    <value>棕榈树</value>
+  </data>
+  <data name="frame_text_party_presents" xml:space="preserve">
+    <value>派对礼物</value>
+  </data>
+  <data name="frame_text_pearlstone_stalactite_1x1" xml:space="preserve">
+    <value>珍珠石钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_pearlstone_stalactite_1x2" xml:space="preserve">
+    <value>珍珠石钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_pearlstone_stalagmite_1x1" xml:space="preserve">
+    <value>珍珠石石笋 1×1</value>
+  </data>
+  <data name="frame_text_pearlstone_stalagmite_1x2" xml:space="preserve">
+    <value>珍珠石石笋 1×2</value>
+  </data>
+  <data name="frame_text_pianos" xml:space="preserve">
+    <value>钢琴</value>
+  </data>
+  <data name="frame_text_picnic_tables" xml:space="preserve">
+    <value>野餐桌</value>
+  </data>
+  <data name="frame_text_pin_flags" xml:space="preserve">
+    <value>三角旗</value>
+  </data>
+  <data name="frame_text_pink_icicle_1x1" xml:space="preserve">
+    <value>粉冰锥 1×1</value>
+  </data>
+  <data name="frame_text_pink_icicle_1x2" xml:space="preserve">
+    <value>粉冰锥 1×2</value>
+  </data>
+  <data name="frame_text_pirahna_statue" xml:space="preserve">
+    <value>食人鱼雕像</value>
+  </data>
+  <data name="frame_text_placed_bottles" xml:space="preserve">
+    <value>放置的瓶子</value>
+  </data>
+  <data name="frame_text_planter_boxes" xml:space="preserve">
+    <value>种植盆</value>
+  </data>
+  <data name="frame_text_plantera_thorns" xml:space="preserve">
+    <value>世纪之花荆棘</value>
+  </data>
+  <data name="frame_text_platforms" xml:space="preserve">
+    <value>平台</value>
+  </data>
+  <data name="frame_text_platinum_coin_pile" xml:space="preserve">
+    <value>铂金币堆</value>
+  </data>
+  <data name="frame_text_pots_rubblemaker" xml:space="preserve">
+    <value>罐子（碎石机）</value>
+  </data>
+  <data name="frame_text_potted_crystal_plants" xml:space="preserve">
+    <value>水晶盆栽</value>
+  </data>
+  <data name="frame_text_potted_lava_plants" xml:space="preserve">
+    <value>熔岩盆栽</value>
+  </data>
+  <data name="frame_text_potted_trees" xml:space="preserve">
+    <value>盆栽树</value>
+  </data>
+  <data name="frame_text_potted_trees_group_2" xml:space="preserve">
+    <value>盆栽树（组 2）</value>
+  </data>
+  <data name="frame_text_presents" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="frame_text_pressure_plates" xml:space="preserve">
+    <value>压力板</value>
+  </data>
+  <data name="frame_text_pumpkin_block" xml:space="preserve">
+    <value>南瓜块</value>
+  </data>
+  <data name="frame_text_purple_icicle_1x1" xml:space="preserve">
+    <value>紫冰锥 1×1</value>
+  </data>
+  <data name="frame_text_purple_icicle_1x2" xml:space="preserve">
+    <value>紫冰锥 1×2</value>
+  </data>
+  <data name="frame_text_purple_moss_block" xml:space="preserve">
+    <value>紫苔藓块</value>
+  </data>
+  <data name="frame_text_purple_moss_brick" xml:space="preserve">
+    <value>紫苔藓砖</value>
+  </data>
+  <data name="frame_text_pylons" xml:space="preserve">
+    <value>晶塔</value>
+  </data>
+  <data name="frame_text_pyramid_banner" xml:space="preserve">
+    <value>金字塔旗帜</value>
+  </data>
+  <data name="frame_text_pyramid_pot" xml:space="preserve">
+    <value>金字塔罐</value>
+  </data>
+  <data name="frame_text_rack" xml:space="preserve">
+    <value>架子</value>
+  </data>
+  <data name="frame_text_rain_cloud_block" xml:space="preserve">
+    <value>雨云块</value>
+  </data>
+  <data name="frame_text_red_candy_cane_block" xml:space="preserve">
+    <value>红糖棒块</value>
+  </data>
+  <data name="frame_text_red_icicle_1x1" xml:space="preserve">
+    <value>红冰锥 1×1</value>
+  </data>
+  <data name="frame_text_red_icicle_1x2" xml:space="preserve">
+    <value>红冰锥 1×2</value>
+  </data>
+  <data name="frame_text_red_moss_block" xml:space="preserve">
+    <value>红苔藓块</value>
+  </data>
+  <data name="frame_text_red_moss_brick" xml:space="preserve">
+    <value>红苔藓砖</value>
+  </data>
+  <data name="frame_text_relic_base" xml:space="preserve">
+    <value>圣物底座</value>
+  </data>
+  <data name="frame_text_right_off" xml:space="preserve">
+    <value>右关</value>
+  </data>
+  <data name="frame_text_right_on" xml:space="preserve">
+    <value>右开</value>
+  </data>
+  <data name="frame_text_right_side" xml:space="preserve">
+    <value>右侧</value>
+  </data>
+  <data name="frame_text_rockets" xml:space="preserve">
+    <value>火箭</value>
+  </data>
+  <data name="frame_text_ruby_gemspark_block_offline" xml:space="preserve">
+    <value>红玉晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_ruby_sapling" xml:space="preserve">
+    <value>红玉宝石树苗</value>
+  </data>
+  <data name="frame_text_sand_drip" xml:space="preserve">
+    <value>沙滴</value>
+  </data>
+  <data name="frame_text_sandstone_stalactite_1x1" xml:space="preserve">
+    <value>沙岩钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_sandstone_stalactite_1x2" xml:space="preserve">
+    <value>沙岩钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_sandstone_stalagmite_1x1" xml:space="preserve">
+    <value>沙岩石笋 1×1</value>
+  </data>
+  <data name="frame_text_sandstone_stalagmite_1x2" xml:space="preserve">
+    <value>沙岩石笋 1×2</value>
+  </data>
+  <data name="frame_text_sapphire_gemspark_block_offline" xml:space="preserve">
+    <value>蓝玉晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_sapphire_sapling" xml:space="preserve">
+    <value>蓝玉宝石树苗</value>
+  </data>
+  <data name="frame_text_sea_oats" xml:space="preserve">
+    <value>海燕麦</value>
+  </data>
+  <data name="frame_text_seashells" xml:space="preserve">
+    <value>贝壳</value>
+  </data>
+  <data name="frame_text_setting_one" xml:space="preserve">
+    <value>设置一</value>
+  </data>
+  <data name="frame_text_setting_two" xml:space="preserve">
+    <value>设置二</value>
+  </data>
+  <data name="frame_text_shell_pile_block" xml:space="preserve">
+    <value>贝壳堆块</value>
+  </data>
+  <data name="frame_text_shiverthorn_planter" xml:space="preserve">
+    <value>寒颤棘种植盆</value>
+  </data>
+  <data name="frame_text_silly_green_balloon_block" xml:space="preserve">
+    <value>呆萌绿气球块</value>
+  </data>
+  <data name="frame_text_silly_pink_balloon_block" xml:space="preserve">
+    <value>呆萌粉气球块</value>
+  </data>
+  <data name="frame_text_silly_purple_balloon_block" xml:space="preserve">
+    <value>呆萌紫气球块</value>
+  </data>
+  <data name="frame_text_silly_tied_balloon" xml:space="preserve">
+    <value>呆萌丝带气球</value>
+  </data>
+  <data name="frame_text_silver_coin_pile" xml:space="preserve">
+    <value>银币堆</value>
+  </data>
+  <data name="frame_text_single_a" xml:space="preserve">
+    <value>单个 A</value>
+  </data>
+  <data name="frame_text_single_b" xml:space="preserve">
+    <value>单个 B</value>
+  </data>
+  <data name="frame_text_sky_banner" xml:space="preserve">
+    <value>天空旗帜</value>
+  </data>
+  <data name="frame_text_sleeping_digtoise" xml:space="preserve">
+    <value>沉睡碎岩龟</value>
+  </data>
+  <data name="frame_text_smooth_sandstone_block" xml:space="preserve">
+    <value>光面沙岩块</value>
+  </data>
+  <data name="frame_text_snow_cloud_block" xml:space="preserve">
+    <value>雪云块</value>
+  </data>
+  <data name="frame_text_souls_in_a_bottle" xml:space="preserve">
+    <value>魂瓶</value>
+  </data>
+  <data name="frame_text_spider_cave_pot" xml:space="preserve">
+    <value>蜘蛛洞罐</value>
+  </data>
+  <data name="frame_text_spider_web_1x2" xml:space="preserve">
+    <value>蛛网 1×2</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l_a" xml:space="preserve">
+    <value>楼梯 底部平台 左 A</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_l_b" xml:space="preserve">
+    <value>楼梯 底部平台 左 B</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r_a" xml:space="preserve">
+    <value>楼梯 底部平台 右 A</value>
+  </data>
+  <data name="frame_text_stair_bottom_landing_r_b" xml:space="preserve">
+    <value>楼梯 底部平台 右 B</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1_a" xml:space="preserve">
+    <value>楼梯 内嵌左上 1 A</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_1_b" xml:space="preserve">
+    <value>楼梯 内嵌左上 1 B</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2_a" xml:space="preserve">
+    <value>楼梯 内嵌左上 2 A</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_2_b" xml:space="preserve">
+    <value>楼梯 内嵌左上 2 B</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3_a" xml:space="preserve">
+    <value>楼梯 内嵌左上 3 A</value>
+  </data>
+  <data name="frame_text_stair_inset_up_left_3_b" xml:space="preserve">
+    <value>楼梯 内嵌左上 3 B</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1_a" xml:space="preserve">
+    <value>楼梯 内嵌右上 1 A</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_1_b" xml:space="preserve">
+    <value>楼梯 内嵌右上 1 B</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2_a" xml:space="preserve">
+    <value>楼梯 内嵌右上 2 A</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_2_b" xml:space="preserve">
+    <value>楼梯 内嵌右上 2 B</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3_a" xml:space="preserve">
+    <value>楼梯 内嵌右上 3 A</value>
+  </data>
+  <data name="frame_text_stair_inset_up_right_3_b" xml:space="preserve">
+    <value>楼梯 内嵌右上 3 B</value>
+  </data>
+  <data name="frame_text_stair_inverted_left_a" xml:space="preserve">
+    <value>楼梯 反向左 A</value>
+  </data>
+  <data name="frame_text_stair_inverted_left_b" xml:space="preserve">
+    <value>楼梯 反向左 B</value>
+  </data>
+  <data name="frame_text_stair_inverted_right_a" xml:space="preserve">
+    <value>楼梯 反向右 A</value>
+  </data>
+  <data name="frame_text_stair_inverted_right_b" xml:space="preserve">
+    <value>楼梯 反向右 B</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_a" xml:space="preserve">
+    <value>楼梯 顶部平台 左 A</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_b" xml:space="preserve">
+    <value>楼梯 顶部平台 左 B</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap_a" xml:space="preserve">
+    <value>楼梯 顶部平台 左端盖 A</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_endcap_b" xml:space="preserve">
+    <value>楼梯 顶部平台 左端盖 B</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r_a" xml:space="preserve">
+    <value>楼梯 顶部平台 左-右 A</value>
+  </data>
+  <data name="frame_text_stair_top_landing_l_r_b" xml:space="preserve">
+    <value>楼梯 顶部平台 左-右 B</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_a" xml:space="preserve">
+    <value>楼梯 顶部平台 右 A</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_b" xml:space="preserve">
+    <value>楼梯 顶部平台 右 B</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap_a" xml:space="preserve">
+    <value>楼梯 顶部平台 右端盖 A</value>
+  </data>
+  <data name="frame_text_stair_top_landing_r_endcap_b" xml:space="preserve">
+    <value>楼梯 顶部平台 右端盖 B</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser_a" xml:space="preserve">
+    <value>楼梯 左上梯级 A</value>
+  </data>
+  <data name="frame_text_stair_up_left_riser_b" xml:space="preserve">
+    <value>楼梯 左上梯级 B</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer_a" xml:space="preserve">
+    <value>楼梯 左上梯梁 A</value>
+  </data>
+  <data name="frame_text_stair_up_left_stringer_b" xml:space="preserve">
+    <value>楼梯 左上梯梁 B</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser_a" xml:space="preserve">
+    <value>楼梯 右上梯级 A</value>
+  </data>
+  <data name="frame_text_stair_up_right_riser_b" xml:space="preserve">
+    <value>楼梯 右上梯级 B</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer_a" xml:space="preserve">
+    <value>楼梯 右上梯梁 A</value>
+  </data>
+  <data name="frame_text_stair_up_right_stringer_b" xml:space="preserve">
+    <value>楼梯 右上梯梁 B</value>
+  </data>
+  <data name="frame_text_stalactite_1x2_echo" xml:space="preserve">
+    <value>钟乳石 1×2（回声）</value>
+  </data>
+  <data name="frame_text_stone_stalactite_1x1" xml:space="preserve">
+    <value>石钟乳石 1×1</value>
+  </data>
+  <data name="frame_text_stone_stalactite_1x2" xml:space="preserve">
+    <value>石钟乳石 1×2</value>
+  </data>
+  <data name="frame_text_stone_stalagmite_1x1" xml:space="preserve">
+    <value>石石笋 1×1</value>
+  </data>
+  <data name="frame_text_stone_stalagmite_1x2" xml:space="preserve">
+    <value>石石笋 1×2</value>
+  </data>
+  <data name="frame_text_sturdy_fossil_block" xml:space="preserve">
+    <value>坚固化石块</value>
+  </data>
+  <data name="frame_text_tables_group_2" xml:space="preserve">
+    <value>桌子（组 2）</value>
+  </data>
+  <data name="frame_text_tall_gate_closed" xml:space="preserve">
+    <value>高门（关闭）</value>
+  </data>
+  <data name="frame_text_tall_gate_open" xml:space="preserve">
+    <value>高门（打开）</value>
+  </data>
+  <data name="frame_text_terragrim_shrine_echo" xml:space="preserve">
+    <value>泰拉魔刃圣地（回声）</value>
+  </data>
+  <data name="frame_text_thin_ice_block" xml:space="preserve">
+    <value>薄冰块</value>
+  </data>
+  <data name="frame_text_tombstones" xml:space="preserve">
+    <value>墓石</value>
+  </data>
+  <data name="frame_text_topaz_gemspark_block_offline" xml:space="preserve">
+    <value>黄玉晶莹宝石块（未通电）</value>
+  </data>
+  <data name="frame_text_topaz_sapling" xml:space="preserve">
+    <value>黄玉宝石树苗</value>
+  </data>
+  <data name="frame_text_torches" xml:space="preserve">
+    <value>火把</value>
+  </data>
+  <data name="frame_text_trap_door_closed" xml:space="preserve">
+    <value>机关门（关闭）</value>
+  </data>
+  <data name="frame_text_trap_door_open" xml:space="preserve">
+    <value>机关门（打开）</value>
+  </data>
+  <data name="frame_text_trapped_barrel_unused_do_not_use" xml:space="preserve">
+    <value>机关桶（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_blue_dungeon_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关蓝地牢箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_chests" xml:space="preserve">
+    <value>机关宝箱</value>
+  </data>
+  <data name="frame_text_trapped_chests_group_2" xml:space="preserve">
+    <value>机关宝箱（组 2）</value>
+  </data>
+  <data name="frame_text_trapped_corruption_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关腐化箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_crimson_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关猩红箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_crystal_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关水晶箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_dead_man_s_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关死人宝箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_desert_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关沙漠箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_frozen_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关冰冻箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_gold_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关金箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_golden_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关金宝箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_green_dungeon_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关绿地牢箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_hallowed_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关神圣箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_jungle_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关丛林箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_pink_dungeon_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关粉地牢箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_shadow_chest_unused_do_not_use" xml:space="preserve">
+    <value>机关暗影箱（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_trash_can_unused_do_not_use" xml:space="preserve">
+    <value>机关垃圾桶（未使用 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_trapped_web_coverd_chest" xml:space="preserve">
+    <value>机关蛛丝箱</value>
+  </data>
+  <data name="frame_text_trigger_down" xml:space="preserve">
+    <value>向下触发</value>
+  </data>
+  <data name="frame_text_trigger_up" xml:space="preserve">
+    <value>向上触发</value>
+  </data>
+  <data name="frame_text_tundra_pot" xml:space="preserve">
+    <value>苔原罐</value>
+  </data>
+  <data name="frame_text_underground_desert_pot" xml:space="preserve">
+    <value>地下沙漠罐</value>
+  </data>
+  <data name="frame_text_underworld_banner" xml:space="preserve">
+    <value>地狱旗帜</value>
+  </data>
+  <data name="frame_text_underworld_pot" xml:space="preserve">
+    <value>地狱罐</value>
+  </data>
+  <data name="frame_text_up" xml:space="preserve">
+    <value>上</value>
+  </data>
+  <data name="frame_text_up_left" xml:space="preserve">
+    <value>左上</value>
+  </data>
+  <data name="frame_text_up_right" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="frame_text_vines" xml:space="preserve">
+    <value>藤蔓</value>
+  </data>
+  <data name="frame_text_wall_hangings_3x3" xml:space="preserve">
+    <value>壁挂装饰 3×3</value>
+  </data>
+  <data name="frame_text_water_drip" xml:space="preserve">
+    <value>水滴</value>
+  </data>
+  <data name="frame_text_water_fountains" xml:space="preserve">
+    <value>喷泉</value>
+  </data>
+  <data name="frame_text_waterleaf_planter" xml:space="preserve">
+    <value>水叶草种植盆</value>
+  </data>
+  <data name="frame_text_weapon_rack_legacy_do_not_use" xml:space="preserve">
+    <value>武器架（旧版 - 请勿使用）</value>
+  </data>
+  <data name="frame_text_web_coverd_chest" xml:space="preserve">
+    <value>蛛丝箱</value>
+  </data>
+  <data name="frame_text_weighted_pressure_plates" xml:space="preserve">
+    <value>测重压力板</value>
+  </data>
+  <data name="frame_text_womannequin_legacy" xml:space="preserve">
+    <value>女性人体模型（旧版）</value>
+  </data>
+  <data name="frame_text_wooden_bed" xml:space="preserve">
+    <value>木床</value>
+  </data>
+  <data name="frame_text_wooden_bench" xml:space="preserve">
+    <value>木长椅</value>
+  </data>
+  <data name="frame_text_wooden_bookcase" xml:space="preserve">
+    <value>木书架</value>
+  </data>
+  <data name="frame_text_wooden_chest" xml:space="preserve">
+    <value>木箱</value>
+  </data>
+  <data name="frame_text_wooden_dresser" xml:space="preserve">
+    <value>木梳妆台</value>
+  </data>
+  <data name="frame_text_wooden_piano" xml:space="preserve">
+    <value>木钢琴</value>
+  </data>
+  <data name="frame_text_wooden_sofa" xml:space="preserve">
+    <value>木沙发</value>
+  </data>
+  <data name="frame_text_wooden_work_bench" xml:space="preserve">
+    <value>木工作台</value>
+  </data>
+  <data name="frame_text_work_benches" xml:space="preserve">
+    <value>工作台</value>
+  </data>
+  <data name="frame_text_xenon_moss_block" xml:space="preserve">
+    <value>氙苔藓块</value>
+  </data>
+  <data name="frame_text_yellow_moss_block" xml:space="preserve">
+    <value>黄苔藓块</value>
+  </data>
+  <data name="bestiary_category_all" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="bestiary_category_surface" xml:space="preserve">
+    <value>地表</value>
+  </data>
+  <data name="bestiary_category_dungeon" xml:space="preserve">
+    <value>地牢</value>
+  </data>
+  <data name="bestiary_category_slime" xml:space="preserve">
+    <value>史莱姆</value>
+  </data>
+  <data name="bestiary_category_cavern" xml:space="preserve">
+    <value>洞穴</value>
+  </data>
+  <data name="bestiary_category_lunar_event" xml:space="preserve">
+    <value>月亮事件</value>
+  </data>
+  <data name="bestiary_category_jungle" xml:space="preserve">
+    <value>丛林</value>
+  </data>
+  <data name="bestiary_category_snow" xml:space="preserve">
+    <value>雪</value>
+  </data>
+  <data name="bestiary_category_desert" xml:space="preserve">
+    <value>沙漠</value>
+  </data>
+  <data name="bestiary_category_crimson" xml:space="preserve">
+    <value>猩红</value>
+  </data>
+  <data name="bestiary_category_solar_eclipse" xml:space="preserve">
+    <value>日食</value>
+  </data>
+  <data name="bestiary_category_pumpkin_moon" xml:space="preserve">
+    <value>南瓜月</value>
+  </data>
+  <data name="bestiary_category_corruption" xml:space="preserve">
+    <value>腐化</value>
+  </data>
+  <data name="bestiary_category_blood_moon" xml:space="preserve">
+    <value>血月</value>
+  </data>
+  <data name="bestiary_category_frost_moon" xml:space="preserve">
+    <value>霜月</value>
+  </data>
+  <data name="bestiary_category_martian_madness" xml:space="preserve">
+    <value>火星暴乱</value>
+  </data>
+  <data name="bestiary_category_hallow" xml:space="preserve">
+    <value>神圣</value>
+  </data>
+  <data name="bestiary_category_old_one_s_army" xml:space="preserve">
+    <value>撒旦军队</value>
+  </data>
+  <data name="bestiary_category_mushroom" xml:space="preserve">
+    <value>发光蘑菇</value>
+  </data>
+  <data name="bestiary_category_underworld" xml:space="preserve">
+    <value>地狱</value>
+  </data>
+  <data name="bestiary_category_ocean" xml:space="preserve">
+    <value>海洋</value>
+  </data>
+  <data name="bestiary_category_sandstorm" xml:space="preserve">
+    <value>沙尘暴</value>
+  </data>
+  <data name="bestiary_category_goblin_army" xml:space="preserve">
+    <value>哥布林军团</value>
+  </data>
+  <data name="bestiary_category_pirate_invasion" xml:space="preserve">
+    <value>海盗入侵</value>
+  </data>
+  <data name="bestiary_category_rain" xml:space="preserve">
+    <value>雨</value>
+  </data>
+  <data name="bestiary_category_frost_legion" xml:space="preserve">
+    <value>雪人军团</value>
+  </data>
+  <data name="bestiary_category_halloween" xml:space="preserve">
+    <value>万圣节</value>
+  </data>
+  <data name="bestiary_category_spider_nest" xml:space="preserve">
+    <value>蜘蛛窝</value>
+  </data>
+  <data name="bestiary_category_temple" xml:space="preserve">
+    <value>神庙</value>
+  </data>
+  <data name="bestiary_category_marble_cave" xml:space="preserve">
+    <value>大理石洞</value>
+  </data>
+  <data name="bestiary_category_granite_cave" xml:space="preserve">
+    <value>花岗岩洞</value>
+  </data>
+  <data name="bestiary_category_meteorite" xml:space="preserve">
+    <value>陨石</value>
+  </data>
+  <data name="bestiary_category_windy_day" xml:space="preserve">
+    <value>大风天</value>
+  </data>
+  <data name="bestiary_category_other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="frame_text_illuminant_paint" xml:space="preserve">
+    <value>夜明漆（旧版）</value>
+  </data>
+  <data name="frame_text_locked" xml:space="preserve">
+    <value>已锁定</value>
+  </data>
 </root>
